@@ -1,3 +1,11 @@
+---
+title: "Bitcoin: bubble or blabber?"
+layout: post
+blog: true
+author: Olga Krieger
+summary: "General Assembly Data Science Immersive Capstone Project."
+permalink: capstone-bitcoin
+---
 
                                                                            by Olga Krieger
 
