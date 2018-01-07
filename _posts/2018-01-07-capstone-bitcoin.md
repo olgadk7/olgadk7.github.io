@@ -7,8 +7,6 @@ summary: "General Assembly Data Science Immersive Capstone Project."
 permalink: blog/capstone-bitcoin
 ---
 
-                                                                           by Olga Krieger
-
 *This is a capstone project I created as part of graduating General Assembly's Data Science Immersive program in New York in December 2017.*
 
 # Bitcoin: bubble or blabber?
