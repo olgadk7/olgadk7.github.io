@@ -9,7 +9,8 @@ permalink: capstone-bitcoin
 
                                                                            by Olga Krieger
 
-** Capstone, Part 4: Report Writeup + Technical Analysis**
+*This is a capstone project I created as part of graduating General Assembly's Data Science Immersive program in New York in December 2017.*
+
 # Bitcoin: bubble or blabber?
 ### or, Bitcoin boom or just the beginning? 
 
@@ -43,7 +44,6 @@ accuracy can the direction of the price of Bitcoin be predicted using machine le
     3.b. SVR<br>
     3.c. Linear Regression<br>
     3.d. Naive Bayes<br>
-4. 
 
 **Further considerations**:
 - Risks & assumptions:
