@@ -14,7 +14,7 @@ picture: 'assets/images/passport.jpg'
 # and specify source (external or local).
 resume: true
 resume-external: true
-resume-url: https://docs.google.com/viewer?url=https://docs.google.com/document/d/1dCMBpLF-KSskqvQrO5Cuz1O3qhDkuRzjYJ09LlRXBFU/edit?usp=sharing
+resume-url: https://docs.google.com/document/d/1dCMBpLF-KSskqvQrO5Cuz1O3qhDkuRzjYJ09LlRXBFU/export?format=pdf
 
 url: http://olgadk.github.io
 # your url: http://USERNAME.github.io
