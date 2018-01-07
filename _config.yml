@@ -36,7 +36,7 @@ twitter: olgadk7
 # google: mygoogle
 # instagram: myinstagram
 #pinterest: annasw
-#linkedin: artiannaswamy
+linkedin: olgakrieger
 # youtube: myyoutube
 # spotify: myspotify
 github: olgadk
@@ -55,7 +55,7 @@ authors:
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
 # normal = 560px / large = 810px
-width: large
+width: normal
 
 # if you don't need pagination, comment the *paginate* configs below
 # paginate: 5
@@ -65,19 +65,19 @@ width: large
 # projects: true
 # research: true
 # teaching: true
-resume: true
+
 # if you don't need about or blog, comment them out below
 # about: true
 blog: true
 
 # do you want to show the "read time" of the posts?
-read-time: true
+read-time: false
 
 # do you want to show the "tags" inside the posts?
 show-tags: true
 
 # related posts inside a post?
-related: true
+related: false
 
 # show next & prev links in blog post?
 blog-nav-links: true
@@ -101,7 +101,7 @@ gems:
   - jekyll-gist
   - jekyll-paginate
 
-#jekyll-mentions:
-    #base_url: https://olgadk.github.io
+jekyll-mentions:
+    base_url: https://github.com
 
 exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, indigo-gh-pages.zip, Rakefile, screen-shot.png, travis.sh, tasks]
