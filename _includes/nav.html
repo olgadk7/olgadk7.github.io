@@ -25,7 +25,8 @@
         {% if site.resume == true %}
             {% if page.title != "Resume" %}
                 <li class="item">
-                    <a class="link" href="{{ site.url }}/resume">Resume</a>
+                    <a class="link" href="{% if site.resume-external %}{{ site.resume-url }}{% else %}{{ site.url }}/{{ site.resume-url }}{% endif %}">Resume</a>
+                    # <a class="link" href="{{ site.url }}/resume">Resume</a>
                 </li>
             {% endif %}
         {% endif %}
