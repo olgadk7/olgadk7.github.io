@@ -4,7 +4,7 @@ layout: post
 blog: true
 author: Olga Krieger
 summary: "General Assembly Data Science Immersive Capstone Project."
-permalink: capstone-bitcoin
+permalink: blog/capstone-bitcoin
 ---
 
                                                                            by Olga Krieger
