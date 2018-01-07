@@ -6,20 +6,3 @@ permalink: /404
 <h2>404</h2>
 {% include 2WENTY.html %}
 <p>Uh Oh! There doesn't appear to be anything here. If you've followed a link expecting something to be here, please <a href="mailto:{{ site.email }}?subject=Page%20not%20found">email me</a> so I can fix it.</p>
-<p>
-	{% if site.posts.size == 0 %}
-		<p>Nothing published yet!</p>
-	{% elsif site.paginate %}
-		{% for post in paginator.posts %}
-	        {% include blog-404.html %}
-	    {% endfor %}
-
-		{% if site.paginate %}
-			{% include pagination.html%}
-		{% endif %}
-	{% else %}
-		{% for post in site.posts %}
-			{% include blog-404.html %}
-		{% endfor %}
-	{% endif %}
-</p>
