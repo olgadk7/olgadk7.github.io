@@ -1,12 +1,10 @@
-This is the first post where I recap important papers as part of continuing my data science education. 
-
-This 1998 Yann LeCun paper discusses solutions to high-dimensional pattern recognition, ie handwritten character or speech. 
-
-It shows that *hand-crafted* individually designed feature extraction modules can be replaced by *automatic learning machines* that operate directly on pixel images.
-
-It thus suggests a new paradigm called Graph Transformer Networks that optimizes on global performance. 
-
-and associated training techniques. 
-
-
+This is the first post where I recap important papers as part of continuing my data science education.
+I start with the 1998 Yann LeCun study as it advances a deep learning class that is essentially computers’ vision and hearing, enabling real-life applications such as safe self-driving cars and reading of radiology images.
+In discussing solutions to high-dimensional pattern recognition, ie handwritten character or speech, it shows that automatic learning machines that operate directly on pixel images are more accurate than hand-crafted individually designed feature extraction modules.
+It thus suggested a then-new paradigm of globally trained Graph Transformer Networks, the core of which is a Convolutional Neural Network. 
+The three conditions that allowed for this progress are: one, low-cost machines with brute-force arithmetic methods; two, large databases for problems with a wide market interest and three, powerful machine learning techniques that can handle high-dimensional inputs and can generate intricate decision functions.
+Nuggets:
+While more automatic learning is beneficial, no learning technique can succeed without a minimal prior knowledge about the task. 
+Gradient-based learning draws on the fact that it is much easier to minimize the loss on a smooth continuous function than a discrete one, as estimated by the impact of small variations of the parameter values.
+The basic idea of back-propagation is that gradients can be computed efficiently by propagation from the output to input.
 Keywords: Neural Networks, OCR, Document Recognition, Machine Learning, Gradient-Based Learning, Convolutional Neural Networks, Graph Transformer Networks, Finite State Transducers.
