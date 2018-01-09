@@ -5,7 +5,7 @@ tag: papers
 blog: true
 author: Olga Krieger
 summary: "Reading List: recaps of important data science papers."
-permalink: blog/reading-list-1998-lecun
+permalink: blog/reading-list-1998lecun
 ---
 
 ## Reading List: 1998 Yann LeCun
