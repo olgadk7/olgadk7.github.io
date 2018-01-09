@@ -14,7 +14,7 @@ This is the first post where I recap important papers as part of continuing my d
 
 I start with the 1998 Yann LeCun study as it advances a **deep learning** class that is essentially computers’ vision and hearing, enabling real-life applications such as safe self-driving cars and reading of radiology images.
 
-In discussing solutions to high-dimensional **pattern recognition**, ie handwritten character or speech, it shows that **automatic** learning machines that operate directly on pixel images are more accurate than **hand-crafted** individually designed feature extraction modules.
+In discussing solutions to high-dimensional **pattern recognition**, ie handwritten character or speech, the paper shows that **automatic** learning machines that operate directly on pixel images are more accurate than **hand-crafted** individually designed feature extraction modules.
 
 It thus suggested a then-new paradigm of globally trained Graph Transformer Networks, the core of which is a **Convolutional Neural Network**. 
 
