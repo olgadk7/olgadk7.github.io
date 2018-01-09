@@ -24,9 +24,9 @@ I start with the 1998 Yann LeCun study as it advances a deep learning class that
 </p>
 
 <p>Nuggets:
-* While more automatic learning is beneficial, no learning technique can succeed without a minimal prior knowledge about the task. 
-* **Gradient-based learning** draws on the fact that it is much easier to minimize the loss on a smooth continuous function than a discrete one, as estimated by the impact of small variations of the parameter values.
-* The basic idea of *back-propagation* is that gradients can be computed efficiently by propagation from the output to input.
+*  While more automatic learning is beneficial, no learning technique can succeed without a minimal prior knowledge about the task. 
+*  **Gradient-based learning** draws on the fact that it is much easier to minimize the loss on a smooth continuous function than a discrete one, as estimated by the impact of small variations of the parameter values.
+*  The basic idea of *back-propagation* is that gradients can be computed efficiently by propagation from the output to input.
 </p>
 
 <p>Keywords: Neural Networks, OCR, Document Recognition, Machine Learning, Gradient-Based Learning, Convolutional Neural Networks, Graph Transformer Networks, Finite State Transducers.
