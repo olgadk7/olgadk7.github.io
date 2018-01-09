@@ -6,19 +6,13 @@ blog: true
 author: Olga Krieger
 summary: "Reading List: recaps of important data science papers."
 permalink: reading-list
-jemoji: '<img class="emoji" title=":books:" alt=":books:" src="https://assets.github.com/images/icons/emoji/unicode/1f4da.png" height="20" width="20" align="absmiddle">'
 ---
-
-<p>As most graduate students, we read many papers over the course of our PhD and there are few papers which seem to be worthwhile and important. Thishere will be a compilation of what I ahve enjoyed reading in various fields of physics. 
-</p>
 
 <h2> Reading List: 1998 Yann LeCun </h2>
 
-<p>This is the first post where I recap important papers as part of continuing my data science education.
-</p>
+This is the first post where I recap important papers as part of continuing my data science education.
 
-<p>I start with the 1998 Yann LeCun study as it advances a deep learning class that is essentially computers’ vision and hearing, enabling real-life applications such as safe self-driving cars and reading of radiology images.
-</p>
+I start with the 1998 Yann LeCun study as it advances a deep learning class that is essentially computers’ vision and hearing, enabling real-life applications such as safe self-driving cars and reading of radiology images.
 
 <p>In discussing solutions to high-dimensional pattern recognition, ie handwritten character or speech, it shows that automatic learning machines that operate directly on pixel images are more accurate than hand-crafted individually designed feature extraction modules.
 </p>
