@@ -30,4 +30,3 @@ The three **conditions** that allowed for this progress are: one, low-cost machi
 
 
 **_Keywords:_** Neural Networks, OCR, Document Recognition, Machine Learning, Gradient-Based Learning, Convolutional Neural Networks, Graph Transformer Networks, Finite State Transducers.
-</p>
