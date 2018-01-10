@@ -28,7 +28,7 @@ highlighter: rouge
 analytics-google: 'UA-112301531-1'
 
 # if you don't want comments in your posts, set to false
-disqus: false
+# disqus: false
 
 # if you don't have any of social below, comment the line
 # facebook: myfacebook
