@@ -360,7 +360,7 @@ ax.set_xlabel('Year',fontsize=23)
 
 
 
-![png](Capstone-Part4-Olga_files/Capstone-Part4-Olga_15_1.png)
+![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_15_1.png)
 
 
 
