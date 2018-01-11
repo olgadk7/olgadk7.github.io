@@ -20,8 +20,6 @@ The purpose of this study is to find out with what accuracy the direction of the
 **Question:** Can we predict the value of bitcoins based on google searches? With what
 accuracy can the direction of the price of Bitcoin be predicted using machine learning?
 
-**Hypothesis:** Bitcoin price is greatly influenced by the news, hence the current price move is highly speculative. There is a positive correlation between bitcoin prices and its google searches.
-
 **Data:** Historical price on Bitcoin + Google Trends
 
 **Models**: Time series, Support Vector Regression, Linear Regression
