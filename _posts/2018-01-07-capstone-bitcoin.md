@@ -600,7 +600,7 @@ ax.set_xlabel('Year',fontsize=18)
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_27_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_27_1.png)
 
 
 **Interpretation:**The graph above shows bitcoin's search interest over the last 5 years. It currently strikes a value of 100, which translates into an all-time high. There was another spike around 2014 and a little before, but overall the interest over time has gone up. No obvious seasonality, but the [recent] trend is clear.
@@ -679,7 +679,7 @@ plt.legend(['Price', 'Interest'], fontsize=15)
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_36_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_36_1.png)
 
 
 **Interpretation:** Visually we can already see that there is a correlation between the market price and interest. Let’s check if statistical algorithms confirm it. 
@@ -707,7 +707,7 @@ ax.set_title('Distribution of bitcoin interest and its price, 2013-2018', fontsi
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_38_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_38_1.png)
 
 
 ### 2.b. EDA: Heatmap of all features
@@ -722,7 +722,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_40_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_40_0.png)
 
 
 ### 2.c. EDA: Correlation matrix
@@ -905,7 +905,7 @@ type(result)
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_51_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_51_1.png)
 
 
 **Interpretation:** 
@@ -951,7 +951,7 @@ test_stationarity(df['market_price'])
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_55_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_55_0.png)
 
 
     Results of Dickey-Fuller Test:
@@ -996,7 +996,7 @@ plt.ylabel('ACF')
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_57_2.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_57_2.png)
 
 
 
@@ -1011,7 +1011,7 @@ plt.ylabel('PACF');
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_58_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_58_0.png)
 
 
 **The data is not stationary, so we need to make it stationary to model.** <br>
@@ -1033,15 +1033,15 @@ plot_pacf(udiff, lags=30);
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_60_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_60_0.png)
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_60_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_60_1.png)
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_60_2.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_60_2.png)
 
 
 **Interpretation:** 
@@ -1134,7 +1134,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_66_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_66_0.png)
 
 
 
@@ -1221,7 +1221,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_72_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_72_0.png)
 
 
 ** Moving Average model** <br>
@@ -1293,7 +1293,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_75_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_75_0.png)
 
 
 
@@ -1383,7 +1383,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_79_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_79_0.png)
 
 
 ## 3.b. Modelling: SVR
@@ -1798,7 +1798,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_98_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_98_0.png)
 
 
 **Polynomial SVR**
@@ -1836,7 +1836,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_102_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_102_0.png)
 
 
 ** Gaussian / RBF SVR**
@@ -1874,7 +1874,7 @@ plt.show()
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_106_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_106_0.png)
 
 
 **Interpretation:** 
@@ -2010,7 +2010,7 @@ plt.ylabel("Actual Values - y")
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_119_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_119_1.png)
 
 
 
@@ -2026,7 +2026,7 @@ ax.plot(y_test, y_test, color='r');
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_120_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_120_0.png)
 
 
 
@@ -2046,7 +2046,7 @@ plt.hist(residuals)
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_121_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_121_1.png)
 
 
 
@@ -2063,7 +2063,7 @@ plt.axhline(0)
 
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_122_1.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_122_1.png)
 
 
 ** 3.d. Modelling: Naive/Baseline prediction** <br>
@@ -2097,7 +2097,7 @@ ax.plot((df['Interest'].min(), df['Interest'].max()), (np.mean(df['market_price'
 ```
 
 
-![png](assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_126_0.png)
+![png](/assets/images/posts/Capstone-Part4-Olga_files/Capstone-Part4-Olga_126_0.png)
 
 
 
