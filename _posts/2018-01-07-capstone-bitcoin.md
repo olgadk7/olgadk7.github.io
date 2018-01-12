@@ -13,17 +13,14 @@ permalink: blog/capstone-bitcoin
 ### or, Bitcoin boom or just the beginning? 
 
 
-**Background:** Today, bitcoin is not only soaring in price; it's also one of the most trending topics on search engines and social media. One of the best proxies of the buzz surrounding any given subject is probably its search volume on Google and other search engines. In fact, investors use Google search and social media data all the time to pick investments.
+**Background:** Bitcoin has been in the news a lot recently. Its price has doubled four times this year and more people are now searching online for how to buy bitcoin than they are searching for how to buy gold. A situation where an asset’s price dramatically exceeds its intrinsic value points at a bubble, but what determines price and value? They aren’t scientific concepts, they are the co-creation of buyers and sellers whose needs and attitudes are constantly changing. A good proxy of people’s attitudes are social media and search engines. My project is looking at whether people’s attitude, as measured by Google Trend Score, can explain some of the bitcoin evaluation.
 
-The purpose of this study is to find out with what accuracy the direction of the price of Bitcoin can be predicted using machine learning methods. This is fundamentally a time series prediction problem. While much research exists surrounding the use of different machine learning techniques for time series prediction, research in this area relating specifically to Bitcoin is lacking.
+**Question:** Can we predict the value of bitcoins based on google searches? With what accuracy can change in price of Bitcoin be predicted using machine learning methods?
 
-**Question:** Can we predict the value of bitcoins based on google searches? With what
-accuracy can the direction of the price of Bitcoin be predicted using machine learning?
+**Data:** Historical price on Bitcoin + Google Trend Score
 
-**Data:** Historical price on Bitcoin + Google Trends
+**Models**: Time series, Support Vector Regression, Linear Regression, Naive Bayes (details in respective sections below)
 
-**Models**: Time series, Support Vector Regression, Linear Regression
-    
 **Method**: 
 1. Get data:<br> 
     1.a. From Kaggle download the bitcoin data<br>
@@ -41,9 +38,14 @@ accuracy can the direction of the price of Bitcoin be predicted using machine le
     3.c. Linear Regression<br>
     3.d. Naive Bayes<br>
 
-**Further considerations**:
-- Risks & assumptions:
-- Metrics:
+**Insights:** Indeed some change in bitcoin's value can be explained with change in search engine score, however the cryptomarket is volitile and susceptible to exogenous shocks, such as hitting evaluation milestones and/or comments from industry and government leaders.
+
+**Next steps:** 
+1. Rephrase the question into a binary classification problem and predict the direction of change.
+2. Set up a streaming API for Twitter to feed into models in real time.
+3. Determine whether ‘interest’ leads or trails the price of Bitcoin.
+4. Examine patterns of subsets of the price data, e.g. recent surges.
+5. Keep on tweaking the hyperparameters.
 
 
 ```python
@@ -838,7 +840,9 @@ corr2.head(15)
 
 ## 3.a. Timeseries
 
-I would like to predict / forecast, based on a history of observations, what the next time's unit bitcoin price will be (_change_ rather than absolute price).
+Since data has a time dimension, I wanted to first use this one basic feature to see how much of the current surge in price is just a self-perpetuating moment. Formally, The question is then based JUST on a history of observations, what the next time unit’s price will be. 
+
+Time series is made up of Auto Regressive and Moving Average models, ARMA, that respectively capture the linear correlation between subsequent lags of time points and the error term of the model from previous time points, respectively. 
 
 
 ```python
@@ -1386,14 +1390,11 @@ plt.show()
 
 ## 3.b. Modelling: SVR
 
-Predicting bitcoin price (Weighted Price) based on the google trend score by 
-building an SVR model. This should give me an idea of whether the correlation between the two variables is statistically significant and how much the google trend score can change the bitcoin price.
+Time to use of my main feature, Google trend score, to answer the main question: Given there is a correlation between the interest and the bitcoin price, how accurately can change in the former predict change in the latter? 
 
-- Support vector regression is a useful and powerful machine learning technique to recognize pattern of time series dataset. It can produce good prediction result if the value of important parameters can be determined properly.
-- Max margin classifier
-- SVMs work really well for data in which the classes are linearly separable - or data is sparse, small datasets eg. Interest
-- SVM solves for a decision boundary that should minimize the generalization error.
-- Use kernel trick if data non-linearly separated.
+This is a regression problem, so after first trying out a Simple linear regression, I thought I’d try Support Vector Regression, since it’s better at picking up nonlinear trends in times series datasets. 
+
+A little about SVR: as a result of successful performance of SVM in real world classification problems, its principle of has been extended to regression problems too.  Just like other regression techniques: you give it a set of input vectors and associated responses, and it fits a model to predict the response given a new input vector. Unlike other regression techniques, Kernel SVR, applies transformations to your dataset prior to the learning step. This is what allows it to pick up the nonlinear trend, unlike in linear regression.
 
 
 ```python
