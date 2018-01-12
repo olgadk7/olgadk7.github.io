@@ -10,8 +10,6 @@ permalink: blog/capstone-bitcoin
 *This is a capstone project I created as part of graduating General Assembly's Data Science Immersive program in New York in December 2017.*
 
 # Bitcoin: bubble or blabber?
-### or, Bitcoin boom or just the beginning? 
-
 
 **Background:** Bitcoin has been in the news a lot recently. Its price has doubled four times this year and more people are now searching online for how to buy bitcoin than they are searching for how to buy gold. A situation where an asset’s price dramatically exceeds its intrinsic value points at a bubble, but what determines price and value? They aren’t scientific concepts, they are the co-creation of buyers and sellers whose needs and attitudes are constantly changing. A good proxy of people’s attitudes are social media and search engines. My project is looking at whether people’s attitude, as measured by Google Trend Score, can explain some of the bitcoin evaluation.
 
