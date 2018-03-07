@@ -1,5 +1,5 @@
 ---
-title: "Sourcing publicly available data and predicting the price of bitcoin."
+title: "Project: Sourcing publicly available data and predicting the price of bitcoin."
 layout: post
 blog: true
 author: Olga Krieger
