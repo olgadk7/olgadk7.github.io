@@ -34,7 +34,7 @@ The two types of recommendation prediction:
 - **in-matrix** (making recommendations about those articles that have been rated by at least one user in the system) 
 - **out-of-matrix** (making recommendations about those articles that have never been rated). Traditional collaborative filtering algorithms cannot make predictions about these articles because those algorithms only use information about other users’ ratings. A recommender system that cannot handle out-of-matrix prediction cannot recommend newly published papers to its users.
 
-The authors propose an algorithm - collaborative topic regression (CTR) - that combines the merits of the two traditional methods. It uses the same type of data, the other users’ libraries and the content of the articles.
+The authors propose an algorithm - **collaborative topic regression (CTR)** - that combines the merits of the two traditional methods. It uses the same type of data, the other users’ libraries and the content of the articles.
 
 As a judging criteria, a good recommendation engine for them is one that values
 - older foundational/classic works
@@ -44,7 +44,7 @@ As a judging criteria, a good recommendation engine for them is one that values
 Wang and Blei start by fitting a model that uses the latent topic space to explain both the observed ratings and the observed words. This model though cannot distinguish topics for explaining recommendations from topics important for explaining content. CTR however can detect this difference. The key property in CTR lies in how the item latent vector is generated: authors assume it’s close to topic proportions, but could diverge from it if it has to. This expectation is a linear function - this is why the model is called collaborative topic regression.
 
 As a result, CTR can 
-1. find older papers that are important to other similar users 
+1. find older papers that are important to other similar users, 
 2. find newly written papers whose content reflects the user’s specific interests
 3. give interpretable representations of users and articles.
 
