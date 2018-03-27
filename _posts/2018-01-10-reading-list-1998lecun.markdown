@@ -1,5 +1,5 @@
 ---
-title: "Reading List: 1998 Yann LeCun"
+title: "Reading List: Convolutional Neural Networks in Document Recognition, Yann LeCun, 1998"
 layout: post
 tag: papers
 blog: true
@@ -8,9 +8,11 @@ summary: "Reading List: recaps of important data science papers."
 permalink: blog/reading-list-1998lecun
 ---
 
-### *This is the first post in Reading List series where I recap important papers as part of continuing my data science education.*
+***This is the first post in Reading List series where I recap important papers as part of continuing my data science education.*** 
 
-I start with the 1998 Yann LeCun study as it advances a **deep learning** class that is essentially computers’ vision and hearing, enabling real-life applications such as safe self-driving cars and reading of radiology images.
+## Gradient_Based Learning Applied to Document Recognition by Y. LeCun, L. Bottou, Y. Bengio and P.Haffner. 
+
+I start with this paper as it advances a **deep learning** class that is essentially computers’ vision and hearing, enabling real-life applications such as safe self-driving cars and reading of radiology images.
 
 In discussing solutions to high-dimensional **pattern recognition**, ie handwritten character or speech, the paper shows that **automatic** learning machines that operate directly on pixel images are more accurate than **hand-crafted** individually designed feature extraction modules.
 
