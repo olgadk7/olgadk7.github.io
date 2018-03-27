@@ -1,0 +1,3925 @@
+
+## NLP, Gridsearch, Pipelines and predicting the reddit topics
+
+This write-up approaches Natural Language Processing (NLP) which is a powerful set of techniques for processing text into numbers that is then used during modeling. The anylisis below uses a reddit dataset, specifically the text and the title of a reddit post to predict what topic, or sureddit it is about. The project is inspired by one of the assignments I had an option to do during the Data Science Immersive course at General Assembly - with some functions straight out of my brilliant teachers' notes.
+
+**The flow** is as follows:
+1. Missing values.
+2. Plain NLP with Logistic Regression in a **Pipeline**
+3. Tweaked NLP with Logistic Regression using **Gridsearch**
+4. Dimensionality reduction using PCA's **Truncated SVD** and predicting with Random Forest
+5. Looking at **Latent Dirichlet Allocation**
+
+
+FURTHER DETAILS:
+
+**Missing Values:** with 26k rows, I'm dropping any features that have more than 20k rows missing, handpicking ones with balanced values and editing ones with bad values.
+
+**NLP techniques used:**
+**CountVectorizer** takes every unique instance of a word and counts it as a feature. (It can be problematic for several reasons: memory processing power and ambiguity (e.g. LinkedIn seeing 6000+ variations of the title 'Software Engineer', although there is technique for dealing with that called 'stemming', but its fragile)). So what CountVecotrizer is doing is counting words' occurence and assigning weight to them according how often they occur.
+
+Another approach is looking at more unique words. As such, **Tf-idf** highlights what is common or typical in one or two cases and rare in all others. It gives a value that's weighted, or relative of other documents, not absoulute like CountVectorizer does. That's usually more interesting (and predictive) then words or items that are common everywhere.
+
+In addition, I'm using **GridSearch** to first find the best parameters in the model and then in the NLP techniques.
+
+Often, the thousands of columns we get from vectorizing each word are not individually informative. Reducing them in dimensionality using PCA can be very helpful. I used a variant of PCA known as **TruncatedSVD** (yet it did not improve the predictability of my model).
+
+Lastly, I looked at Latent **Dirichlet Allocation (LDA)**, which is an unstructured technique that finds things that are most likely to be together, but not predicting what's most likely to be together or how many topics are there.
+
+Eventually bouncing back and forth between optimizing hyperparameters, trying new modelling techniques and working on feature extraction would have gotten me closer to a better predictive model. But this is what I have for now:
+
+
+
+```python
+import pandas as pd
+import numpy as np
+```
+
+
+```python
+df = pd.read_csv('NLP/reddit_posts.csv')
+```
+
+
+```python
+df.shape
+```
+
+
+
+
+    (26688, 53)
+
+
+
+
+```python
+df.head()
+```
+
+
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>adserver_click_url</th>
+      <th>adserver_imp_pixel</th>
+      <th>archived</th>
+      <th>author</th>
+      <th>author_flair_css_class</th>
+      <th>author_flair_text</th>
+      <th>contest_mode</th>
+      <th>created_utc</th>
+      <th>disable_comments</th>
+      <th>distinguished</th>
+      <th>...</th>
+      <th>spoiler</th>
+      <th>stickied</th>
+      <th>subreddit</th>
+      <th>subreddit_id</th>
+      <th>third_party_tracking</th>
+      <th>third_party_tracking_2</th>
+      <th>thumbnail</th>
+      <th>title</th>
+      <th>ups</th>
+      <th>url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>johnnyawesome0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>1480697304</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>techsupport</td>
+      <td>t5_2qioo</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>self</td>
+      <td>Help with audio set-up</td>
+      <td>1.0</td>
+      <td>https://www.reddit.com/r/techsupport/comments/...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>Silverfin113</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>1480697424</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>learnprogramming</td>
+      <td>t5_2r7yd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>self</td>
+      <td>Optimizing code for speed</td>
+      <td>23.0</td>
+      <td>https://www.reddit.com/r/learnprogramming/comm...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>bookbooksbooks</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>1480697613</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>gamedev</td>
+      <td>t5_2qi0a</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>self</td>
+      <td>Seeking Tales of Development Woe (and Triumph)...</td>
+      <td>12.0</td>
+      <td>https://www.reddit.com/r/gamedev/comments/5g4a...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>[deleted]</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>1480697634</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>learnprogramming</td>
+      <td>t5_2r7yd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>default</td>
+      <td>[Java] Finding smallest value in an array</td>
+      <td>0.0</td>
+      <td>https://www.reddit.com/r/learnprogramming/comm...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>caffeine_potent</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>1480697748</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>learnpython</td>
+      <td>t5_2r8ot</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>self</td>
+      <td>currying functions using functools</td>
+      <td>6.0</td>
+      <td>https://www.reddit.com/r/learnpython/comments/...</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 53 columns</p>
+</div>
+
+
+
+
+```python
+df.isnull().sum()
+```
+
+
+
+
+    adserver_click_url        26688
+    adserver_imp_pixel        26688
+    archived                      0
+    author                        0
+    author_flair_css_class    26253
+    author_flair_text         26337
+    contest_mode                  0
+    created_utc                   0
+    disable_comments          26688
+    distinguished             26603
+    domain                        0
+    downs                         0
+    edited                        0
+    gilded                        0
+    hide_score                    0
+    href_url                  26688
+    id                            0
+    imp_pixel                 26688
+    is_self                       0
+    link_flair_css_class      22396
+    link_flair_text           22078
+    locked                        0
+    media                     26420
+    media_embed                   0
+    mobile_ad_url             26688
+    name                          0
+    num_comments                  0
+    original_link             26688
+    over_18                       0
+    permalink                     0
+    post_hint                 23175
+    preview                   23175
+    promoted                  26688
+    promoted_by               26688
+    promoted_display_name     26688
+    promoted_url              26688
+    quarantine                    0
+    retrieved_on                  0
+    saved                         0
+    score                         0
+    secure_media              26420
+    secure_media_embed            0
+    selftext                      0
+    spoiler                       0
+    stickied                      0
+    subreddit                     0
+    subreddit_id                  0
+    third_party_tracking      26688
+    third_party_tracking_2    26688
+    thumbnail                     0
+    title                         0
+    ups                           0
+    url                           0
+    dtype: int64
+
+
+
+
+```python
+missing_cols = df.isnull().sum()[df.isnull().sum() > 20000].index
+missing_cols
+```
+
+
+
+
+    Index(['adserver_click_url', 'adserver_imp_pixel', 'author_flair_css_class',
+           'author_flair_text', 'disable_comments', 'distinguished', 'href_url',
+           'imp_pixel', 'link_flair_css_class', 'link_flair_text', 'media',
+           'mobile_ad_url', 'original_link', 'post_hint', 'preview', 'promoted',
+           'promoted_by', 'promoted_display_name', 'promoted_url', 'secure_media',
+           'third_party_tracking', 'third_party_tracking_2'],
+          dtype='object')
+
+
+
+
+```python
+df.drop(list(missing_cols), axis=1, inplace=True)
+```
+
+
+```python
+df.head()
+```
+
+
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>archived</th>
+      <th>author</th>
+      <th>contest_mode</th>
+      <th>created_utc</th>
+      <th>domain</th>
+      <th>downs</th>
+      <th>edited</th>
+      <th>gilded</th>
+      <th>hide_score</th>
+      <th>id</th>
+      <th>...</th>
+      <th>secure_media_embed</th>
+      <th>selftext</th>
+      <th>spoiler</th>
+      <th>stickied</th>
+      <th>subreddit</th>
+      <th>subreddit_id</th>
+      <th>thumbnail</th>
+      <th>title</th>
+      <th>ups</th>
+      <th>url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>johnnyawesome0</td>
+      <td>False</td>
+      <td>1480697304</td>
+      <td>self.techsupport</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>5g49s2</td>
+      <td>...</td>
+      <td>{}</td>
+      <td>I have a Sony surround sound system for a blu-...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>techsupport</td>
+      <td>t5_2qioo</td>
+      <td>self</td>
+      <td>Help with audio set-up</td>
+      <td>1.0</td>
+      <td>https://www.reddit.com/r/techsupport/comments/...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>Silverfin113</td>
+      <td>False</td>
+      <td>1480697424</td>
+      <td>self.learnprogramming</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>5g4a5p</td>
+      <td>...</td>
+      <td>{}</td>
+      <td>I've written what seems to be a prohibitively ...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>learnprogramming</td>
+      <td>t5_2r7yd</td>
+      <td>self</td>
+      <td>Optimizing code for speed</td>
+      <td>23.0</td>
+      <td>https://www.reddit.com/r/learnprogramming/comm...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>bookbooksbooks</td>
+      <td>False</td>
+      <td>1480697613</td>
+      <td>self.gamedev</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>5g4att</td>
+      <td>...</td>
+      <td>{}</td>
+      <td>I'm writing an article called "Video Games Tha...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>gamedev</td>
+      <td>t5_2qi0a</td>
+      <td>self</td>
+      <td>Seeking Tales of Development Woe (and Triumph)...</td>
+      <td>12.0</td>
+      <td>https://www.reddit.com/r/gamedev/comments/5g4a...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>False</td>
+      <td>[deleted]</td>
+      <td>False</td>
+      <td>1480697634</td>
+      <td>self.learnprogramming</td>
+      <td>0.0</td>
+      <td>1480698462</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>5g4awr</td>
+      <td>...</td>
+      <td>{}</td>
+      <td>[deleted]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>learnprogramming</td>
+      <td>t5_2r7yd</td>
+      <td>default</td>
+      <td>[Java] Finding smallest value in an array</td>
+      <td>0.0</td>
+      <td>https://www.reddit.com/r/learnprogramming/comm...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>False</td>
+      <td>caffeine_potent</td>
+      <td>False</td>
+      <td>1480697748</td>
+      <td>self.learnpython</td>
+      <td>0.0</td>
+      <td>1480709138</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>5g4bcr</td>
+      <td>...</td>
+      <td>{}</td>
+      <td>I have the following representation of argumen...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>learnpython</td>
+      <td>t5_2r8ot</td>
+      <td>self</td>
+      <td>currying functions using functools</td>
+      <td>6.0</td>
+      <td>https://www.reddit.com/r/learnpython/comments/...</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div>
+
+
+
+
+```python
+# a lot are booleans and objects
+df.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    RangeIndex: 26688 entries, 0 to 26687
+    Data columns (total 31 columns):
+    archived              26688 non-null bool
+    author                26688 non-null object
+    contest_mode          26688 non-null bool
+    created_utc           26688 non-null int64
+    domain                26688 non-null object
+    downs                 26688 non-null float64
+    edited                26688 non-null object
+    gilded                26688 non-null float64
+    hide_score            26688 non-null bool
+    id                    26688 non-null object
+    is_self               26688 non-null bool
+    locked                26688 non-null bool
+    media_embed           26688 non-null object
+    name                  26688 non-null object
+    num_comments          26688 non-null float64
+    over_18               26688 non-null bool
+    permalink             26688 non-null object
+    quarantine            26688 non-null bool
+    retrieved_on          26688 non-null float64
+    saved                 26688 non-null bool
+    score                 26688 non-null float64
+    secure_media_embed    26688 non-null object
+    selftext              26688 non-null object
+    spoiler               26688 non-null bool
+    stickied              26688 non-null bool
+    subreddit             26688 non-null object
+    subreddit_id          26688 non-null object
+    thumbnail             26688 non-null object
+    title                 26688 non-null object
+    ups                   26688 non-null float64
+    url                   26688 non-null object
+    dtypes: bool(10), float64(6), int64(1), object(14)
+    memory usage: 4.5+ MB
+
+
+
+```python
+# let's take a closer look and identify candidates for elimination
+for col in df.columns:
+    print(df[col].value_counts(), '\n')
+```
+
+    False    26688
+    Name: archived, dtype: int64 
+    
+    [deleted]               5947
+    wilsonharry              156
+    AutoModerator             90
+    ebpnovin                  58
+    angelovstanton            46
+    Hgbnty                    46
+    metthewhayden             26
+    kevindepp142              25
+    RingSavvy                 20
+    eastpointsoftware         19
+    Sexual_Lettuce            17
+    redditgizmos              17
+    Ceasar_JL                 16
+    llSourcell                15
+    Anonymously-Used          15
+    Xradam                    14
+    GerrardSlippedHahaha      13
+    martinfisleburn           12
+    denmarkf                  12
+    WaterdotBottledot         12
+    oasis1272                 12
+    danny199234               12
+    rms_returns               11
+    printerstechsupport       11
+    RoboticPlayer             11
+    patientplatypus           10
+    connormcwood              10
+    sangramsate               10
+    pythonion                 10
+    Johnmtb                   10
+                            ... 
+    xxSatirez                  1
+    1994Jebby                  1
+    B_deux                     1
+    SLIVER360Kyle              1
+    Analfistingmcgee           1
+    Moore1994                  1
+    sotik9                     1
+    A_Confused_Cocoon          1
+    Fflipp                     1
+    SmashYourLeague            1
+    wizardomg                  1
+    GodNops                    1
+    iggySPLOSION               1
+    lordmagya                  1
+    Scribbner                  1
+    SamuraiRafiki              1
+    ramenator                  1
+    nepalimob                  1
+    ianx47                     1
+    whata-boh                  1
+    Deathjaws99                1
+    Code-Ceadda                1
+    Skullls_an_Stars           1
+    pazzed                     1
+    Imaduckquackk              1
+    2zoots                     1
+    Nottootoo                  1
+    DarthMars97                1
+    takatuka                   1
+    Cubicbill1                 1
+    Name: author, Length: 16561, dtype: int64 
+    
+    False    26683
+    True         5
+    Name: contest_mode, dtype: int64 
+    
+    1482356776    3
+    1481768887    3
+    1480868953    2
+    1480718188    2
+    1482008551    2
+    1482172844    2
+    1481159209    2
+    1481809400    2
+    1480994523    2
+    1482856061    2
+    1481487058    2
+    1482791468    2
+    1482954479    2
+    1481165113    2
+    1481900741    2
+    1482361330    2
+    1480604738    2
+    1483049772    2
+    1481651817    2
+    1480638775    2
+    1481151390    2
+    1480891204    2
+    1480930221    2
+    1480948703    2
+    1483080521    2
+    1482267458    2
+    1481323062    2
+    1481235886    2
+    1482958389    2
+    1482013489    2
+                 ..
+    1481497486    1
+    1481190288    1
+    1480604562    1
+    1481323411    1
+    1482594859    1
+    1480970081    1
+    1482261317    1
+    1481542468    1
+    1481477993    1
+    1481845520    1
+    1480729361    1
+    1481325330    1
+    1481454355    1
+    1480721173    1
+    1481001756    1
+    1481130781    1
+    1482990369    1
+    1481093923    1
+    1482398502    1
+    1480977192    1
+    1481098029    1
+    1481253681    1
+    1481718578    1
+    1482689332    1
+    1482818357    1
+    1482627894    1
+    1482187577    1
+    1482314559    1
+    1481908403    1
+    1480863750    1
+    Name: created_utc, Length: 26527, dtype: int64 
+    
+    self.techsupport                   11423
+    self.learnprogramming               3448
+    self.learnpython                    1724
+    self.gamedev                        1191
+    self.technology                     1152
+    self.web_design                      749
+    self.Python                          566
+    self.javahelp                        536
+    self.javascript                      482
+    self.linux                           465
+    self.engineering                     454
+    self.csshelp                         393
+    self.iOSProgramming                  315
+    self.swift                           249
+    youtube.com                          188
+    self.PHP                             175
+    self.computerscience                 159
+    self.compsci                         147
+    self.java                            138
+    self.django                          124
+    self.netsec                           97
+    self.css                              94
+    self.HTML                             85
+    self.cpp                              83
+    github.com                            75
+    self.ruby                             72
+    self.flask                            71
+    youtu.be                              63
+    i.redd.it                             58
+    self.html5                            50
+                                       ...  
+    transition.fcc.gov                     1
+    blog.rebelmouse.com                    1
+    popularmechanics.com                   1
+    typing.io                              1
+    virtualdesktopinfrastructure.in        1
+    msaldivar.github.io                    1
+    ksl.com                                1
+    baptiste-wicht.com                     1
+    arvaantechnolab.com                    1
+    pythad.github.io                       1
+    fastcompany.com                        1
+    bafflednerd.com                        1
+    thinkerspost.com                       1
+    odetocode.com                          1
+    techworldofficial.com                  1
+    autoblog.com                           1
+    sanfrancisco.cbslocal.com              1
+    developers.redhat.com                  1
+    pusher.com                             1
+    techrights.org                         1
+    loudprogrammer.net                     1
+    codeforces.com                         1
+    uxbooth.com                            1
+    time.com                               1
+    stackshare.io                          1
+    slick.gifts                            1
+    rta-aus.net                            1
+    seroundtable.com                       1
+    rhone.com                              1
+    in.reuters.com                         1
+    Name: domain, Length: 871, dtype: int64 
+    
+    0.0    26688
+    Name: downs, dtype: int64 
+    
+    False         23172
+    1481742672        2
+    1481174981        2
+    1481225395        2
+    1482691046        1
+    1482923327        1
+    1480571981        1
+    1480841966        1
+    1482047705        1
+    1482294749        1
+    1483050754        1
+    1482867351        1
+    1482745857        1
+    1481745333        1
+    1483071169        1
+    1481293840        1
+    1482345829        1
+    1481149934        1
+    1482627212        1
+    1482081434        1
+    1481032041        1
+    1482114816        1
+    1480978109        1
+    1481695590        1
+    1482245728        1
+    1481064356        1
+    1481219012        1
+    1482456779        1
+    1482504729        1
+    1482497487        1
+                  ...  
+    1481816795        1
+    1481667916        1
+    1482263473        1
+    1480688534        1
+    1482280955        1
+    1481307098        1
+    1482528059        1
+    1481221398        1
+    1482449652        1
+    1481656136        1
+    1480640260        1
+    1482341518        1
+    1481746305        1
+    1480781786        1
+    1482030170        1
+    1482357572        1
+    1481847560        1
+    1480930635        1
+    1480558726        1
+    1483727344        1
+    1482666204        1
+    1481247701        1
+    1480724448        1
+    1481842812        1
+    1482462334        1
+    1482298183        1
+    1483073615        1
+    1482273044        1
+    1481556422        1
+    1481028259        1
+    Name: edited, Length: 3514, dtype: int64 
+    
+    0.0    26678
+    1.0        8
+    6.0        1
+    2.0        1
+    Name: gilded, dtype: int64 
+    
+    False    26688
+    Name: hide_score, dtype: int64 
+    
+    5hu07k    1
+    5irg1n    1
+    5ig8vn    1
+    5jxznw    1
+    5in71h    1
+    5jzy2v    1
+    5i2wpy    1
+    5ifjip    1
+    5hw7on    1
+    5gjspx    1
+    5ijslt    1
+    5ha3vz    1
+    5g1t2t    1
+    5hqlo0    1
+    5kfte3    1
+    5gs179    1
+    5jb8z2    1
+    5jcza8    1
+    5ihgft    1
+    5fzl80    1
+    5fw7n4    1
+    5hedv0    1
+    5jl8fn    1
+    5j0kmg    1
+    5g6mge    1
+    5kyyqy    1
+    5klc4a    1
+    5gshax    1
+    5jjs36    1
+    5h168o    1
+             ..
+    5kaol0    1
+    5gzrzb    1
+    5h5c9k    1
+    5i864u    1
+    5kj7hp    1
+    5ij6j4    1
+    5gj9um    1
+    5kbarc    1
+    5hvj9n    1
+    5l0ozg    1
+    5gmrio    1
+    5i2vgh    1
+    5kmshy    1
+    5itzbk    1
+    5hdhxh    1
+    5hajgg    1
+    5k2qfu    1
+    5ix5xa    1
+    5izpjc    1
+    5fzd1p    1
+    5h82m0    1
+    5ijwuy    1
+    5h210z    1
+    5k2yxe    1
+    5h710m    1
+    5hknxh    1
+    5jpsht    1
+    5ivsv4    1
+    5ixgce    1
+    5g6wvt    1
+    Name: id, Length: 26688, dtype: int64 
+    
+    True     24594
+    False     2094
+    Name: is_self, dtype: int64 
+    
+    False    26666
+    True        22
+    Name: locked, dtype: int64 
+    
+    {}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     26420
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=http%3A%2F%2Fwww.youtube.com%2Fembed%2Fvideoseries%3Flist%3DPLeCUCcES3YgWCSSdxWyijd_DT15oAVabz&amp;url=https%3A%2F%2Fwww.youtube.com%2Fplaylist%3Flist%3DPLeCUCcES3YgWCSSdxWyijd_DT15oAVabz&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FHRhbXGvbsPY%2Fhqdefault.jpg%3Fcustom%3Dtrue%26w%3D246%26h%3D138%26stc%3Dtrue%26jpg444%3Dtrue%26jpgq%3D90%26sp%3D68%26sigh%3DxQj5OjJ_arFilpmxQk7A71mUy9s&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="450" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 450}                                                                                                                            3
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/5AIS_y6CJ6E?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 3
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/aLH3G8V6zVk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/7h-Aq32C69g?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/KHfYy9reU7U?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/rjoMxxhaHTM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/cA2-iMz479o?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/ac5BHelLeLg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/KjwTnonQV7E?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/Z2DF73VYBU8?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F0QNiZfSsPc0%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D0QNiZfSsPc0&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F0QNiZfSsPc0%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/py_DStBkJko?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/KHzqFiNfoQ4?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/jRDEPYHqqEg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/vNySOrI2Ny8?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/knR69Te_A7A?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/8dmSE4vKL7k?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/uHbMt6WDhQ8?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.twitch.tv%2F%3Fchannel%3Dautomateallthethings%26autoplay%3Dfalse&amp;url=https%3A%2F%2Fwww.twitch.tv%2Fautomateallthethings&amp;image=https%3A%2F%2Fstatic-cdn.jtvnw.net%2Fjtv_user_pictures%2Fautomateallthethings-profile_image-ff13b4d03867db56-300x300.jpeg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=twitch" width="600" height="366" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 366}                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/HRhbXGvbsPY?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/XgrwqN6hTH4?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/At3xcj-pTjg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/sgphNuRdZMc?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/S1p6fmPzoJk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/QM1iUe6IofM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/XXf4JWnXbek?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/siZDjBW6xPs?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/rm_CCR5tnRQ?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/OqsOdUNsO4g?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ...  
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/QtN-u5vJEPw?start=12&amp;feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    1
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=%2F%2Fimgur.com%2Fa%2F1hOoo%2Fembed&amp;url=http%3A%2F%2Fimgur.com%2Fa%2F1hOoo&amp;image=http%3A%2F%2Fi.imgur.com%2FR54lFRH.jpg%3Ffb&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=imgur" width="550" height="550" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 550, u'scrolling': False, u'height': 550}                                                                                                                                                                                                                                                                                                                                                                                        1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/xNiD-n2LqXU?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.facebook.com%2Fvideo%2Fembed%3Fvideo_id%3D655833461263259&amp;url=https%3A%2F%2Fwww.facebook.com%2Fgizbothindi%2Fvideos%2F655833461263259%2F&amp;image=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft15.0-10%2Fp128x128%2F15453143_655833684596570_8420105889989525504_n.jpg%3Foh%3D99f0e30d3c71836c3a98285d30d7b991%26oe%3D58E77F6E&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=facebook" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                      1
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.kickstarter.com%2Fprojects%2Fhypershop%2Fhyperdrivetm-compact-thunderbolt-3-usb-c-hub-for-m%2Fwidget%2Fvideo.html&amp;url=https%3A%2F%2Fwww.kickstarter.com%2Fprojects%2Fhypershop%2Fhyperdrivetm-compact-thunderbolt-3-usb-c-hub-for-m&amp;image=https%3A%2F%2Fksr-ugc.imgix.net%2Fassets%2F014%2F684%2F807%2F650dc514b27da7f2cbf564a3a6e07458_original.jpg%3Fw%3D560%26h%3D315%26fit%3Dfill%26bg%3D000000%26v%3D1480303597%26auto%3Dformat%26q%3D92%26s%3D453f43067858e97d39c1ed7683d65445&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=kickstarter" width="560" height="420" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 560, u'scrolling': False, u'height': 420}        1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/nERpEOABJJo?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/C9fjvGMqB_0?start=2&amp;feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/q_-56rRpw1w?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/I61DEo7lWCE?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/ayeZMAmORkk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FL2nNeZD8vRY%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DL2nNeZD8vRY&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FL2nNeZD8vRY%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/ppaJS4Uen84?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/4dHlbXigtss?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/k7gQqOD_uWk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/nRoOq--uWa4?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/J7T-VUTOetI?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/1PtxQxhS32Q?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/sW_7i6T_H78?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=%2F%2Fimgur.com%2Fa%2Fmi5Wh%2Fembed&amp;url=http%3A%2F%2Fimgur.com%2Fa%2Fmi5Wh&amp;image=http%3A%2F%2Fi.imgur.com%2F7zP1DoL.jpg%3Ffb&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=imgur" width="550" height="550" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 550, u'scrolling': False, u'height': 550}                                                                                                                                                                                                                                                                                                                                                                                        1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/baYFdH7TETI?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/tDEC33aHsfg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FYkEexOdzVpw%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DYkEexOdzVpw&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FYkEexOdzVpw%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/Aq_lvEWFwjg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/videoseries?list=PLQfbdYxS0PvyCZpQtDfkIingkt63WHuMr" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/YYvOGPMLVDo?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=%2F%2Fimgur.com%2Fa%2Fqy5KZ%2Fembed&amp;url=http%3A%2F%2Fimgur.com%2Fa%2Fqy5KZ&amp;image=http%3A%2F%2Fi.imgur.com%2F8elSYqh.jpg%3Ffb&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=imgur" width="550" height="550" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 550, u'scrolling': False, u'height': 550}                                                                                                                                                                                                                                                                                                                                                                                        1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/sCEzEVJkO1U?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/GhHZ3JYmKnE?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/1ZTx0AxMNKE?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/rkOLMeX1OFo?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 1
+    Name: media_embed, Length: 248, dtype: int64 
+    
+    t3_5h372r    1
+    t3_5h3yn6    1
+    t3_5jpedx    1
+    t3_5i17ee    1
+    t3_5j1a2p    1
+    t3_5kyy9p    1
+    t3_5gdwc0    1
+    t3_5ihlza    1
+    t3_5gmz6b    1
+    t3_5gnbl2    1
+    t3_5i3oj4    1
+    t3_5gzlp1    1
+    t3_5j16ib    1
+    t3_5hgw2m    1
+    t3_5hlme2    1
+    t3_5jpqlz    1
+    t3_5ks4ap    1
+    t3_5gva49    1
+    t3_5jrx5i    1
+    t3_5knjz8    1
+    t3_5kwv29    1
+    t3_5gat7y    1
+    t3_5gqvns    1
+    t3_5hw06y    1
+    t3_5i3l4l    1
+    t3_5gq1ec    1
+    t3_5kkre3    1
+    t3_5g2wmw    1
+    t3_5gdtvg    1
+    t3_5kqctp    1
+                ..
+    t3_5hv3el    1
+    t3_5jkx0h    1
+    t3_5kih5p    1
+    t3_5jk335    1
+    t3_5ku08w    1
+    t3_5jnimm    1
+    t3_5j8lda    1
+    t3_5iwkmn    1
+    t3_5grvzd    1
+    t3_5gpq5l    1
+    t3_5g6t72    1
+    t3_5g3ybd    1
+    t3_5izadn    1
+    t3_5klqh3    1
+    t3_5jork4    1
+    t3_5jcj8j    1
+    t3_5kzmt5    1
+    t3_5g7jve    1
+    t3_5gvzti    1
+    t3_5k2v8v    1
+    t3_5gjq7t    1
+    t3_5gh19z    1
+    t3_5gfzpj    1
+    t3_5hwl6h    1
+    t3_5kqk81    1
+    t3_5i30gl    1
+    t3_5kql1l    1
+    t3_5k5lcv    1
+    t3_5iu57r    1
+    t3_5h4fe8    1
+    Name: name, Length: 26688, dtype: int64 
+    
+    0.0       6855
+    1.0       4309
+    2.0       3345
+    3.0       2307
+    4.0       1977
+    5.0       1495
+    6.0       1187
+    7.0        888
+    8.0        691
+    9.0        555
+    10.0       403
+    11.0       340
+    12.0       266
+    13.0       234
+    14.0       201
+    15.0       165
+    16.0       130
+    17.0       124
+    18.0       102
+    19.0        96
+    21.0        64
+    20.0        63
+    22.0        58
+    23.0        56
+    24.0        45
+    27.0        39
+    25.0        39
+    26.0        33
+    29.0        33
+    31.0        32
+              ... 
+    175.0        1
+    98.0         1
+    163.0        1
+    319.0        1
+    181.0        1
+    127.0        1
+    200.0        1
+    121.0        1
+    88.0         1
+    130.0        1
+    252.0        1
+    172.0        1
+    173.0        1
+    339.0        1
+    651.0        1
+    223.0        1
+    358.0        1
+    162.0        1
+    424.0        1
+    653.0        1
+    284.0        1
+    131.0        1
+    123.0        1
+    167.0        1
+    146.0        1
+    2757.0       1
+    271.0        1
+    281.0        1
+    189.0        1
+    270.0        1
+    Name: num_comments, Length: 176, dtype: int64 
+    
+    False    26647
+    True        41
+    Name: over_18, dtype: int64 
+    
+    /r/techsupport/comments/5jbrm1/is_there_a_way_to_stop_a_tab_from_hijacking_your/         1
+    /r/techsupport/comments/5ilsox/pc_restarts_while_playing_games/                          1
+    /r/technology/comments/5l03rz/طريقة_تغيير_ip_لأي_دولة_وفتح_المواقع_المحجوبة/             1
+    /r/techsupport/comments/5gvtr0/can_i_increase_the_volume_in_a_mp3_file/                  1
+    /r/gamedev/comments/5ihrco/good_c_math_library_for_linear_algebra/                       1
+    /r/learnprogramming/comments/5i19tl/html_and_css_learning_to_code_on_freecodecamp/       1
+    /r/learnprogramming/comments/5hl3w5/javascript_can_someone_walk_me_through_the_flow/     1
+    /r/techsupport/comments/5kgxes/ethernet_connected_to_router_disables_internet/           1
+    /r/learnprogramming/comments/5icr06/diagramming_before_coding/                           1
+    /r/techsupport/comments/5k1co5/email_client/                                             1
+    /r/techsupport/comments/5gcnqy/surface_pro_3_front_facing_camera_wont_work/              1
+    /r/technology/comments/5hhhri/microsoft_have_got_themselves_set_for_the_future/          1
+    /r/learnprogramming/comments/5ib8jc/jvm_vs_beam/                                         1
+    /r/learnpython/comments/5hgtnv/ideas_for_rendering_a_text_grid/                          1
+    /r/techsupport/comments/5k87i9/how_do_i_solve_svchost_high_cpu_usage/                    1
+    /r/linux/comments/5hf0jt/psa_wifi_hotspots_in_buntu_doesnt_seem_to_like/                 1
+    /r/techsupport/comments/5gp5vf/is_there_any_way_to_tell_if_a_game_is_using_your/         1
+    /r/technology/comments/5k46o6/top_best_4gb_ram_smartphone_2017/                          1
+    /r/csshelp/comments/5gyln8/warning_attribute_selector_should_be_nested/                  1
+    /r/gamedev/comments/5j9eje/please_feedback_my_first_game_smoke_bomb/                     1
+    /r/Python/comments/5ks4gy/cant_figure_out_syntax_error/                                  1
+    /r/learnpython/comments/5j6ghl/could_some_one_please_do_a_more_indepth/                  1
+    /r/technology/comments/5iu6aw/safe_to_say_that_you_are_stuck_in_an_unfortunate/          1
+    /r/techsupport/comments/5fv6v3/computer_freezes_and_audio_static_while_playing/          1
+    /r/techsupport/comments/5j8d8x/what_is_the_temperature_of_my_cpu/                        1
+    /r/techsupport/comments/5i67q8/my_school_district_has_an_allusers_email_account/         1
+    /r/techsupport/comments/5h83gi/can_i_charge_the_sandisk_connect_wireless_stick/          1
+    /r/computerscience/comments/5gnj44/considering/                                          1
+    /r/web_design/comments/5iqrb0/how_do_i_find_and_delete_a_google_verification/            1
+    /r/css/comments/5kbcce/why_doesnt_a_block_div_element_adjust_vertically/                 1
+                                                                                            ..
+    /r/gamedev/comments/5koc4h/help_with_php_random_redirecting/                             1
+    /r/techsupport/comments/5jc6nj/scrape_data_from_online_accommodation_booking/            1
+    /r/techsupport/comments/5kbkxx/sound_coming_from_speakers_and_headphones_help/           1
+    /r/linux/comments/5l1ocu/whats_the_state_with_amd_gpu_drivers_nowadays/                  1
+    /r/techsupport/comments/5knwd6/computer_keeps_bluescreen/                                1
+    /r/gamedev/comments/5hpxvr/i_make_fully_transparent_monthly_income_reports/              1
+    /r/javascript/comments/5hvsud/how_do_you_structure_and_organise_modern/                  1
+    /r/java/comments/5klwpl/java_ee_security_essentials_pdf/                                 1
+    /r/learnprogramming/comments/5hijs9/creturning_two_value_from_a_single_function/         1
+    /r/techsupport/comments/5gyjii/need_help_on_buying_a_power_supply/                       1
+    /r/django/comments/5hofja/processing_and_storing_data_from_external_api/                 1
+    /r/techsupport/comments/5k2hlm/7zip_how_to_set_compression_archive_output/               1
+    /r/learnpython/comments/5h11st/python_uni_coursework_help_needed/                        1
+    /r/javascript/comments/5jtapf/when_karma_testrunner_fails/                               1
+    /r/engineering/comments/5j7kbg/javamechanical_engineer/                                  1
+    /r/techsupport/comments/5ggx9m/new_build_mice_yep_plural_wont_work_everything/           1
+    /r/techsupport/comments/5jkk92/windows_10_usb_boot_drive_causing_issues_unable/          1
+    /r/technology/comments/5fuxo5/answeringlegal_tired_of_non_stop_messages_check/           1
+    /r/learnprogramming/comments/5g8v0d/c_to_read_a_specific_line_from_a_txt_file_is_the/    1
+    /r/techsupport/comments/5is72x/i_have_16gb_of_ram_but_after_reinstalling_windows/        1
+    /r/techsupport/comments/5gszbg/college_ethernet_help/                                    1
+    /r/linux/comments/5h1i5r/issues_making_bootable_windows_usb_on_ubuntu/                   1
+    /r/technology/comments/5ih72c/for_tech_related_query_you_can_watch_this/                 1
+    /r/learnprogramming/comments/5hl1kn/how_should_i_fix_this_linear_probing_insertion/      1
+    /r/technology/comments/5i8jcq/new_goldbacked_digital_assets_on_blockchain/               1
+    /r/techsupport/comments/5jgw28/uninstalled_lenovo_service_bridge_getting_can_not/        1
+    /r/learnpython/comments/5hhw8o/how_to_make_a_simple_tensorflow_speech_recognizer/        1
+    /r/web_design/comments/5jlv74/why_is_there_a_white_line_at_the_bottom_of_my/             1
+    /r/gamedev/comments/5glf7q/pc_for_game_development/                                      1
+    /r/technology/comments/5ipjrq/facebook_ai_built_to_help_visually_impaired_people/        1
+    Name: permalink, Length: 26688, dtype: int64 
+    
+    False    26688
+    Name: quarantine, dtype: int64 
+    
+    1.484401e+09    6
+    1.484427e+09    4
+    1.484426e+09    4
+    1.484304e+09    4
+    1.484303e+09    4
+    1.484426e+09    4
+    1.484456e+09    4
+    1.484408e+09    4
+    1.484385e+09    4
+    1.484411e+09    4
+    1.484312e+09    4
+    1.484441e+09    4
+    1.484448e+09    4
+    1.484437e+09    4
+    1.484431e+09    4
+    1.484306e+09    4
+    1.484387e+09    4
+    1.484427e+09    4
+    1.484298e+09    4
+    1.484419e+09    4
+    1.484430e+09    4
+    1.484415e+09    4
+    1.484429e+09    4
+    1.484375e+09    4
+    1.484307e+09    4
+    1.484308e+09    4
+    1.484451e+09    3
+    1.484450e+09    3
+    1.484311e+09    3
+    1.484401e+09    3
+                   ..
+    1.484425e+09    1
+    1.484440e+09    1
+    1.484438e+09    1
+    1.484307e+09    1
+    1.484446e+09    1
+    1.484403e+09    1
+    1.484301e+09    1
+    1.484406e+09    1
+    1.484380e+09    1
+    1.484393e+09    1
+    1.484388e+09    1
+    1.484456e+09    1
+    1.484434e+09    1
+    1.484429e+09    1
+    1.484306e+09    1
+    1.484399e+09    1
+    1.484436e+09    1
+    1.484451e+09    1
+    1.484442e+09    1
+    1.484395e+09    1
+    1.484293e+09    1
+    1.484438e+09    1
+    1.484431e+09    1
+    1.484295e+09    1
+    1.484384e+09    1
+    1.484388e+09    1
+    1.484378e+09    1
+    1.484386e+09    1
+    1.484387e+09    1
+    1.484448e+09    1
+    Name: retrieved_on, Length: 23044, dtype: int64 
+    
+    False    26688
+    Name: saved, dtype: int64 
+    
+    1.0        15301
+    0.0         3699
+    2.0         2784
+    3.0         1306
+    4.0          542
+    5.0          482
+    6.0          373
+    7.0          286
+    8.0          201
+    9.0          144
+    10.0         130
+    11.0         106
+    12.0          92
+    13.0          80
+    14.0          71
+    15.0          67
+    16.0          53
+    18.0          46
+    20.0          43
+    17.0          42
+    19.0          40
+    22.0          29
+    25.0          27
+    24.0          25
+    21.0          25
+    27.0          25
+    30.0          21
+    23.0          21
+    29.0          21
+    37.0          19
+               ...  
+    102.0          1
+    212.0          1
+    342.0          1
+    223.0          1
+    1239.0         1
+    115.0          1
+    1814.0         1
+    26573.0        1
+    152.0          1
+    322.0          1
+    1061.0         1
+    2258.0         1
+    108.0          1
+    206.0          1
+    165.0          1
+    343.0          1
+    6300.0         1
+    302.0          1
+    563.0          1
+    164.0          1
+    320.0          1
+    222.0          1
+    86.0           1
+    409.0          1
+    1531.0         1
+    306.0          1
+    313.0          1
+    224.0          1
+    144.0          1
+    135.0          1
+    Name: score, Length: 250, dtype: int64 
+    
+    {}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           26420
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/5AIS_y6CJ6E?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       3
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2Fvideoseries%3Flist%3DPLeCUCcES3YgWCSSdxWyijd_DT15oAVabz&amp;url=https%3A%2F%2Fwww.youtube.com%2Fplaylist%3Flist%3DPLeCUCcES3YgWCSSdxWyijd_DT15oAVabz&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FHRhbXGvbsPY%2Fhqdefault.jpg%3Fcustom%3Dtrue%26w%3D246%26h%3D138%26stc%3Dtrue%26jpg444%3Dtrue%26jpgq%3D90%26sp%3D68%26sigh%3DxQj5OjJ_arFilpmxQk7A71mUy9s&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="450" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 450}                                                                                                                           3
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/8dmSE4vKL7k?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/py_DStBkJko?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/ac5BHelLeLg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/cA2-iMz479o?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/KjwTnonQV7E?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/KHfYy9reU7U?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.twitch.tv%2F%3Fchannel%3Dautomateallthethings%26autoplay%3Dfalse&amp;url=https%3A%2F%2Fwww.twitch.tv%2Fautomateallthethings&amp;image=https%3A%2F%2Fstatic-cdn.jtvnw.net%2Fjtv_user_pictures%2Fautomateallthethings-profile_image-ff13b4d03867db56-300x300.jpeg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=twitch" width="600" height="366" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 366}                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/rjoMxxhaHTM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F0QNiZfSsPc0%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D0QNiZfSsPc0&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F0QNiZfSsPc0%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/Z2DF73VYBU8?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/aLH3G8V6zVk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/jRDEPYHqqEg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/uHbMt6WDhQ8?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/7h-Aq32C69g?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/KHzqFiNfoQ4?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/vNySOrI2Ny8?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/knR69Te_A7A?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       2
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/S1p6fmPzoJk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FpvRPktxETmY%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DpvRPktxETmY&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FpvRPktxETmY%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.kickstarter.com%2Fprojects%2F1602548140%2Fjevois-open-source-quad-core-smart-machine-vision%2Fwidget%2Fvideo.html&amp;url=https%3A%2F%2Fwww.kickstarter.com%2Fprojects%2F1602548140%2Fjevois-open-source-quad-core-smart-machine-vision&amp;image=https%3A%2F%2Fksr-ugc.imgix.net%2Fassets%2F014%2F886%2F994%2F18a5f65e1561e5954d5eff3bb2bcef0e_original.png%3Fw%3D560%26h%3D315%26fit%3Dfill%26bg%3D000000%26v%3D1482445914%26auto%3Dformat%26q%3D92%26s%3D504f725547c58a8d76351c1e2eaf53ce&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=kickstarter" width="560" height="420" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 560, u'scrolling': False, u'height': 420}        1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/At3xcj-pTjg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FTYK1XAg4mnY%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DTYK1XAg4mnY&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FTYK1XAg4mnY%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/HRhbXGvbsPY?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/sgphNuRdZMc?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/QM1iUe6IofM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/mBRh3lSxJkE?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FJhnJEP56elk%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DJhnJEP56elk&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FJhnJEP56elk%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ...  
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/1ZTx0AxMNKE?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FYkEexOdzVpw%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DYkEexOdzVpw&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FYkEexOdzVpw%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/GhHZ3JYmKnE?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FwCfClc8ssOU%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DwCfClc8ssOU&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FwCfClc8ssOU%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FE4S5Hm4sTmw%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DE4S5Hm4sTmw&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FE4S5Hm4sTmw%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/nERpEOABJJo?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/C9fjvGMqB_0?start=2&amp;feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/q_-56rRpw1w?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fe.issuu.com%2Fissuu-reader3-embed-files%2Flatest%2Ftwittercard.html%3Fu%3Dsamyakonlineservicespvt.ltd%26d%3Dwhy-is-php-web-development-consider%26p%3D1&amp;src_secure=1&amp;url=https%3A%2F%2Fissuu.com%2Fsamyakonlineservicespvt.ltd%2Fdocs%2Fwhy-is-php-web-development-consider&amp;image=https%3A%2F%2Fimage.isu.pub%2F161201053316-01364f1db9bdf3691baba017c5410248%2Fjpg%2Fpage_1.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=issuu" width="400" height="300" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 400, u'scrolling': False, u'height': 300}                                                                                                                  1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/I61DEo7lWCE?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/ayeZMAmORkk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=%2F%2Fimgur.com%2Fa%2Fmi5Wh%2Fembed&amp;url=http%3A%2F%2Fimgur.com%2Fa%2Fmi5Wh&amp;image=http%3A%2F%2Fi.imgur.com%2F7zP1DoL.jpg%3Ffb&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=imgur" width="550" height="550" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 550, u'scrolling': False, u'height': 550}                                                                                                                                                                                                                                                                                                                                                                                        1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=%2F%2Fimgur.com%2Fa%2F1hOoo%2Fembed&amp;url=http%3A%2F%2Fimgur.com%2Fa%2F1hOoo&amp;image=http%3A%2F%2Fi.imgur.com%2FR54lFRH.jpg%3Ffb&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=imgur" width="550" height="550" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 550, u'scrolling': False, u'height': 550}                                                                                                                                                                                                                                                                                                                                                                                        1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/ppaJS4Uen84?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.kickstarter.com%2Fprojects%2Freflectacles%2Freflectacles-reflective-eyewear-and-sunglasses%2Fwidget%2Fvideo.html&amp;url=https%3A%2F%2Fwww.kickstarter.com%2Fprojects%2Freflectacles%2Freflectacles-reflective-eyewear-and-sunglasses&amp;image=https%3A%2F%2Fksr-ugc.imgix.net%2Fassets%2F014%2F241%2F023%2Fbc2ed569a4b54c3a878fb4c8c13f6828_original.jpg%3Fw%3D560%26h%3D315%26fit%3Dfill%26bg%3D000000%26v%3D1480446873%26auto%3Dformat%26q%3D92%26s%3D15ec7b3acefb9415401f366da48af212&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=kickstarter" width="560" height="420" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 560, u'scrolling': False, u'height': 420}          1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/4dHlbXigtss?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/k7gQqOD_uWk?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/nRoOq--uWa4?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/J7T-VUTOetI?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/1PtxQxhS32Q?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/sW_7i6T_H78?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.facebook.com%2Fvideo%2Fembed%3Fvideo_id%3D655833461263259&amp;url=https%3A%2F%2Fwww.facebook.com%2Fgizbothindi%2Fvideos%2F655833461263259%2F&amp;image=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft15.0-10%2Fp128x128%2F15453143_655833684596570_8420105889989525504_n.jpg%3Foh%3D99f0e30d3c71836c3a98285d30d7b991%26oe%3D58E77F6E&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=facebook" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                      1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/baYFdH7TETI?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/tDEC33aHsfg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/Aq_lvEWFwjg?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/videoseries?list=PLQfbdYxS0PvyCZpQtDfkIingkt63WHuMr" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2Fcl_fqdm_QV0%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dcl_fqdm_QV0&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2Fcl_fqdm_QV0%2Fhqdefault.jpg&amp;key=2aa3c4d5f3de4f5b9120b660ad850dc9&amp;type=text%2Fhtml&amp;schema=youtube" width="600" height="338" scrolling="no" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                              1
+    {u'content': u'&lt;iframe width="459" height="344" src="https://www.youtube.com/embed/YYvOGPMLVDo?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 459, u'scrolling': False, u'height': 344}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/sCEzEVJkO1U?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    {u'content': u'&lt;iframe width="600" height="338" src="https://www.youtube.com/embed/rkOLMeX1OFo?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;', u'width': 600, u'scrolling': False, u'height': 338}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    Name: secure_media_embed, Length: 248, dtype: int64 
+    
+    [deleted]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      5269
+    [removed]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      3211
+    Welcome to the daily [Advent Of Code](http://adventofcode.com) thread!\n\nPlease post all related topics *only* here and do not fill the subreddit with threads.\n\nThe rules are:\n \n+ **No direct code posting of solutions** - solutions are only allowed on source code hosters, like: [Github Gist](https://gist.github.com), [Pastebin](https://pastebin.com) (only for single classes/files!), [Github](https://github.com), [Bitbucket](https://bitbucket.org), and [GitLab](https://gitlab.com) - anonymous submissions are, of course allowed where the hosters allow (Github Gist and Pastebin do). We encourage people to use *git repos* (maybe with non-personally identifiable accounts to prevent doxing) - this also provides a learning effect as *git* is an extremely important skill to have.\n+ Discussions about solutions are welcome and encouraged\n+ Questions about the challenges are welcome and encouraged\n+ Asking for *help* with solving the challenges is encouraged, still the *no complete solutions* rule applies. We *advise*, we *help*, but we *do not solve*.\n+ No trashing! Criticism is okay, but stay civilized.\n+ And the most important rule: **HAVE FUN!**\n\nLast year, /u/Philboyd_studge wrote a nice little Java library that makes it easier to parse the input files that accompany most of the challenges.\n \n[**Here is FileIO.java**](https://gist.github.com/anonymous/469050313cd1263e64befb8b35862aa1)\n  \n[Link to the explanation of the library](https://www.reddit.com/r/javahelp/comments/5e3ssz/announcement_questions_advent_of_code_2016/dak7fv7/)\n  \nUse of this library is *not mandatory*! Feel free to use your own.\n  \n**Happy coding!**\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    25
+    \n\n**Welcome to /r/engineering's daily thread!** \n\nThis thread is open to all questions, comments, and discussions, especially those things not usually permitted in normal posts:\n\n&gt; - Career advice questions  \n&gt; - Job offer and job market discussions  \n&gt; - Resume critiques  \n&gt; - Office/management/employee topics  \n&gt; - Questions about school/major choice/course electives (homework questions will be removed)\n&gt; - Discussions of current projects, including progress images\n&gt; - Pretty much anything you want to talk about that is engineering or job-related is fine provided you follow rules seven (7) and nine (9).\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          17
+    /r/compsci strives to be the best online community for computer scientists. We moderate posts to keep things on topic.\n\nThis **Weekend SuperThread** provides a discussion area for posts that might be off-topic normally. **Anything Goes:** post your questions, ideas, requests for help, musings, or whatever comes to mind as comments in this thread.\n\n### Pointers\n* If you're looking to answer questions, sort by new comments.\n* If you're looking for answers, sort by top comment.\n* Upvote a question you've answered for visibility.\n* Downvoting is discouraged. Save it for discourteous content only.\n\n### Caveats\n* It's not *truly* "Anything Goes". Please follow [Reddiquette](https://www.reddit.com/wiki/reddiquette) and use common sense.\n* Homework help questions are discouraged.\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      5
+    **What is Marketing Monday?**\n\nPost your marketing material like websites, email pitches, trailers, presskits, promotional images etc., and get feedback from and give feedback to other devs.\n\n**RULES**\n\n* Do **NOT** try to promote your game to game devs here, we are not your audience. This is only for feedback and improvement.\n\n* **Clearly state what you want feedback on otherwise your post may be removed. (Do not just dump Kickstarter or trailer links)**\n\n* If you post something, try to leave some feedback on somebody else's post. It's good manners.\n\n* If you do post some feedback, try to make sure it's good feedback: make sure it has the **what** ("The logo sucks...") and the **why** ("...because it's hard to read on most backgrounds").\n\n* A very wide spectrum of items can be posted here, but try to limit yourself to **one or two important items** in your post to prevent it from being cluttered up.\n\n* Promote good feedback, and upvote those who do! Also, don't forget to thank the people who took some of their time to write some feedback for you, even if you don't agree with it.\n\n**Note:** Using url shorteners is discouraged as it may get you caught by Reddit's spam filter.\n\n----\n\n[All Previous Marketing Mondays](https://www.reddit.com/r/gamedev/search?q=flair:MM&amp;restrict_sr=on&amp;sort=new&amp;t=all)\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           4
+    Hello there!\n\nThis is a safe, non-judging environment for all your questions no matter how silly you think they are. Anyone can answer questions. \n\n[Previous discussions](http://www.reddit.com/r/PHP/search?q=PHP+Weekly+Discussion&amp;sort=new&amp;restrict_sr=on&amp;t=all)\n\nThanks!\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 4
+    Post music and sounds that you've been working on throughout this week (or last (or whenever, really)). Feel free to give as much constructive feedback as you can, and enjoy yourselves!\n\n**Basic Guidelines:**\n\n* Do not link to a page selling music. We are not your target audience.\n* Do not link to a page selling a game you're working on. We are not your target audience.\n* It is highly recommended that you use SoundCloud to host and share your music.\n\nAs a general rule, if someone takes the time to give feedback on something of yours, it's a nice idea to try to reciprocate.\n\n**If you've never posted here before, then don't sweat it. New composers of any skill level are always welcome!**\n\n-------------------------------\n\n[Previous Soundtrack Sundays](https://www.reddit.com/r/gamedev/search?sort=new&amp;amp;amp;restrict_sr=on&amp;amp;amp;q=flair:STS)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         4
+    ##### Overview\n\nQuestions regarding netsec and discussion related directly to netsec are welcome here.\n\n##### Rules &amp; Guidelines\n\n* **Always maintain civil discourse.**  Be awesome to one another - moderator intervention will occur if necessary.\n* Avoid NSFW content unless absolutely necessary. If used, mark it as being NSFW.  If left unmarked, the comment will be removed entirely.\n* If linking to classified content, mark it as such. If left unmarked, the comment will be removed entirely.\n* Avoid use of memes. If you have something to say, say it with real words.\n* All discussions and questions should directly relate to netsec.\n* No tech support is to be requested or provided on /r/netsec.\n\nAs always, the [content &amp; discussion guidelines](https://www.reddit.com/r/netsec/wiki/guidelines#wiki_general_content_guidelines) should also be observed on /r/netsec.\n\n##### Feedback\n\nFeedback and suggestions are welcome, but don't post it here. Please send it to [the moderator inbox](https://www.reddit.com/message/compose?to=/r/netsec).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         4
+    Did you find or create something cool this week in javascript? \n\nShow us here!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  4
+    Welcome to our weekly stickied Library / Tool thread! This is a new idea so please feel free to offer your feedback about this thread or the subreddit in general in the comments. As usual if you have a serious issue with the subreddit please contact the moderators directly.\n\nSo if you've been working on a tool and want to share it with the world, then this is the place. Developers, make sure you include as much information as possible and if you've found something interesting to share, then please do. Don't advertise your library / tool every week unless it's gone through _substantial_ changes.\n\nFinally, please stick to reddiquette and keep your comments on topic and substantive. Thanks for participating.\n\nAsk away!\n\nPS. Stole this post idea from the Reddit iPhone community. :+1:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    4
+    Create something? Let's see it! \n\n#Feedback Requestors\n        \nPlease use the following format\n            \n&gt; **URL**:\n        \n&gt; **Purpose**:\n        \n&gt; **Technologies Used**:\n\n&gt; **Feedback Requested**:  *(e.g. general, usability, code review, or specific element)*\n\n&gt; **Comments**:\n          \nPost your site along with your stack and technologies used and receive feedback from the community. Please refrain from just posting a link and instead give us a bit of a background about your creation.\n\nFeel free to request general feedback or specify feedback in a certain area like user experience, usability, design, or code review.\n        \n#Feedback Providers\n        \n* Please post constructive feedback. Simply saying, "That's good" or "That's bad" is useless feedback. Explain why.\n* Consider providing concrete feedback about the problem rather than the solution. Saying, "get rid of red buttons" doesn't explain the problem. Saying "your site's success message being red makes me think it's an error" provides the problem. From there, suggest solutions.\n* Be specific. Vague feedback rarely helps.\n* Again, focus on why.\n* Always be respectful\n\n#Template Markup\n\n`**URL**:`\n\n`**Purpose**:`\n\n`**Technologies Used**:`\n\n`**Feedback Requested**:`\n\n`**Comments**:`\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         4
+    Tell /r/python what you're working on this week! You can be bragging, grousing, sharing your passion, or explaining your pain. Talk about your current project or your pet project; whatever you want to share.     \n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            4
+    Welcome to another /r/learnPython weekly "Ask Anything* Monday" thread\n\nHere you can ask all the questions that you wanted to ask but didn't feel like making a new thread.\n\n\* It's primarily intended for simple questions but as long as it's about python it's allowed.\n\nIf you have any suggestions or questions about this thread use the message the moderators button in the sidebar.\n\n**Rules:**\n\n* Don't downvote stuff - instead explain what's wrong with the comment, if it's against the rules "report" it and it will be dealt with.\n\n* Don't post stuff that doesn't have absolutely anything to do with python. \n\n* Don't make fun of someone for not knowing something, insult anyone etc - this will result in an immediate ban.\n\nThat's it.\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 4
+    ##Greetings Good People of /r/Technology,\n\nWelcome to the /r/Technology Tech Support / General Discussion Thread.\n\n**All questions must be submitted as top comments** (direct replies to this post).\n\nAs always, we ask that you keep it civil, abide by the [rules of reddit](http://www.reddit.com/rules) and mind your [reddiquette](https://www.reddit.com/wiki/reddiquette).  Please hit the report button on any activity that you feel may be in violation of any of the guidelines listed above.\n\n[Click here to review past iterations of these support discussions.](https://www.reddit.com/r/technology/search?q=author%3AAutomoderator&amp;sort=new&amp;restrict_sr=on)\n\ncheers, /r/technology moderators.\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               4
+    **What is WIP Wednesday?**\n\nShare your work-in-progress (WIP) prototype, feature, art, model or work-in-progress game here and get early feedback from, and give early feedback to, other game developers.\n\n**RULES**\n\n* Do promote good feedback and interesting posts, and upvote those who posted it! Also, don't forget to thank the people who took some of their time to write some feedback or encouraging words for you, even if you don't agree with what they said.\n* Do state what kind of feedback you want. We realise this may be hard, but please be as specific as possible so we can help each other best. \n* Do leave feedback to at least 2 other posts. It should be common courtesy, but just for the record: If you post your work and want feedback, give feedback to other people as well. \n* Do NOT post your completed work. This is for work-in-progress only, we want to support each other in early phases (It doesn't have to be pretty!). \n* Do NOT try to promote your game to game devs here, we are not your audience. You may include links to your game's website, social media or devblog for those who are interested, but don't push it; this is not for marketing purposes. \n\nRemember to use #WIPWednesday on social media for additional feedback and exposure!\n\n*Note*: Using url shorteners is discouraged as it may get you caught by Reddit's spam filter.\n***\n\n[All Previous WIP Wednesdays](https://www.reddit.com/r/gamedev/search?q=flair:WIPW&amp;restrict_sr=on&amp;sort=new&amp;t=all)\n\n***\n\n[](/bottom)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                3
+    Windows 10 i7 4770k 16GB DDR3 Motherboard: MSI Z87-G45 Gaming motherboard Nvidia 780 GTX\n\nSymptoms:\n\nThe on board sound from my motherboard just doesn't sound right. The sound is kind of "tinny" or "sharp" and there is a bit of static at higher volumes, some echoes as well. I'm using Audio Technica ath-m50x headphones plugged into the headphone jack of my tower desktop.\n\nExample: Playing Mass Effect 1; scrolling through the main menu options produces a "tick" sound. This sound is so loud and sharp it is almost like nails on a chalk board. Sound in general just doesn't sound very clean, almost very treble like.\n\nPlaying any game: When the sound increases suddenly in volume a hint of static can be heard, does not sound right.\n\nI built this PC back in 2013. Since then, I have been using Bose Companion 2 Series III Multimedia Speakers and do not recall any audio distortions when plugging my headphones into the 3.5mm jack. I took a break of several months away from PC gaming and came back to find my speakers no longer working. To remedy this, I plugged my headphones into the green audio jack of my PC tower only to discover the symptoms listed above. This was not the first time my Bose speakers went bad and I cannot recall the on board sound distortions occurring in the past when I've used it. Over 15 years of PC gaming intuition tells me that this audio just doesn't sound right.\n\nTroubleshooting steps taken:\n\nHere is the specs on the motherboard I have: https://us.msi.com/Motherboard/Z87-G45-GAMING.html#hero-specification\n\nI've tried updating drivers, uninstalling the Realtek software, just not sure if I'm doing everything correctly. I'll include screenshots of my device manager and sound setup.\n\nDevice Manager: http://m.imgur.com/a/9Akbx\n\nThanks for help anyone can give. Not sure if I need a dedicated sound card or if my headphones hooked up to speakers would help out.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     3
+    I'm trying to make register possible on the homepage, so I don't have a seperate URL to handle registration. I'm trying to send the form through `get_context_data`, however it's not working. Here's my code:\n\n**forms.py**\n\n    class UserRegistrationForm(forms.ModelForm):\n        password = forms.CharField(widget=forms.PasswordInput)\n        confirm_password = forms.CharField(widget=forms.PasswordInput)\n    \n        class Meta:\n            model = User\n    \n            fields = [\n                'username',\n                'password',\n                'confirm_password',\n            ]\n    \n    \n    \n**views.py**\n\n    class BoxesView(ListView):\n        template_name = 'polls.html'\n    \n        def get_context_data(self):\n            context = super(BoxesView, self).get_context_data()\n    \n        # login\n        form = UserRegistrationForm(self.request.POST or None)\n        context['form'] = form\n        if form.is_valid():\n            username = form.cleaned_data['username']\n            password = form.cleaned_data['password']\n            print(username, password) #nothing comes up\n            user = User.objects.create_user(username, password)\n            user.save()\n            return redirect('/')\n\n        return context\n    \n            return context\n    \n        def get_queryset(self):\n            pass\n\n**base.html**\n\n    &lt;form action="" enctype="multipart/form-data" method="post"&gt;{% csrf_token %}\n    \t&lt;div class="registerBox"&gt;\n            {{ form.username }}\n            {{ form.password }}\n            &lt;input type="submit" value="register"/&gt;\n    \t&lt;/div&gt;\n    &lt;/form&gt;\n\nThe fields show up but after submitting the form it doesn't create a User.  I don't get what isn't working                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     2
+    Hi, everyone! Our SpeakJS Discord server now has over 500 members and has really become the vibrant, friendly community I originally hoped for. It's come to life over the past couple of months and it's great to see all the learning, knowledge sharing, and general discussion about **all things JavaScript**.\n\nThe server **welcomes everyone** and it's community-driven meaning that it will be shaped by what you all want. In the couple of months it's been around we've created lots of new channels and made changes to others to accommodate what best helps you to learn and be part of the community.\n\nWe recently got a Jobs channel and have had people from companies like Squarespace getting involved and looking for JavaScript developers. This is just the beginning.\n\nHappy holidays, everyone. I hope you consider joining us – https://discord.gg/dAF4F28                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        2
+    I made a minor fuck up and I think I might be a bit in over my head. I am a Mechanical Engineering student minoring in Computer Science. I started my CS minor this semester by taking an intro to Java programming course that covered the basics of programming. I've been trying to learn Python alongside the course, but haven't been able to make much headway due to my workload. \n\n&amp;nbsp;\n\nSo, the fuck up. I interviewed for a research assistant job with a ME professor whose project I want to work on. He was extremely excited about my CS minor, because he has been doing all the coding for his research lab by himself. He asked me if I knew any Python, and I told him I have been trying to learn it by myself. He asked me some (what I thought were common knowledge) questions about Python, and it seemed to excite him even more each time I answered. **Note:** these were answers I knew because I have been on /r/learnprogramming and /r/learnpython frequently over the past few months.\n\n&amp;nbsp;\n\nApparently all of the guy's code is in Python and he has three of his four projects at a standstill because he hasn't had time to program. He agreed to higher me at the same wage I am making right now (currently a research assistant at a different lab). He expects me to do mostly coding for him, and tests his ME labs to make sure they are short enough for his students (A Junior/Senior level lab, I’m a second year).\nSo my situation right now is this. I won’t start working for him until January 9th, exactly one month from today. I will spend about two hours a day working on Python and  1-2 hours studying mechanics of materials for strengths (ME course). Right now I am working my way through [this course](https://www.coursera.org/learn/python-programming-introduction), but I don’t know where I should go after, or what would be most beneficial to me given my short time range. Also, I have two Python books downloaded, Python 101 and Python Apprentice.\n \n&amp;nbsp;\n\nTLDR: Might have oversold my capabilities in an interview; need help.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        2
+    Hi, I've started on pySDL2 a short bit ago, largely with the python extensions. I wasn't able to find out how to do certain things efficiently, like animated sprites and would ask if anyone has good resources on this (the tutorial base isn't very rich at first glace).\n\nAlso, opinions on whether using the extensions or the wrapper functions would be a better way to get started?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     2
+    ok, so imagine i have a javascript game with all the players data in an object called "playerStats"\n\nnow let's say that playerStats contains 2 properties: "health" &amp; "attack"\n\nif in a future version of the game i wanted to add the property "defense" to "playerStats", how would i go about doing so?\n\nhow do you handle updating/adding new features without overwriting the players previous data? \n\ni can think of a few ways to go about this, but they all seem very verbose and unwieldy, are there any clean &amp; efficient ways?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        2
+    Ok so here's the layout example:\n\nhttp://imgur.com/a/Kn1w7\n\nThese are little boxes with some text/pictures on them, for example dates or whatever. You click on them and:\n\nhttp://imgur.com/a/HODuV\n\nThe box changes in size and the other boxes re-align themselves.\n\nI've been looking for an example of this and haven't found one yet.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              2
+    I'm trying to make login possible on the homepage, so I don't have a seperate URL to handle registration. I'm trying to send the form through `get_context_data`, however it's not working. Here's my code:\n\n**forms.py**\n\n    class UserRegistrationForm(forms.ModelForm):\n        password = forms.CharField(widget=forms.PasswordInput)\n        confirm_password = forms.CharField(widget=forms.PasswordInput)\n    \n        class Meta:\n            model = User\n    \n            fields = [\n                'username',\n                'password',\n                'confirm_password',\n            ]\n    \n    \n    \n**views.py**\n\n    class BoxesView(ListView):\n        template_name = 'polls.html'\n    \n        def get_context_data(self):\n            context = super(BoxesView, self).get_context_data()\n\n            # login\n    \n            form = UserRegistrationForm(self.request.POST or None)\n            context['form'] = form\n    \n            if form.is_valid():\n                username = form.cleaned_data['username']\n                password = form.cleaned_data['password']\n                confirm_password = form.cleaned_data['confirm_password']\n    \n                user = form.save(commit=False)\n                password = form.cleaned_data.get('password')\n                user.set_password(password)\n                user.save()\n    \n                new_user = authenticate(username=username, password=password)\n                login(self.request, new_user)\n                return redirect('/')\n    \n            return context\n    \n        def get_queryset(self):\n            pass\n\n**base.html**\n\n    &lt;form action="" enctype="multipart/form-data" method="post"&gt;{% csrf_token %}\n    \t&lt;div class="registerBox"&gt;\n            {{ form.username }}\n            {{ form.password }}\n            {{ form.confirm_password }}\n            &lt;input type="submit" value="register"/&gt;\n    \t&lt;/div&gt;\n    &lt;/form&gt;\n\nThe fields show up but after submitting the form it doesn't create a User. Do you see anything wrong?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+    I've found a number on CodePen that are decent, but none that are perfect. I need something that's responsive, and also can switch between a horizontal and vertical layout depending on device width. If it can alternate between events showing above/below and left/right, even better.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        2
+    Hi guys,\n\nThis is my very first time I am using AWS services in my Swift app. I have integrated AWS Cognito and have added the generated API gateway SDK in my project. \n\nNow how do I use that API SDK to create unauth and auth user? I mean how do I make those API calls? \n\nI have already spent a lot of time on this. I'll be grateful if anyone could help me.\n\nThanks                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             2
+    I made this yesterday. The actual code that makes the tweets is a lot WETter than what I'd like it to be, so I will be revising it soon.\n\nhttp://pastebin.com/9iBYzf55\n\nhttps://twitter.com/nickdrakebot                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      2
+    Is there some book or online course that gives a mile wide and an inch deep, but still technical, overview of how the parts of a computer work together, and what happens when it is first turned on? How does the BIOS "know" to do anything? How does a OS first initialize the first time, and then every time you boot up after?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              2
+    **Computer**\n\n- OS: Windows 10\n\n- RAM: 8GB DDR3\n\n- PSU: 500W Corsair\n\n- GPU: Radeon R280 3GB\n\n- CPU: i5-4400 @ 3.1Ghz\n\n- Mobo: ASRock H97M\n\n- HDD: 128GB Samsung SSD, 1TB WD HDD\n\nMy problem is fairly simple. While using the computer normally (browsing the internet, using Word, etc) there are no issues. The computer will work well from sun up to sun down. The problem comes when I try to play a game. The Sims 3, Guild Wars 2, a couple of stupid hidden object games... doesn't seem to matter. After about 30 to 60 minutes of play time the game will lock up and will require a hard reboot of the computer to get me back in control. It does not matter what I'm doing in game, it'll just lock up. There's no error messages in the event viewer whatsoever, save for the kernel power error because of the hard reboot.\n\nI've ran the games countless times with HWMonitor running. Everything seems to stay very constant and well within normal operating specs-- 60C for the CPU, 40C for the hard drives, and it can get up to about 75-80C with the GPU.\n\nIn order to narrow down the search I've run Furmark's GPU torture test and CPU burner test for upwards of an hour each. No freeze for either of them. I've ran hard drive checks and they both passed. Memtestx86 reported no problems. Window's memtest reported no problems. Intel's CPU Diagnostic program reported no problems.\n\nOne thing of note that MIGHT be related: Games seem to run worse on the SSD than the HDD. Yeah, that wasn't a mix up. The games last longer on the HDD than the SSD it's looking like (The Sims 3 just flat out refused to load some times on the SSD while it'll always load on the HDD).\n\nI'm honestly at a loss here. I've run every program and done every test I can possibly think of. Does anyone have a better idea?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      2
+    Hello all,\n\nRecently I made a program to help me make acrostic puzzles. I found an application online, but I thought it was pretty shitty, so I made my own shitty version of it...\n\nAnyways, I've tried to implement an auto function, which theoretically puts in answers (taken from an English dictionary / custom dictionary) that use exactly all of the letters in the key phrase (and also where the first letter of each answer spells out another phrase, but I haven't gotten there yet... should be simple).\n\nThe auto function I have now is just sloppy brute force (and maybe not even the most efficient version of brute force, if there's such a thing). As it exists now: it gets all the possible words from the dictionary that meet certain requirements (more than 3 letters, uses only the letters in the key that haven't been used already), and it adds one as an answer to the puzzle. Then it does this again until there are no possible words. If there are no letters left, then it's solved. If there are still letters remaining, it removes the last answer and chooses the next one on the list. It repeats like this until it finds a combination of words that work.\n\nThis approach works for when I have only &lt;15 or so letters, but it just takes way too long when there are many letters in the key phrase (that I don't already have answers for).\n\nSo, I've come here for some advice. I think it's a very interesting topic for discussion... a problem that I've been having fun working on and maybe some of you will have fun with too.\n\nHere is the code on github: [here](https://github.com/gkamer8/AcrosticGenerator)\n\nThe auto feature is in Puzzle.java.\n\nHere is the code for the auto feature (and tell me if this code isn't doing what I think it's doing):\n\n        int deepness = 0; // yes I know this is called depth\n\t\tint[] indexInPoss = new int[100]; // I originally had an ArrayList that changed size with depth, but this was just easier to keep track of - the assumption is that I won't go more than 100 layers deep\n\t\t\t\t\n\t\twhile(!works()){\n\t\t\tString[] possible = getPossibleWords();\n\t\t\tArrayList&lt;String&gt; possibilities = new ArrayList&lt;String&gt;();\n\t\t\tfor(int i = 0; i &lt; possible.length; i++){\n\t\t\t\tif(possible[i].length() &gt; 2){\n\t\t\t\t\tpossibilities.add(possible[i]);\n\t\t\t\t}\n\t\t\t}\n\t\t\tif((possibilities.size() == 0 || possibilities.size() &lt;= indexInPoss[deepness]) &amp;&amp; deepness == 0){\n\t\t\t\tJOptionPane.showMessageDialog(null, "No solution found");\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\telse if(possibilities.size() == 0 || possibilities.size() &lt;= indexInPoss[deepness]){\n\t\t\t\tremovePairing(getAnswers().size() - 1);\n\t\t\t\tdeepness--;\n\t\t\t\tindexInPoss[deepness]++;\n\t\t\t}\n\t\t\telse{\n\t\t\t\taddPairing(possibilities.get(indexInPoss[deepness]), ""); // it's addPairing(answer, clue)\n\t\t\t\tdeepness++;\n\t\t\t}\n\t\t}\n\t\t\n\t\tSystem.out.println("done");\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ... 
+    Hi! I have a picture of something. I want it to only be viewable in a circle. When you move your mouse around you can view a certain part of the picture! Like a telescope for a picture                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          1
+    I work as a customer support at a web-app based company and I'm not the most knowledgeable person about programming. We only have two people in support and I am the one that has a better understanding on how the product works.  \n\nMy partner who we hired has programming bootcamp experience in programming does alot of API and Zapier type of tickets. She said that I should at least learn API because it's not very hard to learn it. If anything it would help her life easier.   \n\nSo I come to here because everytime I look something about learning API it always about mixing it with another programming language.  \n\nThe terms I keep hearing around the office when it comes to anything about APIs is (I don't know what any of these things are)  \n-RestAPI  \n-json  \n-cURL  \n \nother things is like 'WebHooks' through Zapier.\n\nIf API shouldn't be that hard to learn, what or where should I start learning about it mainly strictly for my job. (Also I have no desire to be a programmer, I'm doing this to be more valuable to my team and I don't have to learn any of this stuff for my job).\n\nMy Background in Programming:\nI learn the basics of the basics of C programming in High School (13 years ago) then never touched programming other than HTML4 you know as a 90's Geocities kid. \nAbout 2 years ago I learned basic Python.\nSo I have some very basic ideas about programming.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    Hi, I have an Xbox 360 and an Xbox one. I can host, talk and connect fine in the 360 because of its open Nat. But on the one, it's really strict. I have checked out Xbox.com but I didn't have much luck there. My gateway is a few years old (5-6) but should that affect it? Why is this happening and how can I fix it. It had been working fine with my one for ages, but then one day it just went strict and hasn't changed since                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          1
+    i recently purchased a corsair psu 550w and a msi geforce gtx 1060 3g. and i had to remove my old psu and then there was a certain cable that wont connect to my new one. That cable was the one that runs to my power button and my new psu doesnt have the 3 pin connector that is required for the power button. What should i do?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             1
+    My primary SDD and boot drive is a Samsung Evo 850 250GB. I'm trying to retrieve data from a WD Green 2TB 3.5' HDD, but when I boot I get stuck on the initial W10 logo and loading circle. This HDD may be faulty to some degree, it's from a family members computer and it will not boot past the W7 logo. I have the boot priority right, and I had other HDDs connected to my motherboard prior. I also just disconnected it and my SDD booted properly. Only difference between my  bad boot and good boot other than the HDD is I didn't connect my wifi USB immediately and it's using my SATA6 port, which I never used before, but given boot priority I don't know why this would even be a concern. \n\nIs it even possible to salvage data like pictures and videos from this HDD and if so where am I going wrong. I'm about to restart my computer in Safe Mode and start again,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   1
+    I'm going to be teaching a beginning programming course at my local high school, and I'm looking for a book that teaches the fundamentals of programming, with good examples and exercises. The cheaper, the better. So far I've found this: http://www.spronck.net/pythonbook/pythonbook.pdf which seems to be a pretty comprehensive resource (at least for fundamentals) available for free.\n\nDoes anyone have any other suggestions as to what I could look into?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           1
+    Hi,\n\nI am encountering an error following a Windows 10 update about a week ago. Everytime I boot my computer I get an error 0xc000000f error "Windows has failed to start" referring torecent hard or software updates.\n\nThe PC has been running fine, til now, for about 7 months, and I installed Windows 7 on my SSD and used the upgrade feature.\n\nStrangely, if I spam F8 on bootup I get the option to select my 1TB HDD to boot Windows, even though it is not installed there (and neither is my Recovery partition). This allows me to boot into Windows and everything appears fine.\n\nA system restore did not work.\n\nI'm not even sure I know what to check for here. The SSD appears fine and working. Settings in the UEFI settings remained unchanged. A repair or restore off a flash USB recovery stick did nothing and each option said variants of "There are no restore points" or "You need to select your OS" all pointing to the suggestion that it can;t find what it is supposed to on the SSD.\n\nAny help much appreciated!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   1
+    So there is a little background that goes with this one...\n\nFirst, I built this PC about 3 years ago. I used it lightly and then it sat for about 2 years until recently being mailed to me at my new home. When I got it in the mail, I was getting no response from the monitor but the PC was powering on fine. After troubleshooting, what ultimately fixed the problem was removing the CPU and putting it back in (note: when I did this, I accidentally dropped the CPU and slightly bent 4-5 pins which I set back into place). Now the computer will start up BUT....\n\nNow when the computer starts up for the first time, when I try to open the first program, any program, the computer crashes and restarts itself. When it restarts windows will not load. It takes about 2-3 times of me turning the computer off, turning the power supply off until the light on the motherboard dims, then turning it back on. After doing this enough the computer appears to be running stable. \n\nIts very strange and I have never seen anything like it. My setup is the following:\n\nAMD FX-6300 Vishera Black Edition\nASUS M5A97 LE R2.0\n8gb G.Skill Sniper \nEVGA GTX950 FTW\nThermaltake Smart 650w PS\n\nAny ideas?\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         1
+    I am creating an app where the user will add a lot of images and need to save them for future use. I was originally saving every image chosen as NSData in Realm, but that was a terrible decision, as it took 5-10 seconds to save and the app size started to be huge.\n\nI am saving the picture like this:\n\n    let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString\n            \n    let writePath = documentsDirectory.appendingPathComponent("\(TitleTextField.text!)/1")\n            \n    imageData?.write(toFile: writePath, atomically: true)\n\n    realmObject.photoPath = writePath    //photoPath is an attribute of type String\n    realmObject.owner = newOwner        //Relationship to owner\n\nI then save the object to the Realm and then I am trying to read the data that was saved and present it as in image like this:\n\n    let firstPhoto = ownersArray[row].photos[0].photoPath   //Array has all of the owners\n\n    cell.backgroundImage.image = UIImage(contentsOfFile: firstPhoto)\n\nBut nothing happens. No errors, just a white background! What should I do?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      1
+    My laptop's fan has been making an ungodly noise as of the last week first I thought it might be dust trapped there so I tried cleaning it with air but it seems it did not work, what are some other options or possible causes for the problem? Thank you.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      1
+    I am trying to return  data from database to jquery to get the data dynamically(you know without refreshing), as you can see im returning a sqlalchemy object with jsonify but i get a serialize error i have searched around but i dont quite understand what that really is or how it works\n\n    @home_blueprint.route('/_posting_process/', methods=['POST'])\n    @login_required\n    def _posting_process():\n    \n        post = PostForm()\n        user = Users.query.filter_by(id=current_user.id).first()\n    \n        if post.validate_on_submit():\n            posted = Comments(comment=post.onmind.data,\n                              user_id=user.id)\n            db.session.add(posted)\n            db.session.commit()\n\n            return jsonify({'posts': post.comments})\n        return 'not posted'\n\n\n    Traceback (most recent call last):\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 2000, in __call__\n        return self.wsgi_app(environ, start_response)\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 1991, in wsgi_app\n        response = self.make_response(self.handle_exception(e))\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 1567, in  handle_exception\n        reraise(exc_type, exc_value, tb)\n      File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise\n        raise value\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 1988, in wsgi_app\n        response = self.full_dispatch_request()\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 1641, in  full_dispatch_request\n        rv = self.handle_user_exception(e)\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 1544, in  handle_user_exception\n        reraise(exc_type, exc_value, tb)\n      File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise\n        raise value\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 1639, in full_dispatch_request\n        rv = self.dispatch_request()\n      File "/usr/lib/python3.5/site-packages/flask/app.py", line 1625, in dispatch_request\n        return self.view_functions[rule.endpoint](**req.view_args)\n      File "/usr/lib/python3.5/site-packages/flask_login.py", line 792, in decorated_view\n        return func(*args, **kwargs)\n      File "/home/quechon/PycharmProjects/untitled3/myapp/home/routes.py", line  48, in _posting_process\n        return jsonify({'posts': user.comments})\n      File "/usr/lib/python3.5/site-packages/flask/json.py", line 266, in jsonify\n        (dumps(data, indent=indent, separators=separators), '\n'),\n      File "/usr/lib/python3.5/site-packages/flask/json.py", line 126, in dumps\n        rv = _json.dumps(obj, **kwargs)\n      File "/usr/lib/python3.5/site-packages/simplejson/__init__.py", line 397, in  dumps\n        **kw).encode(obj)\n      File "/usr/lib/python3.5/site-packages/simplejson/encoder.py", line 291, in  encode\n        chunks = self.iterencode(o, _one_shot=True)\n      File "/usr/lib/python3.5/site-packages/simplejson/encoder.py", line 373, in iterencode\n        return _iterencode(o, 0)\n      File "/usr/lib/python3.5/site-packages/flask/json.py", line 83, in default\n        return _json.JSONEncoder.default(self, o)\n      File "/usr/lib/python3.5/site-packages/simplejson/encoder.py", line 268, in default\n        raise TypeError(repr(o) + " is not JSON serializable")\n    TypeError: &lt;sqlalchemy.orm.dynamic.AppenderBaseQuery object at     0x7f3ff14f5748&gt; is not JSON serializable\n\nif you guys please can explain to me what serialize mean and do thanks\n       1
+    Hello, I need your help, my laptop is getting crash after a few seconds when turn it on. I can enter to bios without problem but if I let it boot to OS then pc crash, i try remove HDD from laptop, then i get black screen with message than there no media installed, i wait but pc not crash, i boot from usb without put back HDD, then laptop crashed again after few seconds when it boots from usb, also fan get loud sound but pc is soo cold, i try different usb and different ports also i used sd card but still same problem with them all, i use usb wifi only to try if ports is problem but pc not crashed only that message with no media installed, i reset bios also i remove it's cmos battery for 5 minutes but still same, i try boot without batteries only with direct electricity but still same problem, i try that all but nothing working, please help.\nLaptop name is acer aspire with i3 330m and ati  hd 5470m ram 4gb sdd samsung 128 gb using windows 8.1. \n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  1
+    So I'm following along in this book online. And I'm doing quick refresher in the Appendix on the CLI. Now if this isn't the place to post this I apologize. But what am I doing when I do the following? What is it I discovered in my spacing out?\n\n\n\n\n            \n     PS C:\Users\Jake\temp&gt; rmdir\n        \n     cmdlet Remove-Item at command pipeline position 1\n     Supply values for the following parameters:\n     Path[0]:\n        \n\n\nI did this by accident without thinking to type in the directory I wanted to remove.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1
+    Problem description:\nI've just built a new machine, I had managed to install windows 10 from a flash drive created with Microsoft media creation tool and everything was going smoothly. I ended up with some driver conflicts causing some freezes so being a gigantic idiot I decided that since it was only a couple of hours work I should just do a clean install and update things one at a time. I have now been banging my head against my total inability to actually achieve a second installation of windows for some time. I erased the data on the ssd windows was on but now when I try and boot with the flashdrive one of several things happens. When choosing to boot the drive has 2 entrys, one labled as being UEFI and the other without that. Booting with the UEFI entry just sits on the monitors logo for a few seconds before the system resets and loops this way. Booting with the other actually shows up the blue windows logo on a black background for a few seconds before looping. Both ways there is some activity on the usb drive before it stops and then resets. I have full access to the BIOS with no problems.\nAttempted fixes:\n\nIve been scouring the internet trying to find any reason why this is occurring but there appears to be a million contradictory opinions most of which boil down to it just being windows 10. Ive tried making a new flash drive dozens of times, different drives, different programs for creating it. Nothing is working. I feel like I've tried every combination of boot settings in the BIOS to no avail. I did flash the BIOS to a newer version but this was before the first successful installation which went without a hitch. Ive tried booting after removing the ssd and hdd. The board itself is only showing what I believe to be normal codes for start of setup, none of the lights indicating a failure are on. It is also worth mentioning I tried to make a boot drive for windows 8 to see if that would work but it has the exact same result.\n\nRecent changes: The culprit is obviously my cackhanded attempt to do a clean installation but I don't know what the hell kind of damage i've somehow managed to cause.\n\nOperating system: As mentioned I am trying to install 64 bit windows 10\n\nSystem specs:\nMotherboard: ASUS ROG Hero VIII\nCPU: Intel Core i5-6600K\nRAM: Kingston HyperX 2133Mhz 8G x2\nVideo: GeForce GTX 1080\nHard disks:\nSamsung 850evo\nWestern Digital WD2003 FZEX-00Z4SA0\nPower supply: Corsair RM550X\n\nLocation:\nuk\n\nI appear to have fallen at the last hurdle on this one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     1
+    Hello everyone, I'm going to make a game with LAN multiplayer (through bluetooth), but I'm not sure if I should save the data in the database so I can transfer it later between the server and client device or just save it into a class?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    First off, I know it's possible because I have it working on one of my TVs, a newer 32" Samsung. Specifically, I have a FireTV Stick plugged in and it is sending audio through the TV's Optical Out to a Sony Bravia Home Theater Receiver/DVD Changer. \n\nWhat I'd love to know is how you can tell if a TV is going to be capable of doing this? I tried the FireTV Stick in an (much?) older 46" JVC and it wouldn't pass the audio through. \n\nThere seems to be so much misinformation out there about optical out only working for OTA Digital TV Signals, it makes it pretty hard to find info on today's tech. \n\nEdit: I guess I should've read the JVC User Manual more carefully. [Oh well](http://pix.toile-libre.org/upload/original/1482096880.png)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             1
+    I just finished building my PC tonight and installed Windows 10 but now it's crashing constantly. I know how to get to the event viewer but I don't know enough to read them or how to save the important stuff to post here. Can someone assist me in reading the logs so I know what's causing the crashes?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     1
+    Having some family over, and I want to actually see them instead of having them play those on my google fiber all next weekend. I just want lol blocked, since I do play a lot of online games myself                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             1
+    What is the best language for beginners?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          1
+    Uploaded my index.html file and when I went to my website via google chrome the background images was still the old images. Had a buddy go to my website and he saw the new images.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               1
+    As title says, I've been thinking of developing such a framework (open source obviously) for my Master's thesis in CS. I have been googling a bit without finding something matching the bill. It could be used e.g. for P2P gaming, distributed voting, and whatever blockchain is good for, without having to implement the blockchain protocol yourself.\n\nThoughts?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          1
+    I'm new to APIs and trying to experiment with the Facebook Graph API. However, I'm having trouble getting started. So far, I've been following the quick start for website instructions—I placed the Javascript code for the SDK directly under the opening &lt;body&gt; tag, and I put the code for the like button directly under that. All of this is in a test.html file with nothing else (except the &lt;html&gt; opening/closing tags, of course).\n\nNothing shows up when I open test.html in Chrome. Am I missing something? I feel like it may have something to do with the site URL I specified—since I'm just testing locally, I put http://localhost:8888/ (using MAMP—test.html file is in htdocs). Should the URL be something different?\n\nAlso, I've been reading into APIs a little and I'm pretty lost about how all the info in the quick start guide (SDKs, etc.) relates to the stuff I've been seeing about get/put/push/delete requests. I played around a little with get requests earlier, and did something small like this:\n\n    $.getJSON('http://jsonplaceholder.typicode.com/posts/1',  function(results) {\n        $('&lt;div class="results"&gt;&lt;/div&gt;')\n            .append(results.title)\n            .appendTo('body');\n    });\n\nbut I'm having trouble locating the URL for the JSON data for anything other than the fake REST API. I tried following [this](https://www.youtube.com/watch?v=AVNM_DZEFIc) tutorial, but have no idea where/how he generated the graph.facebook.com/zombies URL.\n\nAny help or nudge in the right direction would be greatly appreciated—I've been stuck on this for two days and I'm getting a little discouraged, haha. Thanks so much!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  1
+    First, I've tried using software found online like Phoenix and EaseUS, but nothing can find the folder(s) and files I'm looking for.  I think this is because the folder was hidden in my Library and I deleted the folder, its subfolders, and their content straight from being hidden in my library (moved to trash- emptied trash).  I also looked through past posts on this sub to see if there was any overlap but I couldn't find much besides the software PhotoRec, which seems fairly complicated to run.  Any help would be appreciated!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              1
+    I always try to reduce the size by saving it for web in PS etc, but a friend of mine told me I can also do it even more afterwards using online tools such as [optimizilla](http://optimizilla.com/ ). Anyone tried it before? Does it help? Are there any good other sites to really squeeze out every piece of kilobyte without compromising/losing to much quality?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1
+    Basically, is this possible?\n\nI have been keeping backups from my Windows 10 laptop, so I'm not really worried about losing data.  (At worst, I would have lost one hour or less of work.)  Still, it may take a while to get my laptop repaired, so I am considering renting a temporary laptop, in the interim.  Also, other machines I can work on run Windows 7.\n\nTo that end, I am wondering if Windows 7 can restore files (at least the latest versions) from Windows 10 *File History* backups.  Or, is there some type of application that can allow it to do so?\n\nYour responses are appreciated...thanks!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1
+    Hello everyone,\n\n*I'm reposting here since my post wasn't that successful in the Windows 10 subreddit.*\n\nI'm having issues getting Windows 10 to enable WOL functionality for my NIC.\nThe MB is an [ASUS P6X58D-E](https://www.asus.com/us/supportonly/P6X58D-E/). I have found some [information here](https://vip.asus.com/forum/view.aspx?board_id=1&amp;model=P6X58D-E&amp;id=20110113022705300&amp;page=1&amp;SLanguage=en-us), but it didn't work for me so far.\n\nThe cause, I believe, is that on OS shutdown (or even PSU power off / power on) the NIC standby led is not lighting up.\n\nI've set up Windows 10's fast startup to off, the network adapter's Wake on magic packet property to Enabled, its Power Management settings allow the turn off and wake of the computer on a magic packet. The driver in use is dated 11.04.2013 with version 12.10.16.0.\n\nI have also attempted to manually set up the latest driver that I found on [Marvell's support site](https://origin-www.marvell.com/support/downloads/search.do) which is released on 8/7/13, file version 12.10.17.3 (driver version 12.10.14.3) for Windows 8, with little success.\n\nHas any of you faced a similar problem and were you able to solve it?\n\nThank you for any help!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   1
+    I don't understand this issue.  I have a Windows 10 laptop (Asus N550JV or something like that) that goes to sleep much sooner than the settings should allow.\n\nIn the Power &amp; Sleep sections of the Settings, I have the Screen to turn off at 15 minutes when on battery and 20 mins when plugged in (and its almost always plugged in).  It is supposed to go to Sleep when on battery after 45 minutes and never when plugged in.  \n\nI have multiple times gone to the kitchen and less than 5 minutes later, the screen is off and I have to type in my password again.  Its rather annoying and that time doesn't reflect when is supposed to turn off and I don't know what exactly to try.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1
+    I tried to do a fresh install of Kodi on my phone. When I uninstalled it the first time to begin the process, I immediately started downloading it again for the fresh copy. I have an app that wanted to remove residual files and accidentally clicked yes to delete said residual files when the new install had already begun. [Now when I install again from scratch I get this weird issue.](https://www.youtube.com/watch?v=fF0gEieTM4A) I've also tried installing add-ons and just get a blank pop up with a red X.  I've tried deleting the system folder that is created from installing as well, but I continue to get this same issue every time I do a clean install. I can't use the "Fresh Start" add-on from Fusion, because nothing will install.  Can anyone help a brother out? Thanks!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1
+    So the title may not have explained my problem well. Basically, I have to press the 'T' far harder than any other key. So when I am trying to type quickly, multiple T's will be missed. This is a 2-day old Dell laptop, so I wonder what happened.\n\n\nDell Inspiron 15 7000 series (ordered from the Amazon )\n\nWindows 10\n\nI haven't tried anything besides a restart, but this feels like a mechanical problem to me. Please help me out, thanks!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1
+    I'm following a tutorial which has all the code already written out in compiled tutorials. The tutorial code works. Mine doesn't. I don't have a problem with it crashing except it's crashing at somewhere that it shouldn't crash there's no reason for it to crash there at all. So I have this code here.\n\n\tGLuint VertexArrayID;\n\n\tglGenVertexArrays(1, &amp;VertexArrayID);\n\n\tglBindVertexArray(VertexArrayID);\n\nAnd this code here\n\n\tGLuint VertexArrayID;\n\n\tglGenVertexArrays(1, &amp;VertexArrayID);\n\n\tglBindVertexArray(VertexArrayID);\n\nThe first piece of code crashes because of a null pointer exception. Apparently it's trying to send a null VertexArrayID to glGenVertexArrays.\n\nThe second piece of code runs because ?????? \n\nWhy? How? WTF is going on here? I'd provide more code but the rest of the code is completely irrelevant to this because nothing else interacts with glGenVertexArrays. For full information here is the error:\n\n\nException thrown at 0x00000000 in playground.exe: 0xC0000005: Access violation executing location 0x00000000.\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   1
+    Name: selftext, Length: 18073, dtype: int64 
+    
+    False    26688
+    Name: spoiler, dtype: int64 
+    
+    False    26687
+    True         1
+    Name: stickied, dtype: int64 
+    
+    techsupport         11423
+    learnprogramming     3448
+    technology           2321
+    learnpython          1724
+    gamedev              1281
+    web_design            864
+    Python                603
+    javascript            546
+    linux                 545
+    javahelp              536
+    engineering           525
+    csshelp               393
+    iOSProgramming        330
+    swift                 261
+    programming           254
+    PHP                   192
+    computerscience       162
+    netsec                159
+    java                  157
+    compsci               154
+    django                127
+    css                   106
+    cpp                    86
+    HTML                   85
+    ruby                   77
+    flask                  71
+    html5                  62
+    jquery                 46
+    pygame                 34
+    coding                 34
+    perl                   24
+    lisp                   16
+    programmer             13
+    dailyprogrammer        10
+    IPython                 8
+    inventwithpython        6
+    pystats                 3
+    pythoncoding            2
+    Name: subreddit, dtype: int64 
+    
+    t5_2qioo    11423
+    t5_2r7yd     3448
+    t5_2qh16     2321
+    t5_2r8ot     1724
+    t5_2qi0a     1281
+    t5_2qh1m      864
+    t5_2qh0y      603
+    t5_2qh30      546
+    t5_2qh1a      545
+    t5_2t1jq      536
+    t5_2qhpi      525
+    t5_2roaw      393
+    t5_2s61a      330
+    t5_2z6zi      261
+    t5_2fwo       254
+    t5_2qh38      192
+    t5_2qj8o      162
+    t5_1rqwi      159
+    t5_2qhd7      157
+    t5_2qhmr      154
+    t5_2qh4v      127
+    t5_2qifv      106
+    t5_2qi27       86
+    t5_2r6cd       85
+    t5_2qh21       77
+    t5_2s1s3       71
+    t5_2r7u2       62
+    t5_2qhs4       46
+    t5_2rb2y       34
+    t5_2rkfn       34
+    t5_2qh5e       24
+    t5_2qh35       16
+    t5_2qnoo       13
+    t5_2tj45       10
+    t5_2x3ey        8
+    t5_2tfjk        6
+    t5_2yw9f        3
+    t5_3649w        2
+    Name: subreddit_id, dtype: int64 
+    
+    self       18192
+    default     8480
+    nsfw          16
+    Name: thumbnail, dtype: int64 
+    
+    MakerBot Releases IPad App For Easy 3D Printing                                                                                                                                   7
+    Facebook customer service– A Panacea to Your Problems 1-866-224-8319                                                                                                              6
+    facebook customer care number Issue Can Be Dealt Easily 1-866-224-8319                                                                                                            6
+    Facebook Customer service Number – A Way to Resolution 1-866-224-8319                                                                                                             6
+    Dialing Facebook Customer care Number 1-866-224-8319 Is completely Free                                                                                                           5
+    PLEASE INCLUDE THE SUBREDDIT YOU ARE WORKING ON IN THE TEXT FIELD BELOW [NOT JUST IN THE TITLE] OR THE POST WILL BE IGNORED                                                       5
+    Read "The Tao of tmux" prerelease for free online                                                                                                                                 5
+    Avail Premium Services at Facebook Customer Service number 1-866-224-8319                                                                                                         5
+    Tackle Technical Troubles with Facebook Customer Service at 1-866-224-8319                                                                                                        5
+    Dial Facebook Hacked Account Number 1-866-224-8319 and Relax from all worries                                                                                                     5
+    Deep Learning Twitter Loop                                                                                                                                                        5
+    Flush Your Worries of Facebook Hacked account with 1-866-224-8319                                                                                                                 5
+    Help                                                                                                                                                                              4
+    Any game programmers or game designers from Serbia here?                                                                                                                          4
+    Save 1-866-224-8319 on your speed dial named Facebook Support for most excellent help                                                                                             4
+    Learn continuous integration and DevOps for real world projects. Streamline software builds with Jenkins.                                                                         4
+    Web Development Company in Texas                                                                                                                                                  4
+    temp_thread                                                                                                                                                                       4
+    Facebook Customer care: 1-866-224-8319 a Single Stop for All Solutions                                                                                                            4
+    What's everyone working on this week?                                                                                                                                             4
+    Got a tech question or want to discuss tech? Weekly /r/Technology Tech Support / General Discussion Thread                                                                        4
+    Ask Anything Monday - Weekly Thread                                                                                                                                               4
+    Pirates Online Retribution [Pirates of the Caribbean Online MMORPG Emulator]                                                                                                      4
+    I need help installing WindowBuilder in Eclipse.                                                                                                                                  3
+    Python Error                                                                                                                                                                      3
+    Trying to get the dropdown to appear behind the main nav, so the nav box shadow is covering the top of the dropdowns                                                              3
+    Learn Css In 35 Minutes With Complete Layout                                                                                                                                      3
+    Best Digital Marketing Company in Texas                                                                                                                                           3
+    What is this?                                                                                                                                                                     3
+    Number Knight - A Number Munchers RPG that I made to learn JavaScript, and I'd love for you to try it out and tell me what you think! - (cross-post from /r/webdev)               3
+                                                                                                                                                                                     ..
+    Anything to say about StartKiller or StartisBack?                                                                                                                                 1
+    Frequent BSOD'S after Startup                                                                                                                                                     1
+    I'm trying to transfer music from my PC to my iPhone and not all songs will transfer. (xpost /r/NoStupidQuestions)                                                                1
+    got new laptop with Windows 10, what do I need to do to protect myself?                                                                                                           1
+    Modular CSS: Best practices to improve your coding workflow                                                                                                                       1
+    unable to dismiss null values in an array of structures.[c/c++]                                                                                                                   1
+    Screen flickering and jumping.                                                                                                                                                    1
+    Is there a name for an exploit that full screens your browser's windows, and then emulates the browser GUI?                                                                       1
+    [C++] Sum of numbers until two consecutive even numbers are introduced.                                                                                                           1
+    XPath Expression Issues                                                                                                                                                           1
+    AMD Athlon X4 750k CPU Temperatures                                                                                                                                               1
+    Last ditch effort befoee RMA                                                                                                                                                      1
+    Just built a PC with the help of buildapc but it doesn't work with the graphics card in, any help? Parts included.                                                                1
+    USB 3.0 Driver Issue                                                                                                                                                              1
+    Random hard shutdowns with new hardware                                                                                                                                           1
+    Desktop recognizes theres internet, but can't connect.                                                                                                                            1
+    Dell Inspiron 14 laptop has mobo-integrated storage, will not boot into confirmed working linux live usb. Trying to retrieve data for backup before Windows reinstall.            1
+    Any good PyQt tutorials that include designer?                                                                                                                                    1
+    Can't get newly built computer to post.                                                                                                                                           1
+    If you were a Tech CEO, what would you ask President-Elect Trump at this week's Tech Roundtable?                                                                                  1
+    Streamer looking for games!                                                                                                                                                       1
+    need help with mobile menu                                                                                                                                                        1
+    I really want an oven that will stream a live feed of the interior to picture-in-picture on my TV (not my phone). Does this exist? If not, can someone please make it? Thanks!    1
+    SSD showing 11 GB total space when it should be 32 GB                                                                                                                             1
+    Making my first game using Unity and C#. A idle/clicker/incrimental game. Having trouble with the art.                                                                            1
+    Windows 10 Freezes on New PC Build, Help Needed!                                                                                                                                  1
+    [java]Applying method to an object in an array of objects that takes an argument of the object in the next index?                                                                 1
+    Bilingual Answering Service                                                                                                                                                       1
+    Best Tips for Optimize Your Website Speed                                                                                                                                         1
+    Question about AD password resets and lag between other applications recognizing it.                                                                                              1
+    Name: title, Length: 26128, dtype: int64 
+    
+    1.0        15301
+    0.0         3699
+    2.0         2784
+    3.0         1306
+    4.0          542
+    5.0          482
+    6.0          373
+    7.0          286
+    8.0          201
+    9.0          144
+    10.0         130
+    11.0         106
+    12.0          92
+    13.0          80
+    14.0          71
+    15.0          67
+    16.0          53
+    18.0          46
+    20.0          43
+    17.0          42
+    19.0          40
+    22.0          29
+    25.0          27
+    24.0          25
+    21.0          25
+    27.0          25
+    30.0          21
+    23.0          21
+    29.0          21
+    37.0          19
+               ...  
+    102.0          1
+    212.0          1
+    342.0          1
+    223.0          1
+    1239.0         1
+    115.0          1
+    1814.0         1
+    26573.0        1
+    152.0          1
+    322.0          1
+    1061.0         1
+    2258.0         1
+    108.0          1
+    206.0          1
+    165.0          1
+    343.0          1
+    6300.0         1
+    302.0          1
+    563.0          1
+    164.0          1
+    320.0          1
+    222.0          1
+    86.0           1
+    409.0          1
+    1531.0         1
+    306.0          1
+    313.0          1
+    224.0          1
+    144.0          1
+    135.0          1
+    Name: ups, Length: 250, dtype: int64 
+    
+    https://leanpub.com/the-tao-of-tmux/read                                                                                                                                                      6
+    http://topshelfbook.org/thermodynamics-an-engineering-approach-8th-edition-solution-manual/                                                                                                   5
+    http://unityassetsdeals.com/                                                                                                                                                                  5
+    https://dev.to/buntine/p---the-original-brainfck-and-mother-of-the-turing-tarpits                                                                                                             4
+    https://720kb.github.io/ndm/                                                                                                                                                                  4
+    http://www.austintaylor.io/suricata/elasticsearch/logstash/continuous/monitoring/intrusion/detection/system/2016/12/17/build-a-world-class-monitoring-system-enterprise-small-office-home/    4
+    https://github.com/nahive/UIColor-WikiColors                                                                                                                                                  4
+    https://www.udemy.com/jenkins-learn-continuous-integration/?couponCode=TETRA_25                                                                                                               4
+    https://www.kodetalk.com/blog/view_blog/6010ae25-fe69-4ae2-ad11-06b5fa41cc3f/java-enum-timeunit-with-the-enum-constants-and-method-implementations                                            3
+    https://tmuxp.git-pull.com/                                                                                                                                                                   3
+    http://specsoprod.com/game/                                                                                                                                                                   3
+    http://www.imagecompression.org/                                                                                                                                                              3
+    http://saintlad.com/mandating-encryption-backdoors-will-just-make-everything-worse/                                                                                                           3
+    http://cssmanuel.com/articles/essentialtools.html                                                                                                                                             3
+    https://github.com/captain-redbeard/php-messenger                                                                                                                                             3
+    https://www.youtube.com/watch?v=5AIS_y6CJ6E                                                                                                                                                   3
+    http://keon.io/etc/light-speed-is-not-fast-enough/                                                                                                                                            3
+    https://youtu.be/jRDEPYHqqEg                                                                                                                                                                  2
+    http://www.nature.com/articles/ncomms13032                                                                                                                                                    2
+    https://github.com/gutfeeling/djangohero                                                                                                                                                      2
+    https://www.tisindia.com/blog/future-of-ux-design/                                                                                                                                            2
+    https://arxiv.org/abs/1611.08368                                                                                                                                                              2
+    http://discotechture.com/                                                                                                                                                                     2
+    http://filepursuit.com                                                                                                                                                                        2
+    https://www.wattpad.com/348690741-billion-modem-technical-support-how-to-configure                                                                                                            2
+    https://techcrunch.com/2016/12/18/heres-our-first-look-at-waymos-new-self-driving-chrysler-pacifica-minivans/                                                                                 2
+    https://leanpub.com/the-tao-of-tmux/c/happyholidays2016                                                                                                                                       2
+    https://github.com/iansawyerva/generator-angular-material                                                                                                                                     2
+    http://arstechnica.com/tech-policy/2016/12/smartphone-patent-wars-redux-nokia-sues-apple-big-time/                                                                                            2
+    http://www.webdesignerdepot.com/2016/10/20-essential-css-tricks-every-designer-should-know                                                                                                    2
+                                                                                                                                                                                                 ..
+    https://www.reddit.com/r/techsupport/comments/5hh5jd/when_my_computer_starts_my_cpu_fan_doesnt_how_do/                                                                                        1
+    https://www.reddit.com/r/technology/comments/5k9lw8/usually_macbook_user_want_to_get_a_surface_book/                                                                                          1
+    https://www.reddit.com/r/techsupport/comments/5h0k8t/ssl_error_err_cert_common_name_invalid/                                                                                                  1
+    https://www.reddit.com/r/techsupport/comments/5h8al6/brand_new_build_baffling_mouse_problem/                                                                                                  1
+    https://www.reddit.com/r/techsupport/comments/5g5mrg/extremely_high_ram_usage_at_idle_win_10/                                                                                                 1
+    https://www.reddit.com/r/learnprogramming/comments/5gdb0m/is_there_some_way_to_make_a_good_looking_webpage/                                                                                   1
+    https://www.reddit.com/r/techsupport/comments/5k6k39/microphone_too_low_win_10/                                                                                                               1
+    https://www.reddit.com/r/learnpython/comments/5gao8r/while_loop_count_up_then_back_down_repeat/                                                                                               1
+    https://www.reddit.com/r/PHP/comments/5i47dj/help_with_php_sql_report/                                                                                                                        1
+    https://www.reddit.com/r/javascript/comments/5kxrki/is_there_a_reason_stampit_is_so_opinionated/                                                                                              1
+    https://www.reddit.com/r/techsupport/comments/5khicv/cant_update_windows_7/                                                                                                                   1
+    https://www.reddit.com/r/web_design/comments/5ii35q/creating_a_uiux_brief/                                                                                                                    1
+    https://www.reddit.com/r/techsupport/comments/5jri73/most_gifs_and_videos_play_in_black_and_white_with/                                                                                       1
+    https://www.reddit.com/r/engineering/comments/5jdgug/wanting_to_level_a_long_segmented_table_40m_by/                                                                                          1
+    https://twitter.com/shulcers/status/808627135174836225                                                                                                                                        1
+    https://www.reddit.com/r/learnprogramming/comments/5hdauk/js_how_to_encode_uris_properly/                                                                                                     1
+    https://www.reddit.com/r/techsupport/comments/5l06g1/my_pc_just_booted_up_to_this_red_screen_and/                                                                                             1
+    http://newatlas.com/volkswagen-dynamic-road-sign-display/46993/                                                                                                                               1
+    https://www.reddit.com/r/techsupport/comments/5l33jr/100_disk_usage_and_occasional_freezes/                                                                                                   1
+    https://www.xda-developers.com/how-indias-demonetization-policy-is-affecting-smartphones-carriers-and-mobile-payments/                                                                        1
+    http://www.theverge.com/2016/12/22/14057656/google-smartwatch-android-wear-2-0-launch                                                                                                         1
+    https://www.reddit.com/r/engineering/comments/5h6aas/is_the_field_of_masters_degree_more_important/                                                                                           1
+    https://www.reddit.com/r/techsupport/comments/5g1qc0/wifi_disconnects_when_usb_drive_is_connected_to/                                                                                         1
+    https://www.reddit.com/r/techsupport/comments/5khpcm/will_i5_4670k_and_asus_h87iplus_mini_itx/                                                                                                1
+    https://www.reddit.com/r/techsupport/comments/5jucyq/laptop_stutteringfreezomg/                                                                                                               1
+    https://www.reddit.com/r/techsupport/comments/5kheo1/windows_storexbox_app_recore_will_not_start/                                                                                             1
+    https://www.reddit.com/r/techsupport/comments/5jxkcr/pc_shuts_off_by_itself_from_time_to_time_maybe/                                                                                          1
+    https://www.reddit.com/r/techsupport/comments/5gpdrp/android_wifi_is_working_poorly/                                                                                                          1
+    https://www.reddit.com/r/technology/comments/5hr6pb/is_there_such_a_thing_as_a_usb_20_that_you_can/                                                                                           1
+    https://www.reddit.com/r/engineering/comments/5hsxiq/calculating_stresses_in_a_thick_walled_truncated/                                                                                        1
+    Name: url, Length: 26547, dtype: int64 
+    
+
+
+***Going through these one by one, I'm picking which columns are useful to use in analysis.***
+1. archived: not - too skewed
+2. author: not descriptive, but maybe
+3. contest_mode: not - too skewed
+4. created_utc: timestamp, not informative
+5. domain: yes - might be used as target, self referring to posts not linking to another website
+6. downs: not - no values?
+7. edited: maybe - not descriptive, but leave for now
+8. gilded: not - too skewed
+9. hide_score: not - too skewed
+10. id: not descriptive
+11. is_self: maybe but skewed
+12. locked: not - too skewed
+13. media_embed: not - no idea
+14. name: not - too unique
+15. num_comments: yes
+16. over_18: not - too skewed
+17. permalink: not
+18. retrieved_on: not
+19. saved: not - too skewed
+20. score: yes
+21. secure_media_embed: not
+22. selftext: yes, the actual content (removed / deleted - ?)
+23. spoiler: not - too skewed
+24. stickied: not - too skewed
+25. subreddit: yes - might be used as target
+26. subreddit_id: not - same as subreddit the name (above)
+27. thumbnail: not
+28. title: yes
+29. ups: not - same as score?
+30. url: maybe
+
+***I hear from practioners that it's normal to throw away 50-80% of the dataset as most of it's is extra noise we don't need anyway.***
+
+
+```python
+drop_for_sure = [
+    'archived', 'contest_mode', 'created_utc', 'downs', 'gilded', 'hide_score', 'id', 'is_self', 'locked', 
+    'media_embed', 'name', 'over_18', 'permalink', 'retrieved_on', 
+    'saved', 'secure_media_embed', 'spoiler', 'stickied', 
+    'subreddit_id', 'thumbnail', 'ups', 'url'
+]
+df.drop(drop_for_sure, axis=1, inplace=True)
+df.head()
+```
+
+
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>author</th>
+      <th>domain</th>
+      <th>edited</th>
+      <th>num_comments</th>
+      <th>quarantine</th>
+      <th>score</th>
+      <th>selftext</th>
+      <th>subreddit</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>johnnyawesome0</td>
+      <td>self.techsupport</td>
+      <td>False</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>1.0</td>
+      <td>I have a Sony surround sound system for a blu-...</td>
+      <td>techsupport</td>
+      <td>Help with audio set-up</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Silverfin113</td>
+      <td>self.learnprogramming</td>
+      <td>False</td>
+      <td>8.0</td>
+      <td>False</td>
+      <td>23.0</td>
+      <td>I've written what seems to be a prohibitively ...</td>
+      <td>learnprogramming</td>
+      <td>Optimizing code for speed</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>bookbooksbooks</td>
+      <td>self.gamedev</td>
+      <td>False</td>
+      <td>5.0</td>
+      <td>False</td>
+      <td>12.0</td>
+      <td>I'm writing an article called "Video Games Tha...</td>
+      <td>gamedev</td>
+      <td>Seeking Tales of Development Woe (and Triumph)...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[deleted]</td>
+      <td>self.learnprogramming</td>
+      <td>1480698462</td>
+      <td>9.0</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>[deleted]</td>
+      <td>learnprogramming</td>
+      <td>[Java] Finding smallest value in an array</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>caffeine_potent</td>
+      <td>self.learnpython</td>
+      <td>1480709138</td>
+      <td>12.0</td>
+      <td>False</td>
+      <td>6.0</td>
+      <td>I have the following representation of argumen...</td>
+      <td>learnpython</td>
+      <td>currying functions using functools</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+***We can see that there is a '[deleted]' value for a bunch of author and selftext rows. We want to drop to be aware of those, so we're going to binarize them and take a look at who these are correlated with each other. ***
+
+
+```python
+df['author_deleted'] = df['author'].apply(lambda x: 1 if x == '[deleted]' else 0)
+```
+
+
+```python
+df['author_deleted'].value_counts()
+```
+
+
+
+
+    0    20741
+    1     5947
+    Name: author_deleted, dtype: int64
+
+
+
+
+```python
+df['not_useful_selftext'] = df['selftext'].apply(lambda x: 1 if x in ['[deleted]', '[removed]'] else 0)
+df['not_useful_selftext'].value_counts()
+```
+
+
+
+
+    0    18208
+    1     8480
+    Name: not_useful_selftext, dtype: int64
+
+
+
+***Let's see if there is an overlap between 'author_deleted' and 'not_useful_selftext'.***
+
+
+```python
+df[['author_deleted','not_useful_selftext']].corr()
+```
+
+
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>author_deleted</th>
+      <th>not_useful_selftext</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>author_deleted</th>
+      <td>1.000000</td>
+      <td>0.765296</td>
+    </tr>
+    <tr>
+      <th>not_useful_selftext</th>
+      <td>0.765296</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+***There's quite an overlap, so we're not going to lose too much data if we drop those.***
+
+
+```python
+df = df.loc[(df['author_deleted'] == 0)]
+df = df.loc[(df['not_useful_selftext'] == 0)]
+df.shape
+```
+
+
+
+
+    (18108, 11)
+
+
+
+
+```python
+df.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    Int64Index: 18108 entries, 0 to 26686
+    Data columns (total 11 columns):
+    author                 18108 non-null object
+    domain                 18108 non-null object
+    edited                 18108 non-null object
+    num_comments           18108 non-null float64
+    quarantine             18108 non-null bool
+    score                  18108 non-null float64
+    selftext               18108 non-null object
+    subreddit              18108 non-null object
+    title                  18108 non-null object
+    author_deleted         18108 non-null int64
+    not_useful_selftext    18108 non-null int64
+    dtypes: bool(1), float64(2), int64(2), object(6)
+    memory usage: 1.5+ MB
+
+
+**Nothing's null anymore!**
+
+## MODELLING - Quick classification predicting subreddit
+
+But first I will split the subreddits into broader categories that's easier to handle.
+
+
+```python
+df.subreddit.value_counts()
+```
+
+
+
+
+    techsupport         9522
+    learnprogramming    2688
+    learnpython         1420
+    gamedev              800
+    web_design           441
+    javahelp             419
+    javascript           401
+    csshelp              298
+    Python               274
+    iOSProgramming       262
+    linux                225
+    engineering          213
+    swift                189
+    computerscience      124
+    django               111
+    PHP                   84
+    css                   77
+    java                  75
+    HTML                  74
+    ruby                  67
+    flask                 60
+    compsci               43
+    technology            42
+    cpp                   34
+    html5                 33
+    pygame                32
+    jquery                29
+    perl                  21
+    lisp                  14
+    dailyprogrammer        9
+    programmer             8
+    IPython                8
+    inventwithpython       5
+    netsec                 4
+    pystats                2
+    Name: subreddit, dtype: int64
+
+
+
+
+```python
+def subreddit_splitter(subred):
+    techsupport = ['techsupport', 'learnprogramming', 'computerscience', 
+                  'compsci']
+    webdev = ['web_development', 'csshelp', 'PHP', 'css', 'HTML', 
+              'ruby', 'django', 'flask', 'html5', 'perl']
+    python = ['learnpython', 'Python', 'IPython', 'inventwithpython',
+             'pystats']
+    gamedev = ['gamedev', 'pygame']
+    javascript = ['javascript', 'jquery']
+    compiled_langs = ['javahelp', 'cpp', 'java', 'lisp']
+    if subred in techsupport: 
+        return 'techsupport'
+    elif subred in webdev:
+        return 'webdev'
+    elif subred in python:
+        return 'python'
+    elif subred in gamedev:
+        return 'gamedev'
+    elif subred in javascript: 
+        return 'javascript'
+    elif subred in compiled_langs:
+        return 'compiled'
+    else:
+        return 'other'
+```
+
+
+```python
+df['subreds'] = df['subreddit'].apply(subreddit_splitter)
+```
+
+
+```python
+df.subreds.value_counts()
+```
+
+
+
+
+    techsupport    12377
+    python          1709
+    other           1393
+    gamedev          832
+    webdev           825
+    compiled         542
+    javascript       430
+    Name: subreds, dtype: int64
+
+
+
+
+```python
+from sklearn.model_selection import StratifiedKFold, GridSearchCV, train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.pipeline import make_pipeline, make_union
+from sklearn.linear_model import LogisticRegression
+```
+
+
+```python
+# StratifiedKFold?
+```
+
+
+```python
+# training and holdout set
+# with 2 splits, and reliably shuffled data
+skf = StratifiedKFold(n_splits=2, shuffle=True, random_state=2017)
+```
+
+
+```python
+# as per documentation (the '?' above) 
+skf.get_n_splits(df, df['subreds'])
+```
+
+
+
+
+    2
+
+
+
+
+```python
+for train_idx, test_idx in skf.split(df, df['subreds']):
+    X_train, X_test = df.iloc[train_idx, :], df.iloc[test_idx, :]
+    y_train, y_test = df['subreds'].iloc[train_idx], df['subreds'].iloc[test_idx]
+```
+
+
+```python
+X_train.shape
+```
+
+
+
+
+    (9056, 12)
+
+
+
+
+```python
+X_test.shape
+```
+
+
+
+
+    (9052, 12)
+
+
+
+
+```python
+y_train.shape
+```
+
+
+
+
+    (9056,)
+
+
+
+
+```python
+y_test.shape
+```
+
+
+
+
+    (9052,)
+
+
+
+### NLP Transformations Pipeline
+
+
+```python
+# # this will give us a fit and transform method that 
+# # prescribes a columns of a df and pops it in ready for a pipeline
+from sklearn.base import BaseEstimator, TransformerMixin
+class FeatureExtractor(BaseEstimator, TransformerMixin):
+    def __init__(self, column):
+        self.column = column
+    def fit(self, X, y=None):
+        return self
+    def transform (self, X, y=None):
+        return X[[self.column]]
+```
+
+
+```python
+# this is a stateles transformer that looks at tsomething and applies a function to it
+from sklearn.preprocessing import FunctionTransformer
+```
+
+
+```python
+def extract_first_column(x):
+    return x.iloc[:, 0]
+
+def to_dense(x):
+    return x.todense()
+
+selftext_pipe = make_pipeline(
+    # takes a full df and spits out a df w 1 col, selftext 
+    FeatureExtractor('selftext'),
+    # take that new df shape (9000, 1) and extract the 1st col, while
+    # validate=False silences that warning
+    FunctionTransformer(extract_first_column, validate=False),
+    # tfidf spits out a sparse matrix 
+    TfidfVectorizer(stop_words='english'),
+    # functionTransformer here takes a sparse matrix and turns it
+    # to a dense one
+    FunctionTransformer(to_dense, validate=False)
+)
+
+title_pipe = make_pipeline(
+    FeatureExtractor('title'),
+    FunctionTransformer(extract_first_column, validate=False),
+    TfidfVectorizer(stop_words='english'),
+    FunctionTransformer(to_dense, validate=False)
+
+)
+
+feature_set_extraction = make_union(
+    selftext_pipe,
+    title_pipe
+)
+
+feature_set_extraction.fit(X_train)
+```
+
+
+
+
+    FeatureUnion(n_jobs=1,
+           transformer_list=[('pipeline-1', Pipeline(memory=None,
+         steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+              func=<function extract_first_column at 0x1121b66a8>,
+              inv_kw_args=None, inverse_func=Non...None,
+              inverse_func=None, kw_args=None, pass_y='deprecated',
+              validate=False))]))],
+           transformer_weights=None)
+
+
+
+
+```python
+transformed = feature_set_extraction.transform(X_train)
+print(transformed.shape, transformed[0:5])
+```
+
+    (9056, 47722) [[ 0.  0.  0. ...,  0.  0.  0.]
+     [ 0.  0.  0. ...,  0.  0.  0.]
+     [ 0.  0.  0. ...,  0.  0.  0.]
+     [ 0.  0.  0. ...,  0.  0.  0.]
+     [ 0.  0.  0. ...,  0.  0.  0.]]
+
+
+### Logistic Regression
+
+
+```python
+pipeline = make_pipeline(
+    feature_set_extraction,
+    TruncatedSVD(n_components=50),
+    LogisticRegression()
+)
+pipeline.fit(X_train, y_train)
+predictions = pipeline.predict(X_test)
+# print(pipeline.transform(X_train).shape)
+```
+
+
+```python
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
+```
+
+
+```python
+print(confusion_matrix(y_test, predictions))
+```
+
+    [[  14    7    1    1   16  231    1]
+     [   0  170    0    1    3  242    0]
+     [   0    6    2   10   12  182    3]
+     [   0    4    0   76    6  596   14]
+     [   1   13    0    4  269  561    6]
+     [  15   30    3   44  136 5951    9]
+     [   0    0    2   16   19  333   42]]
+
+
+
+```python
+print(classification_report(y_test, predictions))
+```
+
+                 precision    recall  f1-score   support
+    
+       compiled       0.47      0.05      0.09       271
+        gamedev       0.74      0.41      0.53       416
+     javascript       0.25      0.01      0.02       215
+          other       0.50      0.11      0.18       696
+         python       0.58      0.31      0.41       854
+    techsupport       0.74      0.96      0.83      6188
+         webdev       0.56      0.10      0.17       412
+    
+    avg / total       0.68      0.72      0.66      9052
+    
+
+
+
+```python
+print(accuracy_score(y_test, predictions))
+```
+
+    0.720724701723
+
+
+
+```python
+print(y_test.value_counts() / y_test.count())
+```
+
+    techsupport    0.683606
+    python         0.094344
+    other          0.076889
+    gamedev        0.045957
+    webdev         0.045515
+    compiled       0.029938
+    javascript     0.023752
+    Name: subreds, dtype: float64
+
+
+Our model did better than if we simply have predicted the majority class for all (we would have gotten .68% score then). Considering there was no hyper parameter optimization, we did good, but there is a lot of room to improve. 
+
+### Hyperparameter Tuning with Gridsearch:
+
+**1/2: Logistic Regression parameters**
+
+We're going to tweak multiple hyperparameters inside the pipeline at once. Let's first look at all the different cases of all the different parameters that exist in our pipeline.
+
+
+```python
+pipeline_params = pipeline.get_params()
+```
+
+
+```python
+LogisticRegression().get_params()
+```
+
+
+
+
+    {'C': 1.0,
+     'class_weight': None,
+     'dual': False,
+     'fit_intercept': True,
+     'intercept_scaling': 1,
+     'max_iter': 100,
+     'multi_class': 'ovr',
+     'n_jobs': 1,
+     'penalty': 'l2',
+     'random_state': None,
+     'solver': 'liblinear',
+     'tol': 0.0001,
+     'verbose': 0,
+     'warm_start': False}
+
+
+
+
+```python
+# every key here is something we can tweak in our model
+# some of those are well nested
+for key in pipeline_params.keys():
+    print(key)
+```
+
+    memory
+    steps
+    featureunion
+    truncatedsvd
+    logisticregression
+    featureunion__n_jobs
+    featureunion__transformer_list
+    featureunion__transformer_weights
+    featureunion__pipeline-1
+    featureunion__pipeline-2
+    featureunion__pipeline-1__memory
+    featureunion__pipeline-1__steps
+    featureunion__pipeline-1__featureextractor
+    featureunion__pipeline-1__functiontransformer-1
+    featureunion__pipeline-1__tfidfvectorizer
+    featureunion__pipeline-1__functiontransformer-2
+    featureunion__pipeline-1__featureextractor__column
+    featureunion__pipeline-1__functiontransformer-1__accept_sparse
+    featureunion__pipeline-1__functiontransformer-1__func
+    featureunion__pipeline-1__functiontransformer-1__inv_kw_args
+    featureunion__pipeline-1__functiontransformer-1__inverse_func
+    featureunion__pipeline-1__functiontransformer-1__kw_args
+    featureunion__pipeline-1__functiontransformer-1__pass_y
+    featureunion__pipeline-1__functiontransformer-1__validate
+    featureunion__pipeline-1__tfidfvectorizer__analyzer
+    featureunion__pipeline-1__tfidfvectorizer__binary
+    featureunion__pipeline-1__tfidfvectorizer__decode_error
+    featureunion__pipeline-1__tfidfvectorizer__dtype
+    featureunion__pipeline-1__tfidfvectorizer__encoding
+    featureunion__pipeline-1__tfidfvectorizer__input
+    featureunion__pipeline-1__tfidfvectorizer__lowercase
+    featureunion__pipeline-1__tfidfvectorizer__max_df
+    featureunion__pipeline-1__tfidfvectorizer__max_features
+    featureunion__pipeline-1__tfidfvectorizer__min_df
+    featureunion__pipeline-1__tfidfvectorizer__ngram_range
+    featureunion__pipeline-1__tfidfvectorizer__norm
+    featureunion__pipeline-1__tfidfvectorizer__preprocessor
+    featureunion__pipeline-1__tfidfvectorizer__smooth_idf
+    featureunion__pipeline-1__tfidfvectorizer__stop_words
+    featureunion__pipeline-1__tfidfvectorizer__strip_accents
+    featureunion__pipeline-1__tfidfvectorizer__sublinear_tf
+    featureunion__pipeline-1__tfidfvectorizer__token_pattern
+    featureunion__pipeline-1__tfidfvectorizer__tokenizer
+    featureunion__pipeline-1__tfidfvectorizer__use_idf
+    featureunion__pipeline-1__tfidfvectorizer__vocabulary
+    featureunion__pipeline-1__functiontransformer-2__accept_sparse
+    featureunion__pipeline-1__functiontransformer-2__func
+    featureunion__pipeline-1__functiontransformer-2__inv_kw_args
+    featureunion__pipeline-1__functiontransformer-2__inverse_func
+    featureunion__pipeline-1__functiontransformer-2__kw_args
+    featureunion__pipeline-1__functiontransformer-2__pass_y
+    featureunion__pipeline-1__functiontransformer-2__validate
+    featureunion__pipeline-2__memory
+    featureunion__pipeline-2__steps
+    featureunion__pipeline-2__featureextractor
+    featureunion__pipeline-2__functiontransformer-1
+    featureunion__pipeline-2__tfidfvectorizer
+    featureunion__pipeline-2__functiontransformer-2
+    featureunion__pipeline-2__featureextractor__column
+    featureunion__pipeline-2__functiontransformer-1__accept_sparse
+    featureunion__pipeline-2__functiontransformer-1__func
+    featureunion__pipeline-2__functiontransformer-1__inv_kw_args
+    featureunion__pipeline-2__functiontransformer-1__inverse_func
+    featureunion__pipeline-2__functiontransformer-1__kw_args
+    featureunion__pipeline-2__functiontransformer-1__pass_y
+    featureunion__pipeline-2__functiontransformer-1__validate
+    featureunion__pipeline-2__tfidfvectorizer__analyzer
+    featureunion__pipeline-2__tfidfvectorizer__binary
+    featureunion__pipeline-2__tfidfvectorizer__decode_error
+    featureunion__pipeline-2__tfidfvectorizer__dtype
+    featureunion__pipeline-2__tfidfvectorizer__encoding
+    featureunion__pipeline-2__tfidfvectorizer__input
+    featureunion__pipeline-2__tfidfvectorizer__lowercase
+    featureunion__pipeline-2__tfidfvectorizer__max_df
+    featureunion__pipeline-2__tfidfvectorizer__max_features
+    featureunion__pipeline-2__tfidfvectorizer__min_df
+    featureunion__pipeline-2__tfidfvectorizer__ngram_range
+    featureunion__pipeline-2__tfidfvectorizer__norm
+    featureunion__pipeline-2__tfidfvectorizer__preprocessor
+    featureunion__pipeline-2__tfidfvectorizer__smooth_idf
+    featureunion__pipeline-2__tfidfvectorizer__stop_words
+    featureunion__pipeline-2__tfidfvectorizer__strip_accents
+    featureunion__pipeline-2__tfidfvectorizer__sublinear_tf
+    featureunion__pipeline-2__tfidfvectorizer__token_pattern
+    featureunion__pipeline-2__tfidfvectorizer__tokenizer
+    featureunion__pipeline-2__tfidfvectorizer__use_idf
+    featureunion__pipeline-2__tfidfvectorizer__vocabulary
+    featureunion__pipeline-2__functiontransformer-2__accept_sparse
+    featureunion__pipeline-2__functiontransformer-2__func
+    featureunion__pipeline-2__functiontransformer-2__inv_kw_args
+    featureunion__pipeline-2__functiontransformer-2__inverse_func
+    featureunion__pipeline-2__functiontransformer-2__kw_args
+    featureunion__pipeline-2__functiontransformer-2__pass_y
+    featureunion__pipeline-2__functiontransformer-2__validate
+    truncatedsvd__algorithm
+    truncatedsvd__n_components
+    truncatedsvd__n_iter
+    truncatedsvd__random_state
+    truncatedsvd__tol
+    logisticregression__C
+    logisticregression__class_weight
+    logisticregression__dual
+    logisticregression__fit_intercept
+    logisticregression__intercept_scaling
+    logisticregression__max_iter
+    logisticregression__multi_class
+    logisticregression__n_jobs
+    logisticregression__penalty
+    logisticregression__random_state
+    logisticregression__solver
+    logisticregression__tol
+    logisticregression__verbose
+    logisticregression__warm_start
+
+
+
+```python
+# specifically, there is this much parameters we could tweak!
+# gridsearch will be great help here
+len(pipeline_params)
+```
+
+
+
+
+    113
+
+
+
+
+```python
+# using GridsearchCV and Pipeline to do hyperparameter
+# optimization on the LogisticRegression
+from sklearn.model_selection import GridSearchCV
+```
+
+
+```python
+pipeline
+```
+
+
+
+
+    Pipeline(memory=None,
+         steps=[('featureunion', FeatureUnion(n_jobs=1,
+           transformer_list=[('pipeline-1', Pipeline(memory=None,
+         steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+              func=<function extract_first_column at 0x11...ty='l2', random_state=None, solver='liblinear', tol=0.0001,
+              verbose=0, warm_start=False))])
+
+
+
+Things we could tweak inside of Logistic Regression:
+    - logisticregression__C (regularization strength)
+    - logisticregression__class_weight
+    - logisticregression__dual
+    - logisticregression__fit_intercept
+    - logisticregression__intercept_scaling
+    - logisticregression__max_iter
+    - logisticregression__multi_class
+    - logisticregression__n_jobs
+    - logisticregression__penalty
+    - logisticregression__random_state
+    - logisticregression__solver
+    - logisticregression__tol
+    - logisticregression__verbose
+    - logisticregression__warm_start
+
+
+```python
+# this took me 90 mins to run (i had too many tabs open) 
+
+params_grid = {
+    'logisticregression__penalty': ['l1', 'l2'],
+    'logisticregression__C':[0.01, 1.0, 100.0],
+    'logisticregression__fit_intercept': [True, False]
+}
+
+gs = GridSearchCV(
+    pipeline, 
+    params_grid,
+    n_jobs=-1,
+    verbose=2
+)
+
+# gs.fit(X_train, y_train)
+```
+
+    Fitting 3 folds for each of 12 candidates, totalling 36 fits
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total=19.8min
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=19.9min
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=19.9min
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=20.2min
+    [CV] logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total=20.2min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total=20.3min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=21.6min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=21.7min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=23.5min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=24.2min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=29.4min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=29.6min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=0.01, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=30.2min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=30.0min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total=28.6min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=28.9min
+    [CV] logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total= 6.4min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total= 5.6min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=14.3min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=19.9min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=21.1min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=21.3min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=23.2min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=1.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=23.4min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=11.6min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1 
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total= 7.7min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l1, total=19.0min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total= 5.7min
+    [CV] logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2 
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total= 6.2min
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=True, logisticregression__penalty=l2, total= 5.9min
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total= 9.8min
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=10.5min
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total= 7.6min
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=11.0min
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l2, total=11.7min
+    [CV]  logisticregression__C=100.0, logisticregression__fit_intercept=False, logisticregression__penalty=l1, total=12.0min
+
+
+    [Parallel(n_jobs=-1)]: Done  36 out of  36 | elapsed: 89.3min finished
+
+
+
+
+
+    GridSearchCV(cv=None, error_score='raise',
+           estimator=Pipeline(memory=None,
+         steps=[('featureunion', FeatureUnion(n_jobs=1,
+           transformer_list=[('pipeline-1', Pipeline(memory=None,
+         steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+              func=<function extract_first_column at 0x11...ty='l2', random_state=None, solver='liblinear', tol=0.0001,
+              verbose=0, warm_start=False))]),
+           fit_params=None, iid=True, n_jobs=-1,
+           param_grid={'logisticregression__penalty': ['l1', 'l2'], 'logisticregression__C': [0.01, 1.0, 100.0], 'logisticregression__fit_intercept': [True, False]},
+           pre_dispatch='2*n_jobs', refit=True, return_train_score='warn',
+           scoring=None, verbose=2)
+
+
+
+
+```python
+gs.best_params_
+```
+
+
+
+
+    {'logisticregression__C': 100.0,
+     'logisticregression__fit_intercept': False,
+     'logisticregression__penalty': 'l1'}
+
+
+
+
+```python
+predictions = gs.best_estimator_.predict(X_test)
+```
+
+
+```python
+print(confusion_matrix(y_test, predictions))
+```
+
+    [[  25    6    1    2   24  212    1]
+     [   0  256    0    5    9  145    1]
+     [   0    7   26   23   23  129    7]
+     [   1   14    2  180   17  454   28]
+     [   1    9    4   15  405  402   18]
+     [  25   52   19   91  179 5786   36]
+     [   0    1    2   34   21  227  127]]
+
+
+
+```python
+print(classification_report(y_test, predictions))
+```
+
+                 precision    recall  f1-score   support
+    
+       compiled       0.48      0.09      0.15       271
+        gamedev       0.74      0.62      0.67       416
+     javascript       0.48      0.12      0.19       215
+          other       0.51      0.26      0.34       696
+         python       0.60      0.47      0.53       854
+    techsupport       0.79      0.94      0.85      6188
+         webdev       0.58      0.31      0.40       412
+    
+    avg / total       0.72      0.75      0.72      9052
+    
+
+
+
+```python
+print(accuracy_score(y_test, predictions))
+```
+
+    0.751767565179
+
+
+### Hyperparameter Tuning with Gridsearch:
+
+**2/2: NLP parameters**
+
+
+```python
+# adding the best parameters to LR as determined by the gridsearch
+pipeline = make_pipeline(
+    feature_set_extraction,
+    TruncatedSVD(n_components=50),
+    LogisticRegression(penalty='l1', C='100.0')
+)
+# pipeline.fit(X_train, y_train)
+# predictions = pipeline.predict(X_test)
+
+```
+
+
+```python
+pipeline_params
+```
+
+
+
+
+    {'featureunion': FeatureUnion(n_jobs=1,
+            transformer_list=[('pipeline-1', Pipeline(memory=None,
+          steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+               func=<function extract_first_column at 0x1121b66a8>,
+               inv_kw_args=None, inverse_func=Non...None,
+               inverse_func=None, kw_args=None, pass_y='deprecated',
+               validate=False))]))],
+            transformer_weights=None),
+     'featureunion__n_jobs': 1,
+     'featureunion__pipeline-1': Pipeline(memory=None,
+          steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+               func=<function extract_first_column at 0x1121b66a8>,
+               inv_kw_args=None, inverse_func=None, kw_args=None,
+               pass_y='deprecated', validate=Fal...gs=None,
+               inverse_func=None, kw_args=None, pass_y='deprecated',
+               validate=False))]),
+     'featureunion__pipeline-1__featureextractor': FeatureExtractor(column='selftext'),
+     'featureunion__pipeline-1__featureextractor__column': 'selftext',
+     'featureunion__pipeline-1__functiontransformer-1': FunctionTransformer(accept_sparse=False,
+               func=<function extract_first_column at 0x1121b66a8>,
+               inv_kw_args=None, inverse_func=None, kw_args=None,
+               pass_y='deprecated', validate=False),
+     'featureunion__pipeline-1__functiontransformer-1__accept_sparse': False,
+     'featureunion__pipeline-1__functiontransformer-1__func': <function __main__.extract_first_column>,
+     'featureunion__pipeline-1__functiontransformer-1__inv_kw_args': None,
+     'featureunion__pipeline-1__functiontransformer-1__inverse_func': None,
+     'featureunion__pipeline-1__functiontransformer-1__kw_args': None,
+     'featureunion__pipeline-1__functiontransformer-1__pass_y': 'deprecated',
+     'featureunion__pipeline-1__functiontransformer-1__validate': False,
+     'featureunion__pipeline-1__functiontransformer-2': FunctionTransformer(accept_sparse=False,
+               func=<function to_dense at 0x1121b67b8>, inv_kw_args=None,
+               inverse_func=None, kw_args=None, pass_y='deprecated',
+               validate=False),
+     'featureunion__pipeline-1__functiontransformer-2__accept_sparse': False,
+     'featureunion__pipeline-1__functiontransformer-2__func': <function __main__.to_dense>,
+     'featureunion__pipeline-1__functiontransformer-2__inv_kw_args': None,
+     'featureunion__pipeline-1__functiontransformer-2__inverse_func': None,
+     'featureunion__pipeline-1__functiontransformer-2__kw_args': None,
+     'featureunion__pipeline-1__functiontransformer-2__pass_y': 'deprecated',
+     'featureunion__pipeline-1__functiontransformer-2__validate': False,
+     'featureunion__pipeline-1__memory': None,
+     'featureunion__pipeline-1__steps': [('featureextractor',
+       FeatureExtractor(column='selftext')),
+      ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+                 func=<function extract_first_column at 0x1121b66a8>,
+                 inv_kw_args=None, inverse_func=None, kw_args=None,
+                 pass_y='deprecated', validate=False)),
+      ('tfidfvectorizer',
+       TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+               dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+               lowercase=True, max_df=1.0, max_features=None, min_df=1,
+               ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+               stop_words='english', strip_accents=None, sublinear_tf=False,
+               token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+               vocabulary=None)),
+      ('functiontransformer-2', FunctionTransformer(accept_sparse=False,
+                 func=<function to_dense at 0x1121b67b8>, inv_kw_args=None,
+                 inverse_func=None, kw_args=None, pass_y='deprecated',
+                 validate=False))],
+     'featureunion__pipeline-1__tfidfvectorizer': TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+             dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+             lowercase=True, max_df=1.0, max_features=None, min_df=1,
+             ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+             stop_words='english', strip_accents=None, sublinear_tf=False,
+             token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+             vocabulary=None),
+     'featureunion__pipeline-1__tfidfvectorizer__analyzer': 'word',
+     'featureunion__pipeline-1__tfidfvectorizer__binary': False,
+     'featureunion__pipeline-1__tfidfvectorizer__decode_error': 'strict',
+     'featureunion__pipeline-1__tfidfvectorizer__dtype': numpy.int64,
+     'featureunion__pipeline-1__tfidfvectorizer__encoding': 'utf-8',
+     'featureunion__pipeline-1__tfidfvectorizer__input': 'content',
+     'featureunion__pipeline-1__tfidfvectorizer__lowercase': True,
+     'featureunion__pipeline-1__tfidfvectorizer__max_df': 1.0,
+     'featureunion__pipeline-1__tfidfvectorizer__max_features': None,
+     'featureunion__pipeline-1__tfidfvectorizer__min_df': 1,
+     'featureunion__pipeline-1__tfidfvectorizer__ngram_range': (1, 1),
+     'featureunion__pipeline-1__tfidfvectorizer__norm': 'l2',
+     'featureunion__pipeline-1__tfidfvectorizer__preprocessor': None,
+     'featureunion__pipeline-1__tfidfvectorizer__smooth_idf': True,
+     'featureunion__pipeline-1__tfidfvectorizer__stop_words': 'english',
+     'featureunion__pipeline-1__tfidfvectorizer__strip_accents': None,
+     'featureunion__pipeline-1__tfidfvectorizer__sublinear_tf': False,
+     'featureunion__pipeline-1__tfidfvectorizer__token_pattern': '(?u)\\b\\w\\w+\\b',
+     'featureunion__pipeline-1__tfidfvectorizer__tokenizer': None,
+     'featureunion__pipeline-1__tfidfvectorizer__use_idf': True,
+     'featureunion__pipeline-1__tfidfvectorizer__vocabulary': None,
+     'featureunion__pipeline-2': Pipeline(memory=None,
+          steps=[('featureextractor', FeatureExtractor(column='title')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+               func=<function extract_first_column at 0x1121b66a8>,
+               inv_kw_args=None, inverse_func=None, kw_args=None,
+               pass_y='deprecated', validate=False)...gs=None,
+               inverse_func=None, kw_args=None, pass_y='deprecated',
+               validate=False))]),
+     'featureunion__pipeline-2__featureextractor': FeatureExtractor(column='title'),
+     'featureunion__pipeline-2__featureextractor__column': 'title',
+     'featureunion__pipeline-2__functiontransformer-1': FunctionTransformer(accept_sparse=False,
+               func=<function extract_first_column at 0x1121b66a8>,
+               inv_kw_args=None, inverse_func=None, kw_args=None,
+               pass_y='deprecated', validate=False),
+     'featureunion__pipeline-2__functiontransformer-1__accept_sparse': False,
+     'featureunion__pipeline-2__functiontransformer-1__func': <function __main__.extract_first_column>,
+     'featureunion__pipeline-2__functiontransformer-1__inv_kw_args': None,
+     'featureunion__pipeline-2__functiontransformer-1__inverse_func': None,
+     'featureunion__pipeline-2__functiontransformer-1__kw_args': None,
+     'featureunion__pipeline-2__functiontransformer-1__pass_y': 'deprecated',
+     'featureunion__pipeline-2__functiontransformer-1__validate': False,
+     'featureunion__pipeline-2__functiontransformer-2': FunctionTransformer(accept_sparse=False,
+               func=<function to_dense at 0x1121b67b8>, inv_kw_args=None,
+               inverse_func=None, kw_args=None, pass_y='deprecated',
+               validate=False),
+     'featureunion__pipeline-2__functiontransformer-2__accept_sparse': False,
+     'featureunion__pipeline-2__functiontransformer-2__func': <function __main__.to_dense>,
+     'featureunion__pipeline-2__functiontransformer-2__inv_kw_args': None,
+     'featureunion__pipeline-2__functiontransformer-2__inverse_func': None,
+     'featureunion__pipeline-2__functiontransformer-2__kw_args': None,
+     'featureunion__pipeline-2__functiontransformer-2__pass_y': 'deprecated',
+     'featureunion__pipeline-2__functiontransformer-2__validate': False,
+     'featureunion__pipeline-2__memory': None,
+     'featureunion__pipeline-2__steps': [('featureextractor',
+       FeatureExtractor(column='title')),
+      ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+                 func=<function extract_first_column at 0x1121b66a8>,
+                 inv_kw_args=None, inverse_func=None, kw_args=None,
+                 pass_y='deprecated', validate=False)),
+      ('tfidfvectorizer',
+       TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+               dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+               lowercase=True, max_df=1.0, max_features=None, min_df=1,
+               ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+               stop_words='english', strip_accents=None, sublinear_tf=False,
+               token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+               vocabulary=None)),
+      ('functiontransformer-2', FunctionTransformer(accept_sparse=False,
+                 func=<function to_dense at 0x1121b67b8>, inv_kw_args=None,
+                 inverse_func=None, kw_args=None, pass_y='deprecated',
+                 validate=False))],
+     'featureunion__pipeline-2__tfidfvectorizer': TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+             dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+             lowercase=True, max_df=1.0, max_features=None, min_df=1,
+             ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+             stop_words='english', strip_accents=None, sublinear_tf=False,
+             token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+             vocabulary=None),
+     'featureunion__pipeline-2__tfidfvectorizer__analyzer': 'word',
+     'featureunion__pipeline-2__tfidfvectorizer__binary': False,
+     'featureunion__pipeline-2__tfidfvectorizer__decode_error': 'strict',
+     'featureunion__pipeline-2__tfidfvectorizer__dtype': numpy.int64,
+     'featureunion__pipeline-2__tfidfvectorizer__encoding': 'utf-8',
+     'featureunion__pipeline-2__tfidfvectorizer__input': 'content',
+     'featureunion__pipeline-2__tfidfvectorizer__lowercase': True,
+     'featureunion__pipeline-2__tfidfvectorizer__max_df': 1.0,
+     'featureunion__pipeline-2__tfidfvectorizer__max_features': None,
+     'featureunion__pipeline-2__tfidfvectorizer__min_df': 1,
+     'featureunion__pipeline-2__tfidfvectorizer__ngram_range': (1, 1),
+     'featureunion__pipeline-2__tfidfvectorizer__norm': 'l2',
+     'featureunion__pipeline-2__tfidfvectorizer__preprocessor': None,
+     'featureunion__pipeline-2__tfidfvectorizer__smooth_idf': True,
+     'featureunion__pipeline-2__tfidfvectorizer__stop_words': 'english',
+     'featureunion__pipeline-2__tfidfvectorizer__strip_accents': None,
+     'featureunion__pipeline-2__tfidfvectorizer__sublinear_tf': False,
+     'featureunion__pipeline-2__tfidfvectorizer__token_pattern': '(?u)\\b\\w\\w+\\b',
+     'featureunion__pipeline-2__tfidfvectorizer__tokenizer': None,
+     'featureunion__pipeline-2__tfidfvectorizer__use_idf': True,
+     'featureunion__pipeline-2__tfidfvectorizer__vocabulary': None,
+     'featureunion__transformer_list': [('pipeline-1', Pipeline(memory=None,
+            steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+                 func=<function extract_first_column at 0x1121b66a8>,
+                 inv_kw_args=None, inverse_func=None, kw_args=None,
+                 pass_y='deprecated', validate=Fal...gs=None,
+                 inverse_func=None, kw_args=None, pass_y='deprecated',
+                 validate=False))])), ('pipeline-2', Pipeline(memory=None,
+            steps=[('featureextractor', FeatureExtractor(column='title')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+                 func=<function extract_first_column at 0x1121b66a8>,
+                 inv_kw_args=None, inverse_func=None, kw_args=None,
+                 pass_y='deprecated', validate=False)...gs=None,
+                 inverse_func=None, kw_args=None, pass_y='deprecated',
+                 validate=False))]))],
+     'featureunion__transformer_weights': None,
+     'logisticregression': LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
+               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
+               verbose=0, warm_start=False),
+     'logisticregression__C': 1.0,
+     'logisticregression__class_weight': None,
+     'logisticregression__dual': False,
+     'logisticregression__fit_intercept': True,
+     'logisticregression__intercept_scaling': 1,
+     'logisticregression__max_iter': 100,
+     'logisticregression__multi_class': 'ovr',
+     'logisticregression__n_jobs': 1,
+     'logisticregression__penalty': 'l2',
+     'logisticregression__random_state': None,
+     'logisticregression__solver': 'liblinear',
+     'logisticregression__tol': 0.0001,
+     'logisticregression__verbose': 0,
+     'logisticregression__warm_start': False,
+     'memory': None,
+     'steps': [('featureunion', FeatureUnion(n_jobs=1,
+              transformer_list=[('pipeline-1', Pipeline(memory=None,
+            steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+                 func=<function extract_first_column at 0x1121b66a8>,
+                 inv_kw_args=None, inverse_func=Non...None,
+                 inverse_func=None, kw_args=None, pass_y='deprecated',
+                 validate=False))]))],
+              transformer_weights=None)),
+      ('truncatedsvd',
+       TruncatedSVD(algorithm='randomized', n_components=50, n_iter=5,
+              random_state=None, tol=0.0)),
+      ('logisticregression',
+       LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                 intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
+                 penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
+                 verbose=0, warm_start=False))],
+     'truncatedsvd': TruncatedSVD(algorithm='randomized', n_components=50, n_iter=5,
+            random_state=None, tol=0.0),
+     'truncatedsvd__algorithm': 'randomized',
+     'truncatedsvd__n_components': 50,
+     'truncatedsvd__n_iter': 5,
+     'truncatedsvd__random_state': None,
+     'truncatedsvd__tol': 0.0}
+
+
+
+
+```python
+# this took me 40 mins to run
+from sklearn.feature_extraction.text import CountVectorizer
+params_grid = {
+    'truncatedsvd__n_components': [50, 250],
+    'featureunion__pipeline-1__tfidfvectorizer': [
+        TfidfVectorizer(stop_words='english'),
+        CountVectorizer(stop_words='english', max_features=10000)
+    ],
+    'featureunion__pipeline-2__tfidfvectorizer': [
+        TfidfVectorizer(stop_words='english'),
+        CountVectorizer(stop_words='english', max_features=10000)
+    ],
+}
+
+gs = GridSearchCV(
+    pipeline, 
+    params_grid,
+    n_jobs=-1,
+    verbose=2
+)
+
+gs.fit(X_train, y_train)
+```
+
+    Fitting 3 folds for each of 8 candidates, totalling 24 fits
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50, total=28.1min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50, total=28.4min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50, total=28.4min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50, total=30.2min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250, total=31.4min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50, total=31.6min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250, total=31.8min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250, total=32.6min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50, total= 2.4min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50, total= 2.4min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50, total= 5.1min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=50, total= 2.5min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250, total= 6.9min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250, total= 3.6min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250, total= 7.0min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250 
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250, total= 6.7min
+    [CV] featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250 
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250, total= 3.0min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_df=1,
+            ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+            stop_words='english', strip_accents=None, sublinear_tf=False,
+            token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+            vocabulary=None), truncatedsvd__n_components=250, total= 3.0min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50, total= 3.6min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50, total= 3.4min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=50, total= 2.0min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250, total= 2.4min
+
+
+    [Parallel(n_jobs=-1)]: Done  22 out of  24 | elapsed: 40.3min remaining:  3.7min
+
+
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250, total= 2.5min
+    [CV]  featureunion__pipeline-1__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), featureunion__pipeline-2__tfidfvectorizer=CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+            ngram_range=(1, 1), preprocessor=None, stop_words='english',
+            strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None), truncatedsvd__n_components=250, total= 1.8min
+
+
+    [Parallel(n_jobs=-1)]: Done  24 out of  24 | elapsed: 40.4min finished
+
+
+
+
+
+    GridSearchCV(cv=None, error_score='raise',
+           estimator=Pipeline(memory=None,
+         steps=[('featureunion', FeatureUnion(n_jobs=1,
+           transformer_list=[('pipeline-1', Pipeline(memory=None,
+         steps=[('featureextractor', FeatureExtractor(column='selftext')), ('functiontransformer-1', FunctionTransformer(accept_sparse=False,
+              func=<function extract_first_column at 0x11...ty='l2', random_state=None, solver='liblinear', tol=0.0001,
+              verbose=0, warm_start=False))]),
+           fit_params=None, iid=True, n_jobs=-1,
+           param_grid={'truncatedsvd__n_components': [50, 250], 'featureunion__pipeline-1__tfidfvectorizer': [TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+            dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+            lowercase=True, max_df=1.0, max_features=None, min_...   strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+            tokenizer=None, vocabulary=None)]},
+           pre_dispatch='2*n_jobs', refit=True, return_train_score='warn',
+           scoring=None, verbose=2)
+
+
+
+
+```python
+gs.best_params_
+```
+
+
+
+
+    {'featureunion__pipeline-1__tfidfvectorizer': CountVectorizer(analyzer='word', binary=False, decode_error='strict',
+             dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+             lowercase=True, max_df=1.0, max_features=10000, min_df=1,
+             ngram_range=(1, 1), preprocessor=None, stop_words='english',
+             strip_accents=None, token_pattern='(?u)\\b\\w\\w+\\b',
+             tokenizer=None, vocabulary=None),
+     'featureunion__pipeline-2__tfidfvectorizer': TfidfVectorizer(analyzer='word', binary=False, decode_error='strict',
+             dtype=<class 'numpy.int64'>, encoding='utf-8', input='content',
+             lowercase=True, max_df=1.0, max_features=None, min_df=1,
+             ngram_range=(1, 1), norm='l2', preprocessor=None, smooth_idf=True,
+             stop_words='english', strip_accents=None, sublinear_tf=False,
+             token_pattern='(?u)\\b\\w\\w+\\b', tokenizer=None, use_idf=True,
+             vocabulary=None),
+     'truncatedsvd__n_components': 250}
+
+
+
+*** CountVectorizer was the best param in the first tfidf step and TfidfVectorizer was best in the second. Best number of components - 250. Let's now fit these params and see how well they predict:***
+
+
+```python
+# Function to check fit
+def check_fit(predictions, y_true):
+        print(confusion_matrix(y_test, predictions))
+        print(classification_report(y_test, predictions))
+        print(accuracy_score(y_test, predictions))
+
+predictions = gs.best_estimator_.predict(X_test)
+check_fit(predictions, y_test)
+```
+
+    [[  76    3    3    4    8  174    3]
+     [   0  248    2   13    9  143    1]
+     [   1    9   44   16    2  139    4]
+     [   4   10    3  205   18  431   25]
+     [   4   15    5   15  447  344   24]
+     [  56   27   27   74  130 5840   34]
+     [   2    2    9   31   11  240  117]]
+                 precision    recall  f1-score   support
+    
+       compiled       0.53      0.28      0.37       271
+        gamedev       0.79      0.60      0.68       416
+     javascript       0.47      0.20      0.29       215
+          other       0.57      0.29      0.39       696
+         python       0.72      0.52      0.60       854
+    techsupport       0.80      0.94      0.87      6188
+         webdev       0.56      0.28      0.38       412
+    
+    avg / total       0.75      0.77      0.74      9052
+    
+    0.770768890853
+
+
+*** They predict 9% more accurate than the baseline. *** 
+
+## DIMENSIONALITY REDUCTION WITH PCA (TruncatedSVD)
+
+
+```python
+# predicting using subreddit's text
+X_train, X_test, y_train, y_test = train_test_split(df['selftext'].values, df['subreds'].values,
+                                                  test_size=0.33,  random_state=2017)
+```
+
+
+```python
+cv = CountVectorizer()
+cv.fit(X_train)
+X = cv.transform(X_train)
+print(X.shape)
+```
+
+    (12132, 47561)
+
+
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+tsvd = TruncatedSVD(n_components=11)
+tsvd.fit(X)
+plt.plot(range(11), tsvd.explained_variance_ratio_.cumsum())
+```
+
+
+
+
+    [<matplotlib.lines.Line2D at 0x1a2491d8d0>]
+
+
+
+
+![png](NLP_files/NLP_76_1.png)
+
+
+
+```python
+X_tsvd = tsvd.transform(X)
+```
+
+### Predicting with RandomForestClassifier
+
+
+```python
+rfc = RandomForestClassifier()
+rfc.fit(X_tsvd, y_train)
+print(rfc.score(X_tsvd, y_train))
+print(confusion_matrix(y_train, rfc.predict(X_tsvd)))
+print(classification_report(y_train, rfc.predict(X_tsvd)))
+```
+
+    0.984009231784
+    [[ 345    0    0    0    0   18    0]
+     [   0  527    0    1    2   16    0]
+     [   0    0  290    1    1    7    0]
+     [   3    0    1  880    0   31    3]
+     [   1    1    1    1 1086   46    2]
+     [   2    2    4    3    6 8316    3]
+     [   0    0    1    2    1   34  494]]
+                 precision    recall  f1-score   support
+    
+       compiled       0.98      0.95      0.97       363
+        gamedev       0.99      0.97      0.98       546
+     javascript       0.98      0.97      0.97       299
+          other       0.99      0.96      0.97       918
+         python       0.99      0.95      0.97      1138
+    techsupport       0.98      1.00      0.99      8336
+         webdev       0.98      0.93      0.96       532
+    
+    avg / total       0.98      0.98      0.98     12132
+    
+
+
+***This seems like an exceptionally good model with high accuracy..***
+
+
+```python
+X_test_cv = cv.transform(X_test)
+X_test_svd = tsvd.transform(X_test_cv)
+print(rfc.score(X_test_svd, y_test))
+print(confusion_matrix(y_test, rfc.predict(X_test_svd)))
+print(classification_report(y_test, rfc.predict(X_test_svd)))
+```
+
+    0.643239625167
+    [[  21   11    3    8   25  110    1]
+     [   8   27    5   19   22  204    1]
+     [   3    7    3    9   16   91    2]
+     [  12   25    4   58   39  327   10]
+     [   9   18    6   29   92  403   14]
+     [  30   48   31  119  156 3631   26]
+     [   5   10    5   22   31  208   12]]
+                 precision    recall  f1-score   support
+    
+       compiled       0.24      0.12      0.16       179
+        gamedev       0.18      0.09      0.12       286
+     javascript       0.05      0.02      0.03       131
+          other       0.22      0.12      0.16       475
+         python       0.24      0.16      0.19       571
+    techsupport       0.73      0.90      0.81      4041
+         webdev       0.18      0.04      0.07       293
+    
+    avg / total       0.56      0.64      0.59      5976
+    
+
+
+***Except on the test set it did worse, way worse than expected.***
+
+## Same in a pipeline
+
+
+```python
+pipeline = make_pipeline(
+   CountVectorizer(),
+   TruncatedSVD(n_components=10),
+   RandomForestClassifier())
+
+pipeline.fit(X_train, y_train)
+
+# score it and run the predictions from the training set.
+print(pipeline.score(X_train, y_train))
+predictions = pipeline.predict(X_train)
+print(confusion_matrix(y_train, predictions))
+print(classification_report(y_train, predictions))
+```
+
+    0.970820969337
+    [[ 330    0    0    3    0   30    0]
+     [   1  518    0    2    2   22    1]
+     [   0    0  280    4    1   12    2]
+     [   0    3    1  847    2   61    4]
+     [   2    2    2    5 1039   87    1]
+     [   1    7    5   10   12 8297    4]
+     [   1    3    0    5    5   51  467]]
+                 precision    recall  f1-score   support
+    
+       compiled       0.99      0.91      0.95       363
+        gamedev       0.97      0.95      0.96       546
+     javascript       0.97      0.94      0.95       299
+          other       0.97      0.92      0.94       918
+         python       0.98      0.91      0.94      1138
+    techsupport       0.97      1.00      0.98      8336
+         webdev       0.97      0.88      0.92       532
+    
+    avg / total       0.97      0.97      0.97     12132
+    
+
+
+
+```python
+# score and predict with our test set
+print(pipeline.score(X_test, y_test))
+predictions = pipeline.predict(X_test)
+print(confusion_matrix(y_test, predictions))
+print(classification_report(y_test, predictions))
+```
+
+    0.645582329317
+    [[  19    6    3   14   21  111    5]
+     [   6   32    6   21   16  201    4]
+     [   1    3    9    8   13   91    6]
+     [   2   21    6   69   39  323   15]
+     [  16   24    6   37   94  392    2]
+     [  32   55   34  129  138 3621   32]
+     [   5    8    6   17   22  221   14]]
+                 precision    recall  f1-score   support
+    
+       compiled       0.23      0.11      0.15       179
+        gamedev       0.21      0.11      0.15       286
+     javascript       0.13      0.07      0.09       131
+          other       0.23      0.15      0.18       475
+         python       0.27      0.16      0.21       571
+    techsupport       0.73      0.90      0.80      4041
+         webdev       0.18      0.05      0.08       293
+    
+    avg / total       0.57      0.65      0.60      5976
+    
+
+
+### Latent Dirichlet Allocation
+
+
+```python
+# transform the data using CountVectorizer and removing stop words:
+cv = CountVectorizer(stop_words='english')
+cv.fit(df['title'].values)
+X = cv.transform(df['title'].values)
+X
+```
+
+
+
+
+    <18108x12407 sparse matrix of type '<class 'numpy.int64'>'
+    	with 102034 stored elements in Compressed Sparse Row format>
+
+
+
+
+```python
+# instantiate an LDA and fit it to our sparse matrix of words
+from sklearn.decomposition import LatentDirichletAllocation
+feature_names = cv.get_feature_names()
+lda = LatentDirichletAllocation(n_components=7) # 7 for the number of topics
+lda.fit(X)
+```
+
+    /Users/Olga/anaconda3/lib/python3.6/site-packages/sklearn/decomposition/online_lda.py:536: DeprecationWarning: The default value for 'learning_method' will be changed from 'online' to 'batch' in the release 0.20. This warning was introduced in 0.18.
+      DeprecationWarning)
+
+
+
+
+
+    LatentDirichletAllocation(batch_size=128, doc_topic_prior=None,
+                 evaluate_every=-1, learning_decay=0.7, learning_method=None,
+                 learning_offset=10.0, max_doc_update_iter=100, max_iter=10,
+                 mean_change_tol=0.001, n_components=7, n_jobs=1,
+                 n_topics=None, perp_tol=0.1, random_state=None,
+                 topic_word_prior=None, total_samples=1000000.0, verbose=0)
+
+
+
+
+```python
+print(lda.components_.shape)
+```
+
+    (7, 12407)
+
+
+
+```python
+results = pd.DataFrame(lda.components_,
+                     columns=feature_names)
+```
+
+
+```python
+# classifying words that are likely to be used together into 7 topics 
+# if we wanted to find 7 topics
+for topic in range(7):
+    print('Topic', topic)
+    word_list = results.T[topic].sort_values(ascending=False).index
+    print(' '.join(word_list[0:25]), '\n')
+```
+
+    Topic 0
+    help need game way java best data audio programming project looking advice list create function app file android software page set open phone input design 
+    
+    Topic 1
+    use pc drive does wifi getting problem hard know make post disk power tv image 2016 connect randomly gtx sure external really think add thread 
+    
+    Topic 2
+    laptop new boot code trying learn ssd computer program issues having won hdd want possible slow don just loop keyboard bsod files drivers time 100 
+    
+    Topic 3
+    screen internet monitor good error card video learning doesn pc desktop graphics display black computer connection work asus google run using javascript chrome driver won 
+    
+    Topic 4
+    python question games gpu problems computer cpu running motherboard usage high different playing ve swift line coding fps fan programming ram dual test low monitor 
+    
+    Topic 5
+    windows 10 working pc like web new install router update gaming start fix making got old change device vs random access website network development online 
+    
+    Topic 6
+    using issue usb text work python amp keeps build mouse laptop code html crashing js server django creating php based port search unable apps iphone 
+    
+
+
+Keywords: hyperparameter optimization, model tweking, gridsearch
