@@ -43,13 +43,13 @@ github: olgadk7
 # medium: medium
 email: olgadkrieger@gmail.com
 
-authors:
-    OlgaKrieger:
-        name: Olga Krieger
-        bio: Data Scientist
-        external-image: false
+# authors:
+  #  OlgaKrieger:
+   #     name: Olga Krieger
+    #    bio: Data Scientist
+     #   external-image: false
        # picture: assets/images/profile.jpg
-        twitter: olgadk7
+      #  twitter: olgadk7
 
 
 # do you want a larger site? change the option below
