@@ -2,6 +2,7 @@
 title: "Reading List: Convolutional Neural Networks in Document Recognition, Yann LeCun, 1998"
 layout: post
 tag: papers
+blog: true
 author: Olga Krieger
 summary: "Reading List: recaps of important data science papers."
 permalink: blog/reading-list-1998lecun
