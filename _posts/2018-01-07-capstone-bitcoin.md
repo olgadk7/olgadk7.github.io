@@ -1,5 +1,5 @@
 ---
-title: "Project: Public interest, Time Series, SVR and predicting the price of bitcoin"
+title: "Project: Public data, Time Series, SVR and predicting the price of bitcoin"
 layout: post
 blog: true
 author: Olga Krieger
