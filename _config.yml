@@ -1,11 +1,6 @@
 # main text of home
 name: Olga Krieger
-bio: 'Data scientist and blockchain enthusiast.
-I like to ask questions and design experiments to answer them with data. 
-With a unique humanitarian background across countries and industries, 
-I can communicate with technical and non-technical audiences, 
-streamline team collaboration and ensure focus on value to end user. 
-I am a go-getter, self-starter, team player and hard worker.'
+bio: 'Data scientist and blockchain enthusiast.'
 
 # twitter summary info
 description: Olga's DS Portfolio
@@ -74,7 +69,7 @@ width: large
 # teaching: true
 
 # if you don't need about or blog, comment them out below
-# about: true
+about: true
 blog: true
 
 # do you want to show the "read time" of the posts?
