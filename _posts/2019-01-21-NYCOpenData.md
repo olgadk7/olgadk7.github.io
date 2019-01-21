@@ -10,7 +10,7 @@ permalink: blog/NYCOpenData
 
 Public infrastructure is one of the things I love about New York: parks, libraries, classes and, as I’m discovering, data. Recently I took an OpenData class hosted by [BetaNYC](https://beta.nyc/), which has designed tools intended to help Community Boards access, analyze, map and use data to inform decision-making. Below is a project that came out of one of those classes. Using tools such as BoardStat, Tenants Map, BIS-WEB, ACRIS and RentLogic, as well as 311 data, the study explores the connection between housing safety issues and rent-regulated units. As New York City is struggling through an [affordable housing crisis](https://nyti.ms/2GxIkF7), the study, not surprisingly, finds a connection between bad landlords, housing violations and rent stabilization.
 
-<br><br>
+<br>
 
 ## Part I: Identify a building with the most Heat / Hot Water service requests.
 Having chosen Manhattan as a borough of interest on [BoardStat](https://betanyc.github.io/BoardStat/), I further filtered the data selecting Community Board 02 Manhattan. It gives us an overview of the top complaint types and addresses for that community board. We’re going to focus on the Heat / Hot Water complaint in entire buildings as it’s an essential need in the cold months. The address with the most complaints of this type is 1 University Place:
@@ -39,6 +39,8 @@ We use Tenants Map to determine whether 1 University Place is rent-regulated and
 
 ![png](/assets/images/posts/lanlord-issues/5.png)
 
+<br>
+
 Clicking on the lot, a summary of the building info comes up.
 
 We see that the amount of rent-stabilized units has decreased by 33% between 2007 and 2016:
@@ -64,6 +66,8 @@ Going back to BoardStat (page 3), we’re going to filter by the agency, selecti
 
 ![png](/assets/images/posts/lanlord-issues/9.png)
 
+<br>
+
 Locating the address on the Tenants Map, we confirm that the lot is rent-stabilized, with a high number of housing-related 311 complaints. The summary tells us that the owner is 46 ROSE REALTY, LLC. 
 
 ![png](/assets/images/posts/lanlord-issues/10.png)
@@ -72,15 +76,15 @@ Locating the address on the Tenants Map, we confirm that the lot is rent-stabili
 
 <br>
 
-Rent-Stabilized Units
+**Rent-Stabilized Units**
 
 ![png](/assets/images/posts/lanlord-issues/12.png)
  
-311 Complaints
+**311 Complaints**
 
 ![png](/assets/images/posts/lanlord-issues/13.png)
 
-Total Number of Complaints: 324
+*Total Number of Complaints: 324
 
 ![png](/assets/images/posts/lanlord-issues/14.png)
 
@@ -92,6 +96,8 @@ Source: [311 Service Requests from 2010 to Present](https://data.cityofnewyork.u
 Going over to [NYCityMap](http://maps.nyc.gov/doitt/nycitymap/) and clicking Building Profile under Links to More Information, we see right away that Class 1: Immediately Hazardous violation has been issued at 46 Bank st. In addition, there are 96 complaints, 20 Department of Buildings violations (4 of which are open) and 26 Environmental Control Board violations (21 of which are open):
 
 ![png](/assets/images/posts/lanlord-issues/15.png)
+
+<br>
 
 Clicking on Tax and Property Records (also under Links to More Information), we get to a Department of Finance tool, ACRIS (Automated City Register Information System). The current owner, 46 ROSE REALTY LLC, gained the title in Spring 2017: 
 
