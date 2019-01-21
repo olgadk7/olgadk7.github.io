@@ -10,14 +10,14 @@ permalink: blog/NYCOpenData
 
 Public infrastructure is one of the things I love about New York: parks, libraries, classes and, as I’m discovering, data. Recently I took an OpenData class hosted by [BetaNYC](https://beta.nyc/), which has designed tools intended to help Community Boards access, analyze, map and use data to inform decision-making. Below is a project that came out of one of those classes. Using tools such as BoardStat, Tenants Map, BIS-WEB, ACRIS and RentLogic, as well as 311 data, the study explores the connection between housing safety issues and rent-regulated units. As New York City is struggling through an [affordable housing crisis](https://nyti.ms/2GxIkF7), the study, not surprisingly, finds a connection between bad landlords, housing violations and rent stabilization.
 
-# Part I: Identify a building with the most Heat / Hot Water service requests.
+### Part I: Identify a building with the most Heat / Hot Water service requests.
 Having chosen Manhattan as a borough of interest on [BoardStat](https://betanyc.github.io/BoardStat/), I further filtered the data selecting Community Board 02 Manhattan. It gives us an overview of the top complaint types and addresses for that community board. We’re going to focus on the Heat / Hot Water complaint in entire buildings as it’s an essential need in the cold months. The address with the most complaints of this type is 1 University Place.
 
 ![png](/assets/images/posts/lanlord issues/1.png)
 
 ![png](/assets/images/posts/lanlord issues/2.png)
 
-# Part II: Discovering other complaint types and the trend line for Heat / Hot Water complaints. 
+### Part II: Discovering other complaint types and the trend line for Heat / Hot Water complaints. 
 The top complaints at 1 University Place are Heat / Hot Water and different types of noises: 
 
 ![png](/assets/images/posts/lanlord issues/3.png)
@@ -50,7 +50,7 @@ Source: [311 Service Requests from 2010 to Present](https://data.cityofnewyork.u
  
 
 
-# Part IV. Identifying buildings with the most Housing Preservation & Development (HPD) service requests.
+### Part IV. Identifying buildings with the most Housing Preservation & Development (HPD) service requests.
 Going back to BoardStat (page 3), we’re going to filter by the agency, selecting HPD from the drop-down menu. HPD is the agency responsible for maintaining the city's affordable housing; the larger the circle, the higher the density of HPD requests, signifying unsafe housing conditions. In 2018, the largest circle is 46 Bank St.
 
 ![png](/assets/images/posts/lanlord issues/9.png)
@@ -76,7 +76,7 @@ Source: [311 Service Requests from 2010 to Present](https://data.cityofnewyork.u
  
 
 
-# Part V. Noting violations and transaction history for a problematic address. 
+### Part V. Noting violations and transaction history for a problematic address. 
 Going over to [NYCityMap](http://maps.nyc.gov/doitt/nycitymap/) and clicking Building Profile under Links to More Information, we see right away that Class 1: Immediately Hazardous violation has been issued at 46 Bank st. In addition, there are 96 complaints, 20 Department of Buildings violations (4 of which are open) and 26 Environmental Control Board violations (21 of which are open):
 
 ![png](/assets/images/posts/lanlord issues/15.png)
@@ -85,7 +85,7 @@ Clicking on Tax and Property Records (also under Links to More Information), we 
 
 ![png](/assets/images/posts/lanlord issues/16.png)
 
-# Part VI. Using RentLogic to see the building’s rating / letter grade. 
+### Part VI. Using RentLogic to see the building’s rating / letter grade. 
 [RentLogic](https://rentlogic.com) is a company which rates building on a scale from A - F by consolidating and weighing a large number of open datasets, using an open, 250-page algorithm. Having been graded an A from the beginning of the data collection through the summer of 2017, 46 Bank St, dropped to an F in just half a year. The decline happened a the same time as 46 ROSE REALTY LLC took over the building. Among the listed violations are: Water, Plumbing, Safety, Unsanitary Conditions, Fire Code, Cockroaches, Rodents, Electrical, Gas, Hot Water and Heat.
 
 ![png](/assets/images/posts/lanlord issues/17.png)
