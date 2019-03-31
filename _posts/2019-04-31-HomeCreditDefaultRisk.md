@@ -1,5 +1,13 @@
+---
+title: " Project: Model Interpretability and imbalanced dataset in predicting Home Credit Default Risk."
+layout: post
+blog: true
+author: Olga Krieger
+summary:
+permalink: blog/ModelInterpretability
+---
 
-# Project: Model Interpretability and imbalanced dataset in predicting Home Credit Default Risk.
+# Project: Model Interpretability and imbalanced datasets in predicting Home Credit Default Risk.
 
 Here is an imbalanced class project that's focused on interpreting the result of a simple classification model. 
 
@@ -30,6 +38,7 @@ The evaluation of classifier models is not as straightforward as regression mode
 The ROC shows the True Positive Rate versus the False Positive Rate as a function of the threshold according to which we classify an instance as positive. The True Positives are the important ones to get right, as the cost of False Negative is usually much larger than False Positive, yet ML algorithms penalize both at a similar weight. In credit risk, if we predict a loan will default yet it doesn’t, the maximum loss is the profit you’d have made by issuing that loan. On the other hand, if your model classifies a default loan as being safe, you will also lose the issued amount in addition to the foregone profit. 
 
 Interpretable machine learning tools help us decide and, more broadly, do better model validation. [Practitioners agree](https://medium.com/james-blogs/handling-imbalanced-data-in-classification-problems-7de598c1059f) that model validation should include answering questions such as: how does the model output relate to the value of each feature? Do these relations match human intuition and/or domain knowledge? What features weight the most for a specific observation?
+
 
 
 **Imports and basic transformations**
@@ -67,7 +76,7 @@ df.index.names = ['ID'] # 'SK_ID_CURR' is long and confusing
 
    
 
-** Target / the dependent variable**
+**Target / the dependent variable**
 
 
 ```python
@@ -114,7 +123,7 @@ The resampled technique did not improve the performance of the model, but I'll l
 ```python
 from sklearn.utils import resample
 
-# separate minority and majority classes - MIGHT NOT NEED THIS
+# separate minority and majority classes
 defaulted = df.loc[df.target==1, :]
 nondefaulted = df.loc[df.target==0, :]
 
@@ -139,24 +148,6 @@ df_downsampled.target.value_counts()
 # general overview of the numerical variables with the target classes
 df.groupby('target').mean()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -270,23 +261,6 @@ df.groupby('target').mean()
 df.describe()
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -537,15 +511,6 @@ for col in cols:
     df= df[np.abs(df[col]-df[col].mean()) <= (3*df[col].std())]
 df.boxplot(column=['amt_goods_price', 'amt_income_total', 'amt_credit'])
 ```
-
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x120c1ac18>
-
-
-
-
 ![png](HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_17_1.png)
 
 
@@ -693,23 +658,6 @@ logReg_coeff['P'] = logReg_coeff['odds'] / (1 + logReg_coeff['odds'])
 logReg_coeff.head(5)
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -992,337 +940,7 @@ perm = PermutationImportance(model, scoring = 'roc_auc', random_state=1).fit(X_t
 eli5.show_weights(perm, feature_names = X_test.columns.tolist())
 ```
 
-
-
-
-
-    <style>
-    table.eli5-weights tr:hover {
-        filter: brightness(85%);
-    }
-</style>
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-        <table class="eli5-weights eli5-feature-importances" style="border-collapse: collapse; border: none; margin-top: 0em; table-layout: auto;">
-    <thead>
-    <tr style="border: none;">
-        <th style="padding: 0 1em 0 0.5em; text-align: right; border: none;">Weight</th>
-        <th style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">Feature</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr style="background-color: hsl(120, 100.00%, 80.00%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0640
-                
-                    &plusmn; 0.0026
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                ext_source_3
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 85.12%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0420
-                
-                    &plusmn; 0.0024
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                ext_source_2
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 87.70%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0320
-                
-                    &plusmn; 0.0022
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                name_income_type_Pensioner
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 88.47%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0292
-                
-                    &plusmn; 0.0029
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                amt_goods_price
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 89.55%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0254
-                
-                    &plusmn; 0.0019
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                obs_30_cnt_social_circle
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 89.95%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0240
-                
-                    &plusmn; 0.0020
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                flag_emp_phone
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 90.67%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0215
-                
-                    &plusmn; 0.0021
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                obs_60_cnt_social_circle
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 93.17%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0138
-                
-                    &plusmn; 0.0020
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                amt_credit
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 94.30%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0106
-                
-                    &plusmn; 0.0018
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                basementarea_avg
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 94.56%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0100
-                
-                    &plusmn; 0.0021
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                apartments_avg
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 95.03%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0088
-                
-                    &plusmn; 0.0008
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                ext_source_1
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 95.23%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0083
-                
-                    &plusmn; 0.0014
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                floorsmin_medi
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 95.31%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0081
-                
-                    &plusmn; 0.0005
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                Credit_to_income
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 95.42%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0078
-                
-                    &plusmn; 0.0005
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                floorsmin_avg
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 95.46%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0077
-                
-                    &plusmn; 0.0010
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                livingarea_avg
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 95.59%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0074
-                
-                    &plusmn; 0.0013
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                basementarea_medi
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 96.62%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0050
-                
-                    &plusmn; 0.0013
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                livingarea_medi
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 96.64%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0050
-                
-                    &plusmn; 0.0008
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                entrances_medi
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 96.79%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0047
-                
-                    &plusmn; 0.0004
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                apartments_medi
-            </td>
-        </tr>
-    
-        <tr style="background-color: hsl(120, 100.00%, 97.13%); border: none;">
-            <td style="padding: 0 1em 0 0.5em; text-align: right; border: none;">
-                0.0040
-                
-                    &plusmn; 0.0008
-                
-            </td>
-            <td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;">
-                commonarea_medi
-            </td>
-        </tr>
-    
-    
-        
-            <tr style="background-color: hsl(120, 100.00%, 97.13%); border: none;">
-                <td colspan="2" style="padding: 0 0.5em 0 0.5em; text-align: center; border: none; white-space: nowrap;">
-                    <i>&hellip; 229 more &hellip;</i>
-                </td>
-            </tr>
-        
-    
-    </tbody>
-</table>
-    
-
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-
-
-
-
-
-  
+![png](/assets/images/posts/HomeCreditDefaultRisk-V3_files/ScreenShot2019-03-31at4.22.49PM.png)
 
 ### Partial dependence plots 
 
