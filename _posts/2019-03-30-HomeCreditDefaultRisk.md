@@ -778,7 +778,6 @@ logReg_coeff.tail(5)
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
@@ -974,7 +973,7 @@ my_plots = plot_partial_dependence(gbc, X=X, grid_resolution=5,
 ```
 
 
-![png](HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_53_0.png)
+![png](/assets/images/posts/HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_53_0.png)
 
 
 The plot on the left shows that the likelihood to default grows as people reach mid thirties, then falls till mid forties and slightly increases again. The likelihood to default is falling the longer you're employed.
@@ -999,7 +998,7 @@ plt.show()
 ```
 
 
-![png](HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_55_0.png)
+![png](/assets/images/posts/HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_55_0.png)
 
 
 The global relationship between age and the probability of default is consistent with previous interpretations. The slight increase of default after sixties is a little more pronounced in this plot. 
