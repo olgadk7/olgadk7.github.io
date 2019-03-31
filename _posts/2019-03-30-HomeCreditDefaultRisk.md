@@ -89,7 +89,7 @@ plt.show()
 ```
 
 
-![png](HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_7_0.png)
+![png](/assets/images/posts/HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_7_0.png)
 
 
 
@@ -251,7 +251,7 @@ df.groupby('target').mean()
   </tbody>
 </table>
 <p>2 rows × 246 columns</p>
-</div>
+
 
 
 
@@ -484,7 +484,7 @@ df.describe()
   </tbody>
 </table>
 <p>8 rows × 250 columns</p>
-</div>
+
 
 
 
@@ -511,7 +511,7 @@ for col in cols:
     df= df[np.abs(df[col]-df[col].mean()) <= (3*df[col].std())]
 df.boxplot(column=['amt_goods_price', 'amt_income_total', 'amt_credit'])
 ```
-![png](HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_17_1.png)
+![png](/assets/images/posts/HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_17_1.png)
 
 
 **Engineer a new feature,** credit-to-income ratio. According to Investopedia, Lenders prefer to see a debt-to-income ratio smaller than 36%, with no more than 28% of that debt going towards servicing your mortgage. 
@@ -706,7 +706,6 @@ logReg_coeff.head(5)
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
@@ -718,7 +717,6 @@ logReg_coeff.tail(5)
 
 
 
-<div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -921,7 +919,7 @@ plt.show()
 ```
 
 
-![png](HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_47_0.png)
+![png](/assets/images/posts/HomeCreditDefaultRisk-V3_files/HomeCreditDefaultRisk-V3_47_0.png)
 
 
 ### Permutation
