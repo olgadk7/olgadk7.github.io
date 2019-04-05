@@ -7,9 +7,9 @@ summary:
 permalink: blog/ModelInterpretability
 ---
 
-# Project: Model Interpretability and imbalanced datasets in predicting Home Credit Default Risk.
+# Project: Model interpretability and imbalanced datasets in predicting Home Credit Default Risk.
 
-Here is an imbalanced class project that's focused on interpreting the result of a simple classification model. 
+This is an imbalanced class project with focus on interpreting the result of a simple classification model. 
 
 
 ### Imbalanced data / rare event
