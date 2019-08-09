@@ -1,0 +1,108 @@
+Fruit is a seasonal beach cafe that makes money serving breakfast.
+
+WHAT ARE KEY METRICS that drive the company?
+
+# 1. How does the company make money? - How can I help the company make more money?
+
+The revenue is realized from daily sales, for about 4 months a year, with July the best performing month throughout the year. 
+
+The average lifetime value of a customer is %15, while max is 2700 and min is 0.07. 
+
+Average spending per customer (credit card?): almost 70% of cards don't have an ID, but those who do, is $11
+
+As there are more options, the LTV (+churn prediction, forecasting, customer LTV modeling) is decreasing
+
+- how much are expenses, inventory, staffing, accounting 
+
+# CLV
+Customer Lifetime Value, or “CLV”, is one of the most important, yet difficult metrics for restaurant owners to track, understand, and utilize. Why? Restaurant customer lifetime value depends on predicting customer behavior and hinges on a variety of factors restaurant owners should seek to improve. **Repeat loyal customers generate 10x more revenue in their lifetime than new customers.** 
+
+Monthly Customer Churn Rate
+The most basic churn rate equation is number of churned customers divided by total number of customers (in a given period). Because we can’t know for sure how every customer will behave, calculating customer churn is not an exact science. After all, one customer could come back six days after their visit, while others return for their second time after six years.
+
+(link)[https://pos.toasttab.com/blog/customer-lifetime-value]
+
+Tricky thing is, because restaurants are not gyms and don’t require their customers to sign 12-month contracts, CLV does require some predictive work for a restaurant. driven by a series of approximations – average ticket size, party size, order frequency, etc. – all rolled into one final number.
+
+### Calculating the Customer Lifetime Value
+
+CLV tells you what the monetary return will be on the average guest in your restaurant. If you’re investing all this money in marketing to and bringing in new business, you should know what exactly you’re getting in exchange for your efforts.
+Before you do the calculation, you will need to gather some data from the previous year’s sales. Make sure it’s a full year’s worth of data you’re working with.
+
+The formula for customer lifetime value requires a few steps:
+
+1. Total Revenue ÷ Total Number of Orders (over 365 days) = Average Order Value (AOV)
+2. Total Number of Orders ÷ Total Number of Unique* Customers (over 365 days) = Purchase Frequency (f)
+3. AOV * f = Customer Value (CV)
+
+This is your average customer value for the year. To calculate how much they’re worth over their lifetime:
+
+4. Average Lifespan of Customer (in years) * CV = Customer Lifetime Value (CLV)
+
+This is your average customer lifetime value.
+
+
+# 2. Who is the customer? 
+
+There are 143 returning customers throughout the years, or 1%.
+
+How can we help the company attract more customers, or convert more existing customers into high-value customers?
+The target market is 
+If I had consumers' demographics data, I could see what sections, say geographic regions, to target and what sections of the market are missing. 
+The distribution of paying customers? What differentiates the power user from the rest of your customers? 
+
+# How does the product work? -How can I help make the product better?
+Where people drop off? At what percentage rates?
+Learn your customer retention like the back of your hand. Do people drop out after a couple hours, a couple days, a couple months, a couple years? You’re learning whether your product is a fruit fly (short lifecycle) or an elephant (long lifecycle). There’s nothing inherently wrong with either of these, so long as it suits your business model.
+
+# 3. How does the company lose money? - How can I help the company lose less money?
+Learn the industry standards for customer retention, acquisition rates, upgrade rates, return rates, and other metrics to understand whether your company is doing well or poorly at these things. 
+
+leaky points in every business:  customers drop out in the acquisition funnel, customers “churn” (don’t retain), or stick on the non-premium version of the product. What is your customer retention? Where do customers tend to fall off? What does that say about the value of the product? What differentiates users who churn from your devoted users?
+
+
+
+Date: 2017: 08/20/17 547, 08/13/17 543, 07/16/17 539, 07/02/17 532, 06/25/17 512
+      2018: 07/01/18 526, 08/05/18 503, 06/30/18 469, 07/29/18 461, 09/03/18 431
+      2019: 07/14/19 488, 07/04/19 486, 07/13/19 477, 06/23/19 473, 06/22/19 450
+
+Time: 2017: 1pm 2527, 2pm 2471, 12 2419, 3pm 2333, 11am 2281
+      2018: 11am 2324, 10am 2310, 2pm 2206, 12 2123, 1pm 2114
+      2019: 1pm 1498, 11am 1496, 10am 1477, 12 1476, 2pm 1439
+
+Gross Sales: 2017: avg: 8.97, avg daily: 1643, sum: 177526, count: 19776, max: 300, min: 0.01
+             2018: avg: 9.09, avg daily: 1429, sum: 167222, count: 18380, max: 76, min: 0.5
+             2019: avg: 10.14, avg daily: 1833, sum: 126492, count: 12466, max: 107, min: 1.0
+
+Tip: 2017: avg: 0.29, sum: 5909.77, count: 3366, max: 32.7
+     2018: avg: 0.40, sum: 7363.33, count: 4042, max: 20.0
+     2019: avg: 0.56, sum: 6982.58, count: 3692, max: 12.8
+
+Cash vs Card: 2017: 13728 vs 6048, 0.69% cash 
+              2018: 11690 vs 6690, 0.63% cash 
+              2019: 6175 vs 6291, 0.49% cash 
+              
+Card Entry Methods: 2017: Swiped 3609, Dipped 2393, Tapped 27 
+                    2018: Dipped 3590, Swiped 3007, Tapped 80, Keyed 12
+                    2019: Swiped 5101, Dipped 1061, Tapped 125, Keyed 1
+                    
+Card Brand: 2017: Visa4418, MasterCard1098, AmEx451, Discover62
+            2018: Visa4741, MasterCard1322, AmEx545, Discover79, DiscoverDiners2
+            2019: Visa4409, MasterCard1183, AmEx599, Discover97
+
+Discounts: 2017: 0.0 19665, -2.0 25, -1.0 24, -1.6 9
+           2018: 0.0 18204, -1.8 37, -1.4 25, -0.8 18 
+           2019: 0.0 12449, -2.0 7, -3.4 2, -1.8 2
+
+Event Type: 2017: Payment 19750, Refund 26
+            2018: Payment 18366, Refund 14
+            2019: Payment 12461, Refund 5
+            
+Refund Reason: 2017: Accidental Charge 14, Returned Goods 9, Canceled Order 2, Mistake with oothie 1
+               2018: Accidental Charge 6, Returned Goods 4, Canceled Order 4
+               2019: Returned Goods 2, Accidental Charge 2, Change mind 1
+               
+Description: 2017: IcedCoffee 1605, StrawberryMango 935, GingerLemon 842, Watermelon 672, PineappleMango 659
+             2018: IcedCoffee 1745, StrawberryMango 877, Watermelon 857, Americano 826, GingerLemon 723
+             2019: IcedCoffee 1117, StrawberryMango 718, Watermelon 613, GingerLemon 522, Custom Amount 499
+            
