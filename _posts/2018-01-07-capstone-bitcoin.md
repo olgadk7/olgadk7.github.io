@@ -1,5 +1,5 @@
 ---
-title: "Project: Public data, Time Series, SVR and predicting the price of bitcoin"
+title: "Project: Public data, Time Series, SVR and Predicting the Price of Bitcoin"
 layout: post
 blog: true
 projects: true
