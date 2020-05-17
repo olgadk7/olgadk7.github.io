@@ -6,7 +6,7 @@ projects: true
 category: project
 author: Olga Krieger
 summary: "General Assembly Data Science Immersive Capstone Project."
-permalink: blog/capstone-bitcoin
+permalink: projects/capstone-bitcoin
 ---
 
 *This is a capstone project I created as part of graduating General Assembly's Data Science Immersive program in New York in December 2017.*
