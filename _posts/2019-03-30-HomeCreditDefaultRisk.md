@@ -3,6 +3,8 @@ title: " Project: Model interpretability and imbalanced dataset in predicting Ho
 layout: post
 blog: true
 author: Olga Krieger
+projects: true
+category: project
 summary:
 permalink: blog/ModelInterpretability
 ---
