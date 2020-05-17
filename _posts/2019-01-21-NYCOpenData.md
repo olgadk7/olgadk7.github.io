@@ -3,6 +3,8 @@ title: "Landlord issues: using NYC OpenData to explore housing safety & rent sta
 layout: post
 blog: true
 author: Olga Krieger
+projects: true
+category: project
 summary:
 permalink: blog/NYCOpenData
 ---
