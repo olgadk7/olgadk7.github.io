@@ -1,5 +1,5 @@
 ---
-title: " Project: Model interpretability and imbalanced dataset in predicting Home Credit default risk."
+title: " Project: Model Interpretability and Imbalanced Dataset in Predicting Home Credit Default Risk."
 layout: post
 blog: true
 author: Olga Krieger
