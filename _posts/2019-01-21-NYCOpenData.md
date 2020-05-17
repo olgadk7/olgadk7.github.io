@@ -1,5 +1,5 @@
 ---
-title: "Landlord issues: using NYC OpenData to explore housing safety & rent stabilization"
+title: "Landlord Issues: Using NYC OpenData to Explore Housing Safety and Rent Stabilization"
 layout: post
 blog: true
 author: Olga Krieger
