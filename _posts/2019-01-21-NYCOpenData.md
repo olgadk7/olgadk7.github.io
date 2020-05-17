@@ -1,12 +1,11 @@
 ---
 title: "Landlord Issues: Using NYC OpenData to Explore Housing Safety and Rent Stabilization"
 layout: post
-blog: true
 author: Olga Krieger
 projects: true
 category: project
 summary:
-permalink: blog/NYCOpenData
+permalink: projects/NYCOpenData
 ---
 # Landlord issues: using NYC OpenData to explore housing safety & rent stabilization
 
