@@ -2,6 +2,8 @@
 title: "Project: Public data, Time Series, SVR and predicting the price of bitcoin"
 layout: post
 blog: true
+projects: true
+category: project
 author: Olga Krieger
 summary: "General Assembly Data Science Immersive Capstone Project."
 permalink: blog/capstone-bitcoin
