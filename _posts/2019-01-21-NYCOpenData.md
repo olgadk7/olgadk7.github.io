@@ -1,5 +1,5 @@
 ---
-title: "Landlord Issues: Using NYC OpenData to Explore Housing Safety and Rent Stabilization"
+title: "Project: Using NYC OpenData to Explore Housing Safety and Rent Stabilization"
 layout: post
 author: Olga Krieger
 projects: true
@@ -7,7 +7,7 @@ category: project
 summary:
 permalink: projects/NYCOpenData
 ---
-# Landlord issues: using NYC OpenData to explore housing safety & rent stabilization
+# Using NYC OpenData to explore housing safety & rent stabilization
 
 Public infrastructure is one of the things I love about New York: parks, libraries, classes and, as I’m discovering, data. Recently I took an OpenData class hosted by [BetaNYC](https://beta.nyc/), which has designed tools intended to help Community Boards access, analyze, map and use data to inform decision-making. Below is a project that came out of one of those classes. Using tools such as BoardStat, Tenants Map, BIS-WEB, ACRIS and RentLogic, as well as 311 data, the study explores the connection between housing safety issues and rent-regulated units. As New York City is struggling through an [affordable housing crisis](https://nyti.ms/2GxIkF7), the study, not surprisingly, finds a connection between bad landlords, housing violations and rent stabilization.
 
