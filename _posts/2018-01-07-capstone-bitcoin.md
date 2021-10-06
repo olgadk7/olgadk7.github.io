@@ -47,7 +47,7 @@ permalink: projects/capstone-bitcoin
 4. Examine patterns of subsets of the price data, e.g. recent surges.
 5. Keep on tweaking the hyperparameters.
 
-
+**Libraries used:** 
 ```python
 import numpy as np
 import pandas as pd
@@ -62,18 +62,6 @@ from sklearn.svm import SVR
 ```
 
 # 1. Get Data
-
-**set index - no need, only complications**
-
-
-```python
-# df.set_index('date')
-# df.index.name = None
-
-## to reset index
-# df.index.name = 'date'
-# df.reset_index(inplace=True)
-```
 
 ### 1.b. bitcoin data 
 This dataset has the following features:
