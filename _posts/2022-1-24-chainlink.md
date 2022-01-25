@@ -1,5 +1,5 @@
 ---
-title: "Chainlink Home Assignment"
+title: "Automating TVL reporting with Python and PowerBI"
 layout: post
 author: Olga Kahn
 projects: true
