@@ -1,3 +1,13 @@
+---
+title: "Chainlink Home Assignment"
+layout: post
+author: Olga Kahn
+projects: true
+category: project
+summary:
+permalink: projects/chainlink
+---
+
 # Python vs Power BI for a Jr Data Analyst takehome assignment 
 
 ![png](/assets/images/posts/chainlink/chainlink_main.png)
