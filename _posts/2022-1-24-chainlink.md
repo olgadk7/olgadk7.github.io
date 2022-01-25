@@ -13,6 +13,7 @@ permalink: projects/chainlink
 ![png](/assets/images/posts/chainlink/chainlink_main.png)
 
 As part of a job application for a junior data analyst position at a blockchain company I was tasked to do an automated dashboard looking at the Total Value Locked, or Total Value Secured, of their clients vs the entire entire DeFi market:
+
 ![png](/assets/images/posts/chainlink/chainlink_task1.png)
 ![png](/assets/images/posts/chainlink/chainlink_task2.png)
 
