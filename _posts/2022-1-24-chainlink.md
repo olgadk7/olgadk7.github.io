@@ -11,7 +11,7 @@ permalink: projects/chainlink
 # Python vs Power BI for a Jr Data Analyst takehome assignment 
 
 <p align="center">
-    <img width="700" height="400" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/main.png?raw=true">
+    <img width="600" height="350" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/main.png?raw=true">
 </p>
 <!-- ![png](/assets/images/posts/chainlink/main.png) -->
 
