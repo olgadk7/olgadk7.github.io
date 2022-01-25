@@ -11,18 +11,18 @@ permalink: projects/chainlink
 # Python vs Power BI for a Jr Data Analyst takehome assignment 
 
 <p align="center">
-    <img width="700" height="400" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/main.png">
+    <img width="700" height="400" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/main.png?raw=true">
 </p>
 <!-- ![png](/assets/images/posts/chainlink/main.png) -->
 
 As part of a job application for a junior data analyst position at a blockchain company I was tasked to do an automated dashboard looking at the Total Value Locked, or Total Value Secured, of their clients vs the entire DeFi market:
 
 <p align="center">
-    <img width="700" height="150" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/chainlink_task1.png">
+    <img width="700" height="150" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/chainlink_task1.png?raw=true">
 </p>
 
 <p align="center">
-    <img width="700" height="100" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/chainlink_task2.png">
+    <img width="700" height="100" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/chainlink_task2.png?raw=true">
 </p>
 
 I first did this using python (with pandas) and jupyter notebook (and later [hosted it on heroku](https://chainlink-tvl.herokuapp.com/)). I then also did the same process using Microsoft’s Power BI tool and its DAX language, which I never used before. Both versions are available in [this repo](https://github.com/olgadk7/chainlink_tvs). To use PowerBI, a licensed microsoft product, I downloaded [Parallels](https://www.parallels.com/​​) free trial of a windows virtual machine on my mac, and PowerBI came with it. 
