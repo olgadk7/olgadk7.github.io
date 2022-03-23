@@ -1,5 +1,5 @@
 ---
-title: "Querying Compound Finance metrics with Dune Analytics"
+title: "Querying Compound Finance metrics with Dune Analytics (PostgreSQL)"
 layout: post
 author: Olga Kahn
 projects: true
@@ -8,7 +8,7 @@ summary:
 permalink: projects/compound
 ---
 
-# Querying Compound Finance metrics with Dune Analytics
+# Querying Compound Finance metrics with Dune Analytics (PostgreSQL)
 
 Last year I discovered Dune Analytics, but forgot to blog about it. Dune is a blockchain querying interface, which I’ve been waiting for since I first learned about crypto and data analytics in 2017. Dune encapsulates open finance values, such as transparent accessible data, open-source real-time intel, distributed ledgers. So when I was given some questions to query on Dune as part of a job application, I was excited to try this very pleasant way of accessing everything happening on blockchain. Here is how I approached the assignment and then some. [Final result](https://dune.xyz/olgadk7/compound_test)
 
