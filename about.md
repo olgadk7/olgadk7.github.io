@@ -14,10 +14,10 @@ The markets in general are interesting to me because they represent a quantitati
 I’m happy to meet new people and learn about their projects / adventures, so reach out if you’re interested!
 
 Favorite books / currently reading: 
-- The Network State: How To Start a New Country by Balaji Srinivasan
+- The Network State: How To Start a New Country by Balaji Srinivasan ([read online](https://thenetworkstate.com/))
 - Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts by Annie Duke
 - Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy by Cathy O'Neil 
 - Skin in the Game: Hidden Asymmetries in Daily Life by Nassim Nicholas Taleb
-- Factfulness: Ten Reasons We're Wrong About the World--and Why Things Are Better Than You Think by Hans Rosling (currently free on kindle - everybody should read this!)
+- Factfulness: Ten Reasons We're Wrong About the World--and Why Things Are Better Than You Think by Hans Rosling (currently [free on kindle](https://www.amazon.com/Factfulness-Reasons-World-Things-Better-ebook/dp/B0756J1LLV/ref=sr_1_1?crid=G5SGLCXLEXMF&keywords=factfullness&qid=1658768008&s=digital-text&sprefix=factfullness%2Cdigital-text%2C99&sr=1-1) - everybody should read this!)
 - The Scout Mindset: Why Some People See Things Clearly and Others Don't by Julia Galef 
 
