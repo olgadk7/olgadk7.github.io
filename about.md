@@ -14,8 +14,10 @@ The markets in general are interesting to me because they represent a quantitati
 Favorite books / currently reading: 
 - The Network State: How To Start a New Country by Balaji Srinivasan ([read online](https://thenetworkstate.com/))
 - Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts by Annie Duke
-- Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy by Cathy O'Neil 
 - Skin in the Game: Hidden Asymmetries in Daily Life by Nassim Nicholas Taleb
+- Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else by Jordan Ellenberg
 - Factfulness: Ten Reasons We're Wrong About the World--and Why Things Are Better Than You Think by Hans Rosling (currently [free on kindle](https://www.amazon.com/Factfulness-Reasons-World-Things-Better-ebook/dp/B0756J1LLV/ref=sr_1_1?crid=G5SGLCXLEXMF&keywords=factfullness&qid=1658768008&s=digital-text&sprefix=factfullness%2Cdigital-text%2C99&sr=1-1) - everybody should read this!)
-- The Scout Mindset: Why Some People See Things Clearly and Others Don't by Julia Galef 
+- Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy by Cathy O'Neil 
+- The Scout Mindset: Why Some People See Things Clearly and Others Don't by Julia Galef
+- Loonshots: How to Nurture the Crazy Ideas That Win Wars, Cure Diseases, and Transform Industries by Safi Bahcall
 
