@@ -20,4 +20,5 @@ Favorite books / currently reading:
 - Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy by Cathy O'Neil 
 - The Scout Mindset: Why Some People See Things Clearly and Others Don't by Julia Galef
 - Loonshots: How to Nurture the Crazy Ideas That Win Wars, Cure Diseases, and Transform Industries by Safi Bahcall
+- Narrative Economics: How Stories Go Viral and Drive Major Economic Events by Robert J. Shiller 
 
