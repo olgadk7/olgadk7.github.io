@@ -3,7 +3,7 @@ title:
 layout: page
 ---
 
-Hi! My name is Olga and I’m a data scientist and AI developer, excited by driving business value from data-wrangling to solution-in-production.
+Hi! My name is Olga, and I’m a data scientist and an AI developer, excited by driving business value from data-wrangling to solution-in-production.
 
 Ever since I came to the US in 2015 I have been fascinated with business, entrepreneurship, and innovation in this country. This has led me to make a pivotal **transition to tech** from the humanitarian / creative sector: having learned how data was used in a small but mighty PR shop, I wanted to scale these processes to other, more impactful problems. So I picked up the basics at a data science bootcamp course, and went through a discovery phase of the different applications of the skills and domains, from growth analytics for small businesses to AI consulting for a hedge fund. 
 
