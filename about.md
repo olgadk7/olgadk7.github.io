@@ -11,7 +11,7 @@ The beginning of my tech journey coincided with learning about cryptocurrency. B
 
 Working as a data analyst for a decentralized stablecoin protocol trained me in the figure-it-out-as-you-build mentality of startups in an emerging tech sector. However, the blow-ups and crashes of 2022, as well as regulatory uncertainty was too much for me. 
 
-In February 2023 I participated in a hackathon that immersed me in the new and exciting developments of the Large Language Models that are propelling the new wave of AI progress. I was astonished how much of the previous workflows were simplified and am currently taking advantage of these to build things I could barely imagine previously, like automating knowledge bases and building agents. 
+In February 2023 I participated in a hackathon that immersed me in the new and exciting developments of the Large Language Models that are propelling the new wave of AI progress. I was astonished how much of the previous workflows were simplified and am currently taking advantage of these to build things I could barely imagine previously, such as tools to query siloed and scattered knowledge bases.
 
 I think the common thread that guides me is the desire to free up and empower the human potential that’s often locked in an unevenly distributed access to tools and information. I love connecting with similar-minded people, so reach out if you’re interested!
 
