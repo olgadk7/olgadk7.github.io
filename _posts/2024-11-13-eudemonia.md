@@ -129,7 +129,8 @@ Interestingly, reading the *New York Times* article titled “3 Days of Healing,
 
 While it's important to approach any industry with a critical eye, I believe this characterization overlooks the diversity and complexity of the wellness community. To gain a clearer understanding, I categorized the presenters into three main groups:
 
-- **1. Medical and Scientific Professionals** (Individuals with formal medical or scientific training (e.g., MDs, DOs, PhDs) who are actively engaged in medical practice, scientific research, or academia.)
+<details>
+  <summary>1. Medical and Scientific Professionals** (Individuals with formal medical or scientific training (e.g., MDs, DOs, PhDs) who are actively engaged in medical practice, scientific research, or academia.)</summary>
     - Number of Individuals: 40
     - Percentage of Total: Approximately 37%
     
@@ -183,7 +184,10 @@ While it's important to approach any industry with a critical eye, I believe thi
     
     1. *David S. Vogel* — Data Scientist & Entrepreneur
     2. *Steve Andrzejewski* — Professor and Entrepreneur
-- **2. Health and Wellness Professionals** (Individuals who integrate scientific principles into health and wellness practices, including health entrepreneurs, fitness coaches, nutritionists, and advocates.)
+</details>
+
+<details>
+  <summary>**2. Health and Wellness Professionals** (Individuals who integrate scientific principles into health and wellness practices, including health entrepreneurs, fitness coaches, nutritionists, and advocates.)</summary>
     - Number of Individuals: 30
     - Percentage of Total: Approximately 28%
     
@@ -224,7 +228,10 @@ While it's important to approach any industry with a critical eye, I believe thi
         2. *Paul Austin* — Psychedelic Educator
     - **Health Policy and Patient Advocates:**
         1. *Jace Yawnick* — Cancer Patient Advocate
-- **3. Creative and Traditional Practitioners** (Individuals primarily engaged in the arts, creative professions, mindfulness, yoga, and traditional wellness practices.)
+</details>
+
+<details>
+  <summary>**3. Creative and Traditional Practitioners** (Individuals primarily engaged in the arts, creative professions, mindfulness, yoga, and traditional wellness practices.)</summary>summary>
     - Number of Individuals: 37
     - Percentage of Total: Approximately 35%
     
@@ -280,6 +287,7 @@ While it's important to approach any industry with a critical eye, I believe thi
     2. *Jeff Krasno* — Wellness Leader
     3. *Daniel Carcillo* — Athlete & Mental Health Advocate
     4. *Selena Tatum Isles* — Producer & Facilitator (MSc, PhD)
+</details>
 
 Based on general observations, I estimated that approximately **5–10%** of the individuals may promote non-traditional or controversial health practices that are not fully supported by mainstream scientific research. While it's important to approach such practices with a healthy dose of skepticism, labeling them all as "snake oil" without substantial evidence of fraudulent intent oversimplifies a nuanced issue
 
@@ -302,5 +310,3 @@ I learned so much and have so many more questions. I'm inspired to explore my he
 *P.S. I'm still waiting for the recordings of some sessions I had to miss.*
 
 #biology, #technology, #entrepreneurship
-
-[Untitled](https://www.notion.so/143477d189208020a368ecec6f69a7c5?pvs=21)
