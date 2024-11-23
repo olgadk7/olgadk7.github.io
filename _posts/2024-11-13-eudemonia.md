@@ -20,7 +20,7 @@ In this article, I'll share my experiences from the conference, including the in
 
 ### **A Typical Day at the Conference**
 
-### Morning $movement$:
+### Morning $$movement$$:
 
 Each morning began with movement-based classes like dance, paddling, yoga, and qigong. One standout for me was **The Class**: a primal, repetitive movement session where each sequence lasted the length of a song. Halfway through, I hit a mental flow state, free of chatter and self-consciousness—it felt like a reset for my body and mind. The carefully curated music elevated the experience, making it equal parts physical workout and meditative journey.
 
@@ -130,13 +130,14 @@ Interestingly, reading the *New York Times* article titled “3 Days of Healing,
 While it's important to approach any industry with a critical eye, I believe this characterization overlooks the diversity and complexity of the wellness community. To gain a clearer understanding, I categorized the presenters into three main groups:
 
 <details>
-  <summary>1. Medical and Scientific Professionals** (Individuals with formal medical or scientific training (e.g., MDs, DOs, PhDs) who are actively engaged in medical practice, scientific research, or academia.)</summary>
-    - Number of Individuals: 40
-    - Percentage of Total: Approximately 37%
-    
-    Professionals in this category include:
-    
-    **Physicians and Medical Doctors:**
+  <summary>▶ <b>1. Medical and Scientific Professionals</b></summary>
+
+  - **Number of Individuals:** 40
+  - **Percentage of Total:** Approximately 37%
+
+  **Professionals in this category include:**
+
+  - **Physicians and Medical Doctors:**
     
     1. *Andrew Huberman* — Neuroscientist & Podcaster (PhD)
     2. *Austin Perlmutter* — Brain Health Expert (MD)
@@ -169,7 +170,7 @@ While it's important to approach any industry with a critical eye, I believe thi
     29. *Zach Bush* — Regenerative Futurist (MD)
     30. *Zain Kassam* — Physician-Scientist (MD, MPH)
     
-    **PhD Researchers and Scientists:**
+- **PhD Researchers and Scientists:**
     
     1. *Carolina Reis Oliveira* — Skin Regeneration Expert (PhD)
     2. *Christian Drapeau* — Adult Stem Cell Researcher (PhD)
@@ -180,20 +181,21 @@ While it's important to approach any industry with a critical eye, I believe thi
     7. *Robin Carhart-Harris* — Psychedelic Researcher (PhD)
     8. *Zachary Knight* — Weight Loss Expert (PhD)
     
-    **Physician-Scientists and Professors:**
+- **Physician-Scientists and Professors:**
     
     1. *David S. Vogel* — Data Scientist & Entrepreneur
     2. *Steve Andrzejewski* — Professor and Entrepreneur
 </details>
 
 <details>
-  <summary>**2. Health and Wellness Professionals** (Individuals who integrate scientific principles into health and wellness practices, including health entrepreneurs, fitness coaches, nutritionists, and advocates.)</summary>
-    - Number of Individuals: 30
-    - Percentage of Total: Approximately 28%
-    
-    Professionals in this category include:
-    
-    - **Health Entrepreneurs and Specialists:**
+  <summary>▶ <b>2. Health and Wellness Professionals</b></summary>
+
+  - **Number of Individuals:** 30
+  - **Percentage of Total:** Approximately 28%
+
+  **Professionals in this category include:**
+
+  - **Health Entrepreneurs and Specialists:**
         1. *Ara Katz* — Life Sciences Entrepreneur
         2. *Bryan Johnson* — Longevity Expert and Entrepreneur
         3. *Calley Means* — Metabolic Health Expert & Health Policy Advocate
@@ -213,6 +215,7 @@ While it's important to approach any industry with a critical eye, I believe thi
         17. *Samantha Cutler* — Lifestyle Medicine Expert & Entrepreneur
         18. *Stephanie Venn-Watson* — Health Entrepreneur (DVM, MPH)
         19. *Whitney Tingle* — Health Entrepreneur
+    
     - **Fitness and Wellness Coaches:**
         1. *Amanda Laine* — Health Entrepreneur
         2. *Cynthia Thurlow* — Intermittent Fasting Expert (NP)
@@ -221,23 +224,27 @@ While it's important to approach any industry with a critical eye, I believe thi
         5. *Jillian Michaels* — Health & Wellness Coach and Podcaster
         6. *JJ Virgin* — Triple Certified Nutritionist (CNS)
         7. *Phil Daru* — Strength and Conditioning Coach
+    
     - **Nutritionists and Dietitians:**
         1. *Jennifer Scheinman* — Dietitian Nutritionist (MA)
+           
     - **Mental Health and Psychedelic Advocates:**
         1. *Jesse Gould* — Psychedelic Advocate
         2. *Paul Austin* — Psychedelic Educator
+           
     - **Health Policy and Patient Advocates:**
         1. *Jace Yawnick* — Cancer Patient Advocate
 </details>
 
 <details>
-  <summary>**3. Creative and Traditional Practitioners** (Individuals primarily engaged in the arts, creative professions, mindfulness, yoga, and traditional wellness practices.)</summary>summary>
-    - Number of Individuals: 37
-    - Percentage of Total: Approximately 35%
-    
-    Professionals in this category include:
-    
-    **Artists and Musicians:**
+  <summary>▶ <b>3. Creative and Traditional Practitioners</b></summary>
+
+  - **Number of Individuals:** 37
+  - **Percentage of Total:** Approximately 35%
+
+  **Professionals in this category include:**
+
+  - **Artists and Musicians:**
     
     1. *Aaron Alcouloumre* — Multi-Instrumentalist
     2. *Caleb Spaulding* — Multi-Disciplinary Musician
@@ -251,7 +258,7 @@ While it's important to approach any industry with a critical eye, I believe thi
     10. *Nicholas Charlier* — Super-Producer & Artist
     11. *Reggie Watts* — Comedian & Musician
     
-    **Yoga and Mindfulness Instructors:**
+- **Yoga and Mindfulness Instructors:**
     
     1. *Adriene Mishler* — Yoga Teacher
     2. *Alan Finger* — Yoga Teacher
@@ -268,7 +275,7 @@ While it's important to approach any industry with a critical eye, I believe thi
     13. *Schuyler Grant* — Yoga & Breathwork Teacher
     14. *Sebene Selassie* — Mindfulness Teacher
     
-    **Wellness and Relationship Experts:**
+- **Wellness and Relationship Experts:**
     
     1. *Amanda Casgar* — Community & Culture Expert
     2. *Clare Johnson* — Psychedelic Therapy Educator (LMFT)
@@ -276,12 +283,12 @@ While it's important to approach any industry with a critical eye, I believe thi
     4. *Jillian Turecki* — Relationship Expert & Author
     5. *Juliana Hauser* — Sexpert (PhD)
     
-    **Movement and Embodiment Practitioners:**
+- **Movement and Embodiment Practitioners:**
     
     1. *Kiari Kirk* — Dance Educator & Choreographer
     2. *Taryn Toomey* — Founder & Movement Artist
     
-    **Other Creative Professionals:**
+- **Other Creative Professionals:**
     
     1. *Dulma Clark* — Footwear Designer & Entrepreneur
     2. *Jeff Krasno* — Wellness Leader
