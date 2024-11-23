@@ -40,30 +40,34 @@ The days were packed with thought-provoking sessions led by some of the brightes
 
 2. **Andrew Huberman's Deep Dive**:
 
-- **Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
-- **Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
-- **Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
-- **Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
-    
-    Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
-    
+**Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
 
-> Shoutout to my mom who knew a lot of this all along and instilled it in her children.
+**Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
+
+**Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
+
+**Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
+    
+Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
+    
+> **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
 > 
+
 
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
 Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
 
-1. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
+    a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
     - Biology identifies the role of the target molecule (e.g., a protein) in disease.
     - Chemistry explains how the drug is designed to interact with the target at a molecular level.
     - Physics governs the physical forces (e.g., molecular shape, charge, and electrostatic interactions) that enable the drug to bind effectively.
-2. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
+    
+    b. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
     
     The shift to the 3D perspective allows us to see how proteins fold into specific shapes that create the physical and chemical environments necessary for binding. The protein's functionality, including its ability to bind to other molecules, emerges only in its fully folded 3D form. This understanding allows us to predict and manipulate binding interactions, which are the basis for developing targeted therapies and understanding biological processes at a molecular level.
     
-3. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
+    c. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
     
     Previously, we relied on brute-force approaches to determine the 3D structure experimentally for each protein derived from a DNA sequence, which was slow, costly, and inefficient. Now, methods like molecular docking simulations allow us to transition to learned puzzle-solving. Researchers can integrate DNA sequence data directly into models that predict 3D protein structures and simulate binding interactions, accelerating discoveries and opening doors to personalized medicine and targeted therapies.
     
@@ -74,17 +78,21 @@ Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning autho
     - **Personalized Therapies**: Tailored treatments based on individual protein conformations.
     - **Disease Mechanisms**: Insights into protein misfolding diseases like Alzheimer's.
     - **Drug Design**: More effective and targeted drugs through structure-based methodologies.
-4. **From Traditional Antibody Design to AI-Evolved Antibodies**: Enhanced binding capabilities. AI can simulate and "evolve" antibodies by generating and selecting optimal structures based on desired properties. This approach can rapidly produce antibodies with better performance than traditional methods, which often rely on trial-and-error or laboratory-based optimization. The AI-evolved antibody might be better suited for targeting, more effective in binding to its antigen, or more stable in the bloodstream, making it more efficient for therapeutic use.
+    
+    d. **From Traditional Antibody Design to AI-Evolved Antibodies**: Enhanced binding capabilities. AI can simulate and "evolve" antibodies by generating and selecting optimal structures based on desired properties. This approach can rapidly produce antibodies with better performance than traditional methods, which often rely on trial-and-error or laboratory-based optimization. The AI-evolved antibody might be better suited for targeting, more effective in binding to its antigen, or more stable in the bloodstream, making it more efficient for therapeutic use.
 
 4. **Dr. Perlmutter and Dr. Shai Efrati on Cognitive Function**: They discussed how hyperbaric oxygen treatment can treat neurodegenerative diseases like Alzheimer's and Parkinson's, which is significant. When asked what would be the number one thing to not lose cognitive function, Dr. Efrati said: **“Make yourself needable (be needed by others), on a daily basis. All the rest will work out.”** In other words, having a purpose and being essential to others can positively influence one's biology, motivating the body to preserve itself. Dr. Efrati notes that retirement, often associated with a loss of purpose, is a significant risk factor for age-related diseases. By remaining active and engaged, individuals can maintain their health and vitality.
 
-1. **AI, Psychedelics & Psychotherapy With Dave Rabin**
+5. **AI, Psychedelics & Psychotherapy With Dave Rabin**
     - **Psychedelics as Neurocatalysts**: Psychedelics and certain therapeutic approaches act as “neurocatalysts,” enhancing brain function, neuroplasticity, perspective, and self-awareness, which is essential for long-term mental health improvement.
     - **Modulating the Default Mode Network (DMN)**: The DMN, associated with the ego and habitual thought patterns, often restricts new perspectives. Psychedelics can modulate DMN activity, helping break entrenched patterns and facilitating new ways of thinking, thus enabling personal growth.
     - **Biological Changes and Therapy**: Research into DNA methylation changes associated with MDMA therapy for PTSD suggests biological changes that correspond to therapeutic improvement, a step toward understanding how psychedelics affect gene expression and mental health outcomes.
-2. **Juliana Hauser's Talk: Holistic Sexuality—Empowerment Through Agency and Identity**: At the core of Hauser's approach is the idea of **agency**—individuals are encouraged to reclaim control over their sexuality, feel empowered in their desires, and understand sexuality as part of a broader, evolving identity that intersects with personal values, cultural norms, and self-expression.
-3. **Functional Medicine and Biomarker Testing with Mark Hyman and his team**: Function Health conducts extensive biomarker testing, doing 60–100 tests instead of the ~20 typically done at annual check-ups, making it better at uncovering hidden indicators. It promises to take us from a disease care system to a health care system. (23andMe ****has also expanded its offerings btw).
-4. In **Gutbliss: The Intricate World of Gut Health With Robynne Chutkan, and Mahmoud Ghannoum** emphasized the intricate interplay between bacteria and fungi in the gut microbiome, highlighting how this balance impacts digestion, immunity, and even neurological conditions like autism. Dr. Ghannoum's pioneering research into the **mycobiome**—the fungal component of the gut—underscores its critical role in shaping overall health, including its influence on inflammation and microbial dysbiosis. Practical insights shared included dietary strategies to nurture a balanced gut ecosystem, focusing on fiber, fermented foods, and reducing environmental stressors that disrupt bacterial and fungal harmony.
+      
+6. **Juliana Hauser's Talk: Holistic Sexuality—Empowerment Through Agency and Identity**: At the core of Hauser's approach is the idea of **agency**—individuals are encouraged to reclaim control over their sexuality, feel empowered in their desires, and understand sexuality as part of a broader, evolving identity that intersects with personal values, cultural norms, and self-expression.
+   
+7. **Functional Medicine and Biomarker Testing with Mark Hyman and his team**: Function Health conducts extensive biomarker testing, doing 60–100 tests instead of the ~20 typically done at annual check-ups, making it better at uncovering hidden indicators. It promises to take us from a disease care system to a health care system. (23andMe ****has also expanded its offerings btw).
+   
+8. In **Gutbliss: The Intricate World of Gut Health With Robynne Chutkan, and Mahmoud Ghannoum** emphasized the intricate interplay between bacteria and fungi in the gut microbiome, highlighting how this balance impacts digestion, immunity, and even neurological conditions like autism. Dr. Ghannoum's pioneering research into the **mycobiome**—the fungal component of the gut—underscores its critical role in shaping overall health, including its influence on inflammation and microbial dysbiosis. Practical insights shared included dietary strategies to nurture a balanced gut ecosystem, focusing on fiber, fermented foods, and reducing environmental stressors that disrupt bacterial and fungal harmony.
 
 ### In-between $treatments$:
 
@@ -112,7 +120,6 @@ Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning autho
 - **Big Bold Health**: From Dr. Jeffrey Bland’s brand, the father of Functional Medicine. Got Himalayan Tartary buckwheat flour and sprouts.
 
 **Considering Trying**:
-
 - **Biogena ONE**: A broad-spectrum multivitamin combining a wide range of vitamins, minerals, trace elements, medicinal mushrooms, amino acids, algae, carotenoids, plant extracts, probiotics, and other health-supportive compounds into a single product.
 - **Fatty15**: An innovative supplement delivering C15:0, an "essential fatty acid," with potential to support mitochondrial function, reduce chronic inflammation, and improve cell membrane integrity. Unlike omega-3 fatty acids, which focus on reducing inflammation and supporting brain and heart health, C15:0 uniquely targets cellular repair, mitochondrial function, and long-term resilience by stabilizing cell membranes and improving metabolic pathways.
 - **Perfect Amino Electrolytes**: A specialized electrolyte supplement designed for hydration and recovery, combining a unique blend of electrolytes, amino acids, and trace minerals. Unlike standard electrolyte drinks that primarily replenish sodium and potassium, this product integrates essential amino acids to support muscle repair and endurance, setting it apart in the hydration market. Its innovation lies in targeting both hydration and performance recovery in one formula, appealing particularly to active individuals and athletes. However, compared to simpler, lower-cost electrolyte solutions like Liquid IV, the inclusion of amino acids may be unnecessary for those with adequate dietary protein intake, making it a premium choice that’s not universally essential.
@@ -130,171 +137,110 @@ Interestingly, reading the *New York Times* article titled “3 Days of Healing,
 While it's important to approach any industry with a critical eye, I believe this characterization overlooks the diversity and complexity of the wellness community. To gain a clearer understanding, I categorized the presenters into three main groups:
 
 <details>
-  <summary>▶ <b>1. Medical and Scientific Professionals</b></summary>
-
-  - **Number of Individuals:** 40
-  - **Percentage of Total:** Approximately 37%
-
-  **Professionals in this category include:**
-
-  - **Physicians and Medical Doctors:**
-    
-    1. *Andrew Huberman* — Neuroscientist & Podcaster (PhD)
-    2. *Austin Perlmutter* — Brain Health Expert (MD)
-    3. *Caitlin Prickett* — Preventative Medicine Doctor (MD)
-    4. *Charles Pereyra* — Physician and Regenerative Medicine Expert (MD)
-    5. *Dariush Mozaffarian* — Cardiologist & Nutrition Expert (MD)
-    6. *Darshan Shah* — Longevity Specialist (MD)
-    7. *Dave Rabin* — Neuroscientist (MD, PhD)
-    8. *David Perlmutter* — Brain Health Expert (MD)
-    9. *Erich Anderer* — Neurosurgeon (MD)
-    10. *Gabrielle Lyon* — Muscle Health Expert (DO)
-    11. *Greg Kelly* — Author & Physician (ND)
-    12. *Halland Chen* — Longevity Doctor (MD)
-    13. *James Gordon* — Trauma Psychiatrist (MD)
-    14. *James Hamblin* — Preventative Medicine Author (MD, MPH)
-    15. *Jessica Shepherd* — OBGYN & Women's Health Expert (MD)
-    16. *Kwadwo Kyeremanteng* — Holistic Healthcare Advocate (MD)
-    17. *Mark Hyman* — Functional Medicine Pioneer (MD)
-    18. *Mark Horowitz* — Deprescribing Expert (MD, PhD)
-    19. *Mattias Bernow* — Stem Cell Entrepreneur (MD)
-    20. *Noura Abul-Husn* — Physician Scientist (MD, PhD)
-    21. *Robin Berzin* — Root Cause Medicine Doctor (MD)
-    22. *Robynne Chutkan* — Gut Health Expert (MD)
-    23. *Sara Gottfried* — Hormonal Health Expert (MD)
-    24. *Shai Efrati* — Hyperbaric Medicine Pioneer & Researcher (MD)
-    25. *Siddhartha Mukherjee* — Oncologist & AI Health Expert (MD)
-    26. *Uma Naidoo* — Doctor & Chef (MD)
-    27. *Vikash Modi* — Preventative Medicine Doctor (MD)
-    28. *Vivek Lal* — Physician-Scientist (MD)
-    29. *Zach Bush* — Regenerative Futurist (MD)
-    30. *Zain Kassam* — Physician-Scientist (MD, MPH)
-    
-- **PhD Researchers and Scientists:**
-    
-    1. *Carolina Reis Oliveira* — Skin Regeneration Expert (PhD)
-    2. *Christian Drapeau* — Adult Stem Cell Researcher (PhD)
-    3. *Jeffrey Bland* — Functional Medicine Founder (PhD)
-    4. *Jennifer Garrison* — Women's Longevity Researcher (PhD)
-    5. *Mahmoud Ghannoum* — Microbiome Scientist (PhD)
-    6. *Michael Breus* — Sleep Expert (PhD)
-    7. *Robin Carhart-Harris* — Psychedelic Researcher (PhD)
-    8. *Zachary Knight* — Weight Loss Expert (PhD)
-    
-- **Physician-Scientists and Professors:**
-    
-    1. *David S. Vogel* — Data Scientist & Entrepreneur
-    2. *Steve Andrzejewski* — Professor and Entrepreneur
+  <summary><b>1. Medical and Scientific Professionals</b></summary>
+  <p><b>Number of Individuals:</b> 40</p>
+  <p><b>Percentage of Total:</b> Approximately 37%</p>
+  <p><b>Professionals in this category include:</b></p>
+  <ul>
+    <li><b>Physicians and Medical Doctors:</b>
+      <ul>
+        <li><i>Andrew Huberman</i> — Neuroscientist & Podcaster (PhD)</li>
+        <li><i>Austin Perlmutter</i> — Brain Health Expert (MD)</li>
+        <li><i>Caitlin Prickett</i> — Preventative Medicine Doctor (MD)</li>
+        <li><i>Charles Pereyra</i> — Physician and Regenerative Medicine Expert (MD)</li>
+        <li><i>Dariush Mozaffarian</i> — Cardiologist & Nutrition Expert (MD)</li>
+        <li><i>Darshan Shah</i> — Longevity Specialist (MD)</li>
+        <li><i>Dave Rabin</i> — Neuroscientist (MD, PhD)</li>
+        <li><i>David Perlmutter</i> — Brain Health Expert (MD)</li>
+        <li><i>Erich Anderer</i> — Neurosurgeon (MD)</li>
+        <li><i>Gabrielle Lyon</i> — Muscle Health Expert (DO)</li>
+        <li><i>Greg Kelly</i> — Author & Physician (ND)</li>
+        <li><i>Halland Chen</i> — Longevity Doctor (MD)</li>
+        <li><i>James Gordon</i> — Trauma Psychiatrist (MD)</li>
+        <li><i>James Hamblin</i> — Preventative Medicine Author (MD, MPH)</li>
+        <li><i>Jessica Shepherd</i> — OBGYN & Women's Health Expert (MD)</li>
+        <li><i>Kwadwo Kyeremanteng</i> — Holistic Healthcare Advocate (MD)</li>
+        <li><i>Mark Hyman</i> — Functional Medicine Pioneer (MD)</li>
+        <li><i>Mark Horowitz</i> — Deprescribing Expert (MD, PhD)</li>
+        <li><i>Mattias Bernow</i> — Stem Cell Entrepreneur (MD)</li>
+        <li><i>Noura Abul-Husn</i> — Physician Scientist (MD, PhD)</li>
+        <li><i>Robin Berzin</i> — Root Cause Medicine Doctor (MD)</li>
+        <li><i>Robynne Chutkan</i> — Gut Health Expert (MD)</li>
+        <li><i>Sara Gottfried</i> — Hormonal Health Expert (MD)</li>
+        <li><i>Shai Efrati</i> — Hyperbaric Medicine Pioneer & Researcher (MD)</li>
+        <li><i>Siddhartha Mukherjee</i> — Oncologist & AI Health Expert (MD)</li>
+        <li><i>Uma Naidoo</i> — Doctor & Chef (MD)</li>
+        <li><i>Vikash Modi</i> — Preventative Medicine Doctor (MD)</li>
+        <li><i>Vivek Lal</i> — Physician-Scientist (MD)</li>
+        <li><i>Zach Bush</i> — Regenerative Futurist (MD)</li>
+        <li><i>Zain Kassam</i> — Physician-Scientist (MD, MPH)</li>
+      </ul>
+    </li>
+    <li><b>PhD Researchers and Scientists:</b>
+      <ul>
+        <li><i>Carolina Reis Oliveira</i> — Skin Regeneration Expert (PhD)</li>
+        <li><i>Christian Drapeau</i> — Adult Stem Cell Researcher (PhD)</li>
+        <li><i>Jeffrey Bland</i> — Functional Medicine Founder (PhD)</li>
+        <li><i>Jennifer Garrison</i> — Women's Longevity Researcher (PhD)</li>
+        <li><i>Mahmoud Ghannoum</i> — Microbiome Scientist (PhD)</li>
+        <li><i>Michael Breus</i> — Sleep Expert (PhD)</li>
+        <li><i>Robin Carhart-Harris</i> — Psychedelic Researcher (PhD)</li>
+        <li><i>Zachary Knight</i> — Weight Loss Expert (PhD)</li>
+      </ul>
+    </li>
+  </ul>
 </details>
 
 <details>
-  <summary>▶ <b>2. Health and Wellness Professionals</b></summary>
-
-  - **Number of Individuals:** 30
-  - **Percentage of Total:** Approximately 28%
-
-  **Professionals in this category include:**
-
-  - **Health Entrepreneurs and Specialists:**
-        1. *Ara Katz* — Life Sciences Entrepreneur
-        2. *Bryan Johnson* — Longevity Expert and Entrepreneur
-        3. *Calley Means* — Metabolic Health Expert & Health Policy Advocate
-        4. *Dave Asprey* — Entrepreneur & Health Maverick
-        5. *Harry Taylor* — Health Entrepreneur
-        6. *Ian Davison* — Life-Science Entrepreneur
-        7. *Jack Dell'Accio* — Sleep Coach and Entrepreneur
-        8. *Jonathan Swerdlin* — Health Entrepreneur
-        9. *Kat Cole* — Health Entrepreneur
-        10. *Kayla Barnes-Lentz* — Longevity Expert
-        11. *Max Lugavere* — Health Science Podcaster
-        12. *Pranitha Patil* — Health Tech Entrepreneur
-        13. *Radek Sali* — Health and Wellness Entrepreneur
-        14. *Raja Dhir* — Life Sciences Entrepreneur
-        15. *Rob Besner* — Health Entrepreneur
-        16. *Roland Peralta* — Holistic Wellness Entrepreneur
-        17. *Samantha Cutler* — Lifestyle Medicine Expert & Entrepreneur
-        18. *Stephanie Venn-Watson* — Health Entrepreneur (DVM, MPH)
-        19. *Whitney Tingle* — Health Entrepreneur
-    
-    - **Fitness and Wellness Coaches:**
-        1. *Amanda Laine* — Health Entrepreneur
-        2. *Cynthia Thurlow* — Intermittent Fasting Expert (NP)
-        3. *Don Saladino* — Fitness Coach
-        4. *Jacy Cunningham* — Fitness Coach
-        5. *Jillian Michaels* — Health & Wellness Coach and Podcaster
-        6. *JJ Virgin* — Triple Certified Nutritionist (CNS)
-        7. *Phil Daru* — Strength and Conditioning Coach
-    
-    - **Nutritionists and Dietitians:**
-        1. *Jennifer Scheinman* — Dietitian Nutritionist (MA)
-           
-    - **Mental Health and Psychedelic Advocates:**
-        1. *Jesse Gould* — Psychedelic Advocate
-        2. *Paul Austin* — Psychedelic Educator
-           
-    - **Health Policy and Patient Advocates:**
-        1. *Jace Yawnick* — Cancer Patient Advocate
+  <summary><b>2. Health and Wellness Professionals</b></summary>
+  <p><b>Number of Individuals:</b> 30</p>
+  <p><b>Percentage of Total:</b> Approximately 28%</p>
+  <p><b>Professionals in this category include:</b></p>
+  <ul>
+    <li><b>Health Entrepreneurs and Specialists:</b>
+      <ul>
+        <li><i>Ara Katz</i> — Life Sciences Entrepreneur</li>
+        <li><i>Bryan Johnson</i> — Longevity Expert and Entrepreneur</li>
+        <li><i>Calley Means</i> — Metabolic Health Expert & Health Policy Advocate</li>
+        <li><i>Dave Asprey</i> — Entrepreneur & Health Maverick</li>
+        <li><i>Harry Taylor</i> — Health Entrepreneur</li>
+        <li>...</li>
+      </ul>
+    </li>
+    <li><b>Fitness and Wellness Coaches:</b>
+      <ul>
+        <li><i>Don Saladino</i> — Fitness Coach</li>
+        <li><i>Jillian Michaels</i> — Health & Wellness Coach and Podcaster</li>
+        <li>...</li>
+      </ul>
+    </li>
+  </ul>
 </details>
 
 <details>
-  <summary>▶ <b>3. Creative and Traditional Practitioners</b></summary>
-
-  - **Number of Individuals:** 37
-  - **Percentage of Total:** Approximately 35%
-
-  **Professionals in this category include:**
-
-  - **Artists and Musicians:**
-    
-    1. *Aaron Alcouloumre* — Multi-Instrumentalist
-    2. *Caleb Spaulding* — Multi-Disciplinary Musician
-    3. *East Forest* — Multidisciplinary Artist
-    4. *Gabriele Galimberti* — Photographer & Storyteller
-    5. *Jesse Lauter* — Filmmaker & Music Producer
-    6. *Jordan Kronick* — Filmmaker
-    7. *Lexie Lowell* — Harpist
-    8. *Murray Hidary* — Composer & Pianist
-    9. *Natalie Kuhn* — Health Advocate & Artist
-    10. *Nicholas Charlier* — Super-Producer & Artist
-    11. *Reggie Watts* — Comedian & Musician
-    
-- **Yoga and Mindfulness Instructors:**
-    
-    1. *Adriene Mishler* — Yoga Teacher
-    2. *Alan Finger* — Yoga Teacher
-    3. *Chris Bonilla* — Embodiment Practitioner
-    4. *Dan Harris* — Meditation Evangelist
-    5. *Jeff Warren* — Meditation Teacher
-    6. *Jonah Kest* — Yoga Teacher
-    7. *Kevin Courtney* — Mindfulness Expert
-    8. *Kristin McGee* — Yoga & Pilates Teacher
-    9. *Marisa Radha Weppner* — Yoga & Breathwork Teacher
-    10. *Pavel Stuchlik* — Breathwork Instructor
-    11. *Pedram Shojai* — Qi Gong Master
-    12. *Sarah Platt-Finger* — Yoga & Meditation Teacher
-    13. *Schuyler Grant* — Yoga & Breathwork Teacher
-    14. *Sebene Selassie* — Mindfulness Teacher
-    
-- **Wellness and Relationship Experts:**
-    
-    1. *Amanda Casgar* — Community & Culture Expert
-    2. *Clare Johnson* — Psychedelic Therapy Educator (LMFT)
-    3. *Claude Silver* — Relationships & Potentiality Guide
-    4. *Jillian Turecki* — Relationship Expert & Author
-    5. *Juliana Hauser* — Sexpert (PhD)
-    
-- **Movement and Embodiment Practitioners:**
-    
-    1. *Kiari Kirk* — Dance Educator & Choreographer
-    2. *Taryn Toomey* — Founder & Movement Artist
-    
-- **Other Creative Professionals:**
-    
-    1. *Dulma Clark* — Footwear Designer & Entrepreneur
-    2. *Jeff Krasno* — Wellness Leader
-    3. *Daniel Carcillo* — Athlete & Mental Health Advocate
-    4. *Selena Tatum Isles* — Producer & Facilitator (MSc, PhD)
+  <summary><b>3. Creative and Traditional Practitioners</b></summary>
+  <p><b>Number of Individuals:</b> 37</p>
+  <p><b>Percentage of Total:</b> Approximately 35%</p>
+  <p><b>Professionals in this category include:</b></p>
+  <ul>
+    <li><b>Artists and Musicians:</b>
+      <ul>
+        <li><i>Aaron Alcouloumre</i> — Multi-Instrumentalist</li>
+        <li><i>Caleb Spaulding</i> — Multi-Disciplinary Musician</li>
+        <li><i>East Forest</i> — Multidisciplinary Artist</li>
+        <li>...</li>
+      </ul>
+    </li>
+    <li><b>Yoga and Mindfulness Instructors:</b>
+      <ul>
+        <li><i>Adriene Mishler</i> — Yoga Teacher</li>
+        <li><i>Jonah Kest</i> — Yoga Teacher</li>
+        <li>...</li>
+      </ul>
+    </li>
+  </ul>
 </details>
+
 
 Based on general observations, I estimated that approximately **5–10%** of the individuals may promote non-traditional or controversial health practices that are not fully supported by mainstream scientific research. While it's important to approach such practices with a healthy dose of skepticism, labeling them all as "snake oil" without substantial evidence of fraudulent intent oversimplifies a nuanced issue
 
