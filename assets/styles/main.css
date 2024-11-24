@@ -8,20 +8,25 @@ body {
   margin: 0;
 }
 
+details {
+  margin: 1em 0;
+}
+
 details summary {
   cursor: pointer;
   position: relative;
   padding-left: 25px;
-  list-style: none; /* Removes default triangle */
+  list-style: none;
   margin-bottom: 10px;
 }
 
-/* Remove default arrow in Safari */
-details summary::-webkit-details-marker {
+/* This is crucial for removing the default arrow in all browsers */
+details summary::-webkit-details-marker,
+details summary::marker {
   display: none;
 }
 
-/* Custom toggle arrow */
+/* Custom arrow styling */
 details summary::before {
   content: '';
   border: solid #666;
@@ -35,13 +40,13 @@ details summary::before {
   transition: transform 0.25s ease;
 }
 
-/* Rotate arrow when open */
+/* Rotate arrow when details is open */
 details[open] summary::before {
   transform: translateY(-30%) rotate(-135deg);
 }
 
-/* Animation for content */
-details > *:not(summary) {
+/* Content animation */
+details[open] > div {
   animation: details-show 0.2s ease-in-out;
 }
 

@@ -138,6 +138,7 @@ While it's important to approach any industry with a critical eye, I believe thi
 
 <details>
   <summary><b>1. Medical and Scientific Professionals</b></summary>
+    <div style="padding-left: 20px;">
   <p><b>Number of Individuals:</b> 40</p>
   <p><b>Percentage of Total:</b> Approximately 37%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -189,10 +190,12 @@ While it's important to approach any industry with a critical eye, I believe thi
       </ul>
     </li>
   </ul>
+  </div>
 </details>
 
 <details>
   <summary><b>2. Health and Wellness Professionals</b></summary>
+    <div style="padding-left: 20px;">
   <p><b>Number of Individuals:</b> 30</p>
   <p><b>Percentage of Total:</b> Approximately 28%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -215,10 +218,12 @@ While it's important to approach any industry with a critical eye, I believe thi
       </ul>
     </li>
   </ul>
+  </div>
 </details>
 
 <details>
   <summary><b>3. Creative and Traditional Practitioners</b></summary>
+  <div style="padding-left: 20px;">
   <p><b>Number of Individuals:</b> 37</p>
   <p><b>Percentage of Total:</b> Approximately 35%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -239,6 +244,7 @@ While it's important to approach any industry with a critical eye, I believe thi
       </ul>
     </li>
   </ul>
+  </div>
 </details>
 
 
