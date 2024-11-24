@@ -137,7 +137,12 @@ Interestingly, reading the *New York Times* article titled “3 Days of Healing,
 While it's important to approach any industry with a critical eye, I believe this characterization overlooks the diversity and complexity of the wellness community. To gain a clearer understanding, I categorized the presenters into three main groups:
 
 <details>
-  <summary>▶ <b>1. Medical and Scientific Professionals</b></summary>
+  <summary>
+  <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
+    <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+  </svg>
+  <b>1. Medical and Scientific Professionals</b>
+  </summary>
   <p><b>Number of Individuals:</b> 40</p>
   <p><b>Percentage of Total:</b> Approximately 37%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -192,7 +197,12 @@ While it's important to approach any industry with a critical eye, I believe thi
 </details>
 
 <details>
-  <summary>▶ <b>2. Health and Wellness Professionals</b></summary>
+  <summary>
+  <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
+    <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+  </svg>
+  <b>2. Health and Wellness Professionals</b>
+  </summary>
   <p><b>Number of Individuals:</b> 30</p>
   <p><b>Percentage of Total:</b> Approximately 28%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -218,7 +228,12 @@ While it's important to approach any industry with a critical eye, I believe thi
 </details>
 
 <details>
-  <summary>▶ <b>3. Creative and Traditional Practitioners</b></summary>
+  <summary>
+  <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
+    <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+  </svg>
+  <b>3. Creative and Traditional Practitioners</b>
+  </summary>
   <p><b>Number of Individuals:</b> 37</p>
   <p><b>Percentage of Total:</b> Approximately 35%</p>
   <p><b>Professionals in this category include:</b></p>
