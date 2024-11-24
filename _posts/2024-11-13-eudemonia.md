@@ -138,9 +138,9 @@ While it's important to approach any industry with a critical eye, I believe thi
 
 <details>
   <summary>
-  <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
-    <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
-  </svg>
+    <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24">
+      <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+    </svg>
   <b>1. Medical and Scientific Professionals</b>
   </summary>
   <p><b>Number of Individuals:</b> 40</p>
@@ -198,9 +198,9 @@ While it's important to approach any industry with a critical eye, I believe thi
 
 <details>
   <summary>
-  <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
-    <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
-  </svg>
+    <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24">
+      <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+    </svg>
   <b>2. Health and Wellness Professionals</b>
   </summary>
   <p><b>Number of Individuals:</b> 30</p>
@@ -229,9 +229,11 @@ While it's important to approach any industry with a critical eye, I believe thi
 
 <details>
   <summary>
-  <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
+
+  <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24">
     <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
   </svg>
+
   <b>3. Creative and Traditional Practitioners</b>
   </summary>
   <p><b>Number of Individuals:</b> 37</p>

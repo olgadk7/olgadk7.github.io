@@ -10,18 +10,19 @@ body {
 
 details summary {
   cursor: pointer;
-  list-style: none;
+  position: relative;
+  padding-left: 20px; /* Adjust if needed */
 }
 
 details summary::before {
-  content: "▶"; /* Default arrow icon */
-  display: inline-block;
-  margin-right: 5px;
-  transition: transform 0.2s;
+  content: "\25B6"; /* Unicode character for a right-pointing triangle (▶) */
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 details[open] summary::before {
-  content: "▼"; /* Arrow changes direction when open */
+  content: "\25BC"; /* Unicode character for a down-pointing triangle (▼) */
 }
 
 article,
