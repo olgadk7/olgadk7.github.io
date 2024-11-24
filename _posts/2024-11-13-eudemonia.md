@@ -24,7 +24,7 @@ In this article, I'll share my experiences from the conference, including the in
 
 Each morning began with movement-based classes like dance, paddling, yoga, and qigong. One standout for me was **The Class**: a primal, repetitive movement session where each sequence lasted the length of a song. Halfway through, I hit a mental flow state, free of chatter and self-consciousness—it felt like a reset for my body and mind. The carefully curated music elevated the experience, making it equal parts physical workout and meditative journey.
 
-### Daytime $learning$:
+### Daytime $$learning$$:
 
 The days were packed with thought-provoking sessions led by some of the brightest minds in wellness. Choosing which talks to attend was tough, but here are some that I was able to catch:
 
@@ -58,28 +58,28 @@ Set standards consequentially (increase the stakes as you go), just high enough�
 
 Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
 
-    a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
+  a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
     - Biology identifies the role of the target molecule (e.g., a protein) in disease.
     - Chemistry explains how the drug is designed to interact with the target at a molecular level.
     - Physics governs the physical forces (e.g., molecular shape, charge, and electrostatic interactions) that enable the drug to bind effectively.
     
-    b. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
+  b. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
     
-    The shift to the 3D perspective allows us to see how proteins fold into specific shapes that create the physical and chemical environments necessary for binding. The protein's functionality, including its ability to bind to other molecules, emerges only in its fully folded 3D form. This understanding allows us to predict and manipulate binding interactions, which are the basis for developing targeted therapies and understanding biological processes at a molecular level.
+  The shift to the 3D perspective allows us to see how proteins fold into specific shapes that create the physical and chemical environments necessary for binding. The protein's functionality, including its ability to bind to other molecules, emerges only in its fully folded 3D form. This understanding allows us to predict and manipulate binding interactions, which are the basis for developing targeted therapies and understanding biological processes at a molecular level.
     
-    c. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
+  c. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
     
-    Previously, we relied on brute-force approaches to determine the 3D structure experimentally for each protein derived from a DNA sequence, which was slow, costly, and inefficient. Now, methods like molecular docking simulations allow us to transition to learned puzzle-solving. Researchers can integrate DNA sequence data directly into models that predict 3D protein structures and simulate binding interactions, accelerating discoveries and opening doors to personalized medicine and targeted therapies.
+  Previously, we relied on brute-force approaches to determine the 3D structure experimentally for each protein derived from a DNA sequence, which was slow, costly, and inefficient. Now, methods like molecular docking simulations allow us to transition to learned puzzle-solving. Researchers can integrate DNA sequence data directly into models that predict 3D protein structures and simulate binding interactions, accelerating discoveries and opening doors to personalized medicine and targeted therapies.
     
-    *(AlphaFold is a deep learning model developed by DeepMind that predicts the 3D structure of proteins based solely on their amino acid sequences. It uses the same transformer architecture as GPT, which excels at capturing relationships between elements in a sequence. In GPT, this mechanism helps analyze and predict text patterns, while in AlphaFold, it identifies spatial and functional relationships between amino acids in a protein sequence.)*
+  *(AlphaFold is a deep learning model developed by DeepMind that predicts the 3D structure of proteins based solely on their amino acid sequences. It uses the same transformer architecture as GPT, which excels at capturing relationships between elements in a sequence. In GPT, this mechanism helps analyze and predict text patterns, while in AlphaFold, it identifies spatial and functional relationships between amino acids in a protein sequence.)*
     
-    These paradigm shift has profound implications in medicine:
+  These paradigm shift has profound implications in medicine:
     
     - **Personalized Therapies**: Tailored treatments based on individual protein conformations.
     - **Disease Mechanisms**: Insights into protein misfolding diseases like Alzheimer's.
     - **Drug Design**: More effective and targeted drugs through structure-based methodologies.
     
-    d. **From Traditional Antibody Design to AI-Evolved Antibodies**: Enhanced binding capabilities. AI can simulate and "evolve" antibodies by generating and selecting optimal structures based on desired properties. This approach can rapidly produce antibodies with better performance than traditional methods, which often rely on trial-and-error or laboratory-based optimization. The AI-evolved antibody might be better suited for targeting, more effective in binding to its antigen, or more stable in the bloodstream, making it more efficient for therapeutic use.
+  d. **From Traditional Antibody Design to AI-Evolved Antibodies**: Enhanced binding capabilities. AI can simulate and "evolve" antibodies by generating and selecting optimal structures based on desired properties. This approach can rapidly produce antibodies with better performance than traditional methods, which often rely on trial-and-error or laboratory-based optimization. The AI-evolved antibody might be better suited for targeting, more effective in binding to its antigen, or more stable in the bloodstream, making it more efficient for therapeutic use.
 
 4. **Dr. Perlmutter and Dr. Shai Efrati on Cognitive Function**: They discussed how hyperbaric oxygen treatment can treat neurodegenerative diseases like Alzheimer's and Parkinson's, which is significant. When asked what would be the number one thing to not lose cognitive function, Dr. Efrati said: **“Make yourself needable (be needed by others), on a daily basis. All the rest will work out.”** In other words, having a purpose and being essential to others can positively influence one's biology, motivating the body to preserve itself. Dr. Efrati notes that retirement, often associated with a loss of purpose, is a significant risk factor for age-related diseases. By remaining active and engaged, individuals can maintain their health and vitality.
 
@@ -94,7 +94,7 @@ Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning autho
    
 8. In **Gutbliss: The Intricate World of Gut Health With Robynne Chutkan, and Mahmoud Ghannoum** emphasized the intricate interplay between bacteria and fungi in the gut microbiome, highlighting how this balance impacts digestion, immunity, and even neurological conditions like autism. Dr. Ghannoum's pioneering research into the **mycobiome**—the fungal component of the gut—underscores its critical role in shaping overall health, including its influence on inflammation and microbial dysbiosis. Practical insights shared included dietary strategies to nurture a balanced gut ecosystem, focusing on fiber, fermented foods, and reducing environmental stressors that disrupt bacterial and fungal harmony.
 
-### In-between $treatments$:
+### In-between $$treatments$$:
 
 - **Vitamin Shots & IV Drips at Pur-Form**: I got a glutathione shot, which is considered a master antioxidant used to enhance health, combat disease, and slow down aging according to Dr. Nayan Patel and others.
 - **Hyperbaric Oxygen Treatments**: There were several options, but I chose the Biohack Lab. You breathe pure oxygen in a pressurized environment. This therapy increases the amount of oxygen your blood can carry, promoting healing and fighting infections by enhancing the body's natural healing processes. The latest research suggests it stimulates brain repair and enhances cognitive performance, improving neuroplasticity, memory, attention, and treating neurological conditions.
@@ -103,7 +103,7 @@ Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning autho
 - **Contrast Therapy**: Exposing the body to extreme temperatures to activate specific physiological responses that promote health benefits, a practice long embraced by Northern Europeans. Therasage offers an experience alternating between a soothing infrared sauna and a cold immersion tub, delivering a holistic health experience focused on rejuvenation, recovery, and vitality.
 - **Sensory Modulation with NeuroVizr (by NOA AON)**: A device that combines light and sound stimulation, leveraging principles from neuroscience to enhance mental well-being and cognitive performance. Its effects are rooted in neuroplasticity, the brain's ability to adapt and reorganize itself in response to stimuli.
 
-### And expo $products$:
+### And expo $$products$$:
 
 - **Qualia**:
     - **Senolytic**: Clears senescent “zombie” cells, promoting rejuvenation and tissue health.
@@ -124,7 +124,7 @@ Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning autho
 - **Fatty15**: An innovative supplement delivering C15:0, an "essential fatty acid," with potential to support mitochondrial function, reduce chronic inflammation, and improve cell membrane integrity. Unlike omega-3 fatty acids, which focus on reducing inflammation and supporting brain and heart health, C15:0 uniquely targets cellular repair, mitochondrial function, and long-term resilience by stabilizing cell membranes and improving metabolic pathways.
 - **Perfect Amino Electrolytes**: A specialized electrolyte supplement designed for hydration and recovery, combining a unique blend of electrolytes, amino acids, and trace minerals. Unlike standard electrolyte drinks that primarily replenish sodium and potassium, this product integrates essential amino acids to support muscle repair and endurance, setting it apart in the hydration market. Its innovation lies in targeting both hydration and performance recovery in one formula, appealing particularly to active individuals and athletes. However, compared to simpler, lower-cost electrolyte solutions like Liquid IV, the inclusion of amino acids may be unnecessary for those with adequate dietary protein intake, making it a premium choice that’s not universally essential.
 
-### Evening $socialising$:
+### Evening $$socialising$$:
 
 - **First Night**: An ancient Greece-themed Halloween party.
 - **Second Night**: Murray Hidary piano concert and meditation.
@@ -137,12 +137,7 @@ Interestingly, reading the *New York Times* article titled “3 Days of Healing,
 While it's important to approach any industry with a critical eye, I believe this characterization overlooks the diversity and complexity of the wellness community. To gain a clearer understanding, I categorized the presenters into three main groups:
 
 <details>
-  <summary>
-    <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24">
-      <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
-    </svg>
-  <b>1. Medical and Scientific Professionals</b>
-  </summary>
+  <summary><b>1. Medical and Scientific Professionals</b></summary>
   <p><b>Number of Individuals:</b> 40</p>
   <p><b>Percentage of Total:</b> Approximately 37%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -197,12 +192,7 @@ While it's important to approach any industry with a critical eye, I believe thi
 </details>
 
 <details>
-  <summary>
-    <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24">
-      <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
-    </svg>
-  <b>2. Health and Wellness Professionals</b>
-  </summary>
+  <summary><b>2. Health and Wellness Professionals</b></summary>
   <p><b>Number of Individuals:</b> 30</p>
   <p><b>Percentage of Total:</b> Approximately 28%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -228,14 +218,7 @@ While it's important to approach any industry with a critical eye, I believe thi
 </details>
 
 <details>
-  <summary>
-
-  <svg class="toggle-icon" width="12" height="12" viewBox="0 0 24 24">
-    <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
-  </svg>
-
-  <b>3. Creative and Traditional Practitioners</b>
-  </summary>
+  <summary><b>3. Creative and Traditional Practitioners</b></summary>
   <p><b>Number of Individuals:</b> 37</p>
   <p><b>Percentage of Total:</b> Approximately 35%</p>
   <p><b>Professionals in this category include:</b></p>

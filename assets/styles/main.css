@@ -11,18 +11,65 @@ body {
 details summary {
   cursor: pointer;
   position: relative;
-  padding-left: 20px; /* Adjust if needed */
+  padding-left: 25px;
+  list-style: none; /* Removes default triangle */
+  margin-bottom: 10px;
 }
 
+/* Remove default arrow in Safari */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Custom toggle arrow */
 details summary::before {
-  content: "\25B6"; /* Unicode character for a right-pointing triangle (▶) */
+  content: '';
+  border: solid #666;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.25s ease;
 }
 
+/* Rotate arrow when open */
 details[open] summary::before {
-  content: "\25BC"; /* Unicode character for a down-pointing triangle (▼) */
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+/* Animation for content */
+details > *:not(summary) {
+  animation: details-show 0.2s ease-in-out;
+}
+
+@keyframes details-show {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Optional: Add some spacing and styling to the content */
+details {
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+details[open] {
+  padding-bottom: 10px;
+}
+
+details summary {
+  font-weight: 500;
+  color: #333;
 }
 
 article,
