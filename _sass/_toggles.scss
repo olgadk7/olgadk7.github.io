@@ -1,0 +1,38 @@
+details {
+    margin: 1em 0;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+
+    summary {
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        list-style: none;
+        font-weight: bold;
+
+        &::-webkit-details-marker,
+        &::marker {
+            display: none;
+        }
+
+        &:before {
+            content: '►';
+            position: absolute;
+            left: 10px;
+            color: #666;
+            transition: transform 0.2s;
+        }
+    }
+
+    &[open] {
+        summary:before {
+            transform: rotate(90deg);
+        }
+    }
+
+    > div {
+        margin-top: 10px;
+        padding-left: 30px;
+    }
+}

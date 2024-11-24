@@ -255,7 +255,7 @@ Based on general observations, I estimated that approximately **5–10%** of the
 
 ### **Approaching the Wellness Industry with an Open Heart, Curious Mind, and Critical Thinking**
 
-The wellness industry is vast and diverse, offering practices and philosophies ranging from ancient traditions to modern scientific breakthroughs. Approaching it with an open heart and a curious mind allows us to explore its richness and connect with practices that resonate personally. However, to navigate this landscape responsibly, we must also apply critical thinking—an approach inspired by Julia Galef's *The Scout Mindset*, which emphasizes curiosity, nuance, and a commitment to seeking truth.
+The wellness industry is vast and diverse, offering practices and philosophies ranging from ancient traditions to modern scientific breakthroughs. Approaching it with an open heart and a curious mind allows us to explore its richness and connect with practices that resonate personally. However, to navigate this landscape responsibly, I found it helpful to apply critical thinking—guided by Julia Galef's insights in The Scout Mindset, which emphasizes curiosity, nuance, and a commitment to seeking truth.
 
 **Applying Critical Thinking**
 
