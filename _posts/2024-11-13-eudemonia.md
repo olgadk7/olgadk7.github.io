@@ -138,7 +138,7 @@ While it's important to approach any industry with a critical eye, I believe thi
 
 <details>
   <summary><b>1. Medical and Scientific Professionals</b></summary>
-    <div style="padding-left: 20px;">
+  <div style="padding-left: 20px;">
   <p><b>Number of Individuals:</b> 40</p>
   <p><b>Percentage of Total:</b> Approximately 37%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -223,7 +223,7 @@ While it's important to approach any industry with a critical eye, I believe thi
 
 <details>
   <summary><b>3. Creative and Traditional Practitioners</b></summary>
-  <div style="padding-left: 20px;">
+    <div style="padding-left: 20px;">
   <p><b>Number of Individuals:</b> 37</p>
   <p><b>Percentage of Total:</b> Approximately 35%</p>
   <p><b>Professionals in this category include:</b></p>
@@ -246,6 +246,7 @@ While it's important to approach any industry with a critical eye, I believe thi
   </ul>
   </div>
 </details>
+
 
 
 Based on general observations, I estimated that approximately **5–10%** of the individuals may promote non-traditional or controversial health practices that are not fully supported by mainstream scientific research. While it's important to approach such practices with a healthy dose of skepticism, labeling them all as "snake oil" without substantial evidence of fraudulent intent oversimplifies a nuanced issue
