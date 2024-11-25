@@ -1,0 +1,88 @@
+<style>
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .image-gallery .box {
+        position: relative;
+        padding-bottom: 100%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+    
+    .image-gallery .box img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .image-gallery .box img:hover {
+        transform: scale(1.05);
+    }
+    
+    /* Lightbox styles */
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+    }
+    
+    .lightbox img {
+        max-width: 90%;
+        max-height: 90vh;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .lightbox.active {
+        display: block;
+    }
+    </style>
+    
+    <div class="image-gallery">
+        {% for image in include.gallery %}
+        <div class="box">
+            <img src="{{ image.url }}" alt="{{ image.title }}" loading="lazy">
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="">
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const gallery = document.querySelector('.image-gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+    
+        gallery.addEventListener('click', function(e) {
+            if (e.target.tagName === 'IMG') {
+                lightboxImg.src = e.target.src;
+                lightbox.classList.add('active');
+            }
+        });
+    
+        lightbox.addEventListener('click', function() {
+            this.classList.remove('active');
+        });
+    });
+    </script>

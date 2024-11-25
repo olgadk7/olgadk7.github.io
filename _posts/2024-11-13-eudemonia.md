@@ -323,4 +323,8 @@ I learned so much and have so many more questions. I'm inspired to explore my he
 
 *P.S. I'm still waiting for the recordings of some sessions I had to miss, which should enrich myconference notes further.*
 
+## Photo Gallery
+
+{% include gallery.html gallery=page.gallery %}
+
 #biology, #technology, #entrepreneurship
