@@ -136,8 +136,8 @@ While it's important to approach any industry with a critical eye, I believe thi
 <details>
   <summary><b>1. Medical and Scientific Professionals</b></summary>
     <div style="padding-left: 20px;">
-    <p><b>Number of Individuals:</b> 40</p>
-    <p><b>Percentage of Total:</b> Approximately 37%</p>
+    <p><b>Number of Individuals:</b> 40<br>
+    <b>Percentage of Total:</b> Approximately 37%</p>
     <p><b>Physicians and Medical Doctors:</b></p>
     <ol>
       <li><i>Andrew Huberman</i> — Neuroscientist & Podcaster (PhD)</li>
@@ -193,8 +193,8 @@ While it's important to approach any industry with a critical eye, I believe thi
 <details>
   <summary><b>2. Health and Wellness Professionals</b></summary>
   <div style="padding-left: 20px;">
-    <p><b>Number of Individuals:</b> 30</p>
-    <p><b>Percentage of Total:</b> Approximately 28%</p>
+    <p><b>Number of Individuals:</b> 30<br>
+    <b>Percentage of Total:</b> Approximately 28%</p>
     
     <p><b>Health Entrepreneurs and Specialists:</b></p>
     <ol>
@@ -245,12 +245,14 @@ While it's important to approach any industry with a critical eye, I believe thi
     <ol start="31">
       <li><i>Jace Yawnick</i> — Cancer Patient Advocate</li>
     </ol>
+  </div>
+</details>
 
 <details>
   <summary><b>3. Creative and Traditional Practitioners</b></summary>
   <div style="padding-left: 20px;">
-    <p><b>Number of Individuals:</b> 37</p>
-    <p><b>Percentage of Total:</b> Approximately 35%</p>
+    <p><b>Number of Individuals:</b> 37<br>
+    <b>Percentage of Total:</b> Approximately 35%</p>
     <p><b>Artists and Musicians:</b></p>
     <ol>
       <li><i>Aaron Alcouloumre</i> — Multi-Instrumentalist</li>
