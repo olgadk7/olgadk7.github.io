@@ -1,9 +1,9 @@
-<div class="image-gallery"></div>
-    {% raw %}{% for image in include.gallery %}{% endraw %}
+<div class="image-gallery">
+    {% for image in include.gallery %}
     <div class="box">
         <img src="{{ image.url }}" alt="{{ image.title }}">
     </div>
-    {% raw %}{% endfor %}{% endraw %}
+    {% endfor %}
 </div>
 
 <style>
