@@ -217,6 +217,7 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Samantha Cutler</i> — Lifestyle Medicine Expert & Entrepreneur</li>
       <li><i>Stephanie Venn-Watson</i> — Health Entrepreneur (DVM, MPH)</li>
       <li><i>Whitney Tingle</i> — Health Entrepreneur</li>
+    </ol>
 
     <p><b>Fitness and Wellness Coaches:</b></p>
     <ol start="20">
