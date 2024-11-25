@@ -29,61 +29,61 @@ Each morning began with movement-based classes like dance, paddling, yoga, and q
 The days were packed with thought-provoking sessions led by some of the brightest minds in wellness. Choosing which talks to attend was tough, but here are some that I was able to catch:
 
 1. **Dave Asprey's Talk**: A great introduction to why we were all there:
-  - **Movement** isn’t just about exercise; it’s about enhancing your body's efficiency and resilience.
-  - **Nourishment** goes beyond just eating well—it’s about fueling your body with the right nutrients for peak performance.
-  - **Mental optimization** isn’t just about clarity; it’s about hacking your brain to achieve unprecedented levels of focus and creativity.
-  - **Restoration** ensures you’re not just recovering but rejuvenating at a cellular level.
-  - And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
+- **Movement** isn’t just about exercise; it’s about enhancing your body's efficiency and resilience.
+- **Nourishment** goes beyond just eating well—it’s about fueling your body with the right nutrients for peak performance.
+- **Mental optimization** isn’t just about clarity; it’s about hacking your brain to achieve unprecedented levels of focus and creativity.
+- **Restoration** ensures you’re not just recovering but rejuvenating at a cellular level.
+- And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
   
-  Embrace these pillars, and you’re not just biohacking; you’re transforming your life, he said. He then recommended several of the many businesses he’s involved with.
+Embrace these pillars, and you’re not just biohacking; you’re transforming your life, he said. He then recommended several of the many businesses he’s involved with.
 
 2. **Andrew Huberman's Deep Dive**:
 
-  **Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
+**Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
 
-  **Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
+**Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
 
-  **Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
+**Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
 
-  **Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
-      
-  Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
-      
-  > **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
+**Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
+    
+Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
+    
+> **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
 
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
 Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
 
-  a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
-    - Biology identifies the role of the target molecule (e.g., a protein) in disease.
-    - Chemistry explains how the drug is designed to interact with the target at a molecular level.
-    - Physics governs the physical forces (e.g., molecular shape, charge, and electrostatic interactions) that enable the drug to bind effectively.
-    
-  b. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
-    
-  The shift to the 3D perspective allows us to see how proteins fold into specific shapes that create the physical and chemical environments necessary for binding. The protein's functionality, including its ability to bind to other molecules, emerges only in its fully folded 3D form. This understanding allows us to predict and manipulate binding interactions, which are the basis for developing targeted therapies and understanding biological processes at a molecular level.
-    
-  c. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
-    
-  Previously, we relied on brute-force approaches to determine the 3D structure experimentally for each protein derived from a DNA sequence, which was slow, costly, and inefficient. Now, methods like molecular docking simulations allow us to transition to learned puzzle-solving. Researchers can integrate DNA sequence data directly into models that predict 3D protein structures and simulate binding interactions, accelerating discoveries and opening doors to personalized medicine and targeted therapies.
-    
-  *(AlphaFold is a deep learning model developed by DeepMind that predicts the 3D structure of proteins based solely on their amino acid sequences. It uses the same transformer architecture as GPT, which excels at capturing relationships between elements in a sequence. In GPT, this mechanism helps analyze and predict text patterns, while in AlphaFold, it identifies spatial and functional relationships between amino acids in a protein sequence.)*
-    
-  These paradigm shift has profound implications in medicine:
-    
-    - **Personalized Therapies**: Tailored treatments based on individual protein conformations.
-    - **Disease Mechanisms**: Insights into protein misfolding diseases like Alzheimer's.
-    - **Drug Design**: More effective and targeted drugs through structure-based methodologies.
-    
-  d. **From Traditional Antibody Design to AI-Evolved Antibodies**: Enhanced binding capabilities. AI can simulate and "evolve" antibodies by generating and selecting optimal structures based on desired properties. This approach can rapidly produce antibodies with better performance than traditional methods, which often rely on trial-and-error or laboratory-based optimization. The AI-evolved antibody might be better suited for targeting, more effective in binding to its antigen, or more stable in the bloodstream, making it more efficient for therapeutic use.
+a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
+  - Biology identifies the role of the target molecule (e.g., a protein) in disease.
+  - Chemistry explains how the drug is designed to interact with the target at a molecular level.
+  - Physics governs the physical forces (e.g., molecular shape, charge, and electrostatic interactions) that enable the drug to bind effectively.
+  
+b. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
+  
+The shift to the 3D perspective allows us to see how proteins fold into specific shapes that create the physical and chemical environments necessary for binding. The protein's functionality, including its ability to bind to other molecules, emerges only in its fully folded 3D form. This understanding allows us to predict and manipulate binding interactions, which are the basis for developing targeted therapies and understanding biological processes at a molecular level.
+  
+c. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
+  
+Previously, we relied on brute-force approaches to determine the 3D structure experimentally for each protein derived from a DNA sequence, which was slow, costly, and inefficient. Now, methods like molecular docking simulations allow us to transition to learned puzzle-solving. Researchers can integrate DNA sequence data directly into models that predict 3D protein structures and simulate binding interactions, accelerating discoveries and opening doors to personalized medicine and targeted therapies.
+  
+*(AlphaFold is a deep learning model developed by DeepMind that predicts the 3D structure of proteins based solely on their amino acid sequences. It uses the same transformer architecture as GPT, which excels at capturing relationships between elements in a sequence. In GPT, this mechanism helps analyze and predict text patterns, while in AlphaFold, it identifies spatial and functional relationships between amino acids in a protein sequence.)*
+  
+These paradigm shift has profound implications in medicine:
+  
+  - **Personalized Therapies**: Tailored treatments based on individual protein conformations.
+  - **Disease Mechanisms**: Insights into protein misfolding diseases like Alzheimer's.
+  - **Drug Design**: More effective and targeted drugs through structure-based methodologies.
+  
+d. **From Traditional Antibody Design to AI-Evolved Antibodies**: Enhanced binding capabilities. AI can simulate and "evolve" antibodies by generating and selecting optimal structures based on desired properties. This approach can rapidly produce antibodies with better performance than traditional methods, which often rely on trial-and-error or laboratory-based optimization. The AI-evolved antibody might be better suited for targeting, more effective in binding to its antigen, or more stable in the bloodstream, making it more efficient for therapeutic use.
 
 4. **Dr. Perlmutter and Dr. Shai Efrati on Cognitive Function**: They discussed how hyperbaric oxygen treatment can treat neurodegenerative diseases like Alzheimer's and Parkinson's, which is significant. When asked what would be the number one thing to not lose cognitive function, Dr. Efrati said: **“Make yourself needable (be needed by others), on a daily basis. All the rest will work out.”** In other words, having a purpose and being essential to others can positively influence one's biology, motivating the body to preserve itself. Dr. Efrati notes that retirement, often associated with a loss of purpose, is a significant risk factor for age-related diseases. By remaining active and engaged, individuals can maintain their health and vitality.
 
 5. **AI, Psychedelics & Psychotherapy With Dave Rabin**
-    - **Psychedelics as Neurocatalysts**: Psychedelics and certain therapeutic approaches act as “neurocatalysts,” enhancing brain function, neuroplasticity, perspective, and self-awareness, which is essential for long-term mental health improvement.
-    - **Modulating the Default Mode Network (DMN)**: The DMN, associated with the ego and habitual thought patterns, often restricts new perspectives. Psychedelics can modulate DMN activity, helping break entrenched patterns and facilitating new ways of thinking, thus enabling personal growth.
-    - **Biological Changes and Therapy**: Research into DNA methylation changes associated with MDMA therapy for PTSD suggests biological changes that correspond to therapeutic improvement, a step toward understanding how psychedelics affect gene expression and mental health outcomes.
+  - **Psychedelics as Neurocatalysts**: Psychedelics and certain therapeutic approaches act as “neurocatalysts,” enhancing brain function, neuroplasticity, perspective, and self-awareness, which is essential for long-term mental health improvement.
+  - **Modulating the Default Mode Network (DMN)**: The DMN, associated with the ego and habitual thought patterns, often restricts new perspectives. Psychedelics can modulate DMN activity, helping break entrenched patterns and facilitating new ways of thinking, thus enabling personal growth.
+  - **Biological Changes and Therapy**: Research into DNA methylation changes associated with MDMA therapy for PTSD suggests biological changes that correspond to therapeutic improvement, a step toward understanding how psychedelics affect gene expression and mental health outcomes.
 
 6. **Juliana Hauser's Talk: Holistic Sexuality—Empowerment Through Agency and Identity**: At the core of Hauser's approach is the idea of **agency**—individuals are encouraged to reclaim control over their sexuality, feel empowered in their desires, and understand sexuality as part of a broader, evolving identity that intersects with personal values, cultural norms, and self-expression.
 
