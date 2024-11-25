@@ -35,7 +35,7 @@ The days were packed with thought-provoking sessions led by some of the brightes
     - **Restoration** ensures you're not just recovering but rejuvenating at a cellular level.
     - And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
 
-Embrace these pillars, and you're not just biohacking; you're transforming your life, he said. He then recommended several of the many businesses he's involved with.
+  Embrace these pillars, and you're not just biohacking; you're transforming your life, he said. He then recommended several of the many businesses he's involved with.
 
 2. **Andrew Huberman's Deep Dive**:
 
