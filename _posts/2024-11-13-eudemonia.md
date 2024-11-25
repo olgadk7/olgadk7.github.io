@@ -39,6 +39,21 @@ Embrace these pillars, and you're not just biohacking; you're transforming your 
 
 2. **Andrew Huberman's Deep Dive**:
 
+
+
+1. **Dave Asprey's Talk**: A great introduction to key pillars for well-being and performance.
+    1. **Movement** isn’t just about exercise—it’s a vital part of life.
+    2. **Nourishment** goes beyond just food to fuel your body for peak performance.
+    3. **Mental optimization** isn’t just about reducing stress—it unlocks unprecedented levels of focus and creativity.
+    4. **Restoration** ensures you’re recharged for growth and performance.
+    5. And finally, **Connection** is the core of meaningful relationships that amplify your well-being.
+
+   Embrace these pillars, and you’re not just surviving—you’re thriving. Dave recommended several of the many business and lifestyle improvements to build around these pillars.
+
+2. **Andrew Huberman's Deep Dive**: A comprehensive look into neuroscience and productivity.
+
+
+
 **Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
 
 **Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
