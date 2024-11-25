@@ -29,13 +29,13 @@ Each morning began with movement-based classes like dance, paddling, yoga, and q
 The days were packed with thought-provoking sessions led by some of the brightest minds in wellness. Choosing which talks to attend was tough, but here are some that I was able to catch:
 
 1. **Dave Asprey's Talk**: A great introduction to why we were all there:
-- **Movement** isn’t just about exercise; it’s about enhancing your body's efficiency and resilience.
-- **Nourishment** goes beyond just eating well—it’s about fueling your body with the right nutrients for peak performance.
-- **Mental optimization** isn’t just about clarity; it’s about hacking your brain to achieve unprecedented levels of focus and creativity.
-- **Restoration** ensures you’re not just recovering but rejuvenating at a cellular level.
-- And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
-  
-Embrace these pillars, and you’re not just biohacking; you’re transforming your life, he said. He then recommended several of the many businesses he’s involved with.
+    - **Movement** isn't just about exercise; it's about enhancing your body's efficiency and resilience.
+    - **Nourishment** goes beyond just eating well—it's about fueling your body with the right nutrients for peak performance.
+    - **Mental optimization** isn't just about clarity; it's about hacking your brain to achieve unprecedented levels of focus and creativity.
+    - **Restoration** ensures you're not just recovering but rejuvenating at a cellular level.
+    - And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
+
+Embrace these pillars, and you're not just biohacking; you're transforming your life, he said. He then recommended several of the many businesses he's involved with.
 
 2. **Andrew Huberman's Deep Dive**:
 
@@ -195,7 +195,6 @@ While it's important to approach any industry with a critical eye, I believe thi
   <div style="padding-left: 20px;">
     <p><b>Number of Individuals:</b> 30<br>
     <b>Percentage of Total:</b> Approximately 28%</p>
-    
     <p><b>Health Entrepreneurs and Specialists:</b></p>
     <ol>
       <li><i>Ara Katz</i> — Life Sciences Entrepreneur</li>
@@ -218,7 +217,6 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Stephanie Venn-Watson</i> — Health Entrepreneur (DVM, MPH)</li>
       <li><i>Whitney Tingle</i> — Health Entrepreneur</li>
     </ol>
-
     <p><b>Fitness and Wellness Coaches:</b></p>
     <ol start="20">
       <li><i>Amanda Laine</i> — Health Entrepreneur</li>
@@ -229,18 +227,15 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>JJ Virgin</i> — Triple Certified Nutritionist (CNS)</li>
       <li><i>Phil Daru</i> — Strength and Conditioning Coach</li>
     </ol>
-
     <p><b>Nutritionists and Dietitians:</b></p>
     <ol start="28">
       <li><i>Jennifer Scheinman</i> — Dietitian Nutritionist (MA)</li>
     </ol>
-
     <p><b>Mental Health and Psychedelic Advocates:</b></p>
     <ol start="29">
       <li><i>Jesse Gould</i> — Psychedelic Advocate</li>
       <li><i>Paul Austin</i> — Psychedelic Educator</li>
     </ol>
-
     <p><b>Health Policy and Patient Advocates:</b></p>
     <ol start="31">
       <li><i>Jace Yawnick</i> — Cancer Patient Advocate</li>
