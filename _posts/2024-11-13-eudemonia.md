@@ -141,7 +141,7 @@ While it's important to approach any industry with a critical eye, I believe thi
     <div style="padding-left: 20px;">
     <p><b>Number of Individuals:</b> 40</p>
     <p><b>Percentage of Total:</b> Approximately 37%</p>
-    
+
     **Physicians and Medical Doctors:**
     
     1. *Andrew Huberman* — Neuroscientist & Podcaster (PhD)
@@ -245,10 +245,12 @@ While it's important to approach any industry with a critical eye, I believe thi
 <details>
   <summary><b>3. Creative and Traditional Practitioners</b></summary>
     <div style="padding-left: 20px;">
+
     <p><b>Number of Individuals:</b> 37</p>
     <p><b>Percentage of Total:</b> Approximately 35%</p>
+    
     **Artists and Musicians:**
-      
+
     1. *Aaron Alcouloumre* — Multi-Instrumentalist
     2. *Caleb Spaulding* — Multi-Disciplinary Musician
     3. *East Forest* — Multidisciplinary Artist
