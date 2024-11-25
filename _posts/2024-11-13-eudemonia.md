@@ -53,7 +53,7 @@ The days were packed with thought-provoking sessions led by some of the brightes
     
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
-Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
+  Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
 
   a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
     - Biology identifies the role of the target molecule (e.g., a protein) in disease.
