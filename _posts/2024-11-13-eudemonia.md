@@ -53,28 +53,27 @@ The days were packed with thought-provoking sessions led by some of the brightes
     
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
-  Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
+    Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
 
-  a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
-    - Biology identifies the role of the target molecule (e.g., a protein) in disease.
-    - Chemistry explains how the drug is designed to interact with the target at a molecular level.
-    - Physics governs the physical forces (e.g., molecular shape, charge, and electrostatic interactions) that enable the drug to bind effectively.
-    
-  b. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
-    
-  The shift to the 3D perspective allows us to see how proteins fold into specific shapes that create the physical and chemical environments necessary for binding. The protein's functionality, including its ability to bind to other molecules, emerges only in its fully folded 3D form. This understanding allows us to predict and manipulate binding interactions, which are the basis for developing targeted therapies and understanding biological processes at a molecular level.
-    
-  c. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
-    
-  Previously, we relied on brute-force approaches to determine the 3D structure experimentally for each protein derived from a DNA sequence, which was slow, costly, and inefficient. Now, methods like molecular docking simulations allow us to transition to learned puzzle-solving. Researchers can integrate DNA sequence data directly into models that predict 3D protein structures and simulate binding interactions, accelerating discoveries and opening doors to personalized medicine and targeted therapies.
-    
-  *(AlphaFold is a deep learning model developed by DeepMind that predicts the 3D structure of proteins based solely on their amino acid sequences. It uses the same transformer architecture as GPT, which excels at capturing relationships between elements in a sequence. In GPT, this mechanism helps analyze and predict text patterns, while in AlphaFold, it identifies spatial and functional relationships between amino acids in a protein sequence.)*
-    
-  These paradigm shift has profound implications in medicine:
-    
-    - **Personalized Therapies**: Tailored treatments based on individual protein conformations.
-    - **Disease Mechanisms**: Insights into protein misfolding diseases like Alzheimer's.
-    - **Drug Design**: More effective and targeted drugs through structure-based methodologies.
+    a. **The Science Behind Drug Mechanisms**: In pharmacology, the central mechanism by which medicines exert their therapeutic effect is $binding$, explained and enabled by the intersection of biology, chemistry, and physics.
+      - Biology identifies the role of the target molecule (e.g., a protein) in disease.
+      - Chemistry explains how the drug is designed to interact with the target at a molecular level.
+      - Physics governs the physical forces (e.g., molecular shape, charge, and electrostatic interactions) that enable the drug to bind effectively.
+      
+    b. **From Linear to Structural/Three-Dimensional Understanding:** Binding, or the interaction between the drug and its target is governed by the 3D structure as it dictates how effectively drugs bind to their targets. Until the last 10-20 years, for the most part of the history of biological and biomedical research, the biological and medical research had mostly linear information at its disposal (e.g., DNA sequences, amino acid chains). But a linear sequence of amino acids (from DNA) does not reveal how a protein folds into its functional 3D shape, which is critical for its binding capabilities. The 21st century has signified a major shift toward a structural understanding of biology, with tools and methodologies for understanding and leveraging 3D structures becoming available. 
+      
+    The shift to the 3D perspective allows us to see how proteins fold into specific shapes that create the physical and chemical environments necessary for binding. The protein's functionality, including its ability to bind to other molecules, emerges only in its fully folded 3D form. This understanding allows us to predict and manipulate binding interactions, which are the basis for developing targeted therapies and understanding biological processes at a molecular level.
+      
+    c. **From Brute Force to Learned Methods**: This is what AlphaFold achieved—predicting protein structures directly from their amino acid sequences. These kinds of tools "learn" from existing data (e.g., solved protein structures) to recognize patterns and infer how sequences fold into functional 3D shapes.
+      
+    Previously, we relied on brute-force approaches to determine the 3D structure experimentally for each protein derived from a DNA sequence, which was slow, costly, and inefficient. Now, methods like molecular docking simulations allow us to transition to learned puzzle-solving. Researchers can integrate DNA sequence data directly into models that predict 3D protein structures and simulate binding interactions, accelerating discoveries and opening doors to personalized medicine and targeted therapies.
+      
+    *(AlphaFold is a deep learning model developed by DeepMind that predicts the 3D structure of proteins based solely on their amino acid sequences. It uses the same transformer architecture as GPT, which excels at capturing relationships between elements in a sequence. In GPT, this mechanism helps analyze and predict text patterns, while in AlphaFold, it identifies spatial and functional relationships between amino acids in a protein sequence.)*
+      
+    These paradigm shift has profound implications in medicine:
+      -**Personalized Therapies**: Tailored treatments based on individual protein conformations.
+      -**Disease Mechanisms**: Insights into protein misfolding diseases like Alzheimer's.
+      -**Drug Design**: More effective and targeted drugs through structure-based methodologies.
     
   d. **From Traditional Antibody Design to AI-Evolved Antibodies**: Enhanced binding capabilities. AI can simulate and "evolve" antibodies by generating and selecting optimal structures based on desired properties. This approach can rapidly produce antibodies with better performance than traditional methods, which often rely on trial-and-error or laboratory-based optimization. The AI-evolved antibody might be better suited for targeting, more effective in binding to its antigen, or more stable in the bloodstream, making it more efficient for therapeutic use.
 
