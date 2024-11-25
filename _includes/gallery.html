@@ -54,35 +54,37 @@
     .lightbox.active {
         display: block;
     }
-    </style>
+</style>
     
-    <div class="image-gallery">
-        {% for image in include.gallery %}
-        <div class="box">
-            <img src="{{ image.url }}" alt="{{ image.title }}" loading="lazy">
-        </div>
-        {% endfor %}
+<div class="image-gallery">
+    {%- raw -%}
+    {% for image in include.gallery %}
+    <div class="box">
+        <img src="{{ image.url }}" alt="{{ image.title }}" loading="lazy">
     </div>
+    {% endfor %}
+    {%- endraw -%}
+</div>
     
-    <div class="lightbox" id="lightbox">
-        <img src="" alt="">
-    </div>
+<div class="lightbox" id="lightbox">
+    <img src="" alt="">
+</div>
     
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const gallery = document.querySelector('.image-gallery');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = lightbox.querySelector('img');
-    
-        gallery.addEventListener('click', function(e) {
-            if (e.target.tagName === 'IMG') {
-                lightboxImg.src = e.target.src;
-                lightbox.classList.add('active');
-            }
-        });
-    
-        lightbox.addEventListener('click', function() {
-            this.classList.remove('active');
-        });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const gallery = document.querySelector('.image-gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+
+    gallery.addEventListener('click', function(e) {
+        if (e.target.tagName === 'IMG') {
+            lightboxImg.src = e.target.src;
+            lightbox.classList.add('active');
+        }
     });
-    </script>
+
+    lightbox.addEventListener('click', function() {
+        this.classList.remove('active');
+    });
+});
+</script>
