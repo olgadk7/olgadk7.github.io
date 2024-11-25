@@ -48,9 +48,9 @@ The days were packed with thought-provoking sessions led by some of the brightes
     **Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
         
     Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
-        
-  > **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
-
+    
+    **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
+    
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
 Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning author The Emperor of All Maladies: A Biography of Cancer and The Gene: An Intimate History. This was perhaps the most difficult talk, at the intersection of biology, technology, and innovation, so bear with me. 
