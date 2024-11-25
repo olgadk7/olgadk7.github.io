@@ -36,7 +36,6 @@ The days were packed with thought-provoking sessions led by some of the brightes
     - And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
     
     Embrace these pillars, and you’re not just biohacking; you’re transforming your life, he said. He then recommended several of the many businesses he’s involved with.
-    
 
 2. **Andrew Huberman's Deep Dive**:
 
@@ -51,8 +50,6 @@ The days were packed with thought-provoking sessions led by some of the brightes
 Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
     
 > **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
-> 
-
 
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
@@ -87,12 +84,12 @@ Siddhartha Mukherjee is the renowned oncologist and Pulitzer-Prize winning autho
     - **Psychedelics as Neurocatalysts**: Psychedelics and certain therapeutic approaches act as “neurocatalysts,” enhancing brain function, neuroplasticity, perspective, and self-awareness, which is essential for long-term mental health improvement.
     - **Modulating the Default Mode Network (DMN)**: The DMN, associated with the ego and habitual thought patterns, often restricts new perspectives. Psychedelics can modulate DMN activity, helping break entrenched patterns and facilitating new ways of thinking, thus enabling personal growth.
     - **Biological Changes and Therapy**: Research into DNA methylation changes associated with MDMA therapy for PTSD suggests biological changes that correspond to therapeutic improvement, a step toward understanding how psychedelics affect gene expression and mental health outcomes.
-      
+
 6. **Juliana Hauser's Talk: Holistic Sexuality—Empowerment Through Agency and Identity**: At the core of Hauser's approach is the idea of **agency**—individuals are encouraged to reclaim control over their sexuality, feel empowered in their desires, and understand sexuality as part of a broader, evolving identity that intersects with personal values, cultural norms, and self-expression.
-   
+
 7. **Functional Medicine and Biomarker Testing with Mark Hyman and his team**: Function Health conducts extensive biomarker testing, doing 60–100 tests instead of the ~20 typically done at annual check-ups, making it better at uncovering hidden indicators. It promises to take us from a disease care system to a health care system. (23andMe ****has also expanded its offerings btw).
-   
-8. In **Gutbliss: The Intricate World of Gut Health With Robynne Chutkan, and Mahmoud Ghannoum** emphasized the intricate interplay between bacteria and fungi in the gut microbiome, highlighting how this balance impacts digestion, immunity, and even neurological conditions like autism. Dr. Ghannoum's pioneering research into the **mycobiome**—the fungal component of the gut—underscores its critical role in shaping overall health, including its influence on inflammation and microbial dysbiosis. Practical insights shared included dietary strategies to nurture a balanced gut ecosystem, focusing on fiber, fermented foods, and reducing environmental stressors that disrupt bacterial and fungal harmony.
+
+8. **Gutbliss: The Intricate World of Gut Health With Robynne Chutkan, and Mahmoud Ghannoum** emphasized the intricate interplay between bacteria and fungi in the gut microbiome, highlighting how this balance impacts digestion, immunity, and even neurological conditions like autism. Dr. Ghannoum's pioneering research into the **mycobiome**—the fungal component of the gut—underscores its critical role in shaping overall health, including its influence on inflammation and microbial dysbiosis. Practical insights shared included dietary strategies to nurture a balanced gut ecosystem, focusing on fiber, fermented foods, and reducing environmental stressors that disrupt bacterial and fungal harmony.
 
 ### In-between $$treatments$$:
 
@@ -141,7 +138,6 @@ While it's important to approach any industry with a critical eye, I believe thi
     <div style="padding-left: 20px;">
     <p><b>Number of Individuals:</b> 40</p>
     <p><b>Percentage of Total:</b> Approximately 37%</p>
-
     <p><b>Physicians and Medical Doctors:</b></p>
     <ol>
       <li><i>Andrew Huberman</i> — Neuroscientist & Podcaster (PhD)</li>
@@ -175,7 +171,6 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Zach Bush</i> — Regenerative Futurist (MD)</li>
       <li><i>Zain Kassam</i> — Physician-Scientist (MD, MPH)</li>
     </ol>
-    
     <p><b>PhD Researchers and Scientists:</b></p>
     <ol start="31">
       <li><i>Carolina Reis Oliveira</i> — Skin Regeneration Expert (PhD)</li>
@@ -186,7 +181,8 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Michael Breus</i> — Sleep Expert (PhD)</li>
       <li><i>Robin Carhart-Harris</i> — Psychedelic Researcher (PhD)</li>
       <li><i>Zachary Knight</i> — Weight Loss Expert (PhD)</li>
-    
+    </ol>
+
     <p><b>Physician-Scientists and Professors:</b></p>
     <ol start="39">
       <li><i>David S. Vogel</i> — Data Scientist & Entrepreneur</li>
