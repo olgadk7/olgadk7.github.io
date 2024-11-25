@@ -253,7 +253,7 @@ While it's important to approach any industry with a critical eye, I believe thi
   <div style="padding-left: 20px;">
     <p><b>Number of Individuals:</b> 37<br>
     <b>Percentage of Total:</b> Approximately 35%</p>
-    <p><b>Artists and Musicians:</b></p>
+    <p><b>Artists and Musicians:</b><br>
     <ol>
       <li><i>Aaron Alcouloumre</i> — Multi-Instrumentalist</li>
       <li><i>Caleb Spaulding</i> — Multi-Disciplinary Musician</li>
@@ -266,8 +266,8 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Natalie Kuhn</i> — Health Advocate & Artist</li>
       <li><i>Nicholas Charlier</i> — Super-Producer & Artist</li>
       <li><i>Reggie Watts</i> — Comedian & Musician</li>
-    </ol>
-    <p><b>Yoga and Mindfulness Instructors:</b></p>
+    </ol></p>
+    <p><b>Yoga and Mindfulness Instructors:</b><br>
     <ol start="12">
       <li><i>Adriene Mishler</i> — Yoga Teacher</li>
       <li><i>Alan Finger</i> — Yoga Teacher</li>
@@ -283,27 +283,27 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Sarah Platt-Finger</i> — Yoga & Meditation Teacher</li>
       <li><i>Schuyler Grant</i> — Yoga & Breathwork Teacher</li>
       <li><i>Sebene Selassie</i> — Mindfulness Teacher</li>
-    </ol>
-    <p><b>Wellness and Relationship Experts:</b></p>
+    </ol></p>
+    <p><b>Wellness and Relationship Experts:</b><br>
     <ol start="26">
       <li><i>Amanda Casgar</i> — Community & Culture Expert</li>
       <li><i>Clare Johnson</i> — Psychedelic Therapy Educator (LMFT)</li>
       <li><i>Claude Silver</i> — Relationships & Potentiality Guide</li>
       <li><i>Jillian Turecki</i> — Relationship Expert & Author</li>
       <li><i>Juliana Hauser</i> — Sexpert (PhD)</li>
-    </ol>
-    <p><b>Movement and Embodiment Practitioners:</b></p>
+    </ol></p>
+    <p><b>Movement and Embodiment Practitioners:</b><br>
     <ol start="31">
       <li><i>Kiari Kirk</i> — Dance Educator & Choreographer</li>
       <li><i>Taryn Toomey</i> — Founder & Movement Artist</li>
-    </ol>
-    <p><b>Other Creative Professionals:</b></p>
+    </ol></p>
+    <p><b>Other Creative Professionals:</b><br>
     <ol start="33">
       <li><i>Dulma Clark</i> — Footwear Designer & Entrepreneur</li>
       <li><i>Jeff Krasno</i> — Wellness Leader</li>
       <li><i>Daniel Carcillo</i> — Athlete & Mental Health Advocate</li>
       <li><i>Selena Tatum Isles</i> — Producer & Facilitator (MSc, PhD)</li>
-    </ol>
+    </ol></p>
   </div>
 </details>
 
