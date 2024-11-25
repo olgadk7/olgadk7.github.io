@@ -29,11 +29,11 @@ Each morning began with movement-based classes like dance, paddling, yoga, and q
 The days were packed with thought-provoking sessions led by some of the brightest minds in wellness. Choosing which talks to attend was tough, but here are some that I was able to catch:
 
 1. **Dave Asprey's Talk**: A great introduction to why we were all there:
-    - **Movement** isn't just about exercise; it's about enhancing your body's efficiency and resilience.
-    - **Nourishment** goes beyond just eating well—it's about fueling your body with the right nutrients for peak performance.
-    - **Mental optimization** isn't just about clarity; it's about hacking your brain to achieve unprecedented levels of focus and creativity.
-    - **Restoration** ensures you're not just recovering but rejuvenating at a cellular level.
-    - And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
+    1. **Movement** isn't just about exercise; it's about enhancing your body's efficiency and resilience.
+    2. **Nourishment** goes beyond just eating well—it's about fueling your body with the right nutrients for peak performance.
+    3. **Mental optimization** isn't just about clarity; it's about hacking your brain to achieve unprecedented levels of focus and creativity.
+    4. **Restoration** ensures you're not just recovering but rejuvenating at a cellular level.
+    5. And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
 
   Embrace these pillars, and you're not just biohacking; you're transforming your life, he said. He then recommended several of the many businesses he's involved with.
 
