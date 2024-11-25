@@ -29,27 +29,27 @@ Each morning began with movement-based classes like dance, paddling, yoga, and q
 The days were packed with thought-provoking sessions led by some of the brightest minds in wellness. Choosing which talks to attend was tough, but here are some that I was able to catch:
 
 1. **Dave Asprey's Talk**: A great introduction to why we were all there:
-    - **Movement** isn’t just about exercise; it’s about enhancing your body's efficiency and resilience.
-    - **Nourishment** goes beyond just eating well—it’s about fueling your body with the right nutrients for peak performance.
-    - **Mental optimization** isn’t just about clarity; it’s about hacking your brain to achieve unprecedented levels of focus and creativity.
-    - **Restoration** ensures you’re not just recovering but rejuvenating at a cellular level.
-    - And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
-    
-    Embrace these pillars, and you’re not just biohacking; you’re transforming your life, he said. He then recommended several of the many businesses he’s involved with.
+  - **Movement** isn’t just about exercise; it’s about enhancing your body's efficiency and resilience.
+  - **Nourishment** goes beyond just eating well—it’s about fueling your body with the right nutrients for peak performance.
+  - **Mental optimization** isn’t just about clarity; it’s about hacking your brain to achieve unprecedented levels of focus and creativity.
+  - **Restoration** ensures you’re not just recovering but rejuvenating at a cellular level.
+  - And finally, **connection** is the often-overlooked pillar that ties it all together—cultivating meaningful relationships that amplify your well-being and drive.
+  
+  Embrace these pillars, and you’re not just biohacking; you’re transforming your life, he said. He then recommended several of the many businesses he’s involved with.
 
 2. **Andrew Huberman's Deep Dive**:
 
-**Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
+  **Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
 
-**Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
+  **Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
 
-**Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
+  **Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
 
-**Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
-    
-Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
-    
-> **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
+  **Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
+      
+  Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
+      
+  > **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
 
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
@@ -182,7 +182,6 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Robin Carhart-Harris</i> — Psychedelic Researcher (PhD)</li>
       <li><i>Zachary Knight</i> — Weight Loss Expert (PhD)</li>
     </ol>
-
     <p><b>Physician-Scientists and Professors:</b></p>
     <ol start="39">
       <li><i>David S. Vogel</i> — Data Scientist & Entrepreneur</li>
@@ -219,8 +218,8 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Stephanie Venn-Watson</i> — Health Entrepreneur (DVM, MPH)</li>
       <li><i>Whitney Tingle</i> — Health Entrepreneur</li>
 
-      <p><b>Fitness and Wellness Coaches:</b></p>
-      <ol start="20">
+    <p><b>Fitness and Wellness Coaches:</b></p>
+    <ol start="20">
       <li><i>Amanda Laine</i> — Health Entrepreneur</li>
       <li><i>Cynthia Thurlow</i> — Intermittent Fasting Expert (NP)</li>
       <li><i>Don Saladino</i> — Fitness Coach</li>
@@ -228,19 +227,23 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Jillian Michaels</i> — Health & Wellness Coach and Podcaster</li>
       <li><i>JJ Virgin</i> — Triple Certified Nutritionist (CNS)</li>
       <li><i>Phil Daru</i> — Strength and Conditioning Coach</li>
+    </ol>
 
-      <p><b>Nutritionists and Dietitians:</b></p>
-      <ol start="28">
+    <p><b>Nutritionists and Dietitians:</b></p>
+    <ol start="28">
       <li><i>Jennifer Scheinman</i> — Dietitian Nutritionist (MA)</li>
+    </ol>
 
-      <p><b>Mental Health and Psychedelic Advocates:</b></p>
-      <ol start="29">
+    <p><b>Mental Health and Psychedelic Advocates:</b></p>
+    <ol start="29">
       <li><i>Jesse Gould</i> — Psychedelic Advocate</li>
       <li><i>Paul Austin</i> — Psychedelic Educator</li>
+    </ol>
 
-      <p><b>Health Policy and Patient Advocates:</b></p>
-      <ol start="31">
+    <p><b>Health Policy and Patient Advocates:</b></p>
+    <ol start="31">
       <li><i>Jace Yawnick</i> — Cancer Patient Advocate</li>
+    </ol>
 
 <details>
   <summary><b>3. Creative and Traditional Practitioners</b></summary>
