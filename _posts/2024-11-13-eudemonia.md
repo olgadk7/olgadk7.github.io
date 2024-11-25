@@ -138,115 +138,167 @@ While it's important to approach any industry with a critical eye, I believe thi
 
 <details>
   <summary><b>1. Medical and Scientific Professionals</b></summary>
-  <div style="padding-left: 20px;">
-  <p><b>Number of Individuals:</b> 40</p>
-  <p><b>Percentage of Total:</b> Approximately 37%</p>
-  <p><b>Professionals in this category include:</b></p>
-  <ul>
-    <li><b>Physicians and Medical Doctors:</b>
-      <ul>
-        <li><i>Andrew Huberman</i> — Neuroscientist & Podcaster (PhD)</li>
-        <li><i>Austin Perlmutter</i> — Brain Health Expert (MD)</li>
-        <li><i>Caitlin Prickett</i> — Preventative Medicine Doctor (MD)</li>
-        <li><i>Charles Pereyra</i> — Physician and Regenerative Medicine Expert (MD)</li>
-        <li><i>Dariush Mozaffarian</i> — Cardiologist & Nutrition Expert (MD)</li>
-        <li><i>Darshan Shah</i> — Longevity Specialist (MD)</li>
-        <li><i>Dave Rabin</i> — Neuroscientist (MD, PhD)</li>
-        <li><i>David Perlmutter</i> — Brain Health Expert (MD)</li>
-        <li><i>Erich Anderer</i> — Neurosurgeon (MD)</li>
-        <li><i>Gabrielle Lyon</i> — Muscle Health Expert (DO)</li>
-        <li><i>Greg Kelly</i> — Author & Physician (ND)</li>
-        <li><i>Halland Chen</i> — Longevity Doctor (MD)</li>
-        <li><i>James Gordon</i> — Trauma Psychiatrist (MD)</li>
-        <li><i>James Hamblin</i> — Preventative Medicine Author (MD, MPH)</li>
-        <li><i>Jessica Shepherd</i> — OBGYN & Women's Health Expert (MD)</li>
-        <li><i>Kwadwo Kyeremanteng</i> — Holistic Healthcare Advocate (MD)</li>
-        <li><i>Mark Hyman</i> — Functional Medicine Pioneer (MD)</li>
-        <li><i>Mark Horowitz</i> — Deprescribing Expert (MD, PhD)</li>
-        <li><i>Mattias Bernow</i> — Stem Cell Entrepreneur (MD)</li>
-        <li><i>Noura Abul-Husn</i> — Physician Scientist (MD, PhD)</li>
-        <li><i>Robin Berzin</i> — Root Cause Medicine Doctor (MD)</li>
-        <li><i>Robynne Chutkan</i> — Gut Health Expert (MD)</li>
-        <li><i>Sara Gottfried</i> — Hormonal Health Expert (MD)</li>
-        <li><i>Shai Efrati</i> — Hyperbaric Medicine Pioneer & Researcher (MD)</li>
-        <li><i>Siddhartha Mukherjee</i> — Oncologist & AI Health Expert (MD)</li>
-        <li><i>Uma Naidoo</i> — Doctor & Chef (MD)</li>
-        <li><i>Vikash Modi</i> — Preventative Medicine Doctor (MD)</li>
-        <li><i>Vivek Lal</i> — Physician-Scientist (MD)</li>
-        <li><i>Zach Bush</i> — Regenerative Futurist (MD)</li>
-        <li><i>Zain Kassam</i> — Physician-Scientist (MD, MPH)</li>
-      </ul>
-    </li>
-    <li><b>PhD Researchers and Scientists:</b>
-      <ul>
-        <li><i>Carolina Reis Oliveira</i> — Skin Regeneration Expert (PhD)</li>
-        <li><i>Christian Drapeau</i> — Adult Stem Cell Researcher (PhD)</li>
-        <li><i>Jeffrey Bland</i> — Functional Medicine Founder (PhD)</li>
-        <li><i>Jennifer Garrison</i> — Women's Longevity Researcher (PhD)</li>
-        <li><i>Mahmoud Ghannoum</i> — Microbiome Scientist (PhD)</li>
-        <li><i>Michael Breus</i> — Sleep Expert (PhD)</li>
-        <li><i>Robin Carhart-Harris</i> — Psychedelic Researcher (PhD)</li>
-        <li><i>Zachary Knight</i> — Weight Loss Expert (PhD)</li>
-      </ul>
-    </li>
-  </ul>
-  </div>
+    <div style="padding-left: 20px;">
+    <p><b>Number of Individuals:</b> 40</p>
+    <p><b>Percentage of Total:</b> Approximately 37%</p>
+    
+    **Physicians and Medical Doctors:**
+    
+    1. *Andrew Huberman* — Neuroscientist & Podcaster (PhD)
+    2. *Austin Perlmutter* — Brain Health Expert (MD)
+    3. *Caitlin Prickett* — Preventative Medicine Doctor (MD)
+    4. *Charles Pereyra* — Physician and Regenerative Medicine Expert (MD)
+    5. *Dariush Mozaffarian* — Cardiologist & Nutrition Expert (MD)
+    6. *Darshan Shah* — Longevity Specialist (MD)
+    7. *Dave Rabin* — Neuroscientist (MD, PhD)
+    8. *David Perlmutter* — Brain Health Expert (MD)
+    9. *Erich Anderer* — Neurosurgeon (MD)
+    10. *Gabrielle Lyon* — Muscle Health Expert (DO)
+    11. *Greg Kelly* — Author & Physician (ND)
+    12. *Halland Chen* — Longevity Doctor (MD)
+    13. *James Gordon* — Trauma Psychiatrist (MD)
+    14. *James Hamblin* — Preventative Medicine Author (MD, MPH)
+    15. *Jessica Shepherd* — OBGYN & Women's Health Expert (MD)
+    16. *Kwadwo Kyeremanteng* — Holistic Healthcare Advocate (MD)
+    17. *Mark Hyman* — Functional Medicine Pioneer (MD)
+    18. *Mark Horowitz* — Deprescribing Expert (MD, PhD)
+    19. *Mattias Bernow* — Stem Cell Entrepreneur (MD)
+    20. *Noura Abul-Husn* — Physician Scientist (MD, PhD)
+    21. *Robin Berzin* — Root Cause Medicine Doctor (MD)
+    22. *Robynne Chutkan* — Gut Health Expert (MD)
+    23. *Sara Gottfried* — Hormonal Health Expert (MD)
+    24. *Shai Efrati* — Hyperbaric Medicine Pioneer & Researcher (MD)
+    25. *Siddhartha Mukherjee* — Oncologist & AI Health Expert (MD)
+    26. *Uma Naidoo* — Doctor & Chef (MD)
+    27. *Vikash Modi* — Preventative Medicine Doctor (MD)
+    28. *Vivek Lal* — Physician-Scientist (MD)
+    29. *Zach Bush* — Regenerative Futurist (MD)
+    30. *Zain Kassam* — Physician-Scientist (MD, MPH)
+    
+    **PhD Researchers and Scientists:**
+    
+    31. *Carolina Reis Oliveira* — Skin Regeneration Expert (PhD)
+    32. *Christian Drapeau* — Adult Stem Cell Researcher (PhD)
+    33. *Jeffrey Bland* — Functional Medicine Founder (PhD)
+    34. *Jennifer Garrison* — Women's Longevity Researcher (PhD)
+    35. *Mahmoud Ghannoum* — Microbiome Scientist (PhD)
+    36. *Michael Breus* — Sleep Expert (PhD)
+    37. *Robin Carhart-Harris* — Psychedelic Researcher (PhD)
+    38. *Zachary Knight* — Weight Loss Expert (PhD)
+    
+    **Physician-Scientists and Professors:**
+    
+    39. *David S. Vogel* — Data Scientist & Entrepreneur
+    40. *Steve Andrzejewski* — Professor and Entrepreneur
+    </div>
 </details>
 
 <details>
   <summary><b>2. Health and Wellness Professionals</b></summary>
     <div style="padding-left: 20px;">
-  <p><b>Number of Individuals:</b> 30</p>
-  <p><b>Percentage of Total:</b> Approximately 28%</p>
-  <p><b>Professionals in this category include:</b></p>
-  <ul>
-    <li><b>Health Entrepreneurs and Specialists:</b>
-      <ul>
-        <li><i>Ara Katz</i> — Life Sciences Entrepreneur</li>
-        <li><i>Bryan Johnson</i> — Longevity Expert and Entrepreneur</li>
-        <li><i>Calley Means</i> — Metabolic Health Expert & Health Policy Advocate</li>
-        <li><i>Dave Asprey</i> — Entrepreneur & Health Maverick</li>
-        <li><i>Harry Taylor</i> — Health Entrepreneur</li>
-        <li>...</li>
-      </ul>
-    </li>
-    <li><b>Fitness and Wellness Coaches:</b>
-      <ul>
-        <li><i>Don Saladino</i> — Fitness Coach</li>
-        <li><i>Jillian Michaels</i> — Health & Wellness Coach and Podcaster</li>
-        <li>...</li>
-      </ul>
-    </li>
-  </ul>
-  </div>
+    <p><b>Number of Individuals:</b> 30</p>
+    <p><b>Percentage of Total:</b> Approximately 28%</p>
+    
+    **Health Entrepreneurs and Specialists:**
+    
+    1. *Ara Katz* — Life Sciences Entrepreneur
+    2. *Bryan Johnson* — Longevity Expert and Entrepreneur
+    3. *Calley Means* — Metabolic Health Expert & Health Policy Advocate
+    4. *Dave Asprey* — Entrepreneur & Health Maverick
+    5. *Harry Taylor* — Health Entrepreneur
+    6. *Ian Davison* — Life-Science Entrepreneur
+    7. *Jack Dell'Accio* — Sleep Coach and Entrepreneur
+    8. *Jonathan Swerdlin* — Health Entrepreneur
+    9. *Kat Cole* — Health Entrepreneur
+    10. *Kayla Barnes-Lentz* — Longevity Expert
+    11. *Max Lugavere* — Health Science Podcaster
+    12. *Pranitha Patil* — Health Tech Entrepreneur
+    13. *Radek Sali* — Health and Wellness Entrepreneur
+    14. *Raja Dhir* — Life Sciences Entrepreneur
+    15. *Rob Besner* — Health Entrepreneur
+    16. *Roland Peralta* — Holistic Wellness Entrepreneur
+    17. *Samantha Cutler* — Lifestyle Medicine Expert & Entrepreneur
+    18. *Stephanie Venn-Watson* — Health Entrepreneur (DVM, MPH)
+    19. *Whitney Tingle* — Health Entrepreneur
+
+    **Fitness and Wellness Coaches:**
+    20. *Amanda Laine* — Health Entrepreneur
+    21. *Cynthia Thurlow* — Intermittent Fasting Expert (NP)
+    23. *Don Saladino* — Fitness Coach
+    24. *Jacy Cunningham* — Fitness Coach
+    25. *Jillian Michaels* — Health & Wellness Coach and Podcaster
+    26. *JJ Virgin* — Triple Certified Nutritionist (CNS)
+    27. *Phil Daru* — Strength and Conditioning Coach
+    
+    **Nutritionists and Dietitians:**
+    28. *Jennifer Scheinman* — Dietitian Nutritionist (MA)
+
+    **Mental Health and Psychedelic Advocates:**
+    29. *Jesse Gould* — Psychedelic Advocate
+    30. *Paul Austin* — Psychedelic Educator
+    
+    **Health Policy and Patient Advocates:**
+    31. *Jace Yawnick* — Cancer Patient Advocate
+    </div>
 </details>
 
 <details>
   <summary><b>3. Creative and Traditional Practitioners</b></summary>
     <div style="padding-left: 20px;">
-  <p><b>Number of Individuals:</b> 37</p>
-  <p><b>Percentage of Total:</b> Approximately 35%</p>
-  <p><b>Professionals in this category include:</b></p>
-  <ul>
-    <li><b>Artists and Musicians:</b>
-      <ul>
-        <li><i>Aaron Alcouloumre</i> — Multi-Instrumentalist</li>
-        <li><i>Caleb Spaulding</i> — Multi-Disciplinary Musician</li>
-        <li><i>East Forest</i> — Multidisciplinary Artist</li>
-        <li>...</li>
-      </ul>
-    </li>
-    <li><b>Yoga and Mindfulness Instructors:</b>
-      <ul>
-        <li><i>Adriene Mishler</i> — Yoga Teacher</li>
-        <li><i>Jonah Kest</i> — Yoga Teacher</li>
-        <li>...</li>
-      </ul>
-    </li>
-  </ul>
-  </div>
+    <p><b>Number of Individuals:</b> 37</p>
+    <p><b>Percentage of Total:</b> Approximately 35%</p>
+    **Artists and Musicians:**
+      
+    1. *Aaron Alcouloumre* — Multi-Instrumentalist
+    2. *Caleb Spaulding* — Multi-Disciplinary Musician
+    3. *East Forest* — Multidisciplinary Artist
+    4. *Gabriele Galimberti* — Photographer & Storyteller
+    5. *Jesse Lauter* — Filmmaker & Music Producer
+    6. *Jordan Kronick* — Filmmaker
+    7. *Lexie Lowell* — Harpist
+    8. *Murray Hidary* — Composer & Pianist
+    9. *Natalie Kuhn* — Health Advocate & Artist
+    10. *Nicholas Charlier* — Super-Producer & Artist
+    11. *Reggie Watts* — Comedian & Musician
+      
+    **Yoga and Mindfulness Instructors:**
+    
+    12. *Adriene Mishler* — Yoga Teacher
+    13. *Alan Finger* — Yoga Teacher
+    14. *Chris Bonilla* — Embodiment Practitioner
+    15. *Dan Harris* — Meditation Evangelist
+    16. *Jeff Warren* — Meditation Teacher
+    17. *Jonah Kest* — Yoga Teacher
+    18. *Kevin Courtney* — Mindfulness Expert
+    19. *Kristin McGee* — Yoga & Pilates Teacher
+    20. *Marisa Radha Weppner* — Yoga & Breathwork Teacher
+    21. *Pavel Stuchlik* — Breathwork Instructor
+    22. *Pedram Shojai* — Qi Gong Master
+    23. *Sarah Platt-Finger* — Yoga & Meditation Teacher
+    24. *Schuyler Grant* — Yoga & Breathwork Teacher
+    25. *Sebene Selassie* — Mindfulness Teacher
+    
+    **Wellness and Relationship Experts:**
+    
+    26. *Amanda Casgar* — Community & Culture Expert
+    27. *Clare Johnson* — Psychedelic Therapy Educator (LMFT)
+    28. *Claude Silver* — Relationships & Potentiality Guide
+    29. *Jillian Turecki* — Relationship Expert & Author
+    30. *Juliana Hauser* — Sexpert (PhD)
+    
+    **Movement and Embodiment Practitioners:**
+    
+    31. *Kiari Kirk* — Dance Educator & Choreographer
+    32. *Taryn Toomey* — Founder & Movement Artist
+    
+    **Other Creative Professionals:**
+    
+    33. *Dulma Clark* — Footwear Designer & Entrepreneur
+    34. *Jeff Krasno* — Wellness Leader
+    35. *Daniel Carcillo* — Athlete & Mental Health Advocate
+    36. *Selena Tatum Isles* — Producer & Facilitator (MSc, PhD)
+    </div>
 </details>
-
 
 
 Based on general observations, I estimated that approximately **5–10%** of the individuals may promote non-traditional or controversial health practices that are not fully supported by mainstream scientific research. While it's important to approach such practices with a healthy dose of skepticism, labeling them all as "snake oil" without substantial evidence of fraudulent intent oversimplifies a nuanced issue
