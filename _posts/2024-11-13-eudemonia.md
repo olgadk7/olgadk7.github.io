@@ -7,6 +7,9 @@ category: project
 author: Olga Kahn
 permalink: projects/eudemonia
 comments: true
+gallery:
+  - url: /assets/images/posts/eudemonia/huberman.png
+    title: Conference Day 1
 ---
 
 # My First Health Conference: Notes on a Life Well Lived at Eudemonia
