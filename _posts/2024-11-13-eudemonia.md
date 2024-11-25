@@ -39,32 +39,17 @@ The days were packed with thought-provoking sessions led by some of the brightes
 
 2. **Andrew Huberman's Deep Dive**:
 
+    **Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
 
+    **Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
 
-1. **Dave Asprey's Talk**: A great introduction to key pillars for well-being and performance.
-    1. **Movement** isn’t just about exercise—it’s a vital part of life.
-    2. **Nourishment** goes beyond just food to fuel your body for peak performance.
-    3. **Mental optimization** isn’t just about reducing stress—it unlocks unprecedented levels of focus and creativity.
-    4. **Restoration** ensures you’re recharged for growth and performance.
-    5. And finally, **Connection** is the core of meaningful relationships that amplify your well-being.
+    **Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
 
-   Embrace these pillars, and you’re not just surviving—you’re thriving. Dave recommended several of the many business and lifestyle improvements to build around these pillars.
-
-2. **Andrew Huberman's Deep Dive**: A comprehensive look into neuroscience and productivity.
-
-
-
-**Circadian Biology**: The body operates on natural rhythms that influence sleep, energy, and overall well-being. Supporting these rhythms—such as aligning with natural light cycles and ensuring adequate sleep—is non-negotiable for maintaining mental and physical health.
-
-**Motivation**: Humans have the unique ability to consciously decide to be motivated, driven by internal or external stimuli. Generative motivation—rooted in purpose and love—creates more dopamine, enhancing drive and focus. Dopamine is essential for motivation and can be accessed or replenished through deliberate actions, including setting challenges and achieving incremental progress.
-
-**Movement**: Regular cardio improves mitochondrial function, supporting energy production, brain health, and learning capacity. A combination of resistance training (e.g., weightlifting) and cardiovascular workouts maximizes benefits for brain health, dopamine regulation, and overall well-being. Exercising during periods of low motivation can generate energy and improve focus, particularly if done once or twice a month during your least motivated time of day.
-
-**Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
-    
-Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
-    
-> **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
+    **Stress, Resilience, and Willpower**: The anterior mid-cingulate cortex is critical for developing willpower and tenacity. It becomes more active when overcoming challenges, whether physical or mental. Activities that are difficult or unpleasant ("things that suck to you") strengthen this brain region and improve resilience. Always be taking on new skills. Perception is key: shifting your mindset around stress can transform it into a source of growth rather than harm. Viewing stress as a challenge rather than a threat can lead to greater resilience.
+        
+    Set standards consequentially (increase the stakes as you go), just high enough—not too much, not do or die. Don't overwhelm yourself. Set the stakes right.
+        
+    > **Shoutout to my mom who knew a lot of this all along and instilled it in her children**.
 
 3. **Siddhartha Mukherjee on The Future of Personalized Medicine**:
 
