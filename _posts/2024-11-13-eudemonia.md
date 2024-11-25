@@ -251,7 +251,6 @@ While it's important to approach any industry with a critical eye, I believe thi
   <div style="padding-left: 20px;">
     <p><b>Number of Individuals:</b> 37</p>
     <p><b>Percentage of Total:</b> Approximately 35%</p>
-    
     <p><b>Artists and Musicians:</b></p>
     <ol>
       <li><i>Aaron Alcouloumre</i> — Multi-Instrumentalist</li>
@@ -266,7 +265,6 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Nicholas Charlier</i> — Super-Producer & Artist</li>
       <li><i>Reggie Watts</i> — Comedian & Musician</li>
     </ol>
-    
     <p><b>Yoga and Mindfulness Instructors:</b></p>
     <ol start="12">
       <li><i>Adriene Mishler</i> — Yoga Teacher</li>
@@ -284,7 +282,6 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Schuyler Grant</i> — Yoga & Breathwork Teacher</li>
       <li><i>Sebene Selassie</i> — Mindfulness Teacher</li>
     </ol>
-    
     <p><b>Wellness and Relationship Experts:</b></p>
     <ol start="26">
       <li><i>Amanda Casgar</i> — Community & Culture Expert</li>
@@ -293,13 +290,11 @@ While it's important to approach any industry with a critical eye, I believe thi
       <li><i>Jillian Turecki</i> — Relationship Expert & Author</li>
       <li><i>Juliana Hauser</i> — Sexpert (PhD)</li>
     </ol>
-    
     <p><b>Movement and Embodiment Practitioners:</b></p>
     <ol start="31">
       <li><i>Kiari Kirk</i> — Dance Educator & Choreographer</li>
       <li><i>Taryn Toomey</i> — Founder & Movement Artist</li>
     </ol>
-    
     <p><b>Other Creative Professionals:</b></p>
     <ol start="33">
       <li><i>Dulma Clark</i> — Footwear Designer & Entrepreneur</li>
