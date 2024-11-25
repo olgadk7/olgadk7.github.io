@@ -6,6 +6,7 @@ projects: true
 category: project
 summary:
 permalink: projects/risksleuth
+comments: true
 ---
 
 # **Building a Risk Analysis Tool with Public Data: Behind the Scenes**

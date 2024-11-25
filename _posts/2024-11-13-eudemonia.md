@@ -6,6 +6,7 @@ projects: true
 category: project
 author: Olga Kahn
 permalink: projects/eudemonia
+comments: true
 ---
 
 # My First Health Conference: Notes on a Life Well Lived at Eudemonia
@@ -106,13 +107,13 @@ The days were packed with thought-provoking sessions led by some of the brightes
     - **NAD+**: Supports cellular energy, anti-aging, mitochondrial health.
     - **Mind**: Provides cognitive boost, focus, memory, long-term brain health.
 - **Mushroom Coffees** (coffee enhanced by adaptogens and superfoods):
-    - **Everyday Dose**
-    - **Kaizen**
+    - **Everyday Dose**: A balanced mushroom coffee designed for focus, calm, immune support, and joint health with added collagen and L-theanine.
+    - **Kaizen**: A comprehensive mushroom coffee blend targeting cognitive function, skin health, immunity, and trace mineral support.
 - **Creatine**:
     - Tried **Sheatine**, a creatine designed by JJ Virgin with women’s needs in mind, supporting muscle function, improving recovery, and maintaining energy levels.
 - **Beet Supplements from humanN**: Supports healthy blood pressure and circulation via nitrates in beetroot powder.
 - **The Liver Clinic**: Supplement elixir for liver function.
-- **Ohho**: Plants with benefits. Got a zesty orange THC chocolate for myself and a CBD treat for Rocky.
+- **Ohho**: Plants with benefits. Got a zesty orange THC chocolate for myself and a CBD treat for Rocky, my black lab.
 - **Big Bold Health**: From Dr. Jeffrey Bland’s brand, the father of Functional Medicine. Got Himalayan Tartary buckwheat flour and sprouts.
 
 **Considering Trying**:
@@ -302,7 +303,7 @@ While it's important to approach any industry with a critical eye, I believe thi
 </details>
 
 
-Based on general observations, I estimated that approximately **5–10%** of the individuals may promote non-traditional or controversial health practices that are not fully supported by mainstream scientific research. While it's important to approach such practices with a healthy dose of skepticism, labeling them all as "snake oil" without substantial evidence of fraudulent intent oversimplifies a nuanced issue
+Based on general observations, I estimated that approximately **5–10%** of the individuals may promote non-traditional or controversial health practices that are not fully supported by mainstream scientific research. While it's important to approach such practices with a healthy dose of skepticism, labeling them all as "snake oil" without substantial evidence of fraudulent intent oversimplifies a nuanced issue.
 
 **Disclaimer**: This is not a definitive assessment of any individual's professional conduct or integrity.
 
@@ -320,6 +321,6 @@ The wellness industry is vast and diverse, offering practices and philosophies r
 
 I learned so much and have so many more questions. I'm inspired to explore my health and myself more, thanks to the amazing environment created by Eudemonia. Here's to many more experiences like this!
 
-*P.S. I'm still waiting for the recordings of some sessions I had to miss.*
+*P.S. I'm still waiting for the recordings of some sessions I had to miss, which should enrich myconference notes further.*
 
 #biology, #technology, #entrepreneurship
