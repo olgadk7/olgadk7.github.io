@@ -21,7 +21,6 @@ galleries:
       title: "Innovative Approaches for Mental Clarity with Dr. David Perlmutter (Brain Health Expert, MD), Dr. Shai Efrati (Hyperbaric Medicine Pioneer & Researcher, MD) and Dr. Jeffrey Bland"
     - url: /assets/images/posts/eudemonia/rabin.png
       title: "The Future of Mental Wellbeing: AI, Psychedelics & Psychotherapy with Dr. Dave Rabin, MD, PhD"
-
 ---
 
 # My First Health Conference: Notes on a Life Well Lived at Eudemonia
