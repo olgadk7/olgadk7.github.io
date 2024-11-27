@@ -10,17 +10,17 @@ comments: true
 galleries:
   sessions:
     - url: /assets/images/posts/eudemonia/huberman.png
-      title: Morning Yoga
+      title: Life Well Lived: On Motivation, Resilience and Happiness with Andrew Huberman (Neuroscientist & Podcaster, PhD), Gabrielle Lyon (Muscle Health Expert, DO) and Reggie Watts (Comedian & Musician)
     - url: /assets/images/posts/eudemonia/sprey.png
-      title: Group Meditation
+      title: The Future of Biohacking: How To Optimize Your Life with Dave Asprey (Entrepreneur)
     - url: /assets/images/posts/eudemonia/hauser.png
-      title: Movement Class
+      title: Holistic Sexuality: An Evolution from Taboo to Transformed with Dr. Juliana Hauser (Sexpert (PhD)
     - url: /assets/images/posts/eudemonia/mukherjee.png
-      title: Morning Yoga
+      title: AI & The Future Of Personalized Medicine with Siddhartha Mukherjee (Oncologist & AI Health Expert, MD) and James Hamblin (Preventative Medicine Author, MD, MPH)
     - url: /assets/images/posts/eudemonia/perlmutter.png
-      title: Group Meditation
+      title: Innovative Approaches for Mental Clarity with Dr. David Perlmutter (Brain Health Expert, MD), Dr. Shai Efrati (Hyperbaric Medicine Pioneer & Researcher, MD) and Dr. Jeffrey Bland.
     - url: /assets/images/posts/eudemonia/rabin.png
-      title: Movement Class
+      title: The Future of Mental Wellbeing: AI, Psychedelics & Psychotherapy with Dr. Dave Rabin, MD, PhD
 ---
 
 # My First Health Conference: Notes on a Life Well Lived at Eudemonia
