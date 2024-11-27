@@ -8,6 +8,9 @@ author: Olga Kahn
 permalink: projects/eudemonia
 comments: true
 galleries:
+  movement:
+    - url: /assets/images/posts/eudemonia/dance.png
+      title: "The Dancer's Blueprint: Fundamentals of Dance with Kiari Kirk"
   sessions:
     - url: /assets/images/posts/eudemonia/huberman.png
       title: "Life Well Lived: On Motivation, Resilience and Happiness with Andrew Huberman (Neuroscientist & Podcaster, PhD)"
@@ -36,6 +39,8 @@ In this article, I'll share my experiences from the conference, including the in
 ### **A Typical Day at the Conference**
 
 ### Morning $$movement$$:
+
+{% include image_grid.html gallery=page.galleries.movement %}
 
 Each morning began with movement-based classes like dance, paddling, yoga, and qigong. One standout for me was **The Class**: a primal, repetitive movement session where each sequence lasted the length of a song. Halfway through, I hit a mental flow state, free of chatter and self-consciousness—it felt like a reset for my body and mind. The carefully curated music elevated the experience, making it equal parts physical workout and meditative journey.
 
