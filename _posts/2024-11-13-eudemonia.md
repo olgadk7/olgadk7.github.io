@@ -7,9 +7,20 @@ category: project
 author: Olga Kahn
 permalink: projects/eudemonia
 comments: true
-gallery:
-  - url: /assets/images/posts/eudemonia/huberman.png
-    title: Conference Day 1
+galleries:
+  sessions:
+    - url: /assets/images/posts/eudemonia/huberman.png
+      title: Morning Yoga
+    - url: /assets/images/posts/eudemonia/sprey.png
+      title: Group Meditation
+    - url: /assets/images/posts/eudemonia/hauser.png
+      title: Movement Class
+    - url: /assets/images/posts/eudemonia/mukherjee.png
+      title: Morning Yoga
+    - url: /assets/images/posts/eudemonia/perlmutter.png
+      title: Group Meditation
+    - url: /assets/images/posts/eudemonia/rabin.png
+      title: Movement Class
 ---
 
 # My First Health Conference: Notes on a Life Well Lived at Eudemonia
@@ -29,6 +40,8 @@ In this article, I'll share my experiences from the conference, including the in
 Each morning began with movement-based classes like dance, paddling, yoga, and qigong. One standout for me was **The Class**: a primal, repetitive movement session where each sequence lasted the length of a song. Halfway through, I hit a mental flow state, free of chatter and self-consciousness—it felt like a reset for my body and mind. The carefully curated music elevated the experience, making it equal parts physical workout and meditative journey.
 
 ### Daytime $$learning$$:
+
+{% include image_grid.html gallery=page.galleries.sessions %}
 
 The days were packed with thought-provoking sessions led by some of the brightest minds in wellness. Choosing which talks to attend was tough, but here are some that I was able to catch:
 
@@ -84,6 +97,7 @@ The days were packed with thought-provoking sessions led by some of the brightes
 4. **Dr. Perlmutter and Dr. Shai Efrati on Cognitive Function**: They discussed how hyperbaric oxygen treatment can treat neurodegenerative diseases like Alzheimer's and Parkinson's, which is significant. When asked what would be the number one thing to not lose cognitive function, Dr. Efrati said: **“Make yourself needable (be needed by others), on a daily basis. All the rest will work out.”** In other words, having a purpose and being essential to others can positively influence one's biology, motivating the body to preserve itself. Dr. Efrati notes that retirement, often associated with a loss of purpose, is a significant risk factor for age-related diseases. By remaining active and engaged, individuals can maintain their health and vitality.
 
 5. **AI, Psychedelics & Psychotherapy With Dave Rabin**
+
   - **Psychedelics as Neurocatalysts**: Psychedelics and certain therapeutic approaches act as “neurocatalysts,” enhancing brain function, neuroplasticity, perspective, and self-awareness, which is essential for long-term mental health improvement.
   - **Modulating the Default Mode Network (DMN)**: The DMN, associated with the ego and habitual thought patterns, often restricts new perspectives. Psychedelics can modulate DMN activity, helping break entrenched patterns and facilitating new ways of thinking, thus enabling personal growth.
   - **Biological Changes and Therapy**: Research into DNA methylation changes associated with MDMA therapy for PTSD suggests biological changes that correspond to therapeutic improvement, a step toward understanding how psychedelics affect gene expression and mental health outcomes.

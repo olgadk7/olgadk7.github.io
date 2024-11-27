@@ -1,0 +1,52 @@
+<div class="image-grid">
+    <div class="grid-wrapper">
+      {% for image in include.gallery %}
+      <div class="grid-item">
+        <a href="{{ image.url }}" class="image-link">
+          <img src="{{ image.url }}" alt="{{ image.title }}" loading="lazy">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <style>
+  .image-grid {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+  
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .grid-item {
+    position: relative;
+    padding-bottom: 75%; /* 4:3 aspect ratio */
+    overflow: hidden;
+  }
+  
+  .grid-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .grid-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    .grid-wrapper {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  </style>
