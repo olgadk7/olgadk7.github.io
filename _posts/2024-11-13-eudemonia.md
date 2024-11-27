@@ -122,9 +122,9 @@ The days were packed with thought-provoking sessions led by some of the brightes
 
 5. **AI, Psychedelics & Psychotherapy With Dave Rabin**
 
-  - **Psychedelics as Neurocatalysts**: Psychedelics and certain therapeutic approaches act as “neurocatalysts,” enhancing brain function, neuroplasticity, perspective, and self-awareness, which is essential for long-term mental health improvement.
-  - **Modulating the Default Mode Network (DMN)**: The DMN, associated with the ego and habitual thought patterns, often restricts new perspectives. Psychedelics can modulate DMN activity, helping break entrenched patterns and facilitating new ways of thinking, thus enabling personal growth.
-  - **Biological Changes and Therapy**: Research into DNA methylation changes associated with MDMA therapy for PTSD suggests biological changes that correspond to therapeutic improvement, a step toward understanding how psychedelics affect gene expression and mental health outcomes.
+    - **Psychedelics as Neurocatalysts**: Psychedelics and certain therapeutic approaches act as “neurocatalysts,” enhancing brain function, neuroplasticity, perspective, and self-awareness, which is essential for long-term mental health improvement.
+    - **Modulating the Default Mode Network (DMN)**: The DMN, associated with the ego and habitual thought patterns, often restricts new perspectives. Psychedelics can modulate DMN activity, helping break entrenched patterns and facilitating new ways of thinking, thus enabling personal growth.
+    - **Biological Changes and Therapy**: Research into DNA methylation changes associated with MDMA therapy for PTSD suggests biological changes that correspond to therapeutic improvement, a step toward understanding how psychedelics affect gene expression and mental health outcomes.
 
 6. **Juliana Hauser's Talk: Holistic Sexuality—Empowerment Through Agency and Identity**: At the core of Hauser's approach is the idea of **agency**—individuals are encouraged to reclaim control over their sexuality, feel empowered in their desires, and understand sexuality as part of a broader, evolving identity that intersects with personal values, cultural norms, and self-expression.
 
