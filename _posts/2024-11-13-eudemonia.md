@@ -45,7 +45,7 @@ galleries:
 
 ---
 
-# My First Health Conference: Notes on a Life Well Lived at Eudemonia
+# Notes on a Life Well Lived at Eudemonia
 
 I recently attended a conference focused on aging, wellbeing, and longevity - or more broadly, "a life well lived." Hosted by [Eudemonia](https://eudemonia.net/), the event brought together scientists, wellness founders, and fitness coaches to share their expertise and practices⁠, creating a multidisciplinary holistic environment. The conference offered a unique blend of experiences:
 
