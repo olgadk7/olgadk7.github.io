@@ -3,8 +3,6 @@ layout: default
 ---
 {% include header.html %}
 
-<!--h1 class="title">{{ page.title }}</h1-->
-
 <span class="date">
     <time datetime="{{ page.date | date:"%d-%m-%Y" }}">{{ page.date | date: "%A. %B %d, %Y" }}</time>
     {% if site.read-time %} - {% include read-time.html %}{% endif %}
@@ -20,12 +18,14 @@ layout: default
 
 {{content}}
 
+{% include social-share.html %}
+
 {% if site.related %}
     {% include related.html %}
 {% endif %}
 
 {% include author.html %}
 
-{% include disqus.html %}
+{% include comments.html %}
 
 {% include footer.html %}
