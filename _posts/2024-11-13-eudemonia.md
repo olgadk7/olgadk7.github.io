@@ -11,6 +11,10 @@ galleries:
   movement:
     - url: /assets/images/posts/eudemonia/dance.png
       title: "The Dancer's Blueprint: Fundamentals of Dance with Kiari Kirk"
+    - url: /assets/images/posts/eudemonia/paddle.png
+      title: "Paddle Boarding on the Intercoastal: Paddle Boarding on the Intercoastal"
+    - url: /assets/images/posts/eudemonia/kama.png
+      title: "Kama Flight"
   sessions:
     - url: /assets/images/posts/eudemonia/huberman.png
       title: "Life Well Lived: On Motivation, Resilience and Happiness with Andrew Huberman (Neuroscientist & Podcaster, PhD)"
@@ -24,6 +28,21 @@ galleries:
       title: "Innovative Approaches for Mental Clarity with Dr. David Perlmutter (Brain Health Expert, MD), Dr. Shai Efrati (Hyperbaric Medicine Pioneer & Researcher, MD) and Dr. Jeffrey Bland"
     - url: /assets/images/posts/eudemonia/rabin.png
       title: "The Future of Mental Wellbeing: AI, Psychedelics & Psychotherapy with Dr. Dave Rabin, MD, PhD"
+    treatments:
+      - url: /assets/images/posts/eudemonia/hyperbaric.png
+      title: "Me in a hyperbaric oxygen chamber"
+      - url: /assets/images/posts/eudemonia/biohack.png
+      title: "The Biohack Lab"
+      - url: /assets/images/posts/eudemonia/NeuroVIZR.png
+      title: "NeuroVIZR"
+    socializing:
+      - url: /assets/images/posts/eudemonia/heloween.png
+      title: "Opening night Helloween party"
+      - url: /assets/images/posts/eudemonia/outfit.png
+      title: "Hellenic Helloween outfit check"
+      - url: /assets/images/posts/eudemonia/mindtravel.png
+      title: "Emotional dance at MindTravel Piano Concert with Murray Hidary"
+
 ---
 
 # My First Health Conference: Notes on a Life Well Lived at Eudemonia
@@ -115,6 +134,8 @@ The days were packed with thought-provoking sessions led by some of the brightes
 
 ### In-between $$treatments$$:
 
+{% include image_grid.html gallery=page.galleries.treatments %}
+
 - **Vitamin Shots & IV Drips at Pur-Form**: I got a glutathione shot, which is considered a master antioxidant used to enhance health, combat disease, and slow down aging according to Dr. Nayan Patel and others.
 - **Hyperbaric Oxygen Treatments**: There were several options, but I chose the Biohack Lab. You breathe pure oxygen in a pressurized environment. This therapy increases the amount of oxygen your blood can carry, promoting healing and fighting infections by enhancing the body's natural healing processes. The latest research suggests it stimulates brain repair and enhances cognitive performance, improving neuroplasticity, memory, attention, and treating neurological conditions.
 - **PEMF (Pulsed Electromagnetic Field) Mat**: A device that emits low-frequency electromagnetic waves to stimulate cellular activity, improve circulation, and promote overall well-being.
@@ -144,6 +165,8 @@ The days were packed with thought-provoking sessions led by some of the brightes
 - **Perfect Amino Electrolytes**: A specialized electrolyte supplement designed for hydration and recovery, combining a unique blend of electrolytes, amino acids, and trace minerals. Unlike standard electrolyte drinks that primarily replenish sodium and potassium, this product integrates essential amino acids to support muscle repair and endurance, setting it apart in the hydration market. Its innovation lies in targeting both hydration and performance recovery in one formula, appealing particularly to active individuals and athletes. However, compared to simpler, lower-cost electrolyte solutions like Liquid IV, the inclusion of amino acids may be unnecessary for those with adequate dietary protein intake, making it a premium choice that’s not universally essential.
 
 ### Evening $$socialising$$:
+
+{% include image_grid.html gallery=page.galleries.movement %}
 
 - **First Night**: An ancient Greece-themed Halloween party.
 - **Second Night**: Murray Hidary piano concert and meditation.
