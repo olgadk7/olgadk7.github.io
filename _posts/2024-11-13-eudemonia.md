@@ -1,5 +1,5 @@
 ---
-title: "My First Health Conference: Notes on a Life Well Lived at Eudemonia"
+title: "Notes on a Life Well Lived at Eudemonia"
 layout: post
 blog: true
 # posts: true
