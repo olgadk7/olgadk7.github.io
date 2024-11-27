@@ -11,7 +11,7 @@ galleries:
   sessions:
     - url: /assets/images/posts/eudemonia/huberman.png
       title: "Life Well Lived: On Motivation, Resilience and Happiness with Andrew Huberman (Neuroscientist & Podcaster, PhD)"
-    - url: /assets/images/posts/eudemonia/sprey.png
+    - url: /assets/images/posts/eudemonia/asprey.png
       title: "The Future of Biohacking: How To Optimize Your Life with Dave Asprey (Entrepreneur)"
     - url: /assets/images/posts/eudemonia/hauser.png
       title: "Holistic Sexuality: An Evolution from Taboo to Transformed with Dr. Juliana Hauser (Sexpert (PhD)"
