@@ -2,10 +2,10 @@
 title: "My First Health Conference: Notes on a Life Well Lived at Eudemonia"
 layout: post
 blog: true
-projects: true
-category: project
+# posts: true
+category: blog
 author: Olga Kahn
-permalink: projects/eudemonia
+permalink: blog/eudemonia
 comments: true
 galleries:
   movement:
