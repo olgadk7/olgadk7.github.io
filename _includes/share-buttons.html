@@ -41,13 +41,9 @@
 
 <style>
 .social-share {
-    margin: 1em 0;
+    margin: 2em 0;
     text-align: center;
     border: none;
-}
-
-.social-share h4 {
-    margin-bottom: 0.5em;  /* Reduced space below heading */
 }
 
 .share-title {
@@ -62,12 +58,6 @@
     gap: 1em;
     margin-top: 0.5em;
     border: none;
-
-}
-.social-share + hr,
-.social-share::before,
-.social-share::after {
-    display: none;
 }
 
 .share-button {
@@ -89,12 +79,8 @@
     width: 24px;
     height: 24px;
 }
-.post-content + *,
-.social-share + * {
-    border-top: none !important;
-}
-</style>
 
+/* Social media colors */
 .instagram {
     background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
 }
@@ -106,7 +92,18 @@
 .linkedin {
     background: #0077B5;
 }
+
 .facebook {
     background: #3b5998;
+}
+
+/* Remove dividers */
+.social-share + hr,
+.social-share::before,
+.social-share::after,
+.post-content + *,
+.social-share + * {
+    border-top: none !important;
+    display: none;
 }
 </style>
