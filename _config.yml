@@ -21,7 +21,7 @@ url: http://olgadk7.github.io
 # your url: http://USERNAME.github.io
 # gems: [jekyll-paginate]
 # paginate_path: "blog/page:num/"
-permalink: /:title/
+permalink: /:categories/:title/
 
 markdown: kramdown
 highlighter: rouge

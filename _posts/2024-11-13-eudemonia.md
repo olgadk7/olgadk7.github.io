@@ -5,7 +5,7 @@ blog: true
 # posts: true
 category: blog
 author: Olga Kahn
-permalink: blog/eudemonia
+permalink: /blog/eudemonia
 comments: true
 galleries:
   movement:
