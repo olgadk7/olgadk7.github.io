@@ -18,16 +18,26 @@
 </div>
 
 <style>
-    .comments {
-        margin-top: 4em;
-        padding-top: 2em;
-        border-top: 1px solid #eee;
-    }
-    
-    .commentbox {
-        max-width: 100%;
-        margin: 0 auto;
-    }
+.comments {
+    margin-top: 2em;
+    padding-top: 2em;
+    border-top: none !important;
+}
+
+.commentbox {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.comments::before,
+.comments::after {
+    display: none;  /* Remove any pseudo-element dividers */
+}
+
+/* Remove dividers between sections */
+.post + .comments,
+.social-share + .comments {
+    border: none !important;
+}
 </style>
 
 
