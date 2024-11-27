@@ -166,7 +166,7 @@ The days were packed with thought-provoking sessions led by some of the brightes
 
 ### Evening $$socialising$$:
 
-{% include image_grid.html gallery=page.galleries.movement %}
+{% include image_grid.html gallery=page.galleries.socializing %}
 
 - **First Night**: An ancient Greece-themed Halloween party.
 - **Second Night**: Murray Hidary piano concert and meditation.
@@ -366,10 +366,6 @@ The wellness industry is vast and diverse, offering practices and philosophies r
 
 I learned so much and have so many more questions. I'm inspired to explore my health and myself more, thanks to the amazing environment created by Eudemonia. Here's to many more experiences like this!
 
-*P.S. I'm still waiting for the recordings of some sessions I had to miss, which should enrich myconference notes further.*
-
-## Photo Gallery
-
-{% include gallery.html gallery=page.gallery %}
+*P.S. We're still waiting for the recordings of some sessions I had to miss, which should enrich my conference notes further.*
 
 #biology, #technology, #entrepreneurship
