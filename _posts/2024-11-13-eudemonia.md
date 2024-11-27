@@ -28,19 +28,19 @@ galleries:
       title: "Innovative Approaches for Mental Clarity with Dr. David Perlmutter (Brain Health Expert, MD), Dr. Shai Efrati (Hyperbaric Medicine Pioneer & Researcher, MD) and Dr. Jeffrey Bland"
     - url: /assets/images/posts/eudemonia/rabin.png
       title: "The Future of Mental Wellbeing: AI, Psychedelics & Psychotherapy with Dr. Dave Rabin, MD, PhD"
-    treatments:
-      - url: /assets/images/posts/eudemonia/hyperbaric.png
+  treatments:
+    - url: /assets/images/posts/eudemonia/hyperbaric.png
       title: "Me in a hyperbaric oxygen chamber"
-      - url: /assets/images/posts/eudemonia/biohack.png
+    - url: /assets/images/posts/eudemonia/biohack.png
       title: "The Biohack Lab"
-      - url: /assets/images/posts/eudemonia/NeuroVIZR.png
+    - url: /assets/images/posts/eudemonia/NeuroVIZR.png
       title: "NeuroVIZR"
-    socializing:
-      - url: /assets/images/posts/eudemonia/heloween.png
+  socializing:
+    - url: /assets/images/posts/eudemonia/heloween.png
       title: "Opening night Helloween party"
-      - url: /assets/images/posts/eudemonia/outfit.png
+    - url: /assets/images/posts/eudemonia/outfit.png
       title: "Hellenic Helloween outfit check"
-      - url: /assets/images/posts/eudemonia/mindtravel.png
+    - url: /assets/images/posts/eudemonia/mindtravel.png
       title: "Emotional dance at MindTravel Piano Concert with Murray Hidary"
 
 ---
