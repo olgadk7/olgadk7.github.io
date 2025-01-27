@@ -2,7 +2,7 @@
 title: "Querying Compound Finance metrics with Dune Analytics (PostgreSQL)"
 layout: post
 author: Olga Kahn
-projects: true
+blog: true
 category: project
 summary:
 permalink: projects/compound
