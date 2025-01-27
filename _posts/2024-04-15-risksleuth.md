@@ -1,6 +1,7 @@
 ---
 title: "Building a Risk Analysis Tool with Public Data: Behind the Scenes"
 layout: post
+blog: true
 author: Olga Kahn
 projects: true
 category: project
