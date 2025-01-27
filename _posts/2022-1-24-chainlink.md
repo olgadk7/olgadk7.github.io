@@ -2,7 +2,7 @@
 title: "Automating TVL reporting with Python and PowerBI, and hosting it on Heroku for a Jr Data Analyst assignment"
 layout: post
 author: Olga Kahn
-projects: true
+blog: true
 category: project
 summary:
 permalink: projects/chainlink
