@@ -2,7 +2,7 @@
 title: "Project: Using NYC OpenData to Explore Housing Safety and Rent Stabilization"
 layout: post
 author: Olga Krieger
-projects: true
+blog: true
 category: project
 summary:
 permalink: projects/NYCOpenData
