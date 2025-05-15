@@ -102,4 +102,4 @@ Combining your data can reveal powerful **cross-domain insights**, such as:
 
 > If your health data could answer one question, what would you ask?
 
-Answer here → \[Typeform link]. I’ll share aggregated results and prioritize new features based on your votes.
+Answer here → [Typeform link](https://form.typeform.com/to/uhbjTe6t). The most common questions will shape where I take this next.
