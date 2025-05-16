@@ -10,7 +10,10 @@ comments: true
 
 # Let Your Health Data Speak with Your Own Five‑Minute Custom GPT
 
-![png](/assets/images/posts/HealthBench.png)
+<figure class="blog-figure">
+    <img src="/assets/images/posts/HealthBench.png" alt="HealthBench model performance benchmark">
+    <figcaption>Figure: OpenAI's HealthBench model performance benchmark</figcaption>
+</figure>
 
 Most of us have our health data — paper printouts, lab result PDFs, smartwatch CSVs, DNA files — scattered across portals or buried in folders, untouched.
 
