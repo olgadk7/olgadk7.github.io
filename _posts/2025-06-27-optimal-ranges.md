@@ -158,7 +158,7 @@ We're building the future of personalized health optimization—where your labs 
 
 **Own your numbers. Optimize your life.**
 
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="margin: 40px 0; padding: 30px; background: #f5f5f5; border-radius: 8px; text-align: center;">
+<form action="https://formspree.io/f/mpwrknkd" method="POST" style="margin: 40px 0; padding: 30px; background: #f5f5f5; border-radius: 8px; text-align: center;">
   <input type="email" name="email" placeholder="Enter your email" required style="padding: 12px 20px; width: 300px; max-width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
   <button type="submit" style="padding: 12px 30px; margin-left: 10px; background: #4A90E2; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">Join Beta</button>
 </form>
