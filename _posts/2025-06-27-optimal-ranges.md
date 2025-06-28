@@ -1,10 +1,10 @@
 ---
-title: "Let Your Health Data Speak with Your Own Five‑Minute Custom GPT"
+title: "Why 'Normal' Lab Ranges Aren't Good Enough: A Case for Personalized Optimal Ranges"
 layout: post
 blog: true
 category: blog
 author: Olga Kahn
-permalink: /blog/HealthGPT2
+permalink: /blog/optimal-ranges
 comments: true
 ---
 
