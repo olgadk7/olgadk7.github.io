@@ -1,4 +1,14 @@
-# Why "Normal" Lab Ranges Aren't Good Enough: A Case for Personalized Health
+---
+title: "Why "Normal" Lab Ranges Aren't Good Enough: A Case for Personalized Optimal Ranges"
+layout: post
+blog: true
+category: blog
+author: Olga Kahn
+permalink: /blog/optimal-ranges
+comments: true
+---
+
+# Why "Normal" Lab Ranges Aren't Good Enough: A Case for Personalized Optimal Ranges
 
 Your lab results come back "normal," but you still feel off. Sound familiar? 
 
