@@ -33,7 +33,7 @@ Hugo’s story might sound extraordinary, but it reflects a broader pattern of s
     - **Subtle Signs**: Mild hypertension (140/90 mmHg), occasional fatigue, digestive discomfort.
     - **Lifestyle Factors**: Poor diet, excessive smoking, high stress, sedentary habits.
     - **Routine Checks**: Doctors note elevated blood pressure and mildly high LDL cholesterol but see “no immediate emergency.” No further testing is ordered.
-    - **Missed Opportunity**: Hypertension at 30 is rare and strongly predictive of cardiovascular disease in later life. The combination of elevated LDL, stress, and poor diet should have warranted **early cardiac imaging and metabolic assessment** to rule out underlying conditions.
+    - **Missed Opportunity**: Hypertension at 30 is uncommon and a clear early predictor of future cardiovascular events. The combination of elevated LDL, stress, and poor diet should have warranted **early cardiac imaging and metabolic assessment** to rule out underlying conditions.
 2. **T-minus 3 years: Basic tests fail to detect deeper disease, creating a false sense of security.**
     - **Persistent Complaints**: Increased fatigue, dizziness, more frequent digestive issues.
     - **Still “No Crisis”**: Blood pressure creeps up (145/95 mmHg), LDL climbs to 150 mg/dL, liver enzymes mildly elevated.
@@ -47,7 +47,7 @@ Hugo’s story might sound extraordinary, but it reflects a broader pattern of s
 4. **T-minus 0 days: A serious event finally occurs—by which time, intervention is too late.**
     - **Sudden Collapse**: Intense chest pain leads to a fatal heart attack.
     - **Why So Sudden?**: He had no official history of heart disease, so emergency intervention wasn’t anticipated.
-    - **Missed Opportunity**:  By this point, **a high coronary calcium score, stress echo, or CT angiogram would have flagged a critical blockage**. The pancreatic tumor, left undetected, may also have exacerbated metabolic dysfunction, further increasing cardiovascular risk.
+    - **Missed Opportunity**:  By this point, **a high coronary calcium score, stress echo, or CT angiogram would have flagged a critical blockage**. The pancreatic tumor, left undetected, may also have exacerbated metabolic dysfunction, further increasing cardiovascular risk by worsening insulin resistance and systemic inflammation, both of which elevate cardiovascular risk.
 5. **Post-mortem: Only after death does the full extent of the disease become clear—revealing that earlier intervention could have saved his life.**
     - **Autopsy Findings**: Severe coronary artery blockage, left ventricular hypertrophy, and a 6 cm pancreatic tumor.
     - **Could It Have Been Prevented?**: Early detection might have led to stents or bypass surgery—and maybe earlier intervention on the tumor.
@@ -145,7 +145,7 @@ Regular checkups and data collection form the backbone of proactive health manag
 
 **Risk Calculators** 
 
-- Plug the numbers into a tools like Framingham or ASCVD (for cardiovascular risk) to a ballpark percentage for potential issues down the road.
+- Plug the numbers into tools like Framingham or ASCVD (for cardiovascular risk) to a ballpark percentage for potential issues down the road.
 
 **Pay special attention if**
 
@@ -156,7 +156,7 @@ Regular checkups and data collection form the backbone of proactive health manag
     - **Cardiovascular**: Chest pain, fainting spells, persistent palpitations.
     - **Metabolic/Oncological**: Unexplained weight loss, night sweats, chronic pain or lumps.
 
-If something remains unexplained or consistently abnormal, it’s worth escalating to advanced diagnostics rather than waiting for an outright crisis. S**elf-monitoring does not replace medical expertise**—rather, it augments it. Bring your data, diaries, and findings to your doctors, forming a two-way dialogue.
+If something remains unexplained or consistently abnormal, it’s worth escalating to advanced diagnostics rather than waiting for an outright crisis. Self-monitoring does not replace medical expertise—rather, it augments it. Bring your data, diaries, and findings to your doctors, forming a two-way dialogue.
 
 ### **3. Escalate to Advanced Diagnostics and Specialist Collaboration**
 
@@ -193,7 +193,7 @@ We’ve explored how individuals can proactively manage their health, but **prev
 ### **Shift Toward Risk-Based Care and Incentivize Prevention**
 
 - **Value Over Volume:** No one should learn about a 90% arterial blockage only in an autopsy report. The current fee-for-service model incentivizes more procedures, not fewer deaths. A system designed around **long-term patient outcomes**—not short-term interventions—would shift incentives toward prevention. Physicians should be **rewarded for preventing illness, not just managing it once it's symptomatic**.
-- **Coverage for Preventive Screening:** Many insurance plans don’t fully cover advanced or more frequent testing unless a disease is already evident. et each passing year without coverage can be a year closer to crisis—one that might otherwise be preventable. Expanding coverage for **risk-based screenings** (e.g., coronary calcium scoring, comprehensive genetic panels for high-risk individuals) would help identify conditions earlier, when interventions are less invasive and more effective.
+- **Coverage for Preventive Screening:** Many insurance plans don’t fully cover advanced or more frequent testing unless a disease is already evident. Yet each passing year without coverage can be a year closer to crisis—one that might otherwise be preventable. Expanding coverage for **risk-based screenings** (e.g., coronary calcium scoring, comprehensive genetic panels for high-risk individuals) would help identify conditions earlier, when interventions are less invasive and more effective.
 
 ### **Barriers to Change: Why Medicine Remains Reactive**
 
@@ -231,7 +231,7 @@ Systemic change requires not just new protocols but also enforcement mechanisms 
 
 ### **Who Pays for the Blind Spots?**
 
-Doctors, hospitals, and insurers do not bear the cost of missed risks—patients do. When a doctor dismisses an early warning sign, the patient lives with the consequences. When insurance denies a preventive screening, the patient absorbs the burden of late-stage disease. Medicine should be **anti-fragile**—designed to anticipate problems and prevent them. Preventive care should not be a privilege or require proof of disease. Risk alone should justify action.
+Doctors, hospitals, and insurers do not bear the cost of missed risks—patients do. When a doctor dismisses an early warning sign, the patient lives with the consequences. When insurance denies a preventive screening, the patient absorbs the burden of late-stage disease. Medicine should be **anti-fragile**——able to learn from small stresses and adapt before failure. Preventive care should not be a privilege or require proof of disease. Risk alone should justify action.
 
 Ultimately, rethinking medicine means designing a system that anticipates and adapts to risk. It means moving away from a model that reacts only after a crisis and toward one that continuously learns and adjusts. By embracing this perspective, we can reduce preventable deaths and create a healthcare environment where early signals are met with meaningful action, rather than being dismissed as mere noise.
 
