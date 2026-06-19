@@ -1,5 +1,5 @@
 ---
-title: "Introducing Bobbin: turn any text into a concept graph"
+title: "Introducing Bobbin: Turn Any Text Into A Concept Graph"
 layout: post
 blog: true
 category: blog
