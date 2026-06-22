@@ -9,7 +9,9 @@ permalink: projects/NYCOpenData
 ---
 # Using NYC OpenData to explore housing safety & rent stabilization
 
-Public infrastructure is one of the things I love about New York: parks, libraries, classes and, as I’m discovering, data. Recently I took an OpenData class hosted by [BetaNYC](https://beta.nyc/), which has designed tools intended to help Community Boards access, analyze, map and use data to inform decision-making. Below is a project that came out of one of those classes. Using tools such as BoardStat, Tenants Map, BIS-WEB, ACRIS and RentLogic, as well as 311 data, the study explores the connection between housing safety issues and rent-regulated units. As New York City is struggling through an [affordable housing crisis](https://nyti.ms/2GxIkF7), the study, not surprisingly, finds a connection between bad landlords, housing violations and rent stabilization.
+Public infrastructure is one of the things I love about New York — the parks, the libraries, the free classes, and, as I keep discovering, the data. This project grew out of an OpenData class run by [BetaNYC](https://beta.nyc/), whose tools help Community Boards actually use city data to make decisions.
+
+The question I chased: in a city deep in an [affordable-housing crisis](https://nyti.ms/2GxIkF7), is there a measurable link between negligent landlords, housing-safety violations, and rent-stabilized apartments? Using BoardStat, Tenants Map, BIS-WEB, ACRIS, RentLogic, and raw 311 complaints, I followed the trail one building at a time. The answer, unsurprisingly but damningly, is yes.
 
 <br>
 
