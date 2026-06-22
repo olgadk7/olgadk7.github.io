@@ -5,7 +5,7 @@ blog: true
 author: Olga Kahn
 projects: true
 category: project
-summary:
+summary: "Behind the scenes of a risk-analysis tool that maps how risks transfer between companies in a portfolio, built from public filings."
 permalink: projects/risksleuth
 comments: true
 ---

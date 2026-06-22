@@ -4,7 +4,7 @@ layout: post
 author: Olga Kahn
 blog: true
 category: project
-summary:
+summary: "Automating Total Value Locked (TVL) reporting with Python and Power BI for a junior data-analyst assignment."
 permalink: projects/chainlink
 ---
 

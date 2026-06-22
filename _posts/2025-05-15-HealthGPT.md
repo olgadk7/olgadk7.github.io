@@ -4,6 +4,7 @@ layout: post
 blog: true
 category: blog
 author: Olga Kahn
+summary: "Build a custom GPT in five minutes to interpret your own scattered health data — labs, wearables, DNA, and microbiome — for cross-domain insights."
 permalink: /blog/HealthGPT
 comments: true
 ---

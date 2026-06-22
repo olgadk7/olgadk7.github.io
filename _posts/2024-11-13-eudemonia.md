@@ -5,6 +5,7 @@ blog: true
 # posts: true
 category: blog
 author: Olga Kahn
+summary: "Notes from the Eudemonia longevity conference — movement classes, talks by Huberman, Asprey, and Mukherjee, and the biohacking treatments I tried."
 permalink: /blog/eudemonia
 comments: true
 galleries:

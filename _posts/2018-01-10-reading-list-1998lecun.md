@@ -4,7 +4,7 @@ layout: post
 tag: papers
 blog: true
 author: Olga Kahn
-summary: "Reading List: recaps of important data science papers."
+summary: "A recap of Yann LeCun's 1998 paper on gradient-based learning and convolutional neural networks for document recognition."
 permalink: blog/reading-list-1998lecun
 ---
 

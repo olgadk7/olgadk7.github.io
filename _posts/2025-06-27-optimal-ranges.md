@@ -4,6 +4,7 @@ layout: post
 blog: true
 category: blog
 author: Olga Kahn
+summary: "Why standard 'normal' lab ranges miss early risk, and how evidence-based optimal ranges for insulin, CRP, and ApoB support prevention."
 permalink: /blog/optimal-ranges
 comments: true
 ---

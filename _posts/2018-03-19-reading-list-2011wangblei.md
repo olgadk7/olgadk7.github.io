@@ -4,7 +4,7 @@ layout: post
 tag: papers
 blog: true
 author: Olga Kahn
-summary: "Reading List: recaps of important data science papers."
+summary: "A recap of Wang and Blei's 2011 paper on collaborative topic regression, the recommendation approach behind the New York Times."
 permalink: blog/reading-list-2011wangblei
 ---
 

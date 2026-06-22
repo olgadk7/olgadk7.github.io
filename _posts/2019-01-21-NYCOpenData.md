@@ -4,7 +4,7 @@ layout: post
 author: Olga Kahn
 blog: true
 category: project
-summary:
+summary: "Using NYC OpenData tools to trace the link between housing-safety violations, negligent landlords, and rent-stabilized units in Manhattan."
 permalink: projects/NYCOpenData
 ---
 # Using NYC OpenData to explore housing safety & rent stabilization

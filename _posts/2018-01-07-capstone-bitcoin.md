@@ -5,7 +5,7 @@ blog: true
 projects: true
 category: project
 author: Olga Kahn
-summary: "General Assembly Data Science Immersive Capstone Project."
+summary: "Predicting Bitcoin's price from historical data and Google Trends using time series, SVR, and linear regression — a Data Science Immersive capstone."
 permalink: projects/capstone-bitcoin
 ---
 

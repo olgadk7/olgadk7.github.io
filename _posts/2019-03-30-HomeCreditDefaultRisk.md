@@ -4,7 +4,7 @@ layout: post
 author: Olga Kahn
 blog: true
 category: project
-summary:
+summary: "Predicting loan default on an imbalanced dataset with logistic regression, downsampling, and ROC AUC, focusing on model interpretability."
 permalink: projects/ModelInterpretability
 ---
 

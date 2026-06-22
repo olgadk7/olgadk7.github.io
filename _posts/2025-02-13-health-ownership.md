@@ -5,6 +5,7 @@ blog: true
 # posts: true
 category: blog
 author: Olga Kahn
+summary: "After a preventable death in the family, a case for managing your health like an actuary — tracking risk, trends, and early warning signs."
 permalink: /blog/health-ownership
 comments: true
 ---
