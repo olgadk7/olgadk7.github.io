@@ -12,7 +12,7 @@ comments: true
 
 # **Building a Risk Analysis Tool with Public Data: Behind the Scenes**
 
-If you’re into investing or just curious about how financial tools work behind the curtain, this post is for you. Over the last few weeks, we’ve been diving deep into the process of developing a **risk analysis tool** designed to help investors understand the hidden connections and vulnerabilities within their portfolios. Think of it as finding out not just *what could go wrong* with an investment, but also how risks might ripple through a portfolio like dominoes.
+Most risk tools look at one company at a time. But risk doesn't work that way — a cybersecurity breach at one firm hints at exposure across its peers, and a regulatory crackdown in one market sends tremors through the rest. Over the past few weeks we've been building a tool that takes that seriously: it reads a company's own risks *and* traces how they ripple through the other holdings in a portfolio, like dominoes. Here's a look behind the curtain.
 
 ## **The Problem We're Solving**
 
