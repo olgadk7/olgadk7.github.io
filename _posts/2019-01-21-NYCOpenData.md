@@ -1,7 +1,7 @@
 ---
 title: "Project: Using NYC OpenData to Explore Housing Safety and Rent Stabilization"
 layout: post
-author: Olga Krieger
+author: Olga Kahn
 blog: true
 category: project
 summary:
@@ -54,7 +54,7 @@ Looking at the 311 complaints, we see that the heat / hot water is by far the mo
 
 Total Number of Complaints: 159
 
-The number of complaints has has risen in recent years, more than doubling in 2018 compared to the previous year. 
+The number of complaints has risen in recent years, more than doubling in 2018 compared to the previous year. 
 
 ![png](/assets/images/posts/lanlord-issues/8.png)
 
@@ -85,7 +85,7 @@ Locating the address on the Tenants Map, we confirm that the lot is rent-stabili
 
 ![png](/assets/images/posts/lanlord-issues/13.png)
 
-*Total Number of Complaints: 324
+Total Number of Complaints: 324
 
 ![png](/assets/images/posts/lanlord-issues/14.png)
 
@@ -107,6 +107,6 @@ Clicking on Tax and Property Records (also under Links to More Information), we 
 <br><br><br>
 
 ## Part VI. Using RentLogic to see the building’s rating / letter grade. 
-[RentLogic](https://rentlogic.com) is a company which rates building on a scale from A - F by consolidating and weighing a large number of open datasets, using an open, 250-page algorithm. Having been graded an A from the beginning of the data collection through the summer of 2017, 46 Bank St, dropped to an F in just half a year. The decline happened a the same time as 46 ROSE REALTY LLC took over the building. Among the listed violations are: Water, Plumbing, Safety, Unsanitary Conditions, Fire Code, Cockroaches, Rodents, Electrical, Gas, Hot Water and Heat.
+[RentLogic](https://rentlogic.com) is a company which rates buildings on a scale from A - F by consolidating and weighing a large number of open datasets, using an open, 250-page algorithm. Having been graded an A from the beginning of the data collection through the summer of 2017, 46 Bank St, dropped to an F in just half a year. The decline happened at the same time as 46 ROSE REALTY LLC took over the building. Among the listed violations are: Water, Plumbing, Safety, Unsanitary Conditions, Fire Code, Cockroaches, Rodents, Electrical, Gas, Hot Water and Heat.
 
 ![png](/assets/images/posts/lanlord-issues/17.png)

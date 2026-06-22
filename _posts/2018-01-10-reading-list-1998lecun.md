@@ -3,14 +3,14 @@ title: "Reading List: Convolutional Neural Networks in Document Recognition, Yan
 layout: post
 tag: papers
 blog: true
-author: Olga Krieger
+author: Olga Kahn
 summary: "Reading List: recaps of important data science papers."
 permalink: blog/reading-list-1998lecun
 ---
 
 ***This is the first post in Reading List series where I recap important papers as part of continuing my data science education.*** 
 
-## Gradient_Based Learning Applied to Document Recognition by Y. LeCun, L. Bottou, Y. Bengio and P.Haffner. 
+## Gradient-Based Learning Applied to Document Recognition by Y. LeCun, L. Bottou, Y. Bengio and P.Haffner. 
 
 I start with this paper as it advances a **deep learning** class that is essentially computers’ vision and hearing, enabling real-life applications such as safe self-driving cars and reading of radiology images.
 

@@ -1,7 +1,7 @@
 ---
-title: " Project: Model Interpretability and Imbalanced Dataset in Predicting Home Credit Default Risk"
+title: "Project: Model Interpretability and Imbalanced Dataset in Predicting Home Credit Default Risk"
 layout: post
-author: Olga Krieger
+author: Olga Kahn
 blog: true
 category: project
 summary:
@@ -14,7 +14,7 @@ This is an imbalanced class project with focus on interpreting the result of a s
 
 
 ### Imbalanced data / rare event
-We’re going to predict mortgage default risk, with target class distribution severely skewed towards the non-defaults. Such imbalance is common in areas like fraud detection, medical diagnosis, manufacturing defects, and risk management and the problem of a rare event prediction and is a fascinating one to solve. Traditional statistical tools like probability are not very helpful here, as in those problems, it's that 1% the model says nothing about that's going to mess you up (tail risk). In order to obtain a fair balance in the number of instances for both the classes, a sampling technique is suggested, whereby we are re-balancing classes in the training data thus magnifying those unlikely events that's hard to see.
+We’re going to predict mortgage default risk, with target class distribution severely skewed towards the non-defaults. Such imbalance is common in areas like fraud detection, medical diagnosis, manufacturing defects, and risk management, and the problem of rare-event prediction is a fascinating one to solve. Traditional statistical tools like probability are not very helpful here, as in those problems, it's that 1% the model says nothing about that's going to mess you up (tail risk). In order to obtain a fair balance in the number of instances for both the classes, a sampling technique is suggested, whereby we are re-balancing classes in the training data thus magnifying those unlikely events that are hard to see.
 
 ### Interpretability
 Analysis is only as valuable as the explanation. This is something not discussed enough, including the bootcamp course I’ve graduated from and new online courses coming out from esteemed AI practitioners. What do we do with the model's predictions once data has been fitted and performance evaluated? It's been indeed a black box to me. 
@@ -27,7 +27,7 @@ As Zeynep Tufekci said in her great [TED talk](https://www.ted.com/talks/zeynep_
 
 **On a business-level**, we want to not just predict probable outcomes, but also to answer the initial business question. In this notebook's problem, the business decision is whether a borrower is going to repay their loan. A model can calculate probabilities of default, with which a lender can set a threshold, according to their risk tolerance, above which it’s willing to lend to the borrower, and below which it’ll flag the application for further review. (Interestingly, another type of risk banks might want to predict is a seemingly opposite risk of a customer prepaying the loan all at once, thus depriving the bank from their bread and butter, the interest payments.)
 
-[By law](https://www.consumer.ftc.gov/articles/0347-your-equal-credit-opportunity-rights#right), credit companies have to be able to explain their denial-of-credit decisions. GDPR grants a right to an explanations why algorithm decided one way or another. Whether or not you have a law about it where you work, it might still make good sense for your business to have a simple way to explain the model’s decision. A model you can interpret and understand is one you can more easily improve, trust and reach decision insights with. 
+[By law](https://www.consumer.ftc.gov/articles/0347-your-equal-credit-opportunity-rights#right), credit companies have to be able to explain their denial-of-credit decisions. GDPR grants a right to an explanation why algorithm decided one way or another. Whether or not you have a law about it where you work, it might still make good sense for your business to have a simple way to explain the model’s decision. A model you can interpret and understand is one you can more easily improve, trust and reach decision insights with. 
 
 ### Logistic Regression
 There is a central tension, however, between accuracy and interpretability: the most accurate models are necessarily the hardest to understand. Random forests, for example, have a high accuracy but are not very easy to interpret. Logistic regression, on the other hand, is a parametric linear model that has a lot of explanatory power. It also has the hyper-parameter "balanced" class_weight, which can be used as an algorithm-level technique. Being able to take its output and speak about it to someone who isn't technical is a big plus. So if you don't have years to spend understanding a result, give up some accuracy for simplicity of understanding.
@@ -113,7 +113,7 @@ percent_default, percent_nondefault
 
 **Downsampling** 
 
-Due to the inherent complex characteristics of an imbalanced dataset, learning from such data requires a special approach to transform data. One of such approaches are the sampling techniques which re-balances classes in the training data. The main idea of sampling classes is to either increasing the samples of the minority class or decreasing the samples of the majority class.
+Due to the inherent complex characteristics of an imbalanced dataset, learning from such data requires a special approach to transform data. One of such approaches is the sampling techniques which re-balances classes in the training data. The main idea of sampling classes is to either increase the samples of the minority class or decrease the samples of the majority class.
 
 First, we separate observations from each class into different DataFrames. Next, we resample the majority class without replacement, setting the number of samples to match that of the minority class. Finally, we combine the down-sampled majority class DataFrame with the original minority class DataFrame.
 

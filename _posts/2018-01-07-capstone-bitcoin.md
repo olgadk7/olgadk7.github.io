@@ -4,7 +4,7 @@ layout: post
 blog: true
 projects: true
 category: project
-author: Olga Krieger
+author: Olga Kahn
 summary: "General Assembly Data Science Immersive Capstone Project."
 permalink: projects/capstone-bitcoin
 ---
@@ -13,7 +13,7 @@ permalink: projects/capstone-bitcoin
 
 # Bitcoin: bubble or blabber?
 
-**Background:** Bitcoin has been in the news a lot recently. Its price has doubled four times this year and more people are now searching online for how to buy bitcoin than they are searching for how to buy gold. A situation where an asset’s price dramatically exceeds its intrinsic value points at a bubble, but what determines price and value? They aren’t scientific concepts, they are the co-creation of buyers and sellers whose needs and attitudes are constantly changing. A good proxy of people’s attitudes are social media and search engines. My project is looking at whether people’s attitude, as measured by Google Trend Score, can explain some of the bitcoin evaluation.
+**Background:** Bitcoin has been in the news a lot recently. Its price has doubled four times this year and more people are now searching online for how to buy bitcoin than they are searching for how to buy gold. A situation where an asset’s price dramatically exceeds its intrinsic value points at a bubble, but what determines price and value? They aren’t scientific concepts, they are the co-creation of buyers and sellers whose needs and attitudes are constantly changing. A good proxy of people’s attitudes are social media and search engines. My project is looking at whether people’s attitude, as measured by Google Trend Score, can explain some of the bitcoin valuation.
 
 **Question:** Can we predict the value of bitcoins based on google searches? With what accuracy can change in price of Bitcoin be predicted using machine learning methods?
 
@@ -38,7 +38,7 @@ permalink: projects/capstone-bitcoin
     3.c. Linear Regression<br>
     3.d. Naive Bayes<br>
 
-**Insights:** Indeed some change in bitcoin's value can be explained with change in search engine score, however the cryptomarket is volitile and susceptible to exogenous shocks, such as hitting evaluation milestones and/or comments from industry and government leaders.
+**Insights:** Indeed some change in bitcoin's value can be explained with change in search engine score, however the cryptomarket is volatile and susceptible to exogenous shocks, such as hitting valuation milestones and/or comments from industry and government leaders.
 
 **Next steps:** 
 1. Rephrase the question into a binary classification problem and predict the direction of change.
@@ -63,7 +63,7 @@ from sklearn.svm import SVR
 
 # 1. Get Data
 
-### 1.b. bitcoin data 
+### 1.a. bitcoin data 
 This dataset has the following features:
 
 - Date : Date of observation

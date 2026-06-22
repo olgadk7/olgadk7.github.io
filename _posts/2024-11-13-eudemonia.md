@@ -12,7 +12,7 @@ galleries:
     - url: /assets/images/posts/eudemonia/dance.png
       title: "The Dancer's Blueprint: Fundamentals of Dance with Kiari Kirk"
     - url: /assets/images/posts/eudemonia/paddle.png
-      title: "Paddle Boarding on the Intercoastal: Paddle Boarding on the Intercoastal"
+      title: "Paddle Boarding on the Intercoastal"
     - url: /assets/images/posts/eudemonia/kama.png
       title: "Kama Flight"
   sessions:
@@ -21,7 +21,7 @@ galleries:
     - url: /assets/images/posts/eudemonia/asprey.png
       title: "The Future of Biohacking: How To Optimize Your Life with Dave Asprey (Entrepreneur)"
     - url: /assets/images/posts/eudemonia/hauser.png
-      title: "Holistic Sexuality: An Evolution from Taboo to Transformed with Dr. Juliana Hauser (Sexpert (PhD)"
+      title: "Holistic Sexuality: An Evolution from Taboo to Transformed with Dr. Juliana Hauser (Sexpert, PhD)"
     - url: /assets/images/posts/eudemonia/mukherjee.png
       title: "AI & The Future Of Personalized Medicine with Siddhartha Mukherjee (Oncologist & AI Health Expert, MD) and James Hamblin (Preventative Medicine Author, MD, MPH)"
     - url: /assets/images/posts/eudemonia/perlmutter.png

@@ -1,9 +1,9 @@
 ---
-title: "Reading List: Collaborative Modelling for Recommending Scientific Aricles, Chong Wang and David M. Blei, 2011"
+title: "Reading List: Collaborative Modelling for Recommending Scientific Articles, Chong Wang and David M. Blei, 2011"
 layout: post
 tag: papers
 blog: true
-author: Olga Krieger
+author: Olga Kahn
 summary: "Reading List: recaps of important data science papers."
 permalink: blog/reading-list-2011wangblei
 ---

@@ -8,7 +8,7 @@ permalink: /blog/introducing-bobbin
 comments: true
 ---
 
-# Introducing Bobbin: turn any text into a concept graph
+# Introducing Bobbin: Turn Any Text Into A Concept Graph
 
 We read a lot of dense text — lecture notes, long chats with an LLM, research articles — and most of it collapses into a wall we never open again. **[Bobbin](https://heybobbin.com)** is a small tool I built to fix that: paste in some text and it weaves the ideas into a navigable concept graph — each idea as its own entry, linked to the others it relates to.
 

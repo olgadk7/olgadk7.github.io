@@ -25,7 +25,7 @@ As part of a job application for a junior data analyst position at a blockchain 
     <img width="700" height="100" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/chainlink_task2.png?raw=true">
 </p>
 
-I first did this using python (with pandas) and jupyter notebook (and later [hosted it on heroku](https://chainlink-tvl.herokuapp.com/)). I then also did the same process using Microsoft’s Power BI tool and its DAX language, which I never used before. Both versions are available in [this repo](https://github.com/olgadk7/chainlink_tvs). To use PowerBI, a licensed microsoft product, I downloaded [Parallels](https://www.parallels.com/​​) free trial of a windows virtual machine on my mac, and PowerBI came with it. 
+I first did this using python (with pandas) and jupyter notebook (and later [hosted it on Heroku](https://chainlink-tvl.herokuapp.com/) — demo since retired). I then also did the same process using Microsoft’s Power BI tool and its DAX language, which I never used before. Both versions are available in [this repo](https://github.com/olgadk7/chainlink_tvs). To use PowerBI, a licensed Microsoft product, I downloaded [Parallels](https://www.parallels.com/​​) free trial of a Windows virtual machine on my Mac, and PowerBI came with it. 
 
 Both versions go through the following 3 steps:
 
@@ -47,4 +47,4 @@ Visualization in PowerBI is really straightforward, mostly clicking, dragging an
 **Things that took me a lot of time to get used to in PowerBI**
 1. Referencing between Power Query and its three view modes (“report”, “data”, and “model”). If you change something in place, the flow might break in another place. 
 2. Power BI applies automatic transformations on data from the web that are governed in the applied steps as well as DAX editor, and these 2 have to correspond.
-3. Don’t forget to manually save your work..
+3. Don’t forget to manually save your work.
