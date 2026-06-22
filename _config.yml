@@ -102,6 +102,7 @@ gems:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-gist
+  - jekyll-redirect-from
   - jekyll-paginate
 
 jekyll-mentions:
