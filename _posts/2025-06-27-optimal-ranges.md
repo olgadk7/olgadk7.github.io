@@ -67,25 +67,25 @@ The bottom line: Standard ranges tell you if you're sick enough to treat—not w
 
 Here's what happens when we shift from "normal" to optimal—the numbers speak for themselves:
 
-| Biomarker | Standard "Normal" Limit | Evidence-Based Optimal | Real Risk Reduction |
+| Biomarker | Standard "Normal" Limit | Evidence-Based Optimal | Associated Benefit |
 |-----------|------------------------|----------------------|-------------------|
-| **Fasting Insulin** | ≤ 18 µIU/mL | **< 6 µIU/mL** | 70% lower diabetes risk |
-| **hs-CRP** | < 3.0 mg/L | **< 1.0 mg/L** | 50% fewer heart attacks/strokes |
-| **TSH (fertility)** | 0.4-4.5 mIU/L | **≤ 2.5 mIU/L** | 2x lower miscarriage risk |
-| **ApoB** | < 130 mg/dL | **< 80 mg/dL** | 60% lower cardiovascular events |
+| **Fasting Insulin** | ≤ 18 µIU/mL | **< 6 µIU/mL** | Lower future diabetes risk |
+| **hs-CRP** | < 3.0 mg/L | **< 1.0 mg/L** | Fewer cardiovascular events |
+| **TSH (fertility)** | 0.4-4.5 mIU/L | **≤ 2.5 mIU/L** | Lower miscarriage risk |
+| **ApoB** | < 130 mg/dL | **< 80 mg/dL** | Fewer cardiovascular events |
 | **Ferritin (women)** | 16-154 ng/mL | **50-90 ng/mL** | 20-30% higher fertility rates |
 
-*Sources: ADA, AHA, peer-reviewed studies from PubMed, Hopkins Medicine*
+*Optimal targets draw on ADA, AHA, and ESC/EAS guidance and peer-reviewed cohort studies; see linked sources below.*
 
 ### Why These Differences Matter
 
-**Fasting Insulin:** A Korean study of 4,400 people found that those with insulin under 6 µIU/mL had dramatically lower diabetes rates after 6 years. Yet most labs still call 18 "normal"—missing 70% of preventable cases.
+**Fasting Insulin:** In long-term cohort studies, lower fasting insulin is associated with substantially lower future diabetes risk—yet most labs still flag only values around 18 as abnormal, well above the point where metabolic risk begins to climb ([Korean Genome and Epidemiology Study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5974077/)).
 
-**Inflammation (hs-CRP):** Women with CRP between 1-3 mg/L—still "normal"—had 1.7x more cardiac events than those under 1.0. Simply tightening the target cuts risk in half.
+**Inflammation (hs-CRP):** The standard hs-CRP tiers—under 1 (low), 1–3 (moderate), and over 3 mg/L (high)—track closely with cardiovascular risk, so a "normal" result in the 1–3 band still carries meaningfully higher risk than one under 1 ([AHA / *Circulation*](https://www.ahajournals.org/doi/10.1161/circulationaha.106.613570)).
 
-**Thyroid (TSH):** Among 3,400 pregnancies, those with TSH between 2.5-4.8 had double the miscarriage rate. The "normal" range fails women when it matters most.
+**Thyroid (TSH):** Higher TSH, even within the standard "normal" range, is associated with increased miscarriage risk, which is why many fertility specialists aim for ≤ 2.5 mIU/L when trying to conceive ([JCEM cohort study](https://academic.oup.com/jcem/article-abstract/99/10/3895/2836616)).
 
-**Heart Disease (ApoB):** Meta-analyses show keeping ApoB under 80 mg/dL prevents 4x more cardiovascular events than the standard cutoff of 130.
+**Heart Disease (ApoB):** In large meta-analyses, ApoB is a stronger predictor of cardiovascular events than LDL cholesterol, and guidelines recommend tighter targets (≤ 80 mg/dL, lower still for high-risk patients) than the standard cutoff ([Sniderman et al. meta-analysis](https://www.ahajournals.org/doi/10.1161/circoutcomes.110.959247)).
 
 ## From Theory to Practice: Four Illustrative Transformations
 
