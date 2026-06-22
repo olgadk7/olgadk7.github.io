@@ -13,39 +13,17 @@ permalink: projects/capstone-bitcoin
 
 # Bitcoin: bubble or blabber?
 
-**Background:** Bitcoin has been in the news a lot recently. Its price has doubled four times this year and more people are now searching online for how to buy bitcoin than they are searching for how to buy gold. A situation where an asset’s price dramatically exceeds its intrinsic value points at a bubble, but what determines price and value? They aren’t scientific concepts, they are the co-creation of buyers and sellers whose needs and attitudes are constantly changing. A good proxy of people’s attitudes are social media and search engines. My project is looking at whether people’s attitude, as measured by Google Trend Score, can explain some of the bitcoin valuation.
+By late 2017, Bitcoin had stopped being a technology and become a mood. The price had doubled four times in a year, my dentist was asking how to buy in, and Google logged more searches for *how to buy bitcoin* than *how to buy gold*. That's not a market discovering value — that's a crowd talking itself into a number.
 
-**Question:** Can we predict the value of bitcoins based on google searches? With what accuracy can change in price of Bitcoin be predicted using machine learning methods?
+Which raised a question I couldn't resist for my capstone: if the price is really just collective attention, can I measure the attention and predict the price? Value isn't a law of physics — it's a story buyers and sellers tell each other, and it rewrites itself by the hour. Search interest is one of the cleanest proxies we have for that story.
 
-**Data:** Historical price on Bitcoin + Google Trend Score
+So I joined five years of Bitcoin price history (from Kaggle) with Google Trends interest scores and threw four models at it — a time-series model, Support Vector Regression, Linear Regression, and Naive Bayes.
 
-**Models**: Time series, Support Vector Regression, Linear Regression, Naive Bayes (details in respective sections below)
+**The verdict:** attention explains *some* of the move — but not the parts that matter. Crypto gets blindsided by things no search trend can price in: a round-number milestone here, an offhand comment from a regulator there. The signal is real; it's just not where fortunes are made or lost.
 
-**Method**: 
-1. Get data:<br> 
-    1.a. From Kaggle download the bitcoin data<br>
-    1.b. From Google Trends download 'interest' score data<br>
-    1.c. Merge the two on 'Date'<br>  
+If I picked this up again, I'd stop predicting the price and start predicting the *direction* of change, pipe in live Twitter sentiment, and test whether attention leads the price or just chases it.
 
-2. EDA:<br> 
-    2.a. Trend graph<br>
-    2.b. Heatmap<br>
-    2.c. Correlation matrix<br>  
-
-3. Modelling:<br> 
-    3.a. Time Series<br>
-    3.b. SVR<br>
-    3.c. Linear Regression<br>
-    3.d. Naive Bayes<br>
-
-**Insights:** Indeed some change in bitcoin's value can be explained with change in search engine score, however the cryptomarket is volatile and susceptible to exogenous shocks, such as hitting valuation milestones and/or comments from industry and government leaders.
-
-**Next steps:** 
-1. Rephrase the question into a binary classification problem and predict the direction of change.
-2. Set up a streaming API for Twitter to feed into models in real time.
-3. Determine whether ‘interest’ leads or trails the price of Bitcoin.
-4. Examine patterns of subsets of the price data, e.g. recent surges.
-5. Keep on tweaking the hyperparameters.
+Here's how it came together.
 
 **Libraries used:** 
 ```python
