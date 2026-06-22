@@ -10,7 +10,7 @@ permalink: projects/ModelInterpretability
 
 # Project: Model interpretability and imbalanced datasets in predicting Home Credit Default Risk.
 
-This is an imbalanced class project with focus on interpreting the result of a simple classification model. 
+Predicting loan defaults is a deceptively tricky problem: in this dataset 92% of borrowers never default, so a model that smugly predicts "everyone pays" is right 92% of the time — and completely useless. The interesting 8%, the rare events, are exactly what a naive accuracy score ignores and exactly what costs lenders money. This project is about the two things most tutorials skip: handling that imbalance, and being able to *explain* what the model decided once it's done. 
 
 
 ### Imbalanced data / rare event
