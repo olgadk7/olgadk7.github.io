@@ -15,7 +15,7 @@ permalink: projects/chainlink
 </p>
 <!-- ![png](/assets/images/posts/chainlink/main.png) -->
 
-As part of a job application for a junior data analyst position at a blockchain company I was tasked to do an automated dashboard looking at the Total Value Locked, or Total Value Secured, of their clients vs the entire DeFi market:
+This was a take-home for a junior data-analyst position at a blockchain company: build an automated dashboard tracking the Total Value Locked (TVL) — also called Total Value Secured — of their clients against the entire DeFi market. Here's the brief:
 
 <p align="center">
     <img width="700" height="150" src="https://github.com/olgadk7/olgadk7.github.io/blob/bccbe93647e28a7efa5274df469b061e1296230b/assets/images/posts/chainlink/chainlink_task1.png?raw=true">
