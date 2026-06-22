@@ -87,7 +87,9 @@ Here's what happens when we shift from "normal" to optimal—the numbers speak f
 
 **Heart Disease (ApoB):** Meta-analyses show keeping ApoB under 80 mg/dL prevents 4x more cardiovascular events than the standard cutoff of 130.
 
-## From Theory to Practice: Four Real-World Transformations
+## From Theory to Practice: Four Illustrative Transformations
+
+*The cases below are illustrative composites, not individual patients.*
 
 Optimal ranges aren't just numbers—they change lives. Here's how personalized targets created breakthrough results:
 
