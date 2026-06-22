@@ -12,7 +12,7 @@ picture: '/assets/images/passport.jpg'
 
 # If you want to include your resume, set to true
 # and specify source (external or local).
-resume: true
+resume: false
 resume-external: true
 resume-url: https://docs.google.com/document/d/11JgZZolxk0Z3dBjKffk27v08CGImtHDslE5np2IqPSw
 #https://drive.google.com/file/d/11y4Dk4PS2gWLjhGPrtJDkJpX9oi-scar/view?usp=sharing
