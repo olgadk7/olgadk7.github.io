@@ -3,5 +3,6 @@ title:
 layout: page
 ---
 
-Hi! I am a self-taught data scientist, entrepreneur, and systems thinker passionate about fostering transparency, interoperability, and critical thinking in tackling complex challenges. Currently, I’m developing RiskSleuth, a platform to help investors understand risk correlations in public company portfolios, leveraging expertise in machine learning, economic modeling, and probabilistic programming. Originally from Russia and living in the U.S. since 2015, I have continuously educated myself as an engineer and scientist, guided by a lifelong commitment to the scientific method and interdisciplinary problem-solving. With experience building fintech tools that prioritize transparency and access, I aim to create systems that improve understanding, foster innovation, and drive meaningful change across industries.
-Olga
+Hi! I'm a self-taught data scientist and solo founder. I build [micro-SaaS tools](/building) that take a big, boring wall of data — the kind no human wants to read — and turn it into a clear map you can act on. My road here wasn't straight: modeling, politics and economics, art PR, several countries, before I found data science and, lately, AI. What carried me through every reinvention is the same thing that drives every product I build: a need to get to the truth, strip out bias, and not be fooled — so I can spend that clarity on living fully. If you ask for evidence, question the programs you were handed, and believe life is too short to live on autopilot, you're my kind of person. *Never lose the thread.*
+
+— Olga

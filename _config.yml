@@ -1,9 +1,9 @@
 # main text of home
 name: Olga Kahn
-bio: 'Data scientist.'
+bio: 'Solo founder, Ozzie Dynamics — turning messy data into clear maps.'
 
 # twitter summary info
-description: Olga's Portfolio
+description: 'Olga Kahn — solo founder building Ozzie Dynamics'
 
 # if it's an external image, update below for true
 # better with square images
@@ -37,7 +37,7 @@ disqus: olgakahn-com
 # facebook: myfacebook
 twitter: olgadk7
 # google: mygoogle
-# instagram: myinstagram
+instagram: ozziekahn
 #pinterest: annasw
 linkedin: olgadk7
 # youtube: myyoutube
@@ -49,7 +49,7 @@ email: ozziekahn@gmail.com
 authors:
    OlgaKahn:
        name: Olga Kahn
-       bio: Data Scientist
+       bio: Solo founder, Ozzie Dynamics
        external-image: false
        picture: assets/images/profile.jpg
        twitter: olgadk7

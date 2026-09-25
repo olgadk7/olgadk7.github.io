@@ -14,6 +14,12 @@
             {% endif %}
         {% endif %}
 
+        {% if page.title != "Building" %}
+            <li class="item">
+                <a class="link" href="{{ site.url }}/building">building</a>
+            </li>
+        {% endif %}
+
         {% if site.blog == true %}
             {% if page.title != "Blog" %}
                 <li class="item">
