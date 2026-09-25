@@ -6,3 +6,6 @@ _site
 *.code-workspace
 .jekyll-cache
 .jekyll-metadata
+
+# personal brand/strategy doc — keep out of the public site
+Olga_Kahn_Brand_Reference.md
