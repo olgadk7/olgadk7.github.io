@@ -46,6 +46,13 @@ github: olgadk7
 # medium: medium
 email: ozziekahn@gmail.com
 
+# Newsletter. Leave blank and the signup block simply won't render.
+# One list; posts tag subscribers by source via `subscribe_tag` in front matter.
+buttondown_username: ''
+subscribe_heading: 'The build log'
+subscribe_blurb: "Once a month: what I shipped, what I learned, what I'm stuck on."
+
+
 authors:
    OlgaKahn:
        name: Olga Kahn
@@ -108,4 +115,4 @@ gems:
 jekyll-mentions:
     base_url: https://olgadk7.github.io
 
-exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, indigo-gh-pages.zip, Rakefile, screen-shot.png, travis.sh, tasks]
+exclude: [README.md, tools, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, indigo-gh-pages.zip, Rakefile, screen-shot.png, travis.sh, tasks]
