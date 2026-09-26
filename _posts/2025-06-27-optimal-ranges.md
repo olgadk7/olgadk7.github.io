@@ -4,7 +4,7 @@ layout: post
 blog: true
 category: blog
 author: Olga Kahn
-summary: "Standard lab ranges are built to catch disease, not to keep you well. What the evidence-based optimal ranges are for insulin, hs-CRP, TSH and ApoB — and why they're tighter."
+summary: "Standard lab ranges tell you whether your number is typical, or whether you've crossed a diagnostic line — not whether you're well. Where the research supports a tighter target, and where it doesn't."
 permalink: /blog/optimal-ranges
 comments: true
 subscribe_tag: helse
@@ -12,69 +12,78 @@ subscribe_tag: helse
 
 # Your Labs Are "Normal." That Doesn't Mean You're Fine.
 
-*September 2026 update: Helse, mentioned at the end, didn't exist when this published in June 2025.*
+*September 2026 update: I rechecked every number here against its source and replaced the ones that didn't hold up. Helse, mentioned at the end, didn't exist when this was published in June 2025.*
 
-Standard reference ranges answer one question: are you sick enough to treat? They were never designed to answer the one you actually care about — are you well, and staying that way.
+Standard reference ranges answer one of two questions: is your number typical for the people this lab measured, or has it crossed the line where a diagnosis starts? Neither is the question you actually care about — are you well, and staying that way.
 
-That gap is why results come back "normal" while insulin resistance or cardiovascular risk builds quietly underneath. Here's what the standard cutoffs say, and what the prevention research says instead.
+That gap is why results come back "normal" while insulin resistance or cardiovascular risk builds quietly underneath. Here's what the standard cutoffs say, and where the research supports something tighter.
 
-| Biomarker | Standard "Normal" Limit | Evidence-Based Optimal | Associated Benefit |
-|-----------|------------------------|----------------------|-------------------|
-| **Fasting Insulin** | ≤ 18 µIU/mL | **< 6 µIU/mL** | Lower future diabetes risk |
-| **hs-CRP** | < 3.0 mg/L | **< 1.0 mg/L** | Fewer cardiovascular events |
-| **TSH (fertility)** | 0.4-4.5 mIU/L | **≤ 2.5 mIU/L** | Lower miscarriage risk |
-| **ApoB** | < 130 mg/dL | **< 80 mg/dL** | Fewer cardiovascular events |
-| **Ferritin (women)** | 16-154 ng/mL | **50-90 ng/mL** | Better fertility outcomes |
+| Biomarker | Standard "Normal" | Evidence-Based Optimal | What the Research Found |
+|-----------|-------------------|------------------------|-------------------------|
+| **Fasting glucose** | 65–99 mg/dL | **< 90 mg/dL** | Below where diabetes risk starts rising |
+| **HbA1c** | < 5.7% | **< 5.5%** | Lowest risk of diabetes and heart disease |
+| **Triglycerides (fasting)** | < 150 mg/dL | **< 100 mg/dL** | The AHA's "optimal" level |
+| **ALT (women)** | 6–29 U/L | **≤ 25 U/L** | A truly healthy liver, by the ACG's definition |
 
-*Optimal targets draw on ADA, AHA and ESC/EAS guidance and peer-reviewed cohort studies, linked below.*
-
-<!-- TODO: ferritin is the only row without a citation below. Source it or cut it. -->
+*Standard ranges are from a major US lab's report; yours may differ slightly. Sources below.*
 
 ## Where those numbers come from
 
-**Fasting insulin.** In long-term cohort studies, lower fasting insulin is associated with substantially lower future diabetes risk — yet most labs flag only values around 18 as abnormal, well above the point where metabolic risk starts climbing ([Korean Genome and Epidemiology Study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5974077/)).
+**Fasting glucose.** A Kaiser Permanente study followed 46,578 adults whose glucose was normal. Compared with people under 85 mg/dL, those at 85–89 were no different — but from 90 up, risk climbed: about one and a half times as likely to develop type 2 diabetes at 90–94, more than twice as likely at 95–99 ([Nichols et al., *Am J Med*](https://pubmed.ncbi.nlm.nih.gov/18501234/)). All of them were "normal."
 
-**Inflammation (hs-CRP).** The standard tiers — under 1 low, 1–3 moderate, over 3 mg/L high — track closely with cardiovascular risk. So a "normal" result sitting in the 1–3 band still carries meaningfully more risk than one under 1 ([AHA / *Circulation*](https://www.ahajournals.org/doi/10.1161/circulationaha.106.613570)).
+**Blood sugar over months (HbA1c).** In the ARIC study of 11,092 adults without diabetes, followed for about 15 years, an HbA1c of 5.5–5.9% came with nearly double the diabetes risk and about a quarter more heart-disease risk than 5.0–5.4% ([Selvin et al., *NEJM*](https://www.nejm.org/doi/full/10.1056/NEJMoa0908359)). The lab's 5.7% is where prediabetes is diagnosed, not where risk begins.
 
-**Thyroid (TSH).** Higher TSH, even inside the standard range, is associated with increased miscarriage risk. That's why many fertility specialists aim for ≤ 2.5 mIU/L when a patient is trying to conceive ([JCEM cohort study](https://academic.oup.com/jcem/article-abstract/99/10/3895/2836616)).
+**Triglycerides.** An American Heart Association scientific statement defines optimal fasting triglycerides as under 100 mg/dL, as a marker of metabolic health — while noting that 100 isn't a reason for medication on its own ([AHA / *Circulation*](https://www.ahajournals.org/doi/10.1161/CIR.0b013e3182160726)).
 
-**Heart disease (ApoB).** In large meta-analyses ApoB predicts cardiovascular events better than LDL cholesterol, and guidelines recommend tighter targets — ≤ 80 mg/dL, lower still for high-risk patients — than the standard cutoff ([Sniderman et al.](https://www.ahajournals.org/doi/10.1161/circoutcomes.110.959247)).
+**Liver (ALT).** The American College of Gastroenterology sets a truly healthy ALT at 19–25 U/L for women and 29–33 for men, based on studies linking ALT to liver-related deaths rather than on lab populations — below the lab's 29 in the table above ([ACG guideline](https://pubmed.ncbi.nlm.nih.gov/27995906/)).
+
+## And where it doesn't
+
+Some numbers you'll see quoted as "optimal" didn't hold up when I went back to the source.
+
+**Fasting insulin.** "Under 6" is everywhere. No guideline sets a target for fasting insulin, and I couldn't find a study that establishes one.
+
+**Thyroid (TSH) when trying to conceive.** This one is disputed. The American Thyroid Association says women with a mildly underactive thyroid going into IVF should be treated to a TSH under 2.5 ([ATA 2017](https://doi.org/10.1089/thy.2016.0457)). The American Society for Reproductive Medicine disagrees: its 2024 guideline found a TSH between 2.5 and 4 isn't linked to miscarriage ([ASRM 2024](https://doi.org/10.1016/j.fertnstert.2023.12.038)). A large UK study of women already on thyroid medication points the same way: miscarriage risk rose above 4.5, not between 2.5 and 4.5 ([Taylor et al., *JCEM*](https://doi.org/10.1210/jc.2014-1954)). Ask your doctor which camp they're in, and why.
+
+**Ferritin (iron stores).** There's no agreed optimal. Two real findings sit on either side of the lab's range: in a randomized trial of menstruating women with unexplained fatigue and ferritin under 50, iron cut their fatigue ([Vaucher et al., *CMAJ*](https://www.cmaj.ca/content/184/11/1247)); and the WHO treats a ferritin above 150 in menstruating women as a possible sign of iron overload ([WHO 2020](https://www.who.int/publications/i/item/9789240000124)). Neither makes a band that suits everyone.
+
+**hs-CRP and ApoB.** Here the gap has largely closed. Major labs like LabCorp now print hs-CRP against the heart-risk tiers — under 1 mg/L low, 1–3 average, over 3 high ([AHA/CDC](https://doi.org/10.1161/01.cir.0000052939.59093.45)) — and flag ApoB above a "desirable" level. How low your ApoB should go depends on your risk: European guidelines set under 100 mg/dL at moderate risk, under 80 at high risk and under 65 at very high risk ([ESC/EAS 2019](https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2019/09/12/15/13/2019-ESC-EAS-Guidelines-for-Dyslipidaemias)).
 
 ## Why "normal" was never about you
 
 ### The 95% problem
 
-A standard range is just where 95% of a reference population falls. Who's in that population? Often people who are pre-diabetic and undiagnosed, sedentary but asymptomatic, heading toward disease but not there yet.
+A standard range is often just where 95% of a reference population falls. Who's in that population? Often people who are pre-diabetic and undiagnosed, sedentary but asymptomatic, heading toward disease but not there yet.
 
 Two consequences follow directly from the math. By design, 5% of perfectly healthy people get flagged abnormal — 2.5% above, 2.5% below. And you can sit comfortably inside the range while something develops.
 
-The range describes a population. It was never a statement about you.
+The range describes a population. It was never a statement about you. And where a limit isn't a population average, it's usually a diagnostic line — 100 mg/dL is where prediabetes starts for fasting glucose — which tells you when you've crossed into a problem, not how close you are to one.
 
 ### One size fits none
 
-A 37-year-old woman trying to conceive and a 65-year-old man with heart disease get the same reference range. Their biology, their risks and their goals have almost nothing in common.
+A 37-year-old woman trying to conceive and a 65-year-old man with heart disease get the same reference range — split by sex, at best. Their biology, their risks and their goals have almost nothing in common.
 
 Labs collect age and sex. Everything else a doctor has to layer on manually:
 
-**Biology** — menopausal status (moves everything from iron to lipids), body composition, ethnicity (B12, hemoglobin and others vary by ancestry), genetic variants (MTHFR, APOE4 shift the targets).
+**Biology** — menopausal status (moves everything from iron to lipids), body composition, pregnancy, genetic variants (an MTHFR variant can raise homocysteine, for instance).
 
 **Context** — medications (warfarin changes what vitamin K should look like), training load (athletes have altered RBC parameters), diet, hydration, existing conditions, family history.
 
-**The lab itself** — different assay methods (ELISA vs. ICLA for cardiac markers), each lab validating its own ranges, regional differences in the underlying population.
+**The lab itself** — different assay methods (ELISA vs. chemiluminescence for cardiac markers), each lab validating its own ranges, regional differences in the underlying population.
 
 ### What it costs
 
-Standard ranges tell you whether you're sick enough to treat. They don't tell you whether you're well enough to stay that way. Early dysfunction goes unflagged, prevention windows close quietly, and serious conditions develop inside perfectly acceptable numbers.
+Standard ranges tell you whether you're typical, or whether you're sick enough to diagnose. They don't tell you whether you're well enough to stay that way. Early dysfunction goes unflagged, prevention windows close quietly, and serious conditions develop inside perfectly acceptable numbers.
 
 ## What this looks like on a real panel
 
 Here's how the markers combine, using a constructed example — the reasoning is real, the person isn't.
 
-A 33-year-old woman trying to conceive gets her results back marked *all within normal limits*. TSH is 3.1. Ferritin is 18.
+A 40-year-old gets her results back marked *all within normal limits*. Fasting glucose is 97. HbA1c is 5.6%.
 
-Both are inside the standard range. Both are outside the optimal one. TSH at 3.1 sits above the ≤ 2.5 that fertility specialists target; ferritin at 18 clears the lab's floor of 16 by two points and sits far below the 50–90 band.
+Both are inside the standard range. Neither is in the lowest-risk band. In the studies above, a fasting glucose of 95–99 carried more than twice the diabetes risk of one under 85, and an HbA1c of 5.5–5.9% came with nearly double the diabetes risk and more heart-disease risk than 5.0–5.4%.
 
-Neither number is alarming alone. Together, in this specific context — a woman actively trying to conceive — they're the two markers most worth acting on, and her report told her everything was fine.
+Neither number is alarming alone. Together they point the same way, years before either would cross a diagnostic line — and her report told her everything was fine.
 
 That's the entire argument in one panel. Not that the lab was wrong, but that it answered a different question than the one she was asking.
 
@@ -82,9 +91,9 @@ That's the entire argument in one panel. Not that the lab was wrong, but that it
 
 ## How to use this
 
-**Know your context.** Your targets shift with life stage (fertility, perimenopause, athletic performance), genetics (APOE4, MTHFR), goals (longevity vs. performance vs. reversing something), and whatever you're already managing.
+**Know your context.** Which targets apply to you depends on your sex, your age, your life stage — trying to conceive, pregnancy, menopause — and your risk: your heart-disease risk sets how low your LDL and ApoB should go. Your goals decide which markers deserve your attention; they don't change what counts as healthy.
 
-**Track what matters.** Ask for comprehensive panels rather than the basics. Test quarterly while you're actively changing something, then twice a year. Stay with one lab so the numbers are comparable. Write down symptoms next to the numbers.
+**Track what matters.** Ask for comprehensive panels rather than the basics. Retest on the schedule your clinician recommends. Stay with one lab so the numbers are comparable. Write down symptoms next to the numbers.
 
 **Find someone who reads trends.** The practitioners worth your time discuss optimal against normal, look at your whole context, and track direction over time rather than single snapshots.
 
@@ -96,7 +105,7 @@ Your labs aren't a verdict. They're a time series, and most people only ever see
 
 ## What I built next
 
-This post is the reason Helse exists. It reads your labs against optimal ranges rather than population averages — your genetics, your life stage, your goals — pulls scattered results into one timeline, and tracks where each marker is heading instead of scoring one snapshot against a population you have nothing in common with.
+This post is the reason Helse exists. It pulls your scattered results into one timeline and tracks where each marker is heading. It reads each number in context — your sex, your age when the blood was drawn, your life stage, whether you'd fasted — and shows a target only where the research supports one, with its source and how strong the evidence is. Where the evidence doesn't hold up, it says so instead of inventing a number. And when your own doctor gives you a target, it outranks everything.
 
 It's live, and it's free to try.
 
