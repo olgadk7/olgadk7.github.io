@@ -14,10 +14,15 @@ Nothing here sends anything. It writes a file and prints the path.
 
 import argparse
 import datetime as dt
+import json
 import os
 import re
 import subprocess
 import sys
+import urllib.error
+import urllib.request
+
+API = "https://api.buttondown.com/v1"
 
 # Repo directory name -> how it should read in the log.
 DISPLAY_NAMES = {
@@ -106,6 +111,32 @@ def posts_since(site_repo, since_date):
     return found
 
 
+def api(path, payload=None, key=None):
+    """Call Buttondown. Returns (ok, parsed_or_message)."""
+    if not key:
+        return False, ("BUTTONDOWN_API_KEY is not set.\n"
+                       "  export BUTTONDOWN_API_KEY='...'   (from buttondown.com settings)\n"
+                       "Add it to your shell profile so it persists.")
+    req = urllib.request.Request(
+        f"{API}{path}",
+        data=json.dumps(payload).encode() if payload is not None else None,
+        headers={"Authorization": f"Token {key}",
+                 "Content-Type": "application/json"},
+        method="POST" if payload is not None else "GET",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            raw = r.read().decode()
+            return True, (json.loads(raw) if raw else {})
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode()[:400]
+        if e.code in (401, 403):
+            detail = "key rejected - check BUTTONDOWN_API_KEY. " + detail
+        return False, f"HTTP {e.code}: {detail}"
+    except (urllib.error.URLError, OSError, ValueError) as e:
+        return False, f"{type(e).__name__}: {e}"
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -114,7 +145,21 @@ def main():
     ap.add_argument("--author", default=None, help="filter commits by author")
     ap.add_argument("--max-commits", type=int, default=8, help="per repo, in the draft")
     ap.add_argument("--out", default=None, help="output path")
+    ap.add_argument("--push", action="store_true",
+                    help="also create this as a DRAFT in Buttondown (never sends)")
+    ap.add_argument("--check", action="store_true",
+                    help="verify the API key works, then exit")
     args = ap.parse_args()
+
+    key = os.environ.get("BUTTONDOWN_API_KEY")
+
+    if args.check:
+        ok, res = api("/subscribers", key=key)
+        if ok:
+            print(f"API key works. {res.get('count', '?')} subscriber(s) on the list.")
+        else:
+            sys.exit(f"API check failed.\n{res}")
+        return
 
     today = dt.date.today()
     since_date = today - dt.timedelta(days=args.since)
@@ -190,6 +235,25 @@ def main():
 
     print(f"Draft written to {out_path}")
     print(f"{active} repo(s) with activity, {len(posts)} post(s) in the window.")
+
+    if not args.push:
+        print("Edit it, then re-run with --push to put it in Buttondown as a draft.")
+        return
+
+    body = "\n".join(lines)
+    unfilled = body.count("<!--")
+    if unfilled:
+        print(f"\nNote: {unfilled} prompt(s) still unfilled - the 'learned' and "
+              "'stuck on' sections look empty. Pushing anyway; it's a draft.")
+
+    subject = f"Build log - {today.strftime('%B %Y')}"
+    ok, res = api("/emails", {"subject": subject, "body": body, "status": "draft"}, key)
+    if ok:
+        print(f"\nDraft created in Buttondown: {subject}")
+        print("Open buttondown.com/emails to finish and send. Nothing has gone out.")
+    else:
+        print(f"\nCouldn't create the draft (the local file is still fine):\n{res}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
