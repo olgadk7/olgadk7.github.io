@@ -100,4 +100,4 @@ This post is the reason Helse exists. It reads your labs against optimal ranges 
 
 It's live, and it's free to try.
 
-<p style="margin:40px 0;text-align:center"><a href="https://gethelse.com" style="display:inline-block;padding:14px 28px;background:#4A90E2;color:#fff;border-radius:4px;font-size:16px;text-decoration:none">Try Helse &rarr;</a></p>
+<p style="margin:40px 0;text-align:center"><a href="https://gethelse.com" style="display:inline-block;padding:14px 28px;background:#6e002c;color:#fff;border-radius:4px;font-size:16px;text-decoration:none">Try Helse &rarr;</a></p>
