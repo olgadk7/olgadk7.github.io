@@ -105,7 +105,7 @@ Your labs aren't a verdict. They're a time series, and most people only ever see
 
 ## What I built next
 
-This post is the reason Helse exists. It pulls your scattered results into one timeline and tracks where each marker is heading. It reads each number in context — your sex, your age when the blood was drawn, your life stage, whether you'd fasted — and shows a target only where the research supports one, with its source and how strong the evidence is. Where the evidence doesn't hold up, it says so instead of inventing a number. And when your own doctor gives you a target, it outranks everything.
+Helse pulls your scattered results into one timeline and tracks where each marker is heading. It reads each number in context — your sex, your age when the blood was drawn, your life stage, whether you'd fasted — and shows a target only where the research supports one, with its source and how strong the evidence is. Where the evidence doesn't hold up, it says so instead of inventing a number. And when your own doctor gives you a target, it outranks everything.
 
 It's live, and it's free to try.
 

@@ -13,7 +13,7 @@ published: false
 
 # I Re-checked My Own Optimal-Ranges Table. One Row Survived Intact.
 
-A year ago [I published a table](/blog/optimal-ranges): five biomarkers, the lab's "normal" beside an "evidence-based optimal." It's the reason Helse exists.
+A year ago [I published a table](/blog/optimal-ranges): five biomarkers, the lab's "normal" beside an "evidence-based optimal."
 
 Then I had to put those numbers inside a product that grades real people's blood, and "I read it somewhere credible" stopped being good enough. So I set a rule for what a number has to survive before Helse will show it as a target:
 
