@@ -48,7 +48,7 @@ email: ozziekahn@gmail.com
 
 # Newsletter. Leave blank and the signup block simply won't render.
 # One list; posts tag subscribers by source via `subscribe_tag` in front matter.
-buttondown_username: ''
+buttondown_username: 'ozzie_dynamics'
 subscribe_heading: 'The build log'
 subscribe_blurb: "Once a month: what I shipped, what I learned, what I'm stuck on."
 

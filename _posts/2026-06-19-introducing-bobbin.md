@@ -7,6 +7,7 @@ author: Olga Kahn
 summary: "Introducing Bobbin, a tool that turns any text into a navigable concept graph — extracting ideas and their relationships with Claude."
 permalink: /blog/introducing-bobbin
 comments: true
+subscribe_tag: bobbin
 ---
 
 # Introducing Bobbin: Turn Any Text Into A Concept Graph

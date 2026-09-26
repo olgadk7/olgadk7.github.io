@@ -7,6 +7,7 @@ author: Olga Kahn
 summary: "Standard lab ranges are built to catch disease, not to keep you well. What the evidence-based optimal ranges are for insulin, hs-CRP, TSH and ApoB — and why they're tighter."
 permalink: /blog/optimal-ranges
 comments: true
+subscribe_tag: helse
 ---
 
 # Your Labs Are "Normal." That Doesn't Mean You're Fine.
