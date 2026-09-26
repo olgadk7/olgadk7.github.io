@@ -137,23 +137,23 @@ def api(path, payload=None, key=None):
         return False, f"{type(e).__name__}: {e}"
 
 
-REACH_LOG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reach.log")
+HERE = os.path.dirname(os.path.abspath(__file__))
+REACH_LOG = os.path.join(HERE, "reach.log")
+NOTES_LOG = os.path.join(HERE, "notes.log")
 
 
-def log_reach(note):
-    """Record one act of reaching someone. Posting, replying, answering,
-    emailing a human. Building does not count."""
+def append_log(path, note, label):
     stamp = dt.date.today().isoformat()
-    with open(REACH_LOG, "a", encoding="utf-8") as fh:
+    with open(path, "a", encoding="utf-8") as fh:
         fh.write(f"{stamp}\t{note.strip()}\n")
-    print(f"Logged: {stamp}  {note.strip()}")
+    print(f"{label}: {stamp}  {note.strip()}")
 
 
-def reach_since(since_date):
-    if not os.path.exists(REACH_LOG):
+def read_log(path, since_date):
+    if not os.path.exists(path):
         return []
     out = []
-    with open(REACH_LOG, encoding="utf-8") as fh:
+    with open(path, encoding="utf-8") as fh:
         for line in fh:
             parts = line.rstrip("\n").split("\t", 1)
             if len(parts) != 2:
@@ -165,6 +165,16 @@ def reach_since(since_date):
             if d >= since_date:
                 out.append((d, parts[1]))
     return out
+
+
+def log_reach(note):
+    """Record one act of reaching someone. Posting, replying, answering,
+    emailing a human. Building does not count."""
+    append_log(REACH_LOG, note, "Reached")
+
+
+def reach_since(since_date):
+    return read_log(REACH_LOG, since_date)
 
 
 def ask_block(question, hint):
@@ -194,6 +204,9 @@ def main():
     ap.add_argument("--author", default=None, help="filter commits by author")
     ap.add_argument("--max-commits", type=int, default=8, help="per repo, in the draft")
     ap.add_argument("--out", default=None, help="output path")
+    ap.add_argument("--note", metavar="NOTE",
+                    help="record why a piece of work mattered, while it's "
+                         "fresh - the context a commit message can't hold")
     ap.add_argument("--reach", metavar="NOTE",
                     help="log one act of reaching a person, then exit "
                          "(posting, replying, answering, emailing a human)")
@@ -205,6 +218,12 @@ def main():
     ap.add_argument("--check", action="store_true",
                     help="verify the API key works, then exit")
     args = ap.parse_args()
+
+    if args.note:
+        append_log(NOTES_LOG, args.note, "Noted")
+        print(f"{len(read_log(NOTES_LOG, dt.date.today() - dt.timedelta(days=30)))} "
+              "note(s) in the last 30 days.")
+        return
 
     if args.reach:
         log_reach(args.reach)
@@ -267,23 +286,36 @@ def main():
         "",
     ]
 
+    notes = read_log(NOTES_LOG, since_date)
+    repo_commits = {}
     active = 0
     for repo in repos:
         commits = commits_since(repo, since_iso, args.author)
-        if not commits:
-            continue
-        active += 1
-        name = os.path.basename(repo)
-        label = DISPLAY_NAMES.get(name, name)
-        lines.append(f"**{label}** — {len(commits)} commit"
-                     f"{'s' if len(commits) != 1 else ''}")
-        for c in commits[: args.max_commits]:
-            lines.append(f"- {c['subject']}")
-        if len(commits) > args.max_commits:
-            lines.append(f"- …and {len(commits) - args.max_commits} more")
-        lines.append("")
+        if commits:
+            active += 1
+            repo_commits[os.path.basename(repo)] = commits
 
-    if not active:
+    if notes:
+        # Your own words, written while it was fresh. Far better reading than
+        # a commit subject, so this is what goes in the email.
+        for _, note in notes:
+            lines.append(f"- {note}")
+        lines.append("")
+    elif active:
+        for name, commits in repo_commits.items():
+            label = DISPLAY_NAMES.get(name, name)
+            lines.append(f"**{label}** — {len(commits)} commit"
+                         f"{'s' if len(commits) != 1 else ''}")
+            for c in commits[: args.max_commits]:
+                lines.append(f"- {c['subject']}")
+            if len(commits) > args.max_commits:
+                lines.append(f"- …and {len(commits) - args.max_commits} more")
+            lines.append("")
+        lines.append("<!-- These are raw commit subjects because no notes were")
+        lines.append("     logged. Rewrite them for a reader, or next month run")
+        lines.append('     `note \"why this mattered\"` as you go. -->')
+        lines.append("")
+    else:
         lines += ["Nothing committed in this window. Say that plainly, "
                   "or widen it with --since.", ""]
 
@@ -329,11 +361,19 @@ def main():
     print(f"  {active} repo(s) with activity, {len(posts)} post(s) in the window.")
     print("  This file lives on your Mac only. It is gitignored on purpose, so a")
     print("  half-written newsletter never lands on GitHub.\n")
-    total_commits = sum(len(commits_since(r, since_iso, args.author))
-                        for r in repos)
+    total_commits = sum(len(c) for c in repo_commits.values())
     reached = reach_since(since_date)
     print("\n" + "-" * 58)
-    print(f"  {total_commits} commits.  {len(reached)} people reached.")
+    if repo_commits:
+        print("  To jog your memory, this month's commits:")
+        for name, commits in repo_commits.items():
+            label = DISPLAY_NAMES.get(name, name)
+            print(f"    {label}: {len(commits)}")
+            for c in commits[:4]:
+                print(f"      {c['subject'][:64]}")
+        print()
+    print(f"  {total_commits} commits.  {len(notes)} notes.  "
+          f"{len(reached)} people reached.")
     if reached:
         for d, note in reached[-5:]:
             print(f"    {d}  {note[:60]}")
