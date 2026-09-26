@@ -4,12 +4,23 @@ layout: post
 blog: true
 category: blog
 author: Olga Kahn
-summary: "The health tool I wish my family had had — Helse pulls your scattered health data onto one timeline, grades it against optimal ranges, and actually watches it. Now in beta."
+summary: "The health tool I wish my family had had — every result in one place, read in context, watched over time, with the evidence behind every flag. Now in beta."
 permalink: /blog/helse
 comments: true
 subscribe_tag: helse
 published: false
 ---
+
+<!--
+BEFORE PUBLISHING — this post may only claim what is live. Tick each:
+[ ] Catalog targets switched on (plan item 1 in CLAUDE.md). Needed by "What it does",
+    points 2 and 3, and by the summary line ("the evidence behind every flag").
+[ ] WHOOP configured in production. Needed by "wearable recovery" in the IVF section.
+[ ] A screenshot: a marker page with a verdict, or the cycles view.
+[ ] The 2025 optimal-ranges post fixed first — this post links to it.
+Update as later plan items ship: research signals (item 5), own-history flags (item 6),
+heart-risk targets (item 7), drifting-together flags (item 8).
+-->
 
 # Introducing Helse: Stop Reacting to Your Health
 
@@ -19,11 +30,31 @@ That's the thing about how we do health: it waits for a crisis. Your data lives 
 
 So I built the tool I wish my family had had. It's called **Helse**, and today it's in beta.
 
-**Helse pulls your scattered health data into one picture and actually watches it.** Lab PDFs, clinic reports, wearables, supplements, meds — it reads them (Claude does the heavy lifting, even turning a screenshot of a clinic result into a structured record), puts every result, appointment, and note on one timeline, and grades them against *optimal* ranges, not the population average built to catch disease once it's already here. When something's worth watching, it becomes a tracked concern — not a number you forget by the time you're back in the parking lot.
+## What it does
+
+**Helse is the early-warning view of your health: every result in one place, read in context, watched over time — with the evidence behind every flag.**
+
+- **It watches the whole story.** Lab PDFs, clinic reports, wearables, supplements, meds — Helse reads them for you (a screenshot of a clinic portal becomes a structured record), puts every result, appointment and note on one timeline, and tracks where each marker is heading, with a plain-language read of what's improving and what's slipping. When something's worth watching, it becomes a tracked concern — not a number you forget by the time you're back in the parking lot.
+- **It reads each number in context.** Your sex, your age at the time of the test, your life stage, where you were in an IVF cycle, whether you'd fasted. When a comparison wouldn't be fair — a glucose from a draw that may not have been fasted, an estradiol taken mid-stimulation — Helse says "not graded" and why, instead of guessing.
+- **It shows the evidence, and how strong it is.** Where research supports a target beyond the lab's "normal," Helse shows it, with its source and how solid it is. Where it doesn't, Helse doesn't invent one. And when your own doctor gives you a number, it outranks everything.
 
 The multi-profile part has a sillier origin: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. So Helse keeps a profile for each person you look after, not just you.
 
-None of this is about becoming a hypochondriac or replacing your doctor. It's the opposite of anxiety: the calm of actually knowing, of catching the slow drift before it becomes an event. Health managed the way an actuary manages risk — trends, not snapshots; probabilities, not panic.
+## If you're trying to conceive or going through IVF
+
+This is where Helse goes deepest. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested. Monitoring scans and retrievals group into cycles, so you can compare one round with the next, with wearable recovery averaged across each. Clinic results import straight from a screenshot. Your supplement protocol treats your doctor's prescriptions as fixed. And when your clinician gives you a number for a stage — an estradiol target during stimulation — Helse holds every reading to it, at the right stage.
+
+## What I learned building it
+
+A year ago I argued that "normal" isn't "optimal." Building Helse, I went back and checked every "optimal" number I could find against the research, at the source.
+
+Of the 60 markers people most often give "optimal" ranges for, only 17 had a target that held up. Several popular numbers didn't: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. For the other 43 markers, the honest answer is "nothing beyond the lab's normal range," and Helse doesn't pretend otherwise.
+
+Some evidence isn't a target at all. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. A finding like that belongs in front of you, labelled for what it is, not turned into a confident number.
+
+## What it isn't
+
+None of this is about becoming a hypochondriac or replacing your doctor. It's the opposite of anxiety: the calm of actually knowing, of catching the slow drift before it becomes an event. Health managed the way an actuary manages risk — trends, not snapshots; probabilities, not panic. It won't hand you confident numbers with nothing behind them, and it won't pretend "normal" means "fine." What it gives you is a better conversation with your doctor, with the whole picture in hand.
 
 **Helse is in beta now at [gethelse.com](https://gethelse.com)**, free while it's in beta. Start with one lab PDF and see what a few years of it looks like on a chart.
 

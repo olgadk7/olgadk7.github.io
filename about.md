@@ -14,7 +14,7 @@ A one-person studio shipping focused tools that each turn messy data into a clea
 
 **Live now**
 
-**[Helse](https://gethelse.com)** — *health.* Your health data is scattered — lab PDFs, clinic portals, wearables, supplement bottles — and nobody's holding the thread. Helse pulls it all into one proactive picture, graded against *optimal* ranges rather than just "normal," so you can get ahead of problems instead of reacting to them. Anything worth watching becomes a tracked concern, with every result, appointment, and note on one timeline — and you can keep a separate profile for each person (or pet) you look after, not only yourself. *Stop reacting to your health. Start staying ahead of it.*
+**[Helse](https://gethelse.com)** — *health.* Your health data is scattered — lab PDFs, clinic portals, wearables, supplement bottles — and nobody's holding the thread. Helse pulls it all into one place and watches it over time — trends for every marker, and fertility treatment grouped into cycles you can compare — so you can get ahead of problems instead of reacting to them. Anything worth watching becomes a tracked concern, with every result, appointment, and note on one timeline — and you can keep a separate profile for each person you look after, not only yourself. *Stop reacting to your health. Start staying ahead of it.*
 
 **[Bobbin](https://heybobbin.com)** — *knowledge.* Paste in any text — notes, an article, a long AI chat — and it weaves the ideas into a navigable concept graph you can read as a digest, a table, or an interactive map.
 
