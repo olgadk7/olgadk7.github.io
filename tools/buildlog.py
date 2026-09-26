@@ -165,6 +165,30 @@ def main():
     since_date = today - dt.timedelta(days=args.since)
     since_iso = since_date.isoformat()
 
+    site_repo_early = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    out_path = args.out or os.path.join(
+        site_repo_early, "_drafts", f"buildlog-{today.strftime('%Y-%m')}.md"
+    )
+
+    # --push on an existing draft sends the file as it stands. Regenerating
+    # would silently throw away whatever was written into the human sections.
+    if args.push and os.path.exists(out_path):
+        with open(out_path, encoding="utf-8") as fh:
+            body = fh.read()
+        if not body.strip():
+            sys.exit(f"{out_path} is empty. Delete it and re-run without --push.")
+        unfilled = body.count("<!--")
+        if unfilled:
+            print(f"Note: {unfilled} prompt(s) still unfilled in {out_path}.")
+        subject = f"Build log - {today.strftime('%B %Y')}"
+        ok, res = api("/emails", {"subject": subject, "body": body,
+                                  "status": "draft"}, key)
+        if ok:
+            print(f"Pushed {out_path} to Buttondown as a draft: {subject}")
+            print("Open buttondown.com/emails to send it. Nothing has gone out.")
+            return
+        sys.exit(f"Couldn't create the draft (your file is untouched):\n{res}")
+
     repos = find_repos(args.root)
     if not repos:
         sys.exit(f"No git repos found under {args.root}. Try --root.")
@@ -226,9 +250,6 @@ def main():
         lines.append("<!-- No new posts in this window. -->")
     lines += ["", "---", "", "*Reply to this — it comes straight to me.*", ""]
 
-    out_path = args.out or os.path.join(
-        site_repo, "_drafts", f"buildlog-{today.strftime('%Y-%m')}.md"
-    )
     os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines))
@@ -236,8 +257,9 @@ def main():
     print(f"Draft written to {out_path}")
     print(f"{active} repo(s) with activity, {len(posts)} post(s) in the window.")
 
+    print("Fill in the two human sections, then re-run with --push "
+          "to put it in Buttondown as a draft.")
     if not args.push:
-        print("Edit it, then re-run with --push to put it in Buttondown as a draft.")
         return
 
     body = "\n".join(lines)
