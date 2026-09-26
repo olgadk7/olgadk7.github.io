@@ -150,20 +150,31 @@ def append_log(path, note, label):
 
 
 def read_log(path, since_date):
+    """Read a log. Lines are '<date>TAB<note>' when written by the tool, but a
+    bare line typed straight into the file counts too - the file is meant to be
+    editable by hand, so anything undated is treated as current."""
     if not os.path.exists(path):
         return []
     out = []
     with open(path, encoding="utf-8") as fh:
         for line in fh:
-            parts = line.rstrip("\n").split("\t", 1)
-            if len(parts) != 2:
+            line = line.rstrip("\n").strip()
+            if not line or line.startswith("#"):
                 continue
-            try:
-                d = dt.date.fromisoformat(parts[0])
-            except ValueError:
-                continue
-            if d >= since_date:
-                out.append((d, parts[1]))
+            date, note = None, line
+            for sep in ("\t", "  "):
+                if sep in line:
+                    head, rest = line.split(sep, 1)
+                    try:
+                        date = dt.date.fromisoformat(head.strip())
+                        note = rest.strip()
+                    except ValueError:
+                        date = None
+                    break
+            if date is None:
+                out.append((dt.date.today(), note))   # undated: assume recent
+            elif date >= since_date:
+                out.append((date, note))
     return out
 
 
