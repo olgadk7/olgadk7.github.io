@@ -13,9 +13,8 @@ published: false
 
 <!--
 BEFORE PUBLISHING — this post may only claim what is live. Tick each:
-[ ] Catalog targets switched on (plan item 1 in CLAUDE.md). Needed by "What it does",
-    points 2 and 3, and by the summary line ("the evidence behind every flag").
-[ ] WHOOP configured in production. Needed by "wearable recovery" in the IVF section.
+[x] Catalog targets switched on (plan item 1 in CLAUDE.md) — 2026-09-26, 10 markers.
+[x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [ ] A screenshot: a marker page with a verdict, or the cycles view.
 [ ] The 2025 optimal-ranges post fixed first — this post links to it.
 Update as later plan items ship: research signals (item 5), own-history flags (item 6),
@@ -48,7 +47,7 @@ This is where Helse goes deepest. A fertility view gathers the markers that matt
 
 A year ago I argued that "normal" isn't "optimal." Building Helse, I went back and checked every "optimal" number I could find against the research, at the source.
 
-Of the 60 markers people most often give "optimal" ranges for, only 17 had a target that held up. Several popular numbers didn't: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. For the other 43 markers, the honest answer is "nothing beyond the lab's normal range," and Helse doesn't pretend otherwise.
+Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up. Seven more had real evidence that isn't a target — a link to lower mortality in one study, say, or a number the medical societies disagree on. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. For the other 43 markers, the honest answer is "nothing beyond the lab's normal range," and Helse doesn't pretend otherwise.
 
 Some evidence isn't a target at all. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. A finding like that belongs in front of you, labelled for what it is, not turned into a confident number.
 
