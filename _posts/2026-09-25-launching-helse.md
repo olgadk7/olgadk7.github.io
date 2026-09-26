@@ -8,6 +8,7 @@ summary: "The health tool I wish my family had had — Helse pulls your scattere
 permalink: /blog/helse
 comments: true
 subscribe_tag: helse
+published: false
 ---
 
 # Introducing Helse: Stop Reacting to Your Health
@@ -20,11 +21,15 @@ So I built the tool I wish my family had had. It's called **Helse**, and today i
 
 **Helse pulls your scattered health data into one picture and actually watches it.** Lab PDFs, clinic reports, wearables, supplements, meds — it reads them (Claude does the heavy lifting, even turning a screenshot of a clinic result into a structured record), puts every result, appointment, and note on one timeline, and grades them against *optimal* ranges, not the population average built to catch disease once it's already here. When something's worth watching, it becomes a tracked concern — not a number you forget by the time you're back in the parking lot.
 
-The multi-profile part has a sillier origin: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. So Helse keeps a profile for everyone you look after — people and pets.
+The multi-profile part has a sillier origin: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. So Helse keeps a profile for each person you look after, not just you.
 
 None of this is about becoming a hypochondriac or replacing your doctor. It's the opposite of anxiety: the calm of actually knowing, of catching the slow drift before it becomes an event. Health managed the way an actuary manages risk — trends, not snapshots; probabilities, not panic.
 
-**Helse is in beta now at [gethelse.com](https://gethelse.com)**, with access to practitioners who read labs this way. If your own health data has ever felt like it was working against you, come kick the tires — and tell me what's missing.
+**Helse is in beta now at [gethelse.com](https://gethelse.com)**, free while it's in beta. Start with one lab PDF and see what a few years of it looks like on a chart.
+
+A couple of practical things. It's passwordless, so you sign in with a code sent to your email — gethelse.com is a new domain, so that code sometimes lands in spam. Check there, and mark it "not spam" so it doesn't happen twice. And since I'm asking you to hand over lab results: your data isn't sold and isn't used for advertising, which the [privacy policy](https://gethelse.com/privacy) says in plain language rather than in legalese.
+
+If your own health data has ever felt like it was working against you, come kick the tires — and tell me what's missing, at [hello@gethelse.com](mailto:hello@gethelse.com).
 
 *Stop reacting to your health. Start staying ahead of it.*
 
