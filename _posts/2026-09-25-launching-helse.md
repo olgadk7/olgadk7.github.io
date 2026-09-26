@@ -16,7 +16,7 @@ BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] Catalog targets switched on (plan item 1 in CLAUDE.md) — 2026-09-26, 10 markers.
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [ ] A screenshot: a marker page with a verdict, or the cycles view.
-[ ] The 2025 optimal-ranges post fixed first — this post links to it.
+[x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
 Update as later plan items ship: research signals (item 5), own-history flags (item 6),
 heart-risk targets (item 7), drifting-together flags (item 8).
 -->
