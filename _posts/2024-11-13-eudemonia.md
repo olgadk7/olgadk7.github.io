@@ -44,6 +44,7 @@ galleries:
     - url: /assets/images/posts/eudemonia/mindtravel.png
       title: "Emotional dance at MindTravel Piano Concert with Murray Hidary"
 
+math: true
 ---
 
 # Notes on a Life Well Lived at Eudemonia
