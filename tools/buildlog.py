@@ -137,6 +137,36 @@ def api(path, payload=None, key=None):
         return False, f"{type(e).__name__}: {e}"
 
 
+REACH_LOG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reach.log")
+
+
+def log_reach(note):
+    """Record one act of reaching someone. Posting, replying, answering,
+    emailing a human. Building does not count."""
+    stamp = dt.date.today().isoformat()
+    with open(REACH_LOG, "a", encoding="utf-8") as fh:
+        fh.write(f"{stamp}\t{note.strip()}\n")
+    print(f"Logged: {stamp}  {note.strip()}")
+
+
+def reach_since(since_date):
+    if not os.path.exists(REACH_LOG):
+        return []
+    out = []
+    with open(REACH_LOG, encoding="utf-8") as fh:
+        for line in fh:
+            parts = line.rstrip("\n").split("\t", 1)
+            if len(parts) != 2:
+                continue
+            try:
+                d = dt.date.fromisoformat(parts[0])
+            except ValueError:
+                continue
+            if d >= since_date:
+                out.append((d, parts[1]))
+    return out
+
+
 def ask_block(question, hint):
     """Ask for a paragraph at the terminal. Blank line ends it."""
     print(f"\n{question}")
@@ -164,6 +194,9 @@ def main():
     ap.add_argument("--author", default=None, help="filter commits by author")
     ap.add_argument("--max-commits", type=int, default=8, help="per repo, in the draft")
     ap.add_argument("--out", default=None, help="output path")
+    ap.add_argument("--reach", metavar="NOTE",
+                    help="log one act of reaching a person, then exit "
+                         "(posting, replying, answering, emailing a human)")
     ap.add_argument("--ask", action="store_true",
                     help="answer the two human sections right here, "
                          "instead of editing the file")
@@ -172,6 +205,12 @@ def main():
     ap.add_argument("--check", action="store_true",
                     help="verify the API key works, then exit")
     args = ap.parse_args()
+
+    if args.reach:
+        log_reach(args.reach)
+        recent = reach_since(dt.date.today() - dt.timedelta(days=30))
+        print(f"{len(recent)} in the last 30 days.")
+        return
 
     key = os.environ.get("BUTTONDOWN_API_KEY")
 
@@ -290,6 +329,19 @@ def main():
     print(f"  {active} repo(s) with activity, {len(posts)} post(s) in the window.")
     print("  This file lives on your Mac only. It is gitignored on purpose, so a")
     print("  half-written newsletter never lands on GitHub.\n")
+    total_commits = sum(len(commits_since(r, since_iso, args.author))
+                        for r in repos)
+    reached = reach_since(since_date)
+    print("\n" + "-" * 58)
+    print(f"  {total_commits} commits.  {len(reached)} people reached.")
+    if reached:
+        for d, note in reached[-5:]:
+            print(f"    {d}  {note[:60]}")
+    if total_commits and not reached:
+        print("  Every feature built without a user is a bet placed blind.")
+        print("  Log one with:  ./tools/buildlog.py --reach \"what you did\"")
+    print("-" * 58)
+
     if learned and stuck:
         print("Both sections are filled in.\n")
         if not args.push:
