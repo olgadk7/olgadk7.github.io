@@ -137,6 +137,25 @@ def api(path, payload=None, key=None):
         return False, f"{type(e).__name__}: {e}"
 
 
+def ask_block(question, hint):
+    """Ask for a paragraph at the terminal. Blank line ends it."""
+    print(f"\n{question}")
+    print(f"  {hint}")
+    print("  (write as much as you like; press Enter twice when done, "
+          "or Enter once to skip)")
+    out = []
+    while True:
+        try:
+            line = input("  > " if not out else "    ")
+        except (EOFError, KeyboardInterrupt):
+            print()
+            break
+        if line.strip() == "":
+            break
+        out.append(line.rstrip())
+    return "\n".join(out).strip()
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -145,6 +164,9 @@ def main():
     ap.add_argument("--author", default=None, help="filter commits by author")
     ap.add_argument("--max-commits", type=int, default=8, help="per repo, in the draft")
     ap.add_argument("--out", default=None, help="output path")
+    ap.add_argument("--ask", action="store_true",
+                    help="answer the two human sections right here, "
+                         "instead of editing the file")
     ap.add_argument("--push", action="store_true",
                     help="also create this as a DRAFT in Buttondown (never sends)")
     ap.add_argument("--check", action="store_true",
@@ -172,7 +194,7 @@ def main():
 
     # --push on an existing draft sends the file as it stands. Regenerating
     # would silently throw away whatever was written into the human sections.
-    if args.push and os.path.exists(out_path):
+    if args.push and not args.ask and os.path.exists(out_path):
         with open(out_path, encoding="utf-8") as fh:
             body = fh.read()
         if not body.strip():
@@ -226,20 +248,29 @@ def main():
         lines += ["Nothing committed in this window. Say that plainly, "
                   "or widen it with --since.", ""]
 
-    lines += [
-        "## What I learned",
-        "",
+    learned = stuck = ""
+    if args.ask and sys.stdin.isatty():
+        print("\nTwo questions. These are the half nobody can write for you.")
+        learned = ask_block(
+            "What did you learn this month?",
+            "One specific thing beats three vague ones. Include what broke. "
+            "If it doesn't cost you anything to admit, it isn't a lesson.")
+        stuck = ask_block(
+            "What are you stuck on?",
+            "Make it answerable. A real question gets replies; "
+            "'growth is hard' gets none.")
+    elif args.ask:
+        print("--ask needs a terminal; leaving the prompts in the file.")
+
+    lines += ["## What I learned", ""]
+    lines += [learned, ""] if learned else [
         "<!-- The thing you now know that you didn't a month ago. One specific",
-        "     thing beats three vague ones. Include what broke. -->",
-        "",
-        "## What I'm stuck on",
-        "",
+        "     thing beats three vague ones. Include what broke. -->", ""]
+    lines += ["## What I'm stuck on", ""]
+    lines += [stuck, ""] if stuck else [
         "<!-- A real open question. This is the section people reply to,",
-        "     so make it answerable. -->",
-        "",
-        "## What I wrote",
-        "",
-    ]
+        "     so make it answerable. -->", ""]
+    lines += ["## What I wrote", ""]
 
     posts = posts_since(site_repo, since_date)
     if posts:
@@ -259,11 +290,17 @@ def main():
     print(f"  {active} repo(s) with activity, {len(posts)} post(s) in the window.")
     print("  This file lives on your Mac only. It is gitignored on purpose, so a")
     print("  half-written newsletter never lands on GitHub.\n")
-    print("Next:")
-    print(f'  1. open it     open -e "{out_path}"')
-    print('  2. write the "What I learned" and "What I\'m stuck on" sections')
-    print("  3. then run    ./tools/buildlog.py --push")
-    print("                 (creates a DRAFT in Buttondown - sends nothing)\n")
+    if learned and stuck:
+        print("Both sections are filled in.\n")
+        if not args.push:
+            print("Next:  ./tools/buildlog.py --push"
+                  "   (creates a DRAFT in Buttondown - sends nothing)\n")
+    else:
+        print("Next:")
+        print(f'  1. open it     open -e "{out_path}"')
+        print('  2. write the "What I learned" and "What I\'m stuck on" sections')
+        print("  3. then run    ./tools/buildlog.py --push")
+        print("                 (creates a DRAFT in Buttondown - sends nothing)\n")
     if not args.push:
         return
 
