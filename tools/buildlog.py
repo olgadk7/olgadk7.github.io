@@ -184,8 +184,9 @@ def main():
         ok, res = api("/emails", {"subject": subject, "body": body,
                                   "status": "draft"}, key)
         if ok:
-            print(f"Pushed {out_path} to Buttondown as a draft: {subject}")
-            print("Open buttondown.com/emails to send it. Nothing has gone out.")
+            print(f"\nPushed to Buttondown as a DRAFT: {subject}")
+            print("  Nothing has been sent to anyone.")
+            print("  Go to buttondown.com/emails, read it through, press Send.\n")
             return
         sys.exit(f"Couldn't create the draft (your file is untouched):\n{res}")
 
@@ -254,11 +255,15 @@ def main():
     with open(out_path, "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines))
 
-    print(f"Draft written to {out_path}")
-    print(f"{active} repo(s) with activity, {len(posts)} post(s) in the window.")
-
-    print("Fill in the two human sections, then re-run with --push "
-          "to put it in Buttondown as a draft.")
+    print(f"\nDraft written: {out_path}")
+    print(f"  {active} repo(s) with activity, {len(posts)} post(s) in the window.")
+    print("  This file lives on your Mac only. It is gitignored on purpose, so a")
+    print("  half-written newsletter never lands on GitHub.\n")
+    print("Next:")
+    print(f'  1. open it     open -e "{out_path}"')
+    print('  2. write the "What I learned" and "What I\'m stuck on" sections')
+    print("  3. then run    ./tools/buildlog.py --push")
+    print("                 (creates a DRAFT in Buttondown - sends nothing)\n")
     if not args.push:
         return
 
