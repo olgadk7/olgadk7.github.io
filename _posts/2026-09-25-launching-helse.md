@@ -15,7 +15,7 @@ published: false
 BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] Catalog targets switched on (plan item 1 in CLAUDE.md) — 2026-09-26, 10 markers.
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
-[ ] A screenshot: a marker page with a verdict, or the cycles view.
+[x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26.
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
 Update as later plan items ship: research signals (item 5), own-history flags (item 6),
 heart-risk targets (item 7), drifting-together flags (item 8).
@@ -33,9 +33,13 @@ So I built the tool I wish my family had had. It's called **Helse**, and today i
 
 **Helse is the early-warning view of your health: every result in one place, read in context, watched over time — with the evidence behind every flag.**
 
-- **It watches the whole story.** Lab PDFs, clinic reports, wearables, supplements, meds — Helse reads them for you (a screenshot of a clinic portal becomes a structured record), puts every result, appointment and note on one timeline, and tracks where each marker is heading, with a plain-language read of what's improving and what's slipping. When something's worth watching, it becomes a tracked concern — not a number you forget by the time you're back in the parking lot.
+- **It watches the whole story.** Lab PDFs, clinic reports, wearables, supplements, meds — Helse reads them for you (a screenshot of a clinic portal becomes a structured record), puts every appointment and note on one timeline, and tracks where each marker is heading, with a plain-language read of what's improving and what's slipping. When something's worth watching, it becomes a tracked concern — not a number you forget by the time you're back in the parking lot.
 - **It reads each number in context.** Your sex, your age at the time of the test, your life stage, where you were in an IVF cycle, whether you'd fasted. When a comparison wouldn't be fair — a glucose from a draw that may not have been fasted, an estradiol taken mid-stimulation — Helse says "not graded" and why, instead of guessing.
 - **It shows the evidence, and how strong it is.** Where research supports a target beyond the lab's "normal," Helse shows it, with its source and how solid it is. Where it doesn't, Helse doesn't invent one. And when your own doctor gives you a number, it outranks everything.
+
+![A Helse marker page for HbA1c: in the lab's normal range, but above the target, with its source and a history line](/assets/images/posts/helse/marker-verdict.png)
+
+*A marker page on a demo profile (the numbers are made up): normal by the lab's range, above the target the research supports, with the source one click away.*
 
 The multi-profile part has a sillier origin: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. So Helse keeps a profile for each person you look after, not just you.
 
