@@ -17,8 +17,8 @@ BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26.
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
-Everything below is live as of 2026-09-27. Not live, so not claimed: heart-risk targets
-(plan item 7). Wearables = WHOOP only.
+Everything below is live as of 2026-09-27 (pet profiles: live 2026-09-27). Not live, so not
+claimed: heart-risk targets (plan item 7). Wearables = WHOOP only. Pets get no AI and no targets.
 -->
 
 # Introducing Helse: Stop Reacting to Your Health
@@ -62,7 +62,9 @@ All of it is written for a better conversation with your doctor, not instead of 
 
 ### For everyone you look after
 
-The multi-profile part has a sillier origin: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. So Helse keeps a profile for each person you look after, not just you — and you can share any profile with a partner or a family member, to view it or to help keep it up to date.
+The multi-profile part has a sillier origin: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. So Helse keeps a profile for everyone you look after, not just you — and yes, that includes your dog. His vet visits and vaccines on one timeline, a symptom diary and a diet diary, what he's taking and when, and his bloodwork and weight over the years, read against the vet lab's own range. The same idea as for you: catch the slow drift early, while there's still time to do something about it.
+
+You can share any profile with a partner or a family member (or the dog sitter), to view it or to help keep it up to date.
 
 ## A concern up close: fertility and IVF
 
