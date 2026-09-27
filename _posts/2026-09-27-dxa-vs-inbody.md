@@ -71,6 +71,22 @@ A DXA report is dense — mine ran to four pages, one of them sideways. The prof
 
 What I skip: the per-limb tables, the percentiles, and the calories-per-activity page. Some of it is interesting; none of it is worth tracking.
 
+## Reading one report
+
+Here's how that plays out on a real-looking report — a composite, with invented numbers, but a shape I've now seen more than once: a woman of 38, 5 ft 6 in, 136 lb, BMI 22, scanned on a Hologic machine.
+
+**Body fat 27.4%.** The report's own percentiles put her at the 22nd for women her age — leaner than three in four. And it's carried where it does the least harm: her trunk is 22% fat, her legs 34%, and her android/gynoid ratio is 0.84 (a ratio above 1, the belly-heavy pattern, is the one [linked to insulin resistance](https://doi.org/10.21037/qims.2020.03.02)). Her visceral fat is estimated at 61 cm². Everything about fat says: fine.
+
+**Bone density 1.08 g/cm², Z-score −0.4.** Average for her age; anything above −2.0 is ["within the expected range for age."](https://iscd.org/official-positions-2023/) The T-score is blank — correct for a woman before menopause.
+
+**Appendicular lean mass index 5.8 kg/m², 21st percentile.** This is the number. Four in five women her age have more muscle in their arms and legs. She's above the [European cut-off for low muscle](https://doi.org/10.1093/ageing/afy169) (5.5), but not by much — and at 38 it's a reserve question, not a diagnosis. Muscle is the thing that's hard to rebuild later and easy to build now. On a report where everything else says "fine," this is the one line that argues for a change.
+
+**A small asymmetry:** left arm 39% fat, right arm 34%, with more muscle on the right. Handedness, almost certainly. Worth a mention to a trainer; not worth worrying about.
+
+**Resting metabolic rate 1,390 kcal.** Calculated from her lean mass, not measured — a starting point for a nutrition plan, not a fact about her.
+
+So the whole report comes down to one sentence: *lean, average bones, light on muscle — and the muscle is what to work on.* That's what a body scan is for. Not the 45 numbers; the one that changes what you do next.
+
 ## What an InBody is good for
 
 It's quick, cheap, radiation-free and repeatable — ideal for checking in between DXAs, as long as you treat it as a trend line rather than a precise number. It also reports body water measures a DXA doesn't. What I wouldn't lean on is its visceral-fat figure, or on comparing its body fat % with a DXA's.
