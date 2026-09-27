@@ -14,8 +14,9 @@ published: false
 <!--
 Every number below was checked at its source on 2026-09-27 (links inline).
 Helse claims are live as of 2026-09-27: several files read as one report,
-the headline numbers kept, weights in the profile's units, repeats skipped.
-NOT live, so not claimed: labelling which machine each chart point came from.
+the headline numbers kept, weights in the profile's units, repeats skipped,
+one line per machine (app commit 584e752). Screenshot: the Demo profile,
+made-up numbers.
 -->
 
 # DXA or InBody? What a Body Scan Can and Can't Tell You
@@ -91,6 +92,12 @@ The exception is pregnancy: [tell the clinic](https://www.radiologyinfo.org/en/i
 ## How Helse reads them
 
 You can upload a body scan to Helse the same way as a lab report — all the pages at once, even a photo of a paper printout. It keeps the headline numbers (weight, body fat %, fat and lean mass, muscle, visceral fat, bone density, resting calories), skips the rest, and puts weights in the units you've chosen. Upload the same report twice and nothing is added twice. Each number then charts over time next to your bloodwork.
+
+And because machines disagree, Helse keeps track of which one each number came from. Switch from an InBody to a DXA and each gets its own line on the chart — Helse won't call the jump between them a change.
+
+![A Helse chart of body fat percentage with two lines, one for an InBody 770 and one for a Hologic DXA, and a note that the readings came from different machines](/assets/images/posts/helse/body-fat-two-machines.png)
+
+*Body fat on a demo profile (the numbers are made up): the InBody reads a few points below the DXA every time, so each machine gets its own line.*
 
 *This is educational, not medical advice. Talk to your clinician about what to test, and what your results mean for you.*
 
