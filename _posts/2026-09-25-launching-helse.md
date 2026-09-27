@@ -17,8 +17,9 @@ BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26.
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
-Everything below is live as of 2026-09-27 (pet profiles: live 2026-09-27). Not live, so not
-claimed: heart-risk targets (plan item 7). Wearables = WHOOP only. Pets get no AI and no targets.
+Everything below is live as of 2026-09-27 (pet profiles, "Add anything": live 2026-09-27).
+Not live, so not claimed: heart-risk targets (plan item 7). Wearables = WHOOP only. Pets get no
+AI and no targets.
 -->
 
 # Introducing Helse: Stop Reacting to Your Health
@@ -33,7 +34,7 @@ So I built the tool I wish my family had had. It's called **Helse**, and today i
 
 **Helse is the early-warning view of your health: every result in one place, read in context, watched over time — with the evidence behind every flag.**
 
-You upload your lab reports — a PDF, or a screenshot of your clinic's portal — and Helse reads every result for you. From there, the app is laid out the way you'd think about your own health: what's true about you, what your data says, and what to do about it.
+You hand Helse anything with health data in it — a lab PDF, a photo of a paper report, a body scan, screenshots from your clinic's portal, a message from your doctor — and it works out what it is, files every result on the day it was drawn, and shows you what it found before anything is saved. From there, the app is laid out the way you'd think about your own health: what's true about you, what your data says, and what to do about it.
 
 ### About you: what Helse knows
 
