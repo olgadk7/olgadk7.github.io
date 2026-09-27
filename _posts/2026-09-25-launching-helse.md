@@ -17,8 +17,11 @@ BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26.
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
-Update as later plan items ship: research signals (item 5), own-history flags (item 6),
-heart-risk targets (item 7), drifting-together flags (item 8).
+Shipped since and now claimed below (2026-09-26): research notes (item 5), markers drifting
+together (item 8), WHOOP on the dashboard (item 10), the AI reading your targets (item 3),
+"trying to conceive" as a dated stage (item 4). NOT live, so not claimed: own-history
+noise filtering (item 6 — built, but the per-marker numbers aren't loaded yet), heart-risk
+targets (item 7).
 -->
 
 # Introducing Helse: Stop Reacting to Your Health
@@ -33,9 +36,9 @@ So I built the tool I wish my family had had. It's called **Helse**, and today i
 
 **Helse is the early-warning view of your health: every result in one place, read in context, watched over time — with the evidence behind every flag.**
 
-- **It watches the whole story.** Lab PDFs, clinic reports, wearables, supplements, meds — Helse reads them for you (a screenshot of a clinic portal becomes a structured record), puts every appointment and note on one timeline, and tracks where each marker is heading, with a plain-language read of what's improving and what's slipping. When something's worth watching, it becomes a tracked concern — not a number you forget by the time you're back in the parking lot.
+- **It watches the whole story.** Lab PDFs, clinic reports, wearables, supplements, meds — Helse reads them for you (a screenshot of a clinic portal becomes a structured record), puts every appointment and note on one timeline, and tracks where each marker is heading, with a plain-language read of what's improving and what's slipping — including when several heart-and-metabolic markers drift the wrong way together while each is still "normal." Your wearable's recovery, HRV and sleep sit alongside, measured against your own baseline. When something's worth watching, it becomes a tracked concern — not a number you forget by the time you're back in the parking lot.
 - **It reads each number in context.** Your sex, your age at the time of the test, your life stage, where you were in an IVF cycle, whether you'd fasted. When a comparison wouldn't be fair — a glucose from a draw that may not have been fasted, an estradiol taken mid-stimulation — Helse says "not graded" and why, instead of guessing.
-- **It shows the evidence, and how strong it is.** Where research supports a target beyond the lab's "normal," Helse shows it, with its source and how solid it is. Where it doesn't, Helse doesn't invent one. And when your own doctor gives you a number, it outranks everything.
+- **It shows the evidence, and how strong it is.** Where research supports a target beyond the lab's "normal," Helse shows it, with its source and how solid it is. Where it doesn't, Helse doesn't invent one, though a finding that isn't a target (a trial that found a supplement didn't help) still shows up, labelled for what it is. The AI's plain-language read works from the same targets and sources, so it can't make up a number either. And when your own doctor gives you a number, it outranks everything.
 
 ![A Helse marker page for HbA1c: in the lab's normal range, but above the target, with its source and a history line](/assets/images/posts/helse/marker-verdict.png)
 
@@ -45,7 +48,7 @@ The multi-profile part has a sillier origin: I was trying to keep track of my **
 
 ## If you're trying to conceive or going through IVF
 
-This is where Helse goes deepest. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested. Monitoring scans and retrievals group into cycles, so you can compare one round with the next, with wearable recovery averaged across each. Clinic results import straight from a screenshot. Your supplement protocol treats your doctor's prescriptions as fixed. And when your clinician gives you a number for a stage — an estradiol target during stimulation — Helse holds every reading to it, at the right stage.
+This is where Helse goes deepest. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested. Monitoring scans and retrievals group into cycles, so you can compare one round with the next, with wearable recovery averaged across each. Clinic results import straight from a screenshot. Your supplement protocol treats your doctor's prescriptions as fixed. And when your clinician gives you a number for a stage — an estradiol target during stimulation — Helse holds every reading to it, at the right stage. You can mark when you started trying to conceive, too, so the fertility evidence follows you from that date.
 
 ## What I learned building it
 
@@ -53,7 +56,7 @@ A year ago I argued that "normal" isn't "optimal." Building Helse, I went back a
 
 Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up. Seven more had real evidence that isn't a target — a link to lower mortality in one study, say, or a number the medical societies disagree on. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. For the other 43 markers, the honest answer is "nothing beyond the lab's normal range," and Helse doesn't pretend otherwise.
 
-Some evidence isn't a target at all. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. A finding like that belongs in front of you, labelled for what it is, not turned into a confident number.
+Some evidence isn't a target at all. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. A finding like that belongs in front of you, labelled for what it is, not turned into a confident number, which is exactly how it appears on your vitamin D page in Helse.
 
 ## What it isn't
 
