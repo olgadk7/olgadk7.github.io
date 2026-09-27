@@ -23,7 +23,7 @@ made-up numbers.
 
 *A side finding from building [Helse](/blog/helse).*
 
-While teaching Helse to read body scans, I ended up with two reports on my desk: my own DXA, and a family member's InBody. Same idea — how much of you is fat, muscle and bone — and almost nothing else in common. So I went and checked what each one can actually tell you.
+While teaching Helse to read body scans, I ended up with two reports on my desk: my own DXA, and my husband's InBody. Same idea — how much of you is fat, muscle and bone — and almost nothing else in common. So I went and checked what each one can actually tell you.
 
 **The short version: DXA is the better scan. InBody is the better habit.** And whichever you use, how you show up for it matters more than the brand.
 
