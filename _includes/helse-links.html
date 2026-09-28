@@ -1,0 +1,22 @@
+<script>
+// Links to Helse pass on where the reader came from. Share a post as
+// …/blog/helse?utm_source=linkedin and every gethelse.com link on the page
+// carries utm_source=linkedin, so Helse's analytics can tell which channel
+// brought each sign-up. Without one, a link keeps its own
+// (utm_source=olgakahn.com).
+(function () {
+  var source = new URLSearchParams(location.search).get("utm_source");
+  if (!source) return;
+  source = source.slice(0, 60);
+  var links = document.querySelectorAll('a[href*="gethelse.com"]');
+  for (var i = 0; i < links.length; i++) {
+    try {
+      var url = new URL(links[i].href);
+      if (!/(^|\.)gethelse\.com$/.test(url.hostname)) continue;
+      url.searchParams.set("utm_source", source);
+      if (!url.searchParams.get("utm_medium")) url.searchParams.set("utm_medium", "blog");
+      links[i].href = url.toString();
+    } catch (e) {}
+  }
+})();
+</script>

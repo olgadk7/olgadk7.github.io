@@ -109,4 +109,4 @@ Helse pulls your scattered results into one timeline and tracks where each marke
 
 It's live, and it's free to try.
 
-<p style="margin:40px 0;text-align:center"><a href="https://gethelse.com" style="display:inline-block;padding:14px 28px;background:#6e002c;color:#fff;border-radius:4px;font-size:16px;text-decoration:none">Try Helse &rarr;</a></p>
+<p style="margin:40px 0;text-align:center"><a href="https://www.gethelse.com/?utm_source=olgakahn.com&amp;utm_medium=blog&amp;utm_campaign=optimal-ranges" style="display:inline-block;padding:14px 28px;background:#6e002c;color:#fff;border-radius:4px;font-size:16px;text-decoration:none">Try Helse &rarr;</a></p>

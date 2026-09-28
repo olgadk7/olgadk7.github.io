@@ -240,3 +240,11 @@ Ultimately, rethinking medicine means designing a system that anticipates and ad
 In doing so, we forge a path toward a more resilient healthcare system—one that respects the complexity of the human body and recognizes that the absence of immediate danger does not equate to long-term safety.
 
 Hugo’s loss demonstrated the painful consequences of a healthcare system that waits for dramatic symptoms before taking aggressive action. But his story also made me see a mindset of preventive vigilance, where each subtle shift in health is evaluated not with complacency, but with curiosity and care. By blending patient-led risk monitoring with a medical infrastructure that incentivizes early intervention, we can catch ticking time bombs like Hugo’s in time to defuse them. In this vision, no one has to hear the words “I wish we’d caught it sooner” after it’s too late. Instead, we create a health culture that values consistent data, collaborative inquiry, and empathy—protecting lives long before they reach the brink.
+
+## What I built next
+
+Since writing this, I built the tool I wish my family had had. Helse keeps every result in one place, reads each one in context — your sex, your age when the blood was drawn, your life stage — and watches it over time, so a slow drift gets noticed while there's still time to do something about it.
+
+It's live, and it's free to try.
+
+<p style="margin:40px 0;text-align:center"><a href="https://www.gethelse.com/?utm_source=olgakahn.com&amp;utm_medium=blog&amp;utm_campaign=health-ownership" style="display:inline-block;padding:14px 28px;background:#6e002c;color:#fff;border-radius:4px;font-size:16px;text-decoration:none">Try Helse &rarr;</a></p>

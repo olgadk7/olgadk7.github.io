@@ -27,8 +27,9 @@ markdown: kramdown
 highlighter: rouge
 # paginate: 5
 
-# To enable google analytics, supply your token below
-analytics-google: 'UA-112301531-1'
+# Google Analytics removed 2026-09-28: it was Universal Analytics (ga.js), which
+# Google shut down in July 2023, so it recorded nothing. Helse links carry UTM
+# tags instead (_includes/helse-links.html).
 
 # if you don't want comments in your posts, set to false
 disqus: olgakahn-com
