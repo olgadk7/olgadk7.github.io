@@ -17,7 +17,8 @@ BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26.
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
-Everything below is live as of 2026-09-27 (pet profiles, "Add anything": live 2026-09-27).
+Everything below is live as of 2026-09-27 (pet profiles, "Add anything", Costs and the
+profile Timeline: live 2026-09-27).
 Not live, so not claimed: heart-risk targets (plan item 7). Wearables = WHOOP only. Pets get no
 AI and no targets.
 -->
@@ -40,7 +41,7 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 - **Your profile.** Your age, your sex and your life stage — trying to conceive, pregnant, postmenopausal — with the date it started, because the same number means different things at different points in life.
 - **Your health goals: where you're heading.** Better egg quality, more energy, a healthier heart. Goals decide what Helse pays attention to: which markers it puts first, how it reads your results, what goes into your supplement plan. What they never do is move a target — a healthy range doesn't change because you want it to.
-- **Your health concerns: what you're dealing with.** An IVF cycle, a thyroid problem, a stubborn injury. Each concern gets its own page: a timeline of every test, appointment, medication and note, and your clinic's reports imported straight from a screenshot — so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot.
+- **Your health concerns: what you're dealing with.** An IVF cycle, a thyroid problem, a stubborn injury. Each concern gets its own page: a timeline of every test, appointment, medication and note, and your clinic's reports imported straight from a screenshot — so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot. And one timeline pulls it all together: every visit, test and result across every concern, newest first, with where it happened and who you saw.
 
 ### Your results: what your data says
 
@@ -72,6 +73,8 @@ You can share any profile with a partner or a family member (or the dog sitter),
 Concerns are where Helse goes deepest, and mine is fertility, so here's what one looks like in practice.
 
 Monitoring scans and retrievals group into IVF cycles, so you can compare one round with the next — follicles, eggs, embryos — side by side. Your clinic's screenshots import straight in, and your recurring records, like scans and embryology reports, become forms you add to in seconds. When your clinician gives you a number for a stage — an estradiol target during stimulation — Helse holds every reading to it, at the right stage. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested yet. And your wearable's recovery is averaged across each cycle, so you can see how your body handled each round.
+
+IVF is a financial marathon too, and the paperwork is its own part-time job. Every bill, estimate and receipt you hand Helse is kept: what each visit and test cost, who billed it, what insurance paid or refused. It's linked to the visit it paid for, and totalled by year and by clinic, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
 
 ## Every number has a source
 
