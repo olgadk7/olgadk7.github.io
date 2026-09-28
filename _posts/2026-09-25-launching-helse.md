@@ -26,7 +26,7 @@ AI and no targets.
 
 # Introducing Helse: Stop Reacting to Your Health
 
-A couple of winters ago, a week before Christmas, my partner's brother-in-law died of a heart attack at 35. It wasn't a bolt from the blue — for months he knew something was wrong, and the system kept telling him it was stress. [I wrote about it here.](/blog/health-ownership) The autopsy found a 90% blockage and a pancreatic tumor nobody had gone looking for. Every warning sign had been there, assessed one at a time, and waved through.
+A couple of winters ago, a week before Christmas, my husband's brother-in-law died of a heart attack at 35. It wasn't a bolt from the blue — for months he knew something was wrong, and the system kept telling him it was stress. [I wrote about it here.](/blog/health-ownership) The autopsy found a 90% blockage and a pancreatic tumor nobody had gone looking for. Every warning sign had been there, assessed one at a time, and waved through.
 
 That's the thing about how we do health: it waits for a crisis. Your data lives in a dozen portals, your labs come back "normal" ([which doesn't mean what you think it means](/blog/optimal-ranges)), and nobody — no doctor, no app — is holding the whole thread and watching it move.
 
@@ -41,12 +41,12 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 ### About you: what Helse knows
 
 - **Your profile.** Your age, your sex and your life stage — trying to conceive, pregnant, perimenopausal, postmenopausal — with the date it started, because the same number means different things at different points in life.
-- **Your focus: what Helse pays attention to.** Something you're working toward or going through — better egg quality, a healthier heart, an IVF cycle, a stubborn injury. Each one decides which markers Helse puts first, how it reads your results and what goes into your supplement plan, and gets its own page: a timeline of every test, appointment, medication and note, and your clinic's reports imported straight from a screenshot — so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot. What it never does is move a target — a healthy range doesn't change because you want it to. And one timeline pulls it all together: every visit, test and result, newest first, with where it happened and who you saw.
+- **Your focus: what Helse pays attention to.** Something you're working toward or going through — better egg quality, a healthier heart, an IVF cycle, a stubborn injury. Each one decides which markers Helse puts first, how it reads your results and what goes into your supplement plan, and gets its own page: a timeline of its appointments, tests, medications and notes, and your clinic's reports imported straight from a screenshot — so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot. What it never does is move a target — a healthy range doesn't change because you want it to. And one timeline pulls it all together: every visit, test and result, newest first, with where it happened and who you saw.
 
 ### Your results: what your data says
 
 - **Every marker, tracked over time,** with a plain-language summary of what's improving and what's slipping. For the common markers, Helse knows how much each one naturally wobbles from one test to the next, so noise doesn't get reported as news.
-- **Each number read in context.** Your sex, your age when the blood was drawn, your life stage, where you were in an IVF cycle, whether you'd fasted. When a comparison wouldn't be fair — a glucose from a draw that may not have been fasted, an estradiol taken mid-stimulation — Helse says "not graded" and why, instead of guessing.
+- **Each number read in context.** Your sex, your age when the blood was drawn, your life stage, where you were in an IVF cycle, whether you'd fasted. When a comparison wouldn't be fair — a glucose from a draw that may not have been fasted, an estradiol taken mid-stimulation — Helse says it won't judge that number, and why, instead of guessing.
 - **The evidence, and how strong it is.** Next to your lab's "normal," Helse shows a target wherever the research supports one, with its source one click away — and says so plainly where it doesn't. Findings that aren't targets, like a trial where a supplement didn't help, appear as research notes, labelled for what they are. And when your own doctor gives you a number, it outranks everything.
 - **Patterns, not just numbers.** When several heart-and-metabolic markers drift the wrong way together — each one still "normal" on its own — Helse flags it. That's exactly the kind of pattern that got waved through in my family.
 - **Your wearable.** Connect a WHOOP, and your recovery, heart-rate variability, resting heart rate and sleep sit right alongside your labs — this week against your own usual, because a wearable's numbers only mean something against your own baseline.
@@ -57,7 +57,7 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 ### What to do: how to act on it
 
-- **What your results mean.** A read of your latest results through the lens of your focus: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, so it can't make up a number.
+- **What your results mean.** What changed since your last results, and what it means for your focus: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, and isn't allowed to add a target of its own.
 - **When your next screening is due.** Your Pap, mammogram or colonoscopy, found on your own timeline and timed by the official schedule for your age — and after an abnormal result, a note that your doctor sets the date instead.
 - **A supplement protocol built for you.** Dosed, and scheduled across your day — morning, midday, evening, bedtime, with food or without — with the interactions between supplements flagged, and anything your doctor prescribed treated as fixed. Want something changed? Just say it in plain words — "I'm vegetarian", "fewer pills, please", "nothing with iodine" — and it redraws the protocol on the spot, showing exactly what would change before you apply it. If a request could mean two things, it asks.
 - **What it all costs.** Every bill, estimate and receipt you hand Helse — a physical, a lab estimate, a vet invoice — is kept: what each visit and test cost, who billed it, what insurance paid or refused. Each one is linked to the visit it paid for and totalled by year and by provider, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
@@ -72,19 +72,19 @@ You can share any profile with a partner or a family member (or the dog sitter),
 
 ## Up close: fertility and IVF
 
-Your focus is where Helse goes deepest, and mine is fertility, so here's what that looks like in practice.
+Fertility is where Helse goes deepest — it's my own focus — so here's what that looks like in practice.
 
-Monitoring scans and retrievals group into IVF cycles, so you can compare one round with the next — follicles, eggs, embryos — side by side. Your clinic's screenshots import straight in, and your recurring records, like scans and embryology reports, become forms you add to in seconds. When your clinician gives you a number for a stage — an estradiol target during stimulation — Helse holds every reading to it, at the right stage. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested yet. And your wearable's recovery is averaged across each cycle, so you can see how your body handled each round.
+Monitoring scans and retrievals group into IVF cycles, so you can compare one round with the next — follicles, eggs, embryos — side by side. Your clinic's screenshots import straight in, and your recurring records, like scans and embryology reports, become forms you add to in seconds. When your clinician gives you a number for a stage — an estradiol target during stimulation — Helse checks your lab results against it, but only the ones drawn during that stage. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested yet. And your wearable's recovery is averaged across each cycle, so you can see how your body handled each round.
 
 IVF is a financial marathon too, and the paperwork is its own part-time job. Every clinic bill and lab estimate lands in Costs, next to the visit or test it paid for — so you can see what each clinic has cost you, and what insurance refused to cover.
 
-## Every number has a source
+## Every target has a source
 
 Most health apps hand you "optimal" ranges with nothing behind them. Before Helse showed a single target, every one was checked against the research, at the source.
 
-Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up — and those are the ones Helse uses. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. For the other 43 markers, Helse tells you the honest answer: nothing beyond the lab's normal range.
+Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up — and those are the ones Helse uses. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. Seven more have real evidence that isn't a target — a link to lower mortality in one study, a guideline since withdrawn, a number the medical societies disagree on. For the other 43, Helse tells you the honest answer: nothing beyond the lab's normal range.
 
-Some evidence isn't a target at all, and Helse shows you that too. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. On your vitamin D page in Helse, that finding sits right under your number, labelled for exactly what it is.
+Where that kind of evidence bears on you, Helse shows it. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. If fertility is in your focus, that finding sits right under your number on your vitamin D page, labelled for exactly what it is.
 
 ## What it isn't
 
