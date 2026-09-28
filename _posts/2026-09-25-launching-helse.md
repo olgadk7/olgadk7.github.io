@@ -59,6 +59,7 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 - **What your results mean.** A read of your latest results through the lens of your goals: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, so it can't make up a number.
 - **A supplement protocol built for you.** Dosed, and scheduled across your day — morning, midday, evening, bedtime, with food or without — with the interactions between supplements flagged, and anything your doctor prescribed treated as fixed. Want something changed? Chat with it: ask a question, or ask for a change and see exactly what would move before you apply it.
+- **What it all costs.** Every bill, estimate and receipt you hand Helse — a physical, a lab estimate, a vet invoice — is kept: what each visit and test cost, who billed it, what insurance paid or refused. Each one is linked to the visit it paid for and totalled by year and by provider, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
 
 All of it is written for a better conversation with your doctor, not instead of one.
 
@@ -74,7 +75,7 @@ Concerns are where Helse goes deepest, and mine is fertility, so here's what one
 
 Monitoring scans and retrievals group into IVF cycles, so you can compare one round with the next — follicles, eggs, embryos — side by side. Your clinic's screenshots import straight in, and your recurring records, like scans and embryology reports, become forms you add to in seconds. When your clinician gives you a number for a stage — an estradiol target during stimulation — Helse holds every reading to it, at the right stage. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested yet. And your wearable's recovery is averaged across each cycle, so you can see how your body handled each round.
 
-IVF is a financial marathon too, and the paperwork is its own part-time job. Every bill, estimate and receipt you hand Helse is kept: what each visit and test cost, who billed it, what insurance paid or refused. It's linked to the visit it paid for, and totalled by year and by clinic, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
+IVF is a financial marathon too, and the paperwork is its own part-time job. Every clinic bill and lab estimate lands in Costs, next to the visit or test it paid for — so you can see what each clinic has cost you, and what insurance refused to cover.
 
 ## Every number has a source
 
