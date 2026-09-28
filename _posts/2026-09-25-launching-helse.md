@@ -41,7 +41,9 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 ### About you: what Helse knows
 
 - **Your profile.** Your age, your sex and your life stage — trying to conceive, pregnant, perimenopausal, postmenopausal — with the date it started, because the same number means different things at different points in life.
-- **Your focus: what Helse pays attention to.** Something you're working toward or going through — better egg quality, a healthier heart, an IVF cycle, a stubborn injury. Each one decides which markers Helse puts first, how it reads your results and what goes into your supplement plan, and gets its own page: a timeline of its appointments, tests, medications and notes, and your clinic's reports imported straight from a screenshot — so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot. What it never does is move a target — a healthy range doesn't change because you want it to. And one timeline pulls it all together: every visit, test and result, newest first, with where it happened and who you saw.
+- **Your focus: what Helse pays attention to.** Something you're working toward or going through — better egg quality, a healthier heart, an IVF cycle, a stubborn injury. Each one decides which markers Helse puts first, how it reads your results and what goes into your supplement protocol — but never moves a target: a healthy range doesn't change because you want it to. And each gets its own page for the tests, appointments, medications and notes that go with it, so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot.
+- **One timeline for everything.** Every visit, test and result, newest first, with where it happened and who you saw.
+- **What it all costs.** Every bill, estimate and receipt you hand Helse (a physical, a lab estimate, a vet invoice) is linked to the visit or test it paid for, with who billed it and what insurance paid or refused. It's totalled by year and by provider, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
 
 ### Your results: what your data says
 
@@ -60,9 +62,6 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 - **What your results mean.** What changed since your last results, and what it means for your focus: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, and isn't allowed to add a target of its own.
 - **When your next screening is due.** Your Pap, mammogram or colonoscopy, found on your own timeline and timed by the official schedule for your age — and after an abnormal result, a note that your doctor sets the date instead.
 - **A supplement protocol built for you.** Dosed, and scheduled across your day — morning, midday, evening, bedtime, with food or without — with the interactions between supplements flagged, and anything your doctor prescribed treated as fixed. Want something changed? Just say it in plain words — "I'm vegetarian", "fewer pills, please", "nothing with iodine" — and it redraws the protocol on the spot, showing exactly what would change before you apply it. If a request could mean two things, it asks.
-- **What it all costs.** Every bill, estimate and receipt you hand Helse — a physical, a lab estimate, a vet invoice — is kept: what each visit and test cost, who billed it, what insurance paid or refused. Each one is linked to the visit it paid for and totalled by year and by provider, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
-
-All of it is written for a better conversation with your doctor, not instead of one.
 
 ### For everyone you look after
 
@@ -90,7 +89,7 @@ Where that kind of evidence bears on you, Helse shows it. Women with higher vita
 
 None of this is about becoming a hypochondriac or replacing your doctor. It's the opposite of anxiety: the calm of actually knowing, of catching the slow drift before it becomes an event. Health managed the way an actuary manages risk — trends, not snapshots; probabilities, not panic. It won't hand you confident numbers with nothing behind them, and it won't pretend "normal" means "fine." What it gives you is a better conversation with your doctor, with the whole picture in hand.
 
-**Helse is in beta now at [gethelse.com](https://gethelse.com)**, free while it's in beta. Start with one lab PDF and see what a few years of it looks like on a chart.
+**Helse is in beta at [gethelse.com](https://gethelse.com), and free while it is.** Start with the lab reports you already have — PDFs, photos, portal screenshots — and see your results line up by date on one chart.
 
 A couple of practical things. It's passwordless, so you sign in with a code sent to your email — gethelse.com is a new domain, so that code sometimes lands in spam. Check there, and mark it "not spam" so it doesn't happen twice. And since I'm asking you to hand over lab results: your data isn't sold and isn't used for advertising, which the [privacy policy](https://gethelse.com/privacy) says in plain language rather than in legalese.
 
