@@ -1,10 +1,13 @@
 ---
-title: "Introducing Helse: Stop Reacting to Your Health"
+title: "The Health Tool I Wish My Family Had Had: Introducing Helse"
 layout: post
 blog: true
 category: blog
 author: Olga Kahn
-summary: "The health tool I wish my family had had — every result in one place, read in context, watched over time, with the evidence behind every flag. Now in beta."
+summary: "Every result in one place, read in context, watched over time — with the evidence behind every flag. Helse is now in beta, and free while it is."
+# Link previews (LinkedIn, X, iMessage): the SEO tag reads these, not `summary`.
+description: "Every result in one place, read in context, watched over time — with the evidence behind every flag. Helse is now in beta, and free while it is."
+image: /assets/images/posts/helse/social-card.png
 permalink: /blog/helse
 comments: true
 subscribe_tag: helse
@@ -24,13 +27,15 @@ Not live, so not claimed: heart-risk targets (plan item 7). Wearables = WHOOP on
 AI and no targets.
 -->
 
-# Introducing Helse: Stop Reacting to Your Health
+# The Health Tool I Wish My Family Had Had
+
+*Introducing Helse — now in beta.*
 
 A couple of winters ago, a week before Christmas, my husband's brother-in-law died of a heart attack at 35. It wasn't a bolt from the blue — for months he knew something was wrong, and the system kept telling him it was stress. [I wrote about it here.](/blog/health-ownership) The autopsy found a 90% blockage and a pancreatic tumor nobody had gone looking for. Every warning sign had been there, assessed one at a time, and waved through.
 
 That's the thing about how we do health: it waits for a crisis. Your data lives in a dozen portals, your labs come back "normal" ([which doesn't mean what you think it means](/blog/optimal-ranges)), and nobody — no doctor, no app — is holding the whole thread and watching it move.
 
-So I built the tool I wish my family had had. It's called **Helse**, and today it's in beta.
+So I built the tool I wish my family had had. It's called **Helse**, and today it's in beta. It's the opposite of anxiety: the calm of actually knowing, of catching the slow drift before it becomes an event.
 
 ## What it does
 
@@ -87,11 +92,19 @@ Where that kind of evidence bears on you, Helse shows it. Women with higher vita
 
 ## What it isn't
 
-None of this is about becoming a hypochondriac or replacing your doctor. It's the opposite of anxiety: the calm of actually knowing, of catching the slow drift before it becomes an event. Health managed the way an actuary manages risk — trends, not snapshots; probabilities, not panic. It won't hand you confident numbers with nothing behind them, and it won't pretend "normal" means "fine." What it gives you is a better conversation with your doctor, with the whole picture in hand.
+None of this is about becoming a hypochondriac or replacing your doctor. It's health managed the way an actuary manages risk — trends, not snapshots; probabilities, not panic. It won't hand you confident numbers with nothing behind them, and it won't pretend "normal" means "fine." What it gives you is a better conversation with your doctor, with the whole picture in hand.
 
-**Helse is in beta at [gethelse.com](https://gethelse.com), and free while it is.** Start with the lab reports you already have — PDFs, photos, portal screenshots — and see your results line up by date on one chart.
+**Helse is in beta at [gethelse.com](https://www.gethelse.com/?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), and free while it is.** Start with the lab reports you already have — PDFs, photos, portal screenshots — and see your results line up by date on one chart.
 
-A couple of practical things. It's passwordless, so you sign in with a code sent to your email — gethelse.com is a new domain, so that code sometimes lands in spam. Check there, and mark it "not spam" so it doesn't happen twice. And since I'm asking you to hand over lab results: your data isn't sold and isn't used for advertising, which the [privacy policy](https://gethelse.com/privacy) says in plain language rather than in legalese.
+Since I'm asking you to hand over lab results, here's what's true today:
+
+- Your data isn't sold, and isn't used for advertising.
+- Your documents are read by Anthropic's Claude, under terms that don't let it train on them.
+- Helse's own analytics never see your health data — not your results, not even which test you opened.
+- Before launch, Helse went through an exhaustive security review — sharing, uploads, accounts, the AI — and every issue it found was fixed.
+- Delete your account, and everything in it goes with it.
+
+The [privacy policy](https://www.gethelse.com/privacy?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch) says all of this in plain language rather than legalese.
 
 If your own health data has ever felt like it was working against you, come kick the tires — and tell me what's missing, at [hello@gethelse.com](mailto:hello@gethelse.com).
 
