@@ -17,8 +17,9 @@ BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26.
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
-Everything below is live as of 2026-09-27 (pet profiles, "Add anything", Costs and the
-profile Timeline: live 2026-09-27).
+Everything below is live as of 2026-09-28 (pet profiles, "Add anything", Costs and the
+profile Timeline: live 2026-09-27; "Your focus" — goals and concerns as one list — perimenopause
+as a life stage, and screening reminders: live 2026-09-28).
 Not live, so not claimed: heart-risk targets (plan item 7). Wearables = WHOOP only. Pets get no
 AI and no targets.
 -->
@@ -39,9 +40,8 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 ### About you: what Helse knows
 
-- **Your profile.** Your age, your sex and your life stage — trying to conceive, pregnant, postmenopausal — with the date it started, because the same number means different things at different points in life.
-- **Your health goals: where you're heading.** Better egg quality, more energy, a healthier heart. Goals decide what Helse pays attention to: which markers it puts first, how it reads your results, what goes into your supplement plan. What they never do is move a target — a healthy range doesn't change because you want it to.
-- **Your health concerns: what you're dealing with.** An IVF cycle, a thyroid problem, a stubborn injury. Each concern gets its own page: a timeline of every test, appointment, medication and note, and your clinic's reports imported straight from a screenshot — so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot. And one timeline pulls it all together: every visit, test and result across every concern, newest first, with where it happened and who you saw.
+- **Your profile.** Your age, your sex and your life stage — trying to conceive, pregnant, perimenopausal, postmenopausal — with the date it started, because the same number means different things at different points in life.
+- **Your focus: what Helse pays attention to.** Something you're working toward or going through — better egg quality, a healthier heart, an IVF cycle, a stubborn injury. Each one decides which markers Helse puts first, how it reads your results and what goes into your supplement plan, and gets its own page: a timeline of every test, appointment, medication and note, and your clinic's reports imported straight from a screenshot — so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot. What it never does is move a target — a healthy range doesn't change because you want it to. And one timeline pulls it all together: every visit, test and result, newest first, with where it happened and who you saw.
 
 ### Your results: what your data says
 
@@ -57,7 +57,8 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 ### What to do: how to act on it
 
-- **What your results mean.** A read of your latest results through the lens of your goals: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, so it can't make up a number.
+- **What your results mean.** A read of your latest results through the lens of your focus: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, so it can't make up a number.
+- **When your next screening is due.** Your Pap, mammogram or colonoscopy, found on your own timeline and timed by the official schedule for your age — and after an abnormal result, a note that your doctor sets the date instead.
 - **A supplement protocol built for you.** Dosed, and scheduled across your day — morning, midday, evening, bedtime, with food or without — with the interactions between supplements flagged, and anything your doctor prescribed treated as fixed. Want something changed? Chat with it: ask a question, or ask for a change and see exactly what would move before you apply it.
 - **What it all costs.** Every bill, estimate and receipt you hand Helse — a physical, a lab estimate, a vet invoice — is kept: what each visit and test cost, who billed it, what insurance paid or refused. Each one is linked to the visit it paid for and totalled by year and by provider, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
 
@@ -69,9 +70,9 @@ The multi-profile part has a sillier origin: I was trying to keep track of my **
 
 You can share any profile with a partner or a family member (or the dog sitter), to view it or to help keep it up to date.
 
-## A concern up close: fertility and IVF
+## Up close: fertility and IVF
 
-Concerns are where Helse goes deepest, and mine is fertility, so here's what one looks like in practice.
+Your focus is where Helse goes deepest, and mine is fertility, so here's what that looks like in practice.
 
 Monitoring scans and retrievals group into IVF cycles, so you can compare one round with the next — follicles, eggs, embryos — side by side. Your clinic's screenshots import straight in, and your recurring records, like scans and embryology reports, become forms you add to in seconds. When your clinician gives you a number for a stage — an estradiol target during stimulation — Helse holds every reading to it, at the right stage. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested yet. And your wearable's recovery is averaged across each cycle, so you can see how your body handled each round.
 
