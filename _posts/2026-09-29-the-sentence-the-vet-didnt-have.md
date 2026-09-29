@@ -21,9 +21,11 @@ DRAFT — 2026-09-29. Before publishing, check:
     dated weight on the first line.
 [ ] NOT live and NOT claimed: an IPS/FHIR file export — mentioned only as what comes next.
 [ ] The link to /blog/helse assumes the launch post is published first; otherwise drop it.
-[ ] A picture: the Demo profile's summary page (scripts/screenshot.mjs in the Helse repo).
-[ ] Olga's calls: the title; how much of Rocco's night to keep; the vet is kept blameless on
-    purpose ("there was nowhere for him to have known it from") — soften or sharpen as you like.
+[x] A picture: the Demo dog's summary page, made-up records (HIDE='.print\:hidden' node
+    scripts/screenshot.mjs http://localhost:3000/dashboard/summary <demo dog id> <out> 1126, in the
+    Helse repo). No social card yet: link previews fall back to the site default.
+[x] Olga's calls (2026-09-29): the title stays; Rocco's night stays as written; the vet stays
+    blameless ("there was nowhere for him to have known it from").
 Links to gethelse.com carry utm_campaign=interoperability; share the post with ?utm_source=<channel>.
 -->
 
@@ -66,6 +68,10 @@ Every profile in Helse — a person's or a pet's — now has two new things.
 **Allergies & reactions.** A place for what a clinician must know before treating you: an allergy, a bad reaction to a drug or a sedation or a treatment, or a plain caution — hard to find a vein, anxious at the clinic. What it was to, what happened, when, how bad, and who says so. They're standing facts, not timeline entries, so they never scroll away. And when you add a discharge summary or a visit note that states one, Helse picks it out and asks whether to keep it.
 
 **A summary for your clinician.** One page, in the standard's shape: who you are, with your weight and the date it was measured; allergies and reactions; medications; problems; visits and procedures; immunizations; tests and imaging; your latest lab results, each with its own lab's reference range; the last three months of symptoms; who has provided your care. You can leave things out before you print — a dermatologist doesn't need your fertility history, and you decide. Then print it, or save it as a PDF and keep it on your phone for the night you need it. For Rocco it says "Summary for the vet," and his weight is on the first line, dated, because that's what the dose is worked out from.
+
+![The Demo dog's summary for the vet: who he is with a dated weight, then a reaction to sedation first, then medications, visits and procedures, vaccinations, and lab results with the lab's own reference ranges](/assets/images/posts/helse/summary-for-the-vet.png)
+
+*The Demo dog's page — made-up records, the real layout. The first thing under his name is the sentence.*
 
 Two things it deliberately doesn't do. It doesn't grade your results against Helse's own targets — a clinician wants the lab's range, not an app's opinion. And it carries no AI-written prose. The point of the page is to be believed, and a stranger believes dates and sources.
 
