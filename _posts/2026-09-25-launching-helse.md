@@ -37,9 +37,21 @@ That's the thing about how we do health: it waits for a crisis. Your data lives 
 
 So I built the tool I wish my family had had. It's called **Helse**, and today it's in beta. It's the opposite of anxiety: the calm of actually knowing, of catching the slow drift before it becomes an event.
 
+It's for whatever you're keeping an eye on: fertility and IVF, perimenopause, your heart and metabolism, your thyroid, a parent's care, even your dog. **[Try it at gethelse.com](https://www.gethelse.com/?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch)**, free while it's in beta, or [look around a sample profile first](https://www.gethelse.com/sample?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), no sign-up needed.
+
 ## What it does
 
 **Helse is the early-warning view of your health: every result in one place, read in context, watched over time — with the evidence behind every flag.**
+
+## Every target has a source
+
+Most health apps hand you "optimal" ranges with nothing behind them. Before Helse showed a single target, every one was checked against the research, at the source.
+
+Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up — and those are the ones Helse uses. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. Seven more have real evidence that isn't a target — a link to lower mortality in one study, a guideline since withdrawn, a number the medical societies disagree on. For the other 43, Helse tells you the honest answer: nothing beyond the lab's normal range.
+
+Where that kind of evidence bears on you, Helse shows it. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. If fertility is what you're focused on, that finding sits right under your number on your vitamin D page, labelled for exactly what it is.
+
+## How it works
 
 You hand Helse anything with health data in it — a lab PDF, a photo of a paper report, a body scan, screenshots from your clinic's portal, a message from your doctor — and it works out what it is, files every result on the day it was drawn, and shows you what it found before anything is saved. From there, the app is laid out the way you'd think about your own health: what's true about you, what your data says, and what to do about it.
 
@@ -62,6 +74,8 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 *A marker page on a demo profile (the numbers are made up): normal by the lab's range, above the target the research supports, with the source one click away.*
 
+**[Add your own results at gethelse.com](https://www.gethelse.com/?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch)**, or [open a page like this one on the sample profile](https://www.gethelse.com/sample/marker/hemoglobin_a1c?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), no sign-up needed.
+
 ### What to do: how to act on it
 
 - **What your results mean.** What changed since your last results, and what it means for your focus: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, and isn't allowed to add a target of its own.
@@ -81,14 +95,6 @@ Fertility is where Helse goes deepest — it's my own focus — so here's what t
 Monitoring scans and retrievals group into IVF cycles, so you can compare one round with the next — follicles, eggs, embryos — side by side. Your clinic's screenshots import straight in, and your recurring records, like scans and embryology reports, become forms you add to in seconds. When your clinician gives you a number for a stage — an estradiol target during stimulation — Helse checks your lab results against it, but only the ones drawn during that stage. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested yet. And your wearable's recovery is averaged across each cycle, so you can see how your body handled each round.
 
 IVF is a financial marathon too, and the paperwork is its own part-time job. Every clinic bill and lab estimate lands in Costs, next to the visit or test it paid for — so you can see what each clinic has cost you, and what insurance refused to cover.
-
-## Every target has a source
-
-Most health apps hand you "optimal" ranges with nothing behind them. Before Helse showed a single target, every one was checked against the research, at the source.
-
-Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up — and those are the ones Helse uses. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. Seven more have real evidence that isn't a target — a link to lower mortality in one study, a guideline since withdrawn, a number the medical societies disagree on. For the other 43, Helse tells you the honest answer: nothing beyond the lab's normal range.
-
-Where that kind of evidence bears on you, Helse shows it. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. If fertility is in your focus, that finding sits right under your number on your vitamin D page, labelled for exactly what it is.
 
 ## What it isn't
 
