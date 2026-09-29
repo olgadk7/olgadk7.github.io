@@ -6,4 +6,29 @@ title: Home
 
 {% include favicon.html %}
 
+<style>
+html { scroll-behavior: smooth; }
+#about, #blog { scroll-margin-top: 1.5rem; }
+#blog .list { margin-top: 1em; }
+</style>
+
+<section id="about" style="margin-top: 3.5em;">
+  {% assign about_page = site.pages | where: "path", "about.md" | first %}
+  {{ about_page.content | markdownify }}
+</section>
+
+<section id="blog" style="margin-top: 3.5em;">
+  <h2>Writing</h2>
+  <section class="list">
+    {% for post in site.posts %}{% if post.blog %}
+      <div class="item {% if post.star %}star{% endif %}">
+        <a class="url" href="{{ site.url }}{{ post.url }}">
+          <aside class="date"><time datetime="{{ post.date | date:'%d-%m-%Y' }}">{{ post.date | date: '%b %d %Y' }}</time></aside>
+          <h3 class="title">{{ post.title }}</h3>
+        </a>
+      </div>
+    {% endif %}{% endfor %}
+  </section>
+</section>
+
 {% include footer.html %}
