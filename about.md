@@ -6,7 +6,7 @@ redirect_from:
   - /building/
 ---
 
-Hi! I'm a self-taught data scientist and solo founder. I build micro-SaaS tools that take a big, boring wall of data — the kind no human wants to read — and turn it into a clear map you can act on. My road here wasn't straight: modeling, politics and economics, art PR, several countries, before I found data science and, lately, AI. What carried me through every reinvention is the same thing that drives every product I build: a need to get to the truth, strip out bias, and not be fooled — so I can spend that clarity on living fully. If you ask for evidence, question the programs you were handed, and believe life is too short to live on autopilot, you're my kind of person. *Never lose the thread.*
+Hi! I'm a self-taught data scientist and solo founder. I build micro-SaaS tools that take a big, boring wall of data — the kind no human wants to read — and turn it into a clear map you can act on. My road here wasn't straight: fashion modeling, art PR, several countries. The technical part I taught myself by doing — building recommendation systems from scratch on AWS SageMaker in 2018, helping small non-tech businesses make sense of their numbers, tinkering with GPT-2 by late 2019, working as a blockchain analyst through the crypto years (2020–2022), and now building with AI. What carried me through every reinvention is the same thing that drives every product I build: a need to get to the truth, strip out bias, and not be fooled — so I can spend that clarity on living fully. If you ask for evidence, question the programs you were handed, and believe life is too short to live on autopilot, you're my kind of person. *Never lose the thread.*
 
 ## What I'm building — Ozzie Dynamics
 
