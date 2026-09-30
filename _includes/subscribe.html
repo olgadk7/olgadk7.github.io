@@ -1,9 +1,10 @@
 {% assign bd = site.buttondown_username | default: '' %}
 {% if bd != '' %}
 {% assign sub_tag = page.subscribe_tag | default: 'blog' %}
+{% comment %} A post can set its own subscribe_heading / subscribe_blurb (the Helse launch post does); every other post keeps the site's. {% endcomment %}
 <div class="subscribe">
-  <h4>{{ site.subscribe_heading | default: "The build log" }}</h4>
-  <p>{{ site.subscribe_blurb | default: "Once a month: what I shipped, what I learned, what I'm stuck on. No cadence theatre, no growth tips." }}</p>
+  <h4>{{ page.subscribe_heading | default: site.subscribe_heading | default: "The build log" }}</h4>
+  <p>{{ page.subscribe_blurb | default: site.subscribe_blurb | default: "Once a month: what I shipped, what I learned, what I'm stuck on. No cadence theatre, no growth tips." }}</p>
   <form class="subscribe-form"
         action="https://buttondown.com/api/emails/embed-subscribe/{{ bd }}"
         method="post"
