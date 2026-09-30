@@ -97,13 +97,13 @@ The multi-profile part has a sillier origin: I was trying to keep track of my **
 
 You can share any profile with a partner or a family member (or the dog sitter), to view it or to help keep it up to date.
 
-## Up close: fertility and IVF
+## Up close: it takes the shape of your concern
 
-Fertility is where Helse goes deepest — it's my own focus — so here's what that looks like in practice.
+Helse isn't a fertility app. But fertility was something I was optimizing for while I built it, and watching Helse bend around it is what convinced me the idea works.
 
-Monitoring scans and retrievals group into IVF cycles, so you can compare one round with the next — follicles, eggs, embryos — side by side. Your clinic's screenshots import straight in, and your recurring records, like scans and embryology reports, become forms you add to in seconds. When your clinician gives you a number for a stage — an estradiol target during stimulation — Helse checks your lab results against it, but only the ones drawn during that stage. A fertility view gathers the markers that matter — ovarian reserve, cycle hormones, thyroid, vitamin D, iron, B12 and folate, blood sugar — and shows which ones you haven't had tested yet. And your wearable's recovery is averaged across each cycle, so you can see how your body handled each round.
+Fertility treatments come with a wealth of detail that decisions are made on: monitoring scans with a row of follicle sizes, retrieval counts, embryology reports — paperwork no health app is built for. Hand Helse a screenshot of one, and it works out what kind of record it is, designs a form to hold it and reads the first one in. Every one after that is a screenshot away, and its numbers chart over time like any lab result. Tell it which forms are scans and which are retrievals, and the records group themselves into IVF cycles, so one round sits next to another — follicles, eggs, embryos — side by side. The clinic bills land in Costs, next to the visit each one paid for.
 
-IVF is a financial marathon too, and the paperwork is its own part-time job. Every clinic bill and lab estimate lands in Costs, next to the visit or test it paid for — so you can see what each clinic has cost you, and what insurance refused to cover.
+None of that was written for IVF alone. Hand Helse the reports that come with your own concern, and it builds the same kind of place for them. Name what you're focused on, and it picks out the lab results that bear on it, including the ones you haven't had tested yet.
 
 ## What it isn't
 
