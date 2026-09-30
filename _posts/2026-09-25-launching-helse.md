@@ -49,6 +49,10 @@ It's for whatever you're keeping an eye on: fertility and IVF, perimenopause, yo
 
 **Helse is the early-warning view of your health: every result in one place, read in context, watched over time — with the evidence behind every flag.**
 
+<video src="/assets/images/posts/helse/sample-off-target.mp4" poster="/assets/images/posts/helse/sample-off-target.jpg" width="784" height="766" autoplay muted loop playsinline style="width:100%;height:auto;border:1px solid #E4DDD0;border-radius:4px" aria-label="On Helse's sample profile, tapping Off target shows the two results that are off their target, and opening HbA1c shows it is in the lab's normal range but above its target, with the source."></video>
+
+*On the sample profile (every number is made up): tap **Off target**, and two results your lab would call normal come up. Open one, and Helse says why, with its source. [Try it yourself](https://www.gethelse.com/sample?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), no sign-up needed.*
+
 ## Every target has a source
 
 Most health apps hand you "optimal" ranges with nothing behind them. Before Helse showed a single target, every one was checked against the research, at the source.
