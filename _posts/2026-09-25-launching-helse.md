@@ -22,9 +22,8 @@ BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] Catalog targets switched on (plan item 1 in CLAUDE.md) — 2026-09-26, 10 markers.
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
 [x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26; re-shot
-    2026-09-29 from the sample profile in the new colours and chart, with the social card.
-    Re-shoot both if the marker page changes again before publishing (the chart's dates may,
-    with the words-and-dates pass).
+    2026-09-29 from the sample profile in the new colours, chart and date format, with the
+    social card. Re-shoot both if the marker page changes again before publishing.
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
 Everything below is live as of 2026-09-28 (pet profiles, "Add anything", Costs and the
 profile Timeline: live 2026-09-27; "Your focus" — goals and concerns as one list — perimenopause
