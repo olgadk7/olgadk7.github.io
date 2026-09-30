@@ -18,7 +18,10 @@ published: false
 BEFORE PUBLISHING — this post may only claim what is live. Tick each:
 [x] Catalog targets switched on (plan item 1 in CLAUDE.md) — 2026-09-26, 10 markers.
 [x] WHOOP configured in production — connected 2026-09-26, full history synced.
-[x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26.
+[x] A screenshot: a marker page with a verdict — demo profile, added 2026-09-26; re-shot
+    2026-09-29 from the sample profile in the new colours and chart, with the social card.
+    Re-shoot both if the marker page changes again before publishing (the chart's dates may,
+    with the words-and-dates pass).
 [x] The 2025 optimal-ranges post fixed first — rewritten and live 2026-09-26.
 Everything below is live as of 2026-09-28 (pet profiles, "Add anything", Costs and the
 profile Timeline: live 2026-09-27; "Your focus" — goals and concerns as one list — perimenopause
@@ -70,11 +73,11 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 - **Patterns, not just numbers.** When several heart-and-metabolic markers drift the wrong way together — each one still "normal" on its own — Helse flags it. That's exactly the kind of pattern that got waved through in my family.
 - **Your wearable.** Connect a WHOOP, and your recovery, heart-rate variability, resting heart rate and sleep sit right alongside your labs — this week against your own usual, because a wearable's numbers only mean something against your own baseline.
 
-![A Helse marker page for HbA1c: in the lab's normal range, but above the target, with its source and a history line](/assets/images/posts/helse/marker-verdict.png)
+![A Helse marker page for HbA1c: in the lab's normal range, but above the target, with its source, a history line, and a chart whose latest point sits above the target line](/assets/images/posts/helse/marker-verdict.png)
 
-*A marker page on a demo profile (the numbers are made up): normal by the lab's range, above the target the research supports, with the source one click away.*
+*A marker page on the sample profile (the numbers are made up): normal by the lab's range, above the target the research supports, with the source one click away.*
 
-**[Add your own results at gethelse.com](https://www.gethelse.com/?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch)**, or [open a page like this one on the sample profile](https://www.gethelse.com/sample/marker/hemoglobin_a1c?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), no sign-up needed.
+**[Add your own results at gethelse.com](https://www.gethelse.com/?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch)**, or [open this page on the sample profile](https://www.gethelse.com/sample/marker/hemoglobin_a1c?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), no sign-up needed.
 
 ### What to do: how to act on it
 
