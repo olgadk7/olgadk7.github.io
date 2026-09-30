@@ -14,7 +14,9 @@ subscribe_tag: helse
 # The box at the end, for readers not ready to add their labs yet.
 subscribe_heading: "Not ready to add your labs yet?"
 subscribe_blurb: "One email when there's real news about Helse. Nothing else."
-published: false
+published: true
+# The day it went out (the file name still says the 25th, when it was drafted).
+date: 2026-09-29
 ---
 
 <!--
