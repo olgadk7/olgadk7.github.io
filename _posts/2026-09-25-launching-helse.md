@@ -38,7 +38,7 @@ AI and no targets.
 
 *Introducing Helse — now in beta.*
 
-A couple of winters ago, a week before Christmas, my husband's brother-in-law died of a heart attack at 35. It wasn't a bolt from the blue — for months he knew something was wrong, and the system kept telling him it was stress. [I wrote about it here.](/blog/health-ownership) The autopsy found a 90% blockage and a pancreatic tumor nobody had gone looking for. Every warning sign had been there, assessed one at a time, and waved through.
+A couple of winters ago, a week before Christmas, my husband's brother-in-law died of a heart attack at 36. It wasn't a bolt from the blue — for months he knew something was wrong, and the system kept telling him it was stress. [I wrote about it here.](/blog/health-ownership) The autopsy found a 90% blockage and a pancreatic tumor nobody had gone looking for. Every warning sign had been there, assessed one at a time, and waved through.
 
 That's the thing about how we do health: it waits for a crisis. Your data lives in a dozen portals, your labs come back "normal" ([which doesn't mean what you think it means](/blog/optimal-ranges)), and nobody — no doctor, no app — is holding the whole thread and watching it move.
 
