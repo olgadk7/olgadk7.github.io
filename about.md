@@ -10,7 +10,7 @@ Hi! I'm a self-taught data scientist and solo founder. I build micro-SaaS tools 
 
 I've spent years looking for risk that's already visible in data before anyone acts on it — first in markets, now in health. It's the same failure each time: the warning signs are there, and the systems we use aren't built to read them.
 
-My road here wasn't straight: fashion modelling, politics and economics, art PR, several countries. The technical part I taught myself by doing — building recommendation systems from scratch on AWS SageMaker in 2018, helping small non-tech businesses make sense of numbers they were already sitting on, tinkering with GPT-2 by late 2019, working as a blockchain analyst through the crypto years (2020–2022), and now building with AI.
+My road here wasn't straight: fashion modelling, politics and economics, art PR, several countries. I'd been handling data since university research; the technical part I taught myself by doing — building recommendation systems from scratch on AWS SageMaker in 2018, helping small non-tech businesses make sense of numbers they were already sitting on, tinkering with GPT-2 by late 2019, working as a blockchain analyst through the crypto years (2020–2022), and now building with AI.
 
 What carried me through every reinvention is the same thing that drives every product I build: a need to get to the truth, strip out bias, and not be fooled — so I can spend that clarity on living fully.
 
