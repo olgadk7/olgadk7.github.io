@@ -4,10 +4,10 @@ layout: post
 blog: true
 category: blog
 author: Olga Kahn
-summary: "Every result in one place, read in context, watched over time — with the evidence behind every flag. Helse is now in beta, and free while it is."
+summary: "One place for all your health — results, diagnoses, symptoms, costs — read in context, with a one-page summary to take to your next doctor. For you and everyone you look after. Free while in beta."
 # Link previews (LinkedIn, X, iMessage): the SEO tag reads these, not `summary`.
-description: "Every result in one place, read in context, watched over time — with the evidence behind every flag. Helse is now in beta, and free while it is."
-image: /assets/images/posts/helse/social-card.png
+description: "One place for all your health — results, diagnoses, symptoms, costs — read in context, with a one-page summary to take to your next doctor. For you and everyone you look after. Free while in beta."
+image: /assets/images/posts/helse/social-card-2.png
 permalink: /blog/helse
 comments: true
 subscribe_tag: helse
@@ -32,6 +32,11 @@ profile Timeline: live 2026-09-27; "Your focus" — goals and concerns as one li
 as a life stage, and screening reminders: live 2026-09-28).
 Not live, so not claimed: heart-risk targets (plan item 7). Wearables = WHOOP only. Pets get no
 AI and no targets.
+Reworked 2026-10-04 around what Olga cares about most: one place for everything, taking it to a
+new doctor, and the people you look after. The evidence is support, not the headline. Checked live:
+the summary for a clinician (2026-09-29, c13c493: International Patient Summary order, untick to leave
+out, print or save as PDF, the lab's ranges only); diagnoses = milestones; a person's symptoms are
+timeline notes. The one-tap Symptom diary form is pets-only, so "diary" is said only of pets.
 -->
 
 # The Health Tool I Wish My Family Had Had
@@ -48,19 +53,23 @@ It's for whatever you're keeping an eye on: fertility and IVF, perimenopause, yo
 
 ## What it does
 
-**Helse is the early-warning view of your health: every result in one place, read in context, watched over time — with the evidence behind every flag.**
+**Helse is one place for all of your health — every result, diagnosis, symptom and bill — read in context, watched over time, and ready to take to your next doctor.**
 
 <video src="/assets/images/posts/helse/sample-off-target.mp4" poster="/assets/images/posts/helse/sample-off-target.jpg" width="784" height="766" autoplay muted loop playsinline style="width:100%;height:auto;border:1px solid #E4DDD0;border-radius:4px" aria-label="On Helse's sample profile, tapping Off target shows the two results that are off their target, and opening HbA1c shows it is in the lab's normal range but above its target, with the source."></video>
 
 *On the sample profile (every number is made up): tap **Off target**, and two results your lab would call normal come up. Open one, and Helse says why, with its source. [Try it yourself](https://www.gethelse.com/sample?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), no sign-up needed.*
 
-## Every target has a source
+## Take the whole picture to your next doctor
 
-Most health apps hand you "optimal" ranges with nothing behind them. Before Helse showed a single target, every one was checked against the research, at the source.
+A new doctor starts from zero: fifteen minutes, and whatever you remember to mention. With Helse, you bring the whole thread. It makes a one-page summary for them, in the order of the International Patient Summary — the international standard for what a doctor needs when they don't know you: your allergies and reactions first, then your medications, diagnoses and findings, visits and procedures, vaccines, tests and imaging, your latest lab results, your symptoms from the last three months, your care team and your insurance. Untick anything you'd rather leave out, then print it or save it as a PDF.
 
-Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up — and those are the ones Helse uses. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. Seven more have real evidence that isn't a target — a link to lower mortality in one study, a guideline since withdrawn, a number the medical societies disagree on. For the other 43, Helse tells you the honest answer: nothing beyond the lab's normal range.
+It's written for the doctor, so it shows your results against your lab's own ranges only — never Helse's targets, and no AI reading. The decisions stay theirs; they just get to make them with everything in front of them. (For your dog, the same page is written for the vet.)
 
-Where that kind of evidence bears on you, Helse shows it. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. If fertility is what you're focused on, that finding sits right under your number on your vitamin D page, labelled for exactly what it is.
+## For everyone you look after
+
+Health is rarely only yours to watch. Helse keeps a profile for everyone you look after: a parent, a partner — and yes, your dog. That last part is where the idea came from: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. A pet's profile keeps the vet visits and vaccines on one timeline, a symptom diary and a diet diary, what he's taking and when, and his bloodwork and weight over the years, read against the vet lab's own range.
+
+Share any profile with a partner or a family member (or the dog sitter), to view it or to help keep it up to date. When a parent's results arrive from three different clinics, that's the difference between everyone guessing and everyone looking at the same page.
 
 ## How it works
 
@@ -70,7 +79,7 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 - **Your profile.** Your age, your sex and your life stage — trying to conceive, pregnant, perimenopausal, postmenopausal — with the date it started, because the same number means different things at different points in life.
 - **Your focus: what Helse pays attention to.** Something you're working toward or going through — better egg quality, a healthier heart, an IVF cycle, a stubborn injury. Each one decides which markers Helse puts first, how it reads your results and what goes into your supplement protocol — but never moves a target: a healthy range doesn't change because you want it to. And each gets its own page for the tests, appointments, medications and notes that go with it, so when something is worth watching, it doesn't become a number you've forgotten by the time you're back in the parking lot.
-- **One timeline for everything.** Every visit, test and result, newest first, with where it happened and who you saw.
+- **One timeline for everything.** Every visit, test, result, diagnosis and symptom, newest first, with where it happened and who you saw.
 - **What it all costs.** Every bill, estimate and receipt you hand Helse (a physical, a lab estimate, a vet invoice) is linked to the visit or test it paid for, with who billed it and what insurance paid or refused. It's totalled by year and by provider, with estimates kept apart from the final bill so nothing is counted twice. Your insurance ID numbers never leave the original document.
 
 ### Your results: what your data says
@@ -87,17 +96,19 @@ You hand Helse anything with health data in it — a lab PDF, a photo of a paper
 
 **[Add your own results at gethelse.com](https://www.gethelse.com/?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch)**, or [open this page on the sample profile](https://www.gethelse.com/sample/marker/hemoglobin_a1c?utm_source=olgakahn.com&utm_medium=blog&utm_campaign=helse-launch), no sign-up needed.
 
-### What to do: how to act on it
+### Your plan: what to do about it
 
 - **What your results mean.** What changed since your last results, and what it means for your focus: your priorities, why each one matters for what you're working toward, and a concrete next step for each. It works from the same targets and sources as the rest of the app, and isn't allowed to add a target of its own.
 - **When your next screening is due.** Your Pap, mammogram or colonoscopy, found on your own timeline and timed by the official schedule for your age — and after an abnormal result, a note that your doctor sets the date instead.
 - **A supplement protocol built for you.** Dosed, and scheduled across your day — morning, midday, evening, bedtime, with food or without — with the interactions between supplements flagged, and anything your doctor prescribed treated as fixed. Want something changed? Just say it in plain words — "I'm vegetarian", "fewer pills, please", "nothing with iodine" — and it redraws the protocol on the spot, showing exactly what would change before you apply it. If a request could mean two things, it asks.
 
-### For everyone you look after
+## Every target has a source
 
-The multi-profile part has a sillier origin: I was trying to keep track of my **dogs'** vet visits, scattered across clinics, and realized it was the same problem one step sideways. So Helse keeps a profile for everyone you look after, not just you — and yes, that includes your dog. His vet visits and vaccines on one timeline, a symptom diary and a diet diary, what he's taking and when, and his bloodwork and weight over the years, read against the vet lab's own range. The same idea as for you: catch the slow drift early, while there's still time to do something about it.
+Most health apps hand you "optimal" ranges with nothing behind them. Before Helse showed a single target, every one was checked against the research, at the source.
 
-You can share any profile with a partner or a family member (or the dog sitter), to view it or to help keep it up to date.
+Of the 60 markers people most often give "optimal" ranges for, only 10 had a target that held up — and those are the ones Helse uses. Several popular numbers didn't hold up at all: there's no agreed target for fasting insulin, and the general goal for ApoB is under 100 — the lower numbers you'll see quoted are for people at high risk, or have nothing behind them. Seven more have real evidence that isn't a target — a link to lower mortality in one study, a guideline since withdrawn, a number the medical societies disagree on. For the other 43, Helse tells you the honest answer: nothing beyond the lab's normal range.
+
+Where that kind of evidence bears on you, Helse shows it. Women with higher vitamin D have had better IVF results in observational studies — but when a [randomized trial](https://pubmed.ncbi.nlm.nih.gov/33894153/) gave women with low vitamin D a large dose before IVF, pregnancy rates didn't go up. If fertility is what you're focused on, that finding sits right under your number on your vitamin D page, labelled for exactly what it is.
 
 ## Up close: it takes the shape of your concern
 
