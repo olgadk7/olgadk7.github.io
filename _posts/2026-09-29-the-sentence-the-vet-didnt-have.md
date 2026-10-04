@@ -20,7 +20,7 @@ DRAFT — 2026-09-29. Before publishing, check:
     vet page (print / save as PDF, leave things out, the lab's own ranges, no AI prose), the
     dated weight on the first line.
 [ ] NOT live and NOT claimed: an IPS/FHIR file export — mentioned only as what comes next.
-[ ] The link to /blog/helse assumes the launch post is published first; otherwise drop it.
+[x] The link to /blog/helse works: the launch post went live on 2026-09-29.
 [x] A picture: the Demo dog's summary page, made-up records (HIDE='.print\:hidden' node
     scripts/screenshot.mjs http://localhost:3000/dashboard/summary <demo dog id> <out> 1126, in the
     Helse repo). No social card yet: link previews fall back to the site default.
