@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <title>Ozzie Dynamics mark, small sizes</title>
+  <desc>Regular octagon, circumradius R, one vertex up. The D is built from it: horizontal bars run from the upper-left and lower-left vertices (offset R*sqrt(2)/2 from centre) to the vertical axis; the bowl is a semicircle centred on the octagon's centre with radius R*sqrt(2)/2, tangent to both bars; the stem stands halfway between the left vertices and the centre. Small-size cut: construction lines omitted and the bars start at the stem, so the D is one closed shape.</desc>
+  <g fill="none" stroke="#34322E">
+    <path d="M 358.579 217.157 H 500 A 282.843 282.843 0 0 1 500 782.843 H 358.579 Z" stroke-width="36" stroke-linejoin="miter"/>
+    <polygon points="500,100 782.843,217.157 900,500 782.843,782.843 500,900 217.157,782.843 100,500 217.157,217.157" stroke-width="36" stroke-linejoin="miter"/>
+  </g>
+</svg>
