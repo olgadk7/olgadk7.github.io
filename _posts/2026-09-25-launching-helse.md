@@ -7,7 +7,7 @@ author: Olga Kahn
 summary: "One place for all your health — results, diagnoses, symptoms, costs — read in context, with a one-page summary to take to your next doctor. For you and everyone you look after. Free while in beta."
 # Link previews (LinkedIn, X, iMessage): the SEO tag reads these, not `summary`.
 description: "One place for all your health — results, diagnoses, symptoms, costs — read in context, with a one-page summary to take to your next doctor. For you and everyone you look after. Free while in beta."
-image: /assets/images/posts/helse/social-card-2.png
+image: /assets/images/posts/helse/social-card-2.jpg
 permalink: /blog/helse
 comments: true
 subscribe_tag: helse
