@@ -27,7 +27,15 @@ API = "https://api.buttondown.com/v1"
 # Repo directory name -> how it should read in the log.
 DISPLAY_NAMES = {
     "olgadk7.github.io": "the site",
+    "helse": "Helse",
+    "bobbin": "Bobbin",
+    "pantry": "Pantry",
 }
+
+# Only these repos' commit subjects can appear in the draft, which goes to
+# subscribers. Everything else (Pulse, thoughtstream, the Sapiom findings…)
+# stays in the terminal's memory aid.
+PUBLIC_REPOS = {"helse", "bobbin", "pantry", "bare", "risk-sleuth", "olgadk7.github.io"}
 
 SKIP_DIRS = {"node_modules", ".git", "vendor", "_site", "dist", "build"}
 
@@ -46,12 +54,18 @@ def find_repos(root):
     root = os.path.expanduser(root)
     if not os.path.isdir(root):
         return []
-    repos = []
+    repos, seen = [], set()
     for name in sorted(os.listdir(root)):
         if name.startswith(".") or name in SKIP_DIRS:
             continue
         path = os.path.join(root, name)
+        # A shortcut to another repo (health-mastermind -> helse) would list
+        # the same work twice.
+        real = os.path.realpath(path)
+        if os.path.islink(path) or real in seen:
+            continue
         if os.path.isdir(os.path.join(path, ".git")):
+            seen.add(real)
             repos.append(path)
     return repos
 
@@ -81,34 +95,35 @@ def commits_since(repo, since_iso, author=None):
 
 
 def posts_since(site_repo, since_date):
-    posts_dir = os.path.join(site_repo, "_posts")
-    if not os.path.isdir(posts_dir):
-        return []
+    """Posts that are live: on origin/master (what GitHub Pages builds), not
+    `published: false`, and dated by their front matter, the day they went
+    out, rather than the file name (a draft keeps the day it was started)."""
+    run(["git", "fetch", "-q", "origin"], site_repo)
+    names = run(["git", "ls-tree", "--name-only", "origin/master", "_posts/"], site_repo)
     found = []
-    for fn in sorted(os.listdir(posts_dir)):
-        m = re.match(r"^(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown|html)$", fn)
+    for path in names.split("\n") if names else []:
+        m = re.match(r"^(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown|html)$", os.path.basename(path))
         if not m:
             continue
+        head = run(["git", "show", f"origin/master:{path}"], site_repo)[:4000]
+        fm = head.split("---", 2)[1] if head.startswith("---") else ""
+        if re.search(r"^published:\s*false\s*$", fm, re.M):
+            continue
+        d = re.search(r"^date:\s*(\d{4})-(\d{2})-(\d{2})", fm, re.M) or m
         try:
-            date = dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+            date = dt.date(int(d.group(1)), int(d.group(2)), int(d.group(3)))
         except ValueError:
             continue
         if date < since_date:
             continue
-        title, permalink = m.group(4), None
-        try:
-            with open(os.path.join(posts_dir, fn), encoding="utf-8") as fh:
-                head = fh.read(2000)
-            t = re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', head, re.M)
-            if t:
-                title = t.group(1)
-            p = re.search(r"^permalink:\s*(\S+)\s*$", head, re.M)
-            if p:
-                permalink = p.group(1)
-        except OSError:
-            pass
-        found.append({"date": date, "title": title, "permalink": permalink})
-    return found
+        t = re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', fm, re.M)
+        p = re.search(r"^permalink:\s*(\S+)\s*$", fm, re.M)
+        permalink = p.group(1) if p else None
+        if permalink and not permalink.startswith("/"):
+            permalink = "/" + permalink
+        found.append({"date": date, "title": t.group(1) if t else m.group(4),
+                      "permalink": permalink})
+    return sorted(found, key=lambda x: x["date"])
 
 
 def api(path, payload=None, key=None):
@@ -314,6 +329,8 @@ def main():
         lines.append("")
     elif active:
         for name, commits in repo_commits.items():
+            if name not in PUBLIC_REPOS:
+                continue
             label = DISPLAY_NAMES.get(name, name)
             lines.append(f"**{label}** — {len(commits)} commit"
                          f"{'s' if len(commits) != 1 else ''}")
@@ -357,7 +374,8 @@ def main():
     posts = posts_since(site_repo, since_date)
     if posts:
         for p in posts:
-            url = f"https://olgakahn.com{p['permalink']}" if p["permalink"] else ""
+            url = (f"https://olgakahn.com{p['permalink']}?utm_source=newsletter"
+                   if p["permalink"] else "")
             suffix = f" — {url}" if url else ""
             lines.append(f"- {p['title']}{suffix}")
     else:
