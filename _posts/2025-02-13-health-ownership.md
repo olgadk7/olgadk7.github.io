@@ -29,32 +29,31 @@ In the next chapter, I’ll examine how this failure isn’t unique to Hugo, but
 
 ## **Part 2. Systemic Failure in Action: How It Unfolded**
 
-Hugo’s story might sound extraordinary, but it reflects a broader pattern of systemic failures that repeatedly occur in healthcare. His case underscores how the presence of multiple unlikely symptoms in a young individual should have triggered much earlier medical scrutiny. Instead, each warning sign was assessed in isolation, preventing doctors from recognizing the rare but dangerous combination of risk factors. Subtle, long-term red flags get overlooked, mild symptoms are minimized, and only when catastrophe strikes do we realize how much was missed. Below is a condensed timeline that illustrates how a preventable tragedy can unfold.
+Hugo’s story might sound extraordinary, but it reflects a broader pattern in healthcare. His warning signs weren’t ignored so much as handled one at a time: each test answered its own question, some tests were ordered and never happened, and the explanation that stuck was stress. Nobody held the whole thread. Below is his timeline, taken from his medical file and the autopsy report.
 
-1. **T-minus 5 years: Early symptoms are dismissed because they are mild and non-specific.**
-    - **Subtle Signs**: Mild hypertension (140/90 mmHg), occasional fatigue, digestive discomfort.
-    - **Lifestyle Factors**: Poor diet, excessive smoking, high stress, sedentary habits.
-    - **Routine Checks**: Doctors note elevated blood pressure and mildly high LDL cholesterol but see “no immediate emergency.” No further testing is ordered.
-    - **Missed Opportunity**: Hypertension at 30 is uncommon and a clear early predictor of future cardiovascular events. The combination of elevated LDL, stress, and poor diet should have warranted **early cardiac imaging and metabolic assessment** to rule out underlying conditions.
-2. **T-minus 3 years: Basic tests fail to detect deeper disease, creating a false sense of security.**
-    - **Persistent Complaints**: Increased fatigue, dizziness, more frequent digestive issues.
-    - **Still “No Crisis”**: Blood pressure creeps up (145/95 mmHg), LDL climbs to 150 mg/dL, liver enzymes mildly elevated.
-    - **Piecing It Together?**: Each symptom is treated in isolation—stress, diet, “wait and see.” No one connects the dots.
-    - **Missed Opportunity**: The combination of rising liver enzymes, hypertension, and fatigue is **highly atypical for someone in their early 30s**. At this point, a physician should have escalated testing for metabolic syndrome, early cardiovascular disease, or even pancreatic dysfunction.
-3. **T-minus 1 year: The patient unconsciously adapts to a gradual decline, masking the worsening disease.**
-    - **Gradual Adaptation**: Hugo avoids strenuous activity, blames fatigue on “getting older.”
-    - **More Red Flags**: BP now 150/100 mmHg, LDL at 170 mg/dL, borderline fasting glucose (110 mg/dL).
-    - **Medical Response**: Minor tweaks to diet or a watch-and-wait approach.
-    - **Missed Opportunity**: **Masked hypertension, rising LDL, and creeping glucose dysregulation are classic precursors of cardiovascular events**. With symptoms accelerating, an **aggressive risk stratification approach (coronary CT, echocardiogram, full metabolic panel)** could have identified heart disease and early-stage pancreatic dysfunction.
-4. **T-minus 0 days: A serious event finally occurs—by which time, intervention is too late.**
-    - **Sudden Collapse**: Intense chest pain leads to a fatal heart attack.
-    - **Why So Sudden?**: He had no official history of heart disease, so emergency intervention wasn’t anticipated.
-    - **Missed Opportunity**:  By this point, **a high coronary calcium score, stress echo, or CT angiogram would have flagged a critical blockage**. The pancreatic tumor, left undetected, may also have exacerbated metabolic dysfunction, further increasing cardiovascular risk by worsening insulin resistance and systemic inflammation, both of which elevate cardiovascular risk.
-5. **Post-mortem: Only after death does the full extent of the disease become clear—revealing that earlier intervention could have saved his life.**
-    - **Autopsy Findings**: Severe coronary artery blockage, left ventricular hypertrophy, and a 6 cm pancreatic tumor.
-    - **Could It Have Been Prevented?**: Early detection might have led to stents or bypass surgery—and maybe earlier intervention on the tumor.
+1. **2017, age 29: The first warning signs, and the first “stress?”**
+    - **Signs**: Suspected high blood pressure. An ultrasound for a suspected fatty liver finds an enlarged fatty liver, possibly with early scarring, and a slightly enlarged spleen.
+    - **What Was Done**: A 24-hour blood-pressure test, only partly completed, shows high readings during the day. The report wonders about stress at work.
+    - **Missed Opportunity**: A fatty liver and high blood pressure at 29 are early marks of metabolic and cardiovascular risk. The two findings sat in separate reports.
+2. **2020, age 31: A full heart check, and a follow-up that left no trace**
+    - **Signs**: 170/90 at a flu visit. 96 kg (BMI 29), a pack of cigarettes a day, a grandfather who had a heart attack at 55, and breathlessness on moderate exertion.
+    - **What Was Done**: His GP gave him a home blood-pressure monitor, ordered blood tests and sent him to a cardiologist. The cardiologist measured 160/100 and did an ECG and a heart ultrasound: normal, with no thickening of the heart wall. A 24-hour test showed mild high blood pressure (average 137/80). The cardiologist’s note asks whether it’s a “white-coat effect” in an “anxious patient.”
+    - **Recommended Next**: A low-salt diet, a workup for the cause of the high blood pressure including a sleep-apnea test, and a stress test.
+    - **Missed Opportunity**: None of the three has a result in his file, and no treatment started. The stress test was the only exam in his history aimed at his coronary arteries.
+3. **2021–2022: High readings at home, and no change**
+    - **Signs**: In December 2021 his home readings average about 140/88 with no treatment, above the 135/85 that counts as high at home. In April 2022 a fever visit records 166/98.
+    - **Missed Opportunity**: Home readings are what doctors use to confirm high blood pressure, and these confirmed it. The file shows no action on them, and his blood pressure isn’t discussed again until 2024.
+4. **2024, age 35: Eleven doctor visits, and the label is still stress**
+    - **Signs**: Fatigue, headaches, dizziness, a stiff neck, spots in his vision, a general sense of being unwell. Blood pressure up to 180/100 at the doctor’s, about 125/80 at home. Liver enzymes above the normal range, rising again by December. Protein in his urine. Low platelets.
+    - **The Pattern Nobody Named**: High triglycerides (186–199 mg/dL), low HDL (30–32 mg/dL), fasting glucose of 100–102 mg/dL and high blood pressure: four of the five criteria for metabolic syndrome. His LDL (123 mg/dL) and HbA1c (5.2%) looked fine.
+    - **What Was Done**: Two blood-pressure drugs were tried, an anti-anxiety medication was prescribed, and he booked a psychologist. In the summer a cardiologist concluded white-coat hypertension and started no treatment. In April a GP felt a hard lump in his upper abdomen; it wasn’t scanned. An abdominal ultrasound was ordered in November for his liver tests and blood pressure. By the end of the month he hadn’t had it, and an in-person check-up booked for early December didn’t happen.
+    - **Missed Opportunity**: Read one at a time, each number had an explanation. Read together, they described a man at high cardiovascular risk, and the explanation in his file was still stress.
+5. **13 December 2024, age 36: The collapse**
+    - **What Happened**: On his way out of a training course, he collapsed in a hallway, struggling to breathe. Resuscitation didn’t bring him back.
+    - **Autopsy Findings**: Two 90% blockages in the main artery on the front of the heart. An enlarged heart with walls more than twice the normal thickness, four years after a normal heart ultrasound. Calcified plaque in his aorta, at 36. And a 6 × 5 × 5 cm calcified, necrotic tumor in the tail of the pancreas, a part no scan had ever looked at. The cause: sudden cardiac death, most likely from a heart attack, possibly from an inherited heart-muscle disease.
+    - **Could It Have Been Prevented?**: Nobody can know. But the stress test in 2020, the workup for his blood pressure, and a scan of that lump were each a chance to look.
 
-This is the tragic outcome of a system that waits for “obvious symptoms” rather than proactively screening for risks. Had the healthcare team employed a risk-based framework, every subtle sign—mild hypertension, borderline liver enzymes, persistent fatigue—would have prompted deeper investigation rather than a “wait and see.” Even one advanced screening (like a coronary CT or comprehensive metabolic testing) could have revealed mounting cardiovascular threats or hinted at the pancreatic lesion. By regarding these small flags as cumulative risks instead of isolated issues, doctors might have scheduled follow-up tests sooner, tracked lab values over time, and referred him to specialists early. A few timely steps could have uncovered life-threatening conditions while they were still manageable, possibly extending Hugo’s life.
+This is what a system that waits for “obvious symptoms” looks like from the inside. Hugo saw doctors often, and many of the right tests were ordered. What was missing was someone holding the whole thread: noticing that the stress test never happened, that his home readings were high, that his labs added up to a pattern, that a lump had been felt and never scanned. Read as one record, his file was a warning years before the end. A few timely steps, a stress test, a scan, a treated blood pressure, might have extended Hugo’s life.
 
 
 ## **Part 3. The Mindset of Risk-Based Health Ownership**
@@ -208,7 +207,7 @@ The previous section outlined how healthcare could shift toward risk-based preve
 
 ### **Integrate Longitudinal Health Data and Wearables**
 
-One of the key barriers to proactive healthcare is fragmented patient data. Hugo’s case highlights how cumulative warning signs—rising blood pressure, borderline cholesterol, and persistent fatigue—were treated in isolation rather than as part of a larger deteriorating trend. Without integrated tracking, subtle but compounding abnormalities went unnoticed. A system that consolidates biometric data, lab results, and clinical observations could have flagged these risks earlier, allowing for timely intervention before reaching a crisis point.
+One of the key barriers to proactive healthcare is fragmented patient data. Hugo’s case highlights how cumulative warning signs—high blood pressure, a fatty liver, high triglycerides and low HDL, persistent fatigue—were treated in isolation rather than as part of a larger deteriorating trend. Without integrated tracking, subtle but compounding abnormalities went unnoticed. A system that consolidates biometric data, lab results, and clinical observations could have flagged these risks earlier, allowing for timely intervention before reaching a crisis point.
 
 - **Electronic Health Record (EHR) Enhancements:** Encourage or mandate EHR systems that allow patients’ wearable/device data to flow seamlessly into clinical records. This can give physicians a broader view of day-to-day variations in blood pressure, heart rhythm, and glucose levels, uncovering trends that annual visits might miss.
 - **Interoperability Across Systems:** Require standard data protocols so that a patient’s health information—lab results, wearable data, imaging—can easily be shared among primary care providers, specialists, and hospitals, reducing redundancies and missed connections.
